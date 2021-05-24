@@ -25,17 +25,58 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 import Loader from "./stuff/Loader";
 import Init from "./Init";
 
-new Init();
+let json = {
+    files: [
+        {
+            file: "models/files/Bar1.stl",
+            color: "blue",
+            name: "Naajs",
+        },
+        {
+            file: "models/files/Bar2.stl",
+            color: "blue",
+            name: "Naajs",
+        },
+        {
+            file: "models/files/Bar3.stl",
+            color: "blue",
+            name: "Naajs",
+        },
+        {
+            file: "models/files/Bar4.stl",
+            color: "blue",
+            name: "Naajs",
+        },
+        {
+            file: "models/files/Base_gr.stl",
+            color: "blue",
+            name: "Naajs",
+        },
+        {
+            file: "models/files/Base_top.stl",
+            color: "blue",
+            name: "Naajs",
+        },
+        {
+            file: "models/files/Bolt_slide_gr.stl",
+            color: "blue",
+            name: "Naajs",
+        },
+        {
+            file: "models/files/Bolt_slide_top.stl",
+            color: "blue",
+            name: "Naajs",
+        },
+    ],
+};
+
+new Init().whithJSON(json);
 
 /*
 
 
 
-const container = document.getElementById("container");
-container.style.backgroundColor = "blue";
-const renderer = new WebGLRenderer({ antialias: true });
-renderer.setSize(container.offsetWidth, container.offsetHeight);
-container.appendChild(renderer.domElement);
+
 
 //Overlay and controls
 let overlay = document.createElement("div");
@@ -77,7 +118,7 @@ overlay.appendChild(slider);
 overlay.appendChild(buttonRight);
 container.appendChild(overlay);
 
-new OrbitControls(camera, renderer.domElement);
+
 
 const pointLight = new PointLight(0xff0000);
 pointLight.intensity = 0.5;
