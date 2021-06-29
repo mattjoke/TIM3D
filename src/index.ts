@@ -1,45 +1,20 @@
-import {
-    AmbientLight,
-    ArrowHelper,
-    Color,
-    DoubleSide,
-    GridHelper,
-    Mesh,
-    MeshBasicMaterial,
-    MeshPhysicalMaterial,
-    MeshStandardMaterial,
-    PerspectiveCamera,
-    PointLight,
-    PointLightHelper,
-    Scene,
-    SpotLight,
-    SpotLightHelper,
-    Vector3,
-    WebGLRenderer,
-} from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Box from "./geometry/Box";
-import Line from "./geometry/Line";
-import Plane from "./geometry/Plane";
-import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
-import Loader from "./stuff/Loader";
 import Init from "./Init";
 
 let json = {
     files: [
         {
             file: "models/files/Bar1.stl",
-            color: "blue",
+            color: "yellow",
             name: "Naajs",
         },
         {
             file: "models/files/Bar2.stl",
-            color: "blue",
+            color: "orange",
             name: "Naajs",
         },
         {
             file: "models/files/Bar3.stl",
-            color: "blue",
+            color: "#192833",
             name: "Naajs",
         },
         {
@@ -111,13 +86,6 @@ function step(inc: number) {
 }
 function changePositon() {
     cube.instance.position.x = (parseInt(slider.value) - 50) / 15;
-}
-
-overlay.appendChild(buttonLeft);
-overlay.appendChild(slider);
-overlay.appendChild(buttonRight);
-container.appendChild(overlay);
-
 
 
 const pointLight = new PointLight(0xff0000);

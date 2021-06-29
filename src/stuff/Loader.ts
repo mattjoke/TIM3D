@@ -3,7 +3,6 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import Init from "../Init";
 
 const Loader = (json: any) => {
-    console.log(json);
     json.files.forEach((file: any) => {
         const loader = new STLLoader();
         loader.load(
@@ -29,7 +28,6 @@ const Loader = (json: any) => {
                 Init.window.addObject(mesh);
             },
             (xhr) => {
-                console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
             },
             (error) => {
                 console.log(error);

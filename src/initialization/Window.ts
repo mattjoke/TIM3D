@@ -7,17 +7,17 @@ import {
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Box from "../geometry/Box";
+import Overlay from "./Overlay";
 
 class Window {
-    public scene: Scene;
-    private renderer: WebGLRenderer;
+    public scene: Scene = new Scene();
+    private renderer: WebGLRenderer = new WebGLRenderer();
     private camera: PerspectiveCamera;
-    private container: HTMLElement;
+    public container: HTMLElement;
 
     private animators: any[] = [];
 
     constructor() {
-        this.scene = new Scene();
         this.scene.background = new Color("teal");
         this.camera = new PerspectiveCamera(
             75,
@@ -28,17 +28,28 @@ class Window {
 
         this.container = document.getElementById("container");
         this.container.style.backgroundColor = "blue";
-        this.renderer = new WebGLRenderer();
         this.renderer.setSize(
             this.container.offsetWidth,
             this.container.offsetHeight
         );
         this.container.appendChild(this.renderer.domElement);
 
-        this.camera.position.set(0, 0, 5);
+        this.container.appendChild(Overlay())
+
+        this.camera.position.set(5, 5, 10);
 
         new OrbitControls(this.camera, this.renderer.domElement);
+
+        requestAnimationFrame(this.animate.bind(this));
+
     }
+
+    onWindowResize() {
+        this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
+     
+     }
 
     addObject(...objects: any[]) {
         objects.forEach((object) => {
@@ -51,9 +62,12 @@ class Window {
         });
     }
 
-    public animate() {
+    animate() {
         requestAnimationFrame(this.animate.bind(this));
         this.renderer.render(this.scene, this.camera);
+
+        this.onWindowResize();
+
         this.animators.forEach((object) => {
             object.animate();
         });
