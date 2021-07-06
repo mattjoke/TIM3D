@@ -1,15 +1,24 @@
-import { BoxGeometry, Mesh, MeshStandardMaterial } from "three";
+import {
+    BoxGeometry,
+    ConeGeometry,
+    Mesh,
+    MeshStandardMaterial,
+    TorusKnotGeometry,
+} from "three";
 
 class Box {
-    private geometry: BoxGeometry;
+    private geometry: TorusKnotGeometry;
     private material: MeshStandardMaterial;
     public instance: Mesh;
     constructor() {
-        this.geometry = new BoxGeometry(1, 1, 1);
-        this.geometry;
-        this.material = new MeshStandardMaterial();
-        this.material.flatShading = false;
+        this.geometry = new TorusKnotGeometry(10, 3, 100, 16);
+        this.material = new MeshStandardMaterial({
+            color: "red",
+        });
         this.instance = new Mesh(this.geometry, this.material);
+    }
+    animate() {
+        this.geometry.rotateX(0.01);
     }
 }
 

@@ -1,41 +1,83 @@
-import {
-    AmbientLight,
-    ArrowHelper,
-    Color,
-    DoubleSide,
-    GridHelper,
-    Mesh,
-    MeshBasicMaterial,
-    MeshPhysicalMaterial,
-    MeshStandardMaterial,
-    PerspectiveCamera,
-    PointLight,
-    PointLightHelper,
-    Scene,
-    SpotLight,
-    SpotLightHelper,
-    Vector3,
-    WebGLRenderer,
-} from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Box from "./geometry/Box";
-import Line from "./geometry/Line";
-import Plane from "./geometry/Plane";
-import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
-import Loader from "./stuff/Loader";
+import { Vector3 } from "three";
 import Init from "./Init";
+import { JSON } from "./types/jsonTypes";
 
-new Init();
+let json: JSON = {
+    files: [
+        {
+            file: "models/files/Bar1.stl",
+            color: "yellow",
+            name: "1",
+        },
+        {
+            file: "models/files/Bar2.stl",
+            color: "orange",
+            name: "2",
+        },
+        {
+            file: "models/files/Bar3.stl",
+            color: "#192833",
+            name: "3",
+        },
+        {
+            file: "models/files/Bar4.stl",
+            name: "4",
+        },
+        {
+            file: "models/files/Base_gr.stl",
+            name: "5",
+        },
+        {
+            file: "models/files/Base_top.stl",
+            name: "6",
+        },
+        {
+            file: "models/files/Bolt_slide_gr.stl",
+            name: "7",
+        },
+        {
+            file: "models/files/Bolt_slide_top.stl",
+            name: "8",
+        },
+    ],
+    steps: [
+        {
+            name: "Init",
+            positions: [
+                {
+                    name: "1",
+                    position: new Vector3(10, 10, 10),
+                },
+            ],
+        },
+        {
+            name: "First Step",
+            positions: [
+                {
+                    name: "1",
+                    position: new Vector3(7, 7, 7),
+                },
+            ],
+        },
+        {
+            name: "Second Step",
+            positions: [
+                {
+                    name: "1",
+                    position: new Vector3(5, 10, 10),
+                },
+            ],
+        },
+    ],
+};
+
+new Init().whithJSON(json);
 
 /*
 
 
 
-const container = document.getElementById("container");
-container.style.backgroundColor = "blue";
-const renderer = new WebGLRenderer({ antialias: true });
-renderer.setSize(container.offsetWidth, container.offsetHeight);
-container.appendChild(renderer.domElement);
+
 
 //Overlay and controls
 let overlay = document.createElement("div");
@@ -70,14 +112,7 @@ function step(inc: number) {
 }
 function changePositon() {
     cube.instance.position.x = (parseInt(slider.value) - 50) / 15;
-}
 
-overlay.appendChild(buttonLeft);
-overlay.appendChild(slider);
-overlay.appendChild(buttonRight);
-container.appendChild(overlay);
-
-new OrbitControls(camera, renderer.domElement);
 
 const pointLight = new PointLight(0xff0000);
 pointLight.intensity = 0.5;

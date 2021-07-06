@@ -1,25 +1,43 @@
-import { Color, PerspectiveCamera, Scene, WebGLRenderer } from "three";
-import Plane from "./geometry/Plane";
+import { AmbientLight, Color, GridHelper, PointLight } from "three";
+import Axis from "./initialization/Axis";
+import Overlay from "./initialization/Overlay";
+import Stepper from "./initialization/Stepper";
+import Window from "./initialization/Window";
+import Loader from "./stuff/Loader";
+import { JSON } from "./types/jsonTypes";
 
 class Init {
-    public scene: Scene;
-    public renderer: WebGLRenderer;
-    public plane: Plane;
-    initPlane = () => {
-        this.plane = new Plane();
-    };
-    constructor() {
-        const scene = new Scene();
-        scene.background = new Color();
-        const camera = new PerspectiveCamera(
-            75,
-            window.innerWidth / window.innerHeight,
-            0.1,
-            1000
-        );
+    public static window = new Window();
+    private overlay: HTMLDivElement;
+    private stepper: Stepper;
 
-        this.initPlane;
+    constructor() {
+        this.initPlane();
+        this.initAxes();
+
+        //Run the animations
+        Init.window.animate();
     }
+    initPlane() {
+        const light = new AmbientLight("white");
+        light.intensity = 0.3;
+        const l = new PointLight("white");
+        l.intensity = 0.3;
+        l.position.set(5, 5, 5);
+        const helper = new GridHelper(100, 100);
+        Init.window.addObject(light, helper, l);
+    }
+    initAxes() {
+        new Axis(10, new Color("blue"), [1, 0, 0]);
+        new Axis(10, new Color("red"), [0, 0, 1]);
+        new Axis(10, new Color("green"), [0, 1, 0]);
+    }
+
+    whithJSON = async (json: JSON) => {
+        this.stepper = new Stepper(json);
+        this.overlay = Overlay(this.stepper.length);
+        Init.window.container.appendChild(this.overlay);
+    };
 }
 
 export default Init;
