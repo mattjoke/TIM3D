@@ -1,46 +1,72 @@
+import { Vector3 } from "three";
 import Init from "./Init";
+import { JSON } from "./types/jsonTypes";
 
-let json = {
+let json: JSON = {
     files: [
         {
             file: "models/files/Bar1.stl",
             color: "yellow",
-            name: "Naajs",
+            name: "1",
         },
         {
             file: "models/files/Bar2.stl",
             color: "orange",
-            name: "Naajs",
+            name: "2",
         },
         {
             file: "models/files/Bar3.stl",
             color: "#192833",
-            name: "Naajs",
+            name: "3",
         },
         {
             file: "models/files/Bar4.stl",
-            color: "blue",
-            name: "Naajs",
+            name: "4",
         },
         {
             file: "models/files/Base_gr.stl",
-            color: "blue",
-            name: "Naajs",
+            name: "5",
         },
         {
             file: "models/files/Base_top.stl",
-            color: "blue",
-            name: "Naajs",
+            name: "6",
         },
         {
             file: "models/files/Bolt_slide_gr.stl",
-            color: "blue",
-            name: "Naajs",
+            name: "7",
         },
         {
             file: "models/files/Bolt_slide_top.stl",
-            color: "blue",
-            name: "Naajs",
+            name: "8",
+        },
+    ],
+    steps: [
+        {
+            name: "Init",
+            positions: [
+                {
+                    name: "1",
+                    position: new Vector3(10, 10, 10),
+                },
+            ],
+        },
+        {
+            name: "First Step",
+            positions: [
+                {
+                    name: "1",
+                    position: new Vector3(7, 7, 7),
+                },
+            ],
+        },
+        {
+            name: "Second Step",
+            positions: [
+                {
+                    name: "1",
+                    position: new Vector3(5, 10, 10),
+                },
+            ],
         },
     ],
 };

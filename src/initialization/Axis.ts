@@ -40,7 +40,6 @@ class Axis {
 
     computeDivisions() {
         let divisions = Math.round(this.size / this.numberOfDivisions);
-        console.log(divisions);
         let current = new Vector3(0, 0, 0);
 
         let points: Array<Vector3> = [];
@@ -53,7 +52,6 @@ class Axis {
 
             points.push();
         }
-        console.log(points)
         return points;
     }
 }

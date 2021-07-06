@@ -1,12 +1,23 @@
 import { AmbientLight, Color, GridHelper, PointLight } from "three";
-import Box from "./geometry/Box";
 import Axis from "./initialization/Axis";
+import Overlay from "./initialization/Overlay";
+import Stepper from "./initialization/Stepper";
 import Window from "./initialization/Window";
 import Loader from "./stuff/Loader";
+import { JSON } from "./types/jsonTypes";
 
 class Init {
     public static window = new Window();
+    private overlay: HTMLDivElement;
+    private stepper: Stepper;
 
+    constructor() {
+        this.initPlane();
+        this.initAxes();
+
+        //Run the animations
+        Init.window.animate();
+    }
     initPlane() {
         const light = new AmbientLight("white");
         light.intensity = 0.3;
@@ -22,18 +33,11 @@ class Init {
         new Axis(10, new Color("green"), [0, 1, 0]);
     }
 
-    whithJSON(json: {
-        files: { file: string; color: string; name: string }[];
-    }) {
-        Loader(json);
-    }
-    constructor() {
-        this.initPlane();
-        this.initAxes();
-
-        //Run the animations
-        Init.window.animate();
-    }
+    whithJSON = async (json: JSON) => {
+        this.stepper = new Stepper(json);
+        this.overlay = Overlay(this.stepper.length);
+        Init.window.container.appendChild(this.overlay);
+    };
 }
 
 export default Init;
