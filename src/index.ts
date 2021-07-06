@@ -27,6 +27,8 @@ import Init from "./Init";
 
 new Init();
 
+console.log("Inited in gh-pages!");
+
 /*
 
 
