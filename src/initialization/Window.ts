@@ -11,7 +11,7 @@ import Box from "../geometry/Box";
 
 class Window {
     public scene: Scene = new Scene();
-    private renderer: WebGLRenderer = new WebGLRenderer();
+    private renderer: WebGLRenderer = new WebGLRenderer({ antialias: true });
     private camera: PerspectiveCamera;
     public container: HTMLElement;
 
