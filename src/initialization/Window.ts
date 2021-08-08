@@ -3,11 +3,9 @@ import {
     Object3D,
     PerspectiveCamera,
     Scene,
-    Vector3,
     WebGLRenderer,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Box from "../geometry/Box";
 
 class Window {
     public scene: Scene = new Scene();
@@ -19,7 +17,7 @@ class Window {
 
     private animators: any[] = [];
 
-    constructor() {
+    constructor(container: HTMLElement) {
         this.scene.background = new Color("teal");
         this.camera = new PerspectiveCamera(
             75,
@@ -28,12 +26,13 @@ class Window {
             1000
         );
 
-        this.container = document.getElementById("container");
+        this.container = container ?? document.getElementById("container");
         this.container.style.backgroundColor = "blue";
         this.renderer.setSize(
             this.container.offsetWidth,
             this.container.offsetHeight
         );
+        this.container.style.position = "relative";
         this.container.appendChild(this.renderer.domElement);
 
         this.camera.position.set(5, 5, 10);
@@ -50,6 +49,10 @@ class Window {
         this.orbitalControls.reset();
     }
 
+    public getCamera() {
+        return this.camera;
+    }
+
     onWindowResize() {
         this.camera.aspect =
             this.container.clientWidth / this.container.clientHeight;
@@ -60,14 +63,9 @@ class Window {
         );
     }
 
-    addObject(...objects: any[]) {
+    addObject(...objects: Object3D[]) {
         objects.forEach((object) => {
-            if (object instanceof Box) {
-                this.animators.push(object);
-                this.scene.add(object.instance);
-            } else {
-                this.scene.add(object);
-            }
+            this.scene.add(object);
         });
     }
 

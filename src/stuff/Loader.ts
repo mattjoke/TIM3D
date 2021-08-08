@@ -1,9 +1,15 @@
 import { BufferGeometry, Mesh, MeshStandardMaterial } from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
-import Init from "../Init";
+import LoaderOverlay from "./LoaderOverlay";
 import { File } from "../types/jsonTypes";
+import Window from "../initialization/Window";
 
-const Loader = async (files: File[]) => {
+const Loader = async (
+    files: File[],
+    container: HTMLElement,
+    window: Window
+) => {
+    const div = LoaderOverlay(container);
     let items = new Map<string | number, Mesh>();
     for (const file of files) {
         const loader = new STLLoader();
@@ -24,9 +30,12 @@ const Loader = async (files: File[]) => {
 
             items.set(file.name, mesh);
 
-            Init.window.addObject(mesh);
+            window.addObject(mesh);
         });
     }
+
+    container.removeChild(div);
+
     return items;
 };
 

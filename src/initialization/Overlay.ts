@@ -1,10 +1,10 @@
-import { GridHelper } from "three";
-import Init from "../Init";
+import Selector from "../stuff/Selector";
 import Stepper from "./Stepper";
+import Window from "./Window";
 
-const toggleFullscreen = () => {
+const toggleFullscreen = (container: HTMLElement) => {
     if (!document.fullscreenElement) {
-        Init.window.container.requestFullscreen().catch((err) => {
+        container.requestFullscreen().catch((err) => {
             alert(
                 `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
             );
@@ -14,7 +14,7 @@ const toggleFullscreen = () => {
     }
 };
 
-const Overlay = (maximum: number) => {
+const Overlay = (maximum: number, window: Window) => {
     let overlay = document.createElement("div");
     overlay.style.position = "absolute";
     overlay.style.pointerEvents = "none";
@@ -28,7 +28,7 @@ const Overlay = (maximum: number) => {
     slider.max = (maximum - 1).toString();
     slider.value = "0";
     slider.step = "1";
-    slider.style.width = "90%";
+    slider.style.width = "80%";
     slider.style.pointerEvents = "auto";
 
     slider.addEventListener("change", (ev) => {
@@ -69,7 +69,7 @@ const Overlay = (maximum: number) => {
     fullscreen.style.right = "0";
     fullscreen.style.pointerEvents = "auto";
     fullscreen.addEventListener("click", (e: Event) => {
-        toggleFullscreen();
+        toggleFullscreen(window.container);
     });
 
     overlay.appendChild(fullscreen);
@@ -81,10 +81,13 @@ const Overlay = (maximum: number) => {
     reset.style.left = "0";
     reset.style.pointerEvents = "auto";
     reset.addEventListener("click", (e: Event) => {
-        Init.window.resetCamera();
+        window.resetCamera();
     });
 
     overlay.appendChild(reset);
+
+    overlay.addEventListener("mousedown", Selector);
+
     console.log("Overlay instantiated");
     return overlay;
 };
