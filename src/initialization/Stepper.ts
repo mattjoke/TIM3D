@@ -1,5 +1,4 @@
-import { Mesh } from "three";
-import Loader from "../stuff/Loader";
+import { Objects3D } from "../types/applicationTypes";
 import { JSON, Position, Step, File } from "../types/jsonTypes";
 
 class Step_of_manual {
@@ -30,21 +29,17 @@ const buildSteps = (steps: Step[]): [Step_of_manual, number] => {
 };
 
 class Stepper {
-    private static objects: Map<string | number, Mesh>;
+    private static objects: Objects3D;
     private static currentStep: Step_of_manual;
     private static currentStepPosition = 0;
     public length = 0;
-    constructor(json: JSON) {
-        this.hey(json.files).then(() => {
-            Stepper.redraw();
-        });
+
+    constructor(json: JSON, objects: Objects3D) {
+        Stepper.objects = objects;
         const build = buildSteps(json.steps);
         Stepper.currentStep = build[0];
         this.length = build[1];
     }
-    hey = async (files: File[]) => {
-        Stepper.objects = await Loader(files);
-    };
 
     private static redraw() {
         console.log(Stepper.currentStep);
@@ -78,6 +73,10 @@ class Stepper {
             this.currentStepPosition--;
         }
         this.redraw();
+    }
+
+    public static getObjects() {
+        return this.objects;
     }
 }
 export default Stepper;

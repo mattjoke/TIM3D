@@ -2,8 +2,8 @@ import { Color, Mesh, Vector3 } from "three";
 
 export interface JSON {
     config?: {};
-    files: File[];
-    steps: Step[];
+    files?: File[];
+    steps?: Step[];
 }
 
 export interface File {

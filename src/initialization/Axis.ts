@@ -1,59 +1,56 @@
-import {
-    AxesHelper,
-    BufferGeometry,
-    Color,
-    Line,
-    LineBasicMaterial,
-    Vector3,
-} from "three";
-import Init from "../Init";
+import { BufferGeometry, Color, Line, LineBasicMaterial, Vector3 } from "three";
 
-class Axis {
-    private numberOfDivisions: number;
-    private direction: Array<number>;
-    private size: number = 50;
-    constructor(
-        numOfDivisions: number,
-        color: Color,
-        dir: Array<number>,
-        size: number = 50
-    ) {
-        const material = new LineBasicMaterial({
-            color: color,
-        });
+const computeDivisions = (
+    size: number,
+    numberOfDivisions: number,
+    direction: Array<number>
+) => {
+    let divisions = Math.round(size / numberOfDivisions);
+    let current = new Vector3(0, 0, 0);
 
-        this.numberOfDivisions = numOfDivisions;
-        this.size = size;
-        this.direction = dir;
-
-        const points = this.computeDivisions();
-        points.push(
-            new Vector3(-size * dir[0], -size * dir[1], -size * dir[2])
+    let points: Array<Vector3> = [];
+    for (let i = 0; i < divisions; i++) {
+        current = new Vector3(
+            (current.x + divisions) * direction[0],
+            (current.x + divisions) * direction[1],
+            (current.x + divisions) * direction[2]
         );
-        points.push(new Vector3(size * dir[0], size * dir[1], size * dir[2]));
 
-        const geometry = new BufferGeometry().setFromPoints(points);
-
-        const line = new Line(geometry, material);
-        Init.window.addObject(line);
+        points.push();
     }
+    return points;
+};
 
-    computeDivisions() {
-        let divisions = Math.round(this.size / this.numberOfDivisions);
-        let current = new Vector3(0, 0, 0);
+const Axis = (
+    numOfDivisions: number,
+    color: Color,
+    direction: Array<number>,
+    size: number = 50
+) => {
+    const material = new LineBasicMaterial({
+        color: color,
+    });
 
-        let points: Array<Vector3> = [];
-        for (let i = 0; i < divisions; i++) {
-            current = new Vector3(
-                (current.x + divisions) * this.direction[0],
-                (current.x + divisions) * this.direction[1],
-                (current.x + divisions) * this.direction[2]
-            );
+    const points = computeDivisions(size, numOfDivisions, direction);
+    points.push(
+        new Vector3(
+            -size * direction[0],
+            -size * direction[1],
+            -size * direction[2]
+        )
+    );
+    points.push(
+        new Vector3(
+            size * direction[0],
+            size * direction[1],
+            size * direction[2]
+        )
+    );
 
-            points.push();
-        }
-        return points;
-    }
-}
+    const geometry = new BufferGeometry().setFromPoints(points);
+
+    const line = new Line(geometry, material);
+    return line;
+};
 
 export default Axis;
