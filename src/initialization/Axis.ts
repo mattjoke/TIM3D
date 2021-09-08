@@ -5,10 +5,10 @@ const computeDivisions = (
     numberOfDivisions: number,
     direction: Array<number>
 ) => {
-    let divisions = Math.round(size / numberOfDivisions);
+    const divisions = Math.round(size / numberOfDivisions);
     let current = new Vector3(0, 0, 0);
 
-    let points: Array<Vector3> = [];
+    const points: Array<Vector3> = [];
     for (let i = 0; i < divisions; i++) {
         current = new Vector3(
             (current.x + divisions) * direction[0],

@@ -3,7 +3,8 @@ import Init from "./Init";
 import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
 
-let json: JSON = {
+
+const json: JSON = {
     files: [
         {
             file: "models/files/Bar1.stl",
@@ -72,7 +73,7 @@ let json: JSON = {
     ],
 };
 
-let json2: JSON = {
+const json2: JSON = {
     files: [
         {
             file: "models/files/Bar1.stl",
@@ -101,15 +102,6 @@ let json2: JSON = {
             ],
         },
         {
-            name: "First Step",
-            positions: [
-                {
-                    name: "1",
-                    position: new Vector3(7, 7, 7),
-                },
-            ],
-        },
-        {
             name: "Second Step",
             positions: [
                 {
@@ -121,14 +113,14 @@ let json2: JSON = {
     ],
 };
 
-var config: Config = {
+const config: Config = {
     container: document.getElementById("container"),
 };
 
 const t1 = new Init(config);
 t1.whithJSON(json);
 
-var config2: Config = {
+const config2: Config = {
     container: document.getElementById("second"),
 };
 
@@ -137,4 +129,4 @@ t2.whithJSON(json2);
 
 const t3 = new Init({ container: document.getElementById("third") });
 
-console.log(t1, t2);
+console.log(t1, t2, t3);

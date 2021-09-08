@@ -1,4 +1,3 @@
-import Init from "../Init";
 import "../demo/loader.css";
 
 const LoaderOverlay = (container: HTMLElement) => {
