@@ -1,18 +1,18 @@
 import { Objects3D } from "../types/applicationTypes";
-import { JSON, Position, Step, File } from "../types/jsonTypes";
+import { JSON, Position, Step } from "../types/jsonTypes";
 
-class Step_of_manual {
-    prev: Step_of_manual | null;
-    next: Step_of_manual | null;
+class StepOfManual {
+    prev: StepOfManual | null;
+    next: StepOfManual | null;
     name: string;
     positions: Position[];
 }
 
-const buildSteps = (steps: Step[]): [Step_of_manual, number] => {
+const buildSteps = (steps: Step[]): [StepOfManual, number] => {
     let prev = null;
     let length = 0;
     for (const step of steps) {
-        let curr = new Step_of_manual();
+        const curr = new StepOfManual();
         curr.name = step.name;
         curr.positions = step.positions;
         curr.prev = prev;
@@ -29,37 +29,44 @@ const buildSteps = (steps: Step[]): [Step_of_manual, number] => {
 };
 
 class Stepper {
-    private static objects: Objects3D;
-    private static currentStep: Step_of_manual;
-    private static currentStepPosition = 0;
+    private objects: Objects3D;
+    private currentStep: StepOfManual;
+    private currentStepPosition = 0;
     public length = 0;
 
     constructor(json: JSON, objects: Objects3D) {
-        Stepper.objects = objects;
+        this.objects = objects;
         const build = buildSteps(json.steps);
-        Stepper.currentStep = build[0];
+        this.currentStep = build[0];
         this.length = build[1];
+        requestAnimationFrame(this.redraw.bind(this))
     }
 
-    private static redraw() {
-        console.log(Stepper.currentStep);
-        for (const position of Stepper.currentStep.positions) {
+    private redraw() {
+        console.log(this.currentStep);
+        for (const position of this.currentStep.positions) {
             const { x, y, z } = position.position;
             this.objects.get(position.name).position.set(x, y, z);
+            this.objects.get(`${position.name}-outline`).position.set(x, y, z);
         }
     }
 
-    public static setStep(position: number) {
+    public setStep(position: number) {
         while (this.currentStepPosition != position) {
-            console.log(position, this.currentStepPosition);
             if (position > this.currentStepPosition) {
+                if (this.currentStep.next == null){
+                    break;
+                } 
                 this.moveStepUp();
             } else {
+                if (this.currentStep.prev == null){
+                    break;
+                } 
                 this.moveStepDown();
             }
         }
     }
-    public static moveStepUp() {
+    public moveStepUp() {
         if (this.currentStep.next) {
             this.currentStep = this.currentStep.next;
             this.currentStepPosition++;
@@ -67,7 +74,7 @@ class Stepper {
         this.redraw();
     }
 
-    public static moveStepDown() {
+    public moveStepDown() {
         if (this.currentStep.prev) {
             this.currentStep = this.currentStep.prev;
             this.currentStepPosition--;
@@ -75,7 +82,7 @@ class Stepper {
         this.redraw();
     }
 
-    public static getObjects() {
+    public getObjects() {
         return this.objects;
     }
 }

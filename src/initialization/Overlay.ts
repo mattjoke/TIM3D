@@ -14,55 +14,91 @@ const toggleFullscreen = (container: HTMLElement) => {
     }
 };
 
-const Overlay = (maximum: number, window: Window) => {
-    let overlay = document.createElement("div");
+const Overlay = (stepper: Stepper, window: Window) => {
+    const overlay = document.createElement("div");
     overlay.style.position = "absolute";
     overlay.style.pointerEvents = "none";
     overlay.style.top = "0";
     overlay.style.width = "inherit";
     overlay.style.height = "inherit";
-    //Slider
-    let slider = document.createElement("input");
+    // Slider
+    const slider = document.createElement("input");
     slider.type = "range";
     slider.min = "0";
-    slider.max = (maximum - 1).toString();
+    slider.max = (stepper.length - 1).toString();
     slider.value = "0";
     slider.step = "1";
-    slider.style.width = "80%";
     slider.style.pointerEvents = "auto";
+    slider.style.flexGrow="4"
 
-    slider.addEventListener("change", (ev) => {
-        Stepper.setStep(Number(slider.value));
+    slider.addEventListener("change", (ev: Event) => {
+        ev.preventDefault();
+        console.log("yey")
+        stepper.setStep(Number(slider.value));
     });
 
     function step(inc: number) {
         if (inc > 0) {
             slider.stepUp();
-            Stepper.moveStepUp();
+            stepper.moveStepUp();
         } else {
             slider.stepDown();
-            Stepper.moveStepDown();
+            stepper.moveStepDown();
         }
     }
-    //Buttons
-    let buttonLeft = document.createElement("button");
+    // Buttons moves current step
+    const buttonLeft = document.createElement("button");
     buttonLeft.innerHTML = "<";
     buttonLeft.style.pointerEvents = "auto";
     buttonLeft.addEventListener("click", (e: Event) => {
+        e.preventDefault();
         step(-1);
     });
-    let buttonRight = document.createElement("button");
+    const buttonRight = document.createElement("button");
     buttonRight.innerHTML = ">";
     buttonRight.style.pointerEvents = "auto";
     buttonRight.addEventListener("click", (e: Event) => {
+        e.preventDefault();
         step(1);
     });
 
-    overlay.appendChild(buttonLeft);
-    overlay.appendChild(slider);
-    overlay.appendChild(buttonRight);
+    // Start
+    const start = document.createElement("button");
+    start.innerHTML = "⏮";
+    start.style.pointerEvents = "auto";
+    start.addEventListener("click", (e: Event) => {
+        slider.value = "0";
+        stepper.setStep(0);
+    });
 
-    let fullscreen = document.createElement("button");
+    // End
+    const end = document.createElement("button");
+    end.innerHTML = "⏭";
+    end.style.pointerEvents = "auto";
+    end.addEventListener("click", (e: Event) => {
+        slider.value = `${stepper.length - 1}`
+        stepper.setStep(999);
+    });
+
+    const container = document.createElement("div");
+    container.style.display="flex" 
+    container.style.width = "100%"
+    container.style.flexDirection = "row"
+    container.style.justifyContent= "space-evenly"
+    container.style.flexWrap= "no-wrap"
+    container.style.overflow= "hidden"
+
+
+    container.appendChild(start);
+    container.appendChild(buttonLeft);
+    container.appendChild(slider);
+    container.appendChild(buttonRight);
+    container.appendChild(end);
+
+    overlay.appendChild(container)
+
+    // Sets div to fullscreen
+    const fullscreen = document.createElement("button");
     fullscreen.innerHTML = "🗖";
     fullscreen.style.position = "absolute";
     fullscreen.style.bottom = "0";
@@ -74,7 +110,8 @@ const Overlay = (maximum: number, window: Window) => {
 
     overlay.appendChild(fullscreen);
 
-    let reset = document.createElement("button");
+    // Resets camera to basic position
+    const reset = document.createElement("button");
     reset.innerHTML = "🔄";
     reset.style.position = "absolute";
     reset.style.bottom = "0";

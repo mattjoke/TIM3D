@@ -1,11 +1,4 @@
-import {
-    AmbientLight,
-    Color,
-    GridHelper,
-    PointLight,
-    Raycaster,
-    Vector3,
-} from "three";
+import { AmbientLight, Color, PointLight } from "three";
 import Axis from "./initialization/Axis";
 import Overlay from "./initialization/Overlay";
 import Stepper from "./initialization/Stepper";
@@ -26,7 +19,7 @@ class Init {
         this.initPlane(config.enviroment);
         this.initAxes();
 
-        //Run the animations
+        // Run the animations
         this.window.animate();
     }
     initPlane(_config: Config) {
@@ -35,8 +28,8 @@ class Init {
         const l = new PointLight("white");
         l.intensity = 0.3;
         l.position.set(5, 5, 5);
-        const helper = new GridHelper(100, 100);
-        this.window.addObject(light, helper, l);
+        // const helper = new GridHelper(100, 100);
+        this.window.addObject(light, l);
     }
     initAxes() {
         this.window.addObject(Axis(10, new Color("blue"), [1, 0, 0]));
@@ -52,29 +45,12 @@ class Init {
         );
         this.stepper = new Stepper(json, this.objects);
 
-        this.overlay = Overlay(this.stepper.length, this.window);
+        this.overlay = Overlay(this.stepper, this.window);
         this.window.container.appendChild(this.overlay);
-        return this;
     };
 
     selectItem(id: ObjectID) {
         console.log(`Selected ${id}`);
-    }
-
-    selector(event: {
-        preventDefault: () => void;
-        clientX: number;
-        clientY: number;
-    }) {
-        event.preventDefault();
-        let raycast = new Raycaster();
-        var mouse3D = new Vector3(
-            (event.clientX / window.innerWidth) * 2 - 1,
-            -(event.clientY / window.innerHeight) * 2 + 1,
-            0.5
-        );
-        raycast.setFromCamera(mouse3D, this.window.getCamera());
-        console.log("son");
     }
 }
 

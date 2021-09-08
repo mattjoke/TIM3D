@@ -2,10 +2,13 @@ import {
     Color,
     Object3D,
     PerspectiveCamera,
+    Raycaster,
     Scene,
+    Vector2,
     WebGLRenderer,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { inputPosition } from "../types/applicationTypes";
 
 class Window {
     public scene: Scene = new Scene();
@@ -14,6 +17,9 @@ class Window {
     public container: HTMLElement;
 
     private orbitalControls: OrbitControls;
+
+    private mouse: Vector2;
+    private raycaster: Raycaster;
 
     private animators: any[] = [];
 
@@ -37,6 +43,23 @@ class Window {
 
         this.camera.position.set(5, 5, 10);
 
+        this.mouse = new Vector2();
+        this.raycaster = new Raycaster();
+        this.renderer.domElement.addEventListener(
+            "touchstart",
+            (ev: TouchEvent) => {
+                const touch = ev.touches[0];
+                const pos = { clientX: touch.clientX, clientY: touch.clientY };
+                this.selectObject(pos, this.renderer.domElement.getBoundingClientRect());
+            }
+        );
+        this.renderer.domElement.addEventListener("click", (ev: MouseEvent) => {
+            const pos = { clientX: ev.clientX, clientY: ev.clientY };
+            this.selectObject(pos, this.renderer.domElement.getBoundingClientRect());
+        });
+      
+        //this.renderer.domElement.addEventListener("touchstart", this.selectObject);
+
         this.orbitalControls = new OrbitControls(
             this.camera,
             this.renderer.domElement
@@ -51,6 +74,10 @@ class Window {
 
     public getCamera() {
         return this.camera;
+    }
+
+    public getDomRect() {
+        return this.renderer.domElement.getBoundingClientRect();
     }
 
     onWindowResize() {
@@ -69,15 +96,42 @@ class Window {
         });
     }
 
+    selectObject(position: inputPosition, canvas: DOMRect) {
+        //this.mouse.set(ev.clientX, ev.clientY)
+        const { clientX, clientY } = position;
+        this.mouse.set(
+            ((clientX - canvas.left) / (canvas.right - canvas.left)) * 2 - 1,
+            -((clientY - canvas.top) / (canvas.bottom - canvas.top)) * 2 + 1
+        );
+
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+        const intersects = this.raycaster.intersectObjects(this.scene.children);
+
+        console.log(intersects.length)
+        for (let i = 0; i < intersects.length; i++) {
+            const obj = intersects[i].object;
+            if (obj.type !== "Mesh"){
+                console.log(obj.type)    
+                continue;
+            }
+            const outline = this.scene.getObjectByName(`${obj.name}-outline`);
+            if (!outline) break;
+            console.log(intersects[i]);
+            outline.layers.toggle(0);
+            break;
+        }
+        //this.insideContainer = false;
+    }
+
     animate() {
         requestAnimationFrame(this.animate.bind(this));
-        this.renderer.render(this.scene, this.camera);
 
         this.onWindowResize();
 
         this.animators.forEach((object) => {
             object.animate();
         });
+        this.renderer.render(this.scene, this.camera);
     }
 }
 
