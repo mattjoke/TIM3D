@@ -12,9 +12,7 @@ class Factory {
         this.instance = new Init(config);
     }
     public async loadJSON(json: JSON) {
-        const loaded = await this.instance.withJSON(json);
-        console.log(loaded);
-        this.objectsLoaded = loaded.values.length > 0;
+        await this.instance.withJSON(json);
         return this;
     }
 
@@ -22,16 +20,12 @@ class Factory {
         if (this.objectsLoaded) {
             return this.instance.selectItem(name);
         }
-        setTimeout(() => {
-            this.selectItem(name);
-        }, 100);
     }
     public moveToStep(num: number) {
         this.instance.moveToStep(num);
     }
 
-    on(selector: ObjectID, event: string, callback: Function) {
-        console.log(this.selectItem(selector));
+    public on(selector: ObjectID, event: string, callback: Function) {
         this.selectItem(selector)
             ?.getMesh()
             .addEventListener(event, (e) => {
@@ -40,10 +34,4 @@ class Factory {
     }
 }
 
-function Factor(selector: ObjectID) {}
-
-Factor.initManual = (config: Config) => {
-    return new Factory(config);
-};
-
-export default Factor;
+export default Factory;

@@ -1,5 +1,4 @@
 import { Config } from "./types/configTypes";
-import Factor from "./Factory";
 import Factory from "./Factory";
 import Init from "./Init";
 import { JSON } from "./types/jsonTypes";
@@ -58,7 +57,7 @@ const json: JSON = {
             positions: [
                 {
                     name: "1",
-                    position: new Vector3(7, 7, 7),
+                    position: new Vector3(0, 0, 0),
                 },
             ],
         },
@@ -67,13 +66,13 @@ const json: JSON = {
             positions: [
                 {
                     name: "1",
-                    position: new Vector3(5, 10, 10),
+                    position: new Vector3(20, 15, 7),
                 },
             ],
         },
     ],
 };
-
+/*
 const json2: JSON = {
     files: [
         {
@@ -113,15 +112,32 @@ const json2: JSON = {
         },
     ],
 };
+*/
 
 const config: Config = {
     container: document.getElementById("container"),
 };
-
 const t1 = new Init(config);
-t1.withJSON(json);
 
-const config2: Config = {
+(async () => {
+    await t1.withJSON(json);
+
+
+    t1.on("5", "click", (e:Event) => {
+        const span = document.getElementById("data");
+        if (span != null){
+            span.innerText = e.message.uuid;
+        }
+    });
+
+    t1.on("1", "click", (e:Event) => {
+        t1.moveToStep(0);
+    });
+
+})();
+
+/*
+        const config2: Config = {
     container: document.getElementById("second"),
 };
 
@@ -146,12 +162,12 @@ factory.on("1", "click", (e:Event) => {
 
 factory.loadJSON(json);
 
-/*
 factory.selectItem("1");
 factory.moveToStep(3);
 
-*/
 
 const item = t1.selectItem("5");
 console.log(item);
+*/
+
 export default Factory;

@@ -23,7 +23,7 @@ class Object3D extends EventDispatcher {
         this.outline = this.buildOutline(this.geometry, file);
 
         this.mesh.addEventListener("start", (ev: Event) => {
-            this.dispatchEvent({ type: "click", message: this });
+            this.dispatchEvent({ type: "click", message: this.mesh });
         });
     }
 
