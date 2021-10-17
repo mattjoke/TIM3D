@@ -1,8 +1,9 @@
-import { Vector3 } from "three";
-import Init from "./Init";
 import { Config } from "./types/configTypes";
+import Factor from "./Factory";
+import Factory from "./Factory";
+import Init from "./Init";
 import { JSON } from "./types/jsonTypes";
-
+import { Event, Vector3 } from "three";
 
 const json: JSON = {
     files: [
@@ -118,15 +119,39 @@ const config: Config = {
 };
 
 const t1 = new Init(config);
-t1.whithJSON(json);
+t1.withJSON(json);
 
 const config2: Config = {
     container: document.getElementById("second"),
 };
 
 const t2 = new Init(config2);
-t2.whithJSON(json2);
+t2.withJSON(json2);
 
-const t3 = new Init({ container: document.getElementById("third") });
+const config3: Config = {
+    container: document.getElementById("third"),
+    color: "#123456",
+};
 
-console.log(t1, t2, t3);
+console.log(t1, t2);
+
+// Factory approach
+
+const factory = Factor.initManual(config3);
+
+factory.on("1", "click", (e:Event) => {
+    console.log(e)
+    console.log("clicked!");
+});
+
+factory.loadJSON(json);
+
+/*
+factory.selectItem("1");
+factory.moveToStep(3);
+
+*/
+
+const item = t1.selectItem("5");
+console.log(item);
+export default Factory;

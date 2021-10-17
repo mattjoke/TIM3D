@@ -1,7 +1,11 @@
 import { Color, Mesh, Vector3 } from "three";
+import { Config } from "./configTypes";
+import { ObjectID } from "./applicationTypes";
+
+export type Objects = Map<string | number, Mesh>;
 
 export interface JSON {
-    config?: {};
+    config?: Config;
     files?: File[];
     steps?: Step[];
 }
@@ -9,7 +13,7 @@ export interface JSON {
 export interface File {
     file: string;
     color?: Color | string;
-    name: string | number;
+    name: ObjectID;
 }
 
 export interface Step {
@@ -18,8 +22,6 @@ export interface Step {
 }
 
 export interface Position {
-    name: string | number;
+    name: ObjectID;
     position: Vector3;
 }
-
-export type Objects = Map<string | number, Mesh>;

@@ -1,8 +1,8 @@
 import {
     BufferGeometry,
+    Line as Line3,
     LineBasicMaterial,
     Vector3,
-    Line as Line3,
 } from "three";
 
 class Line {

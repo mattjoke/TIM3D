@@ -1,4 +1,3 @@
-import Selector from "../stuff/Selector";
 import Stepper from "./Stepper";
 import Window from "./Window";
 
@@ -29,11 +28,10 @@ const Overlay = (stepper: Stepper, window: Window) => {
     slider.value = "0";
     slider.step = "1";
     slider.style.pointerEvents = "auto";
-    slider.style.flexGrow="4"
+    slider.style.flexGrow = "4";
 
     slider.addEventListener("change", (ev: Event) => {
         ev.preventDefault();
-        console.log("yey")
         stepper.setStep(Number(slider.value));
     });
 
@@ -76,18 +74,17 @@ const Overlay = (stepper: Stepper, window: Window) => {
     end.innerHTML = "⏭";
     end.style.pointerEvents = "auto";
     end.addEventListener("click", (e: Event) => {
-        slider.value = `${stepper.length - 1}`
+        slider.value = `${stepper.length - 1}`;
         stepper.setStep(999);
     });
 
     const container = document.createElement("div");
-    container.style.display="flex" 
-    container.style.width = "100%"
-    container.style.flexDirection = "row"
-    container.style.justifyContent= "space-evenly"
-    container.style.flexWrap= "no-wrap"
-    container.style.overflow= "hidden"
-
+    container.style.display = "flex";
+    container.style.width = "100%";
+    container.style.flexDirection = "row";
+    container.style.justifyContent = "space-evenly";
+    container.style.flexWrap = "no-wrap";
+    container.style.overflow = "hidden";
 
     container.appendChild(start);
     container.appendChild(buttonLeft);
@@ -95,7 +92,7 @@ const Overlay = (stepper: Stepper, window: Window) => {
     container.appendChild(buttonRight);
     container.appendChild(end);
 
-    overlay.appendChild(container)
+    overlay.appendChild(container);
 
     // Sets div to fullscreen
     const fullscreen = document.createElement("button");
@@ -122,8 +119,6 @@ const Overlay = (stepper: Stepper, window: Window) => {
     });
 
     overlay.appendChild(reset);
-
-    overlay.addEventListener("mousedown", Selector);
 
     console.log("Overlay instantiated");
     return overlay;

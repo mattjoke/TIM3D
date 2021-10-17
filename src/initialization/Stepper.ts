@@ -1,19 +1,25 @@
-import { Objects3D } from "../types/applicationTypes";
 import { JSON, Position, Step } from "../types/jsonTypes";
+import { Objects3D } from "@manualTypes/applicationTypes";
 
-class StepOfManual {
-    prev: StepOfManual | null;
-    next: StepOfManual | null;
-    name: string;
-    positions: Position[];
+interface BuildSteps {
+    root: StepOfManual | null;
+    length: number;
 }
 
-const buildSteps = (steps: Step[]): [StepOfManual, number] => {
+class StepOfManual {
+    prev: StepOfManual | null = null;
+    next: StepOfManual | null = null;
+    name!: string;
+    positions: Position[] = [];
+}
+
+const buildSteps = (steps: Step[] | undefined): BuildSteps => {
+    if (steps == null) return { root: null, length: 0 };
     let prev = null;
     let length = 0;
     for (const step of steps) {
         const curr = new StepOfManual();
-        curr.name = step.name;
+        curr.name = step.name ?? length.toString();
         curr.positions = step.positions;
         curr.prev = prev;
         if (prev) {
@@ -22,10 +28,10 @@ const buildSteps = (steps: Step[]): [StepOfManual, number] => {
         length++;
         prev = curr;
     }
-    while (prev.prev != null) {
+    while (prev != null && prev.prev != null) {
         prev = prev.prev;
     }
-    return [prev, length];
+    return { root: prev, length: length };
 };
 
 class Stepper {
@@ -36,32 +42,31 @@ class Stepper {
 
     constructor(json: JSON, objects: Objects3D) {
         this.objects = objects;
-        const build = buildSteps(json.steps);
-        this.currentStep = build[0];
-        this.length = build[1];
-        requestAnimationFrame(this.redraw.bind(this))
+        const { root, length } = buildSteps(json.steps);
+        this.currentStep = root ?? new StepOfManual();
+        this.length = length;
+        requestAnimationFrame(this.redraw.bind(this));
     }
 
     private redraw() {
-        console.log(this.currentStep);
         for (const position of this.currentStep.positions) {
             const { x, y, z } = position.position;
-            this.objects.get(position.name).position.set(x, y, z);
-            this.objects.get(`${position.name}-outline`).position.set(x, y, z);
+            this.objects.get(position.name)?.getMesh().position.set(x, y, z);
+            this.objects.get(position.name)?.getOutline().position.set(x, y, z);
         }
     }
 
     public setStep(position: number) {
         while (this.currentStepPosition != position) {
             if (position > this.currentStepPosition) {
-                if (this.currentStep.next == null){
+                if (this.currentStep.next === undefined) {
                     break;
-                } 
+                }
                 this.moveStepUp();
             } else {
-                if (this.currentStep.prev == null){
+                if (this.currentStep.prev == null) {
                     break;
-                } 
+                }
                 this.moveStepDown();
             }
         }
@@ -80,10 +85,6 @@ class Stepper {
             this.currentStepPosition--;
         }
         this.redraw();
-    }
-
-    public getObjects() {
-        return this.objects;
     }
 }
 export default Stepper;

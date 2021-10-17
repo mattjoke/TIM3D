@@ -5,7 +5,7 @@ class Plane {
     public divisions = 100;
     public instance: GridHelper;
     constructor() {
-        // this.instance = new GridHelper(this.size, this.divisions);
+        this.instance = new GridHelper(this.size, this.divisions);
     }
 }
 

@@ -24,6 +24,11 @@ class Window {
     private animators: any[] = [];
 
     constructor(container: HTMLElement) {
+        if (container == null) {
+            this.container = document.createElement("div");
+            console.warn("Container not specified! Using default one");
+        }
+
         this.scene.background = new Color("teal");
         this.camera = new PerspectiveCamera(
             75,
@@ -41,7 +46,7 @@ class Window {
         this.container.style.position = "relative";
         this.container.appendChild(this.renderer.domElement);
 
-        this.camera.position.set(5, 5, 10);
+        this.camera.position.set(100, 100, 110);
 
         this.mouse = new Vector2();
         this.raycaster = new Raycaster();
@@ -50,15 +55,21 @@ class Window {
             (ev: TouchEvent) => {
                 const touch = ev.touches[0];
                 const pos = { clientX: touch.clientX, clientY: touch.clientY };
-                this.selectObject(pos, this.renderer.domElement.getBoundingClientRect());
+                this.selectObject(
+                    pos,
+                    this.renderer.domElement.getBoundingClientRect()
+                );
             }
         );
         this.renderer.domElement.addEventListener("click", (ev: MouseEvent) => {
             const pos = { clientX: ev.clientX, clientY: ev.clientY };
-            this.selectObject(pos, this.renderer.domElement.getBoundingClientRect());
+            this.selectObject(
+                pos,
+                this.renderer.domElement.getBoundingClientRect()
+            );
         });
-      
-        //this.renderer.domElement.addEventListener("touchstart", this.selectObject);
+
+        // this.renderer.domElement.addEventListener("touchstart", this.selectObject);
 
         this.orbitalControls = new OrbitControls(
             this.camera,
@@ -97,7 +108,7 @@ class Window {
     }
 
     selectObject(position: inputPosition, canvas: DOMRect) {
-        //this.mouse.set(ev.clientX, ev.clientY)
+        // this.mouse.set(ev.clientX, ev.clientY)
         const { clientX, clientY } = position;
         this.mouse.set(
             ((clientX - canvas.left) / (canvas.right - canvas.left)) * 2 - 1,
@@ -107,20 +118,18 @@ class Window {
         this.raycaster.setFromCamera(this.mouse, this.camera);
         const intersects = this.raycaster.intersectObjects(this.scene.children);
 
-        console.log(intersects.length)
         for (let i = 0; i < intersects.length; i++) {
             const obj = intersects[i].object;
-            if (obj.type !== "Mesh"){
-                console.log(obj.type)    
+            if (obj.type !== "Mesh") {
                 continue;
             }
             const outline = this.scene.getObjectByName(`${obj.name}-outline`);
             if (!outline) break;
-            console.log(intersects[i]);
             outline.layers.toggle(0);
+            obj.dispatchEvent({ type: "start", message: obj });
             break;
         }
-        //this.insideContainer = false;
+        // this.insideContainer = false;
     }
 
     animate() {
@@ -131,6 +140,7 @@ class Window {
         this.animators.forEach((object) => {
             object.animate();
         });
+
         this.renderer.render(this.scene, this.camera);
     }
 }

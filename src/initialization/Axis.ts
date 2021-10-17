@@ -25,7 +25,7 @@ const Axis = (
     numOfDivisions: number,
     color: Color,
     direction: Array<number>,
-    size: number = 50
+    size: number = 550
 ) => {
     const material = new LineBasicMaterial({
         color: color,

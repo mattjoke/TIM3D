@@ -23,6 +23,10 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
+        library: {
+            name: 'MyLibrary',
+            type: 'umd'
+        }
     },
     devServer: {
         contentBase: path.join(__dirname, 'public'),
