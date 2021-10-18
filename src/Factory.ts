@@ -1,4 +1,5 @@
 import { Config } from "./types/configTypes";
+import { Event } from "three";
 import Init from "./Init";
 import { JSON } from "./types/jsonTypes";
 import { ObjectID } from "./types/applicationTypes";
@@ -10,25 +11,25 @@ class Factory {
     constructor(config?: Config) {
         if (config == null) throw new Error("Config not specified!");
         this.instance = new Init(config);
+        return this;
     }
     public async loadJSON(json: JSON) {
         await this.instance.withJSON(json);
         return this;
     }
 
-    public selectItem(name: ObjectID) {
-        if (this.objectsLoaded) {
-            return this.instance.selectItem(name);
-        }
+    public selectItem(id: ObjectID) {
+        return this.instance.getObjects().get(id);
     }
-    public moveToStep(num: number) {
-        this.instance.moveToStep(num);
+
+    public moveToStep(stepNumber: number) {
+        this.instance.setStep(stepNumber);
     }
 
     public on(selector: ObjectID, event: string, callback: Function) {
         this.selectItem(selector)
             ?.getMesh()
-            .addEventListener(event, (e) => {
+            .addEventListener(event, (e: Event) => {
                 callback(e);
             });
     }

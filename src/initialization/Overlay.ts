@@ -25,10 +25,14 @@ const Overlay = (stepper: Stepper, window: Window) => {
     slider.type = "range";
     slider.min = "0";
     slider.max = (stepper.length - 1).toString();
-    slider.value = "0";
+    slider.value = `${stepper.getCurrentStep()}`;
     slider.step = "1";
     slider.style.pointerEvents = "auto";
     slider.style.flexGrow = "4";
+
+    overlay.addEventListener("update", (ev: CustomEventInit) => {
+        slider.value = ev.detail;
+    });
 
     slider.addEventListener("change", (ev: Event) => {
         ev.preventDefault();
@@ -43,6 +47,7 @@ const Overlay = (stepper: Stepper, window: Window) => {
             slider.stepDown();
             stepper.moveStepDown();
         }
+        slider.value = stepper.getCurrentStep().toString();
     }
     // Buttons moves current step
     const buttonLeft = document.createElement("button");
@@ -65,8 +70,8 @@ const Overlay = (stepper: Stepper, window: Window) => {
     start.innerHTML = "⏮";
     start.style.pointerEvents = "auto";
     start.addEventListener("click", (e: Event) => {
-        slider.value = "0";
         stepper.setStep(0);
+        slider.value = `${stepper.getCurrentStep()}`;
     });
 
     // End
@@ -74,8 +79,8 @@ const Overlay = (stepper: Stepper, window: Window) => {
     end.innerHTML = "⏭";
     end.style.pointerEvents = "auto";
     end.addEventListener("click", (e: Event) => {
-        slider.value = `${stepper.length - 1}`;
         stepper.setStep(999);
+        slider.value = `${stepper.getCurrentStep()}`;
     });
 
     const container = document.createElement("div");

@@ -23,7 +23,7 @@ class Object3D extends EventDispatcher {
         this.outline = this.buildOutline(this.geometry, file);
 
         this.mesh.addEventListener("start", (ev: Event) => {
-            this.dispatchEvent({ type: "click", message: this.mesh });
+            // this.dispatchEvent({ type: "click", message: this.mesh });
         });
     }
 
@@ -70,7 +70,7 @@ class Object3D extends EventDispatcher {
             this.mesh.rotation.y,
             this.mesh.rotation.z
         );
-        selected.scale.multiplyScalar(1.1);
+        selected.scale.multiplyScalar(1.07);
         selected.layers.set(1);
         return selected;
     }

@@ -1,9 +1,9 @@
-import { AmbientLight, Color, Event, PointLight } from "three";
-import { ObjectID, Objects3D } from "./types/applicationTypes";
+import { AmbientLight, Color, PointLight } from "three";
 import Axis from "./initialization/Axis";
 import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
 import Loader from "./stuff/Loader";
+import { Objects3D } from "./types/applicationTypes";
 import Overlay from "./initialization/Overlay";
 import Stepper from "./initialization/Stepper";
 import Window from "./initialization/Window";
@@ -60,14 +60,6 @@ class Init {
         this.objectsLoaded = this.objects.size > 0;
     }
 
-    public selectItem(id: ObjectID) {
-        return this.objects.get(id);
-    }
-
-    public moveToStep(stepNum: number) {
-        this.stepper?.setStep(stepNum);
-    }
-
     private checkConfig(config: Config) {
         if (config == null) {
             throw new Error("Config is not defined!");
@@ -77,10 +69,18 @@ class Init {
         }
     }
 
-    public on(selector: ObjectID, event: string, callback: Function) {
-        this.selectItem(selector)?.addEventListener(event, (e: Event) => {
-            callback(e);
-        });
+    public getObjects() {
+        return this.objects;
+    }
+    public getStepper() {
+        return this.stepper;
+    }
+
+    public setStep(stepNumber: number) {
+        const currStep = this.stepper?.setStep(stepNumber);
+        this.overlay.dispatchEvent(
+            new CustomEvent("update", { detail: currStep })
+        );
     }
 }
 

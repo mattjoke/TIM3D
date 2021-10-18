@@ -126,7 +126,7 @@ class Window {
             const outline = this.scene.getObjectByName(`${obj.name}-outline`);
             if (!outline) break;
             outline.layers.toggle(0);
-            obj.dispatchEvent({ type: "start", message: obj });
+            obj.dispatchEvent({ type: "click", data: obj });
             break;
         }
         // this.insideContainer = false;

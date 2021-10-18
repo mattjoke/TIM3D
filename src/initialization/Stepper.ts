@@ -49,7 +49,6 @@ class Stepper {
     }
 
     private redraw() {
-        console.log(this.currentStep);
         for (const position of this.currentStep.positions) {
             const { x, y, z } = position.position;
             this.objects.get(position.name)?.getMesh().position.set(x, y, z);
@@ -60,7 +59,7 @@ class Stepper {
     public setStep(position: number) {
         while (this.currentStepPosition != position) {
             if (position > this.currentStepPosition) {
-                if (this.currentStep.next === undefined) {
+                if (this.currentStep.next == null) {
                     break;
                 }
                 this.moveStepUp();
@@ -71,6 +70,7 @@ class Stepper {
                 this.moveStepDown();
             }
         }
+        return this.currentStepPosition;
     }
     public moveStepUp() {
         if (this.currentStep.next) {
@@ -87,5 +87,10 @@ class Stepper {
         }
         this.redraw();
     }
+
+    public getCurrentStep() {
+        return this.currentStepPosition;
+    }
 }
+
 export default Stepper;

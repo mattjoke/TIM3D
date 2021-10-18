@@ -1,8 +1,7 @@
+import { Event, Vector3 } from "three";
 import { Config } from "./types/configTypes";
 import Factory from "./Factory";
-import Init from "./Init";
 import { JSON } from "./types/jsonTypes";
-import { Event, Vector3 } from "three";
 
 const json: JSON = {
     files: [
@@ -58,6 +57,7 @@ const json: JSON = {
                 {
                     name: "1",
                     position: new Vector3(0, 0, 0),
+                    rotation: new Vector3(0.3, 0.7, 0.4),
                 },
             ],
         },
@@ -117,23 +117,28 @@ const json2: JSON = {
 const config: Config = {
     container: document.getElementById("container"),
 };
-const t1 = new Init(config);
+
 
 (async () => {
-    await t1.withJSON(json);
+    const t1 = await new Factory(config).loadJSON(json);
 
-
-    t1.on("5", "click", (e:Event) => {
+    t1.on("5", "click", (e: Event) => {
         const span = document.getElementById("data");
-        if (span != null){
-            span.innerText = e.message.uuid;
+        if (span != null) {
+            span.innerText = JSON.stringify(e.data);
         }
     });
 
-    t1.on("1", "click", (e:Event) => {
+    t1.on("1", "click", () => {
         t1.moveToStep(0);
     });
-
+    
+    const btn = document.getElementById("jump");
+    btn?.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        t1.moveToStep(3);
+    });
+    
 })();
 
 /*
@@ -170,4 +175,4 @@ const item = t1.selectItem("5");
 console.log(item);
 */
 
-export default Factory;
+export default "./index";

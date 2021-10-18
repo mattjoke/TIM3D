@@ -24,4 +24,5 @@ export interface Step {
 export interface Position {
     name: ObjectID;
     position: Vector3;
+    rotation?: Vector3;
 }

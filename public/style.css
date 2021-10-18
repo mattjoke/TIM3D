@@ -25,3 +25,8 @@ body {
 .container > div {
     margin: 30px;
 }
+
+#data{
+    display: inline-block !important;
+    max-width: 100vw;
+}
