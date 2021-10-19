@@ -24,15 +24,13 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
         library: {
-            name: 'MyLibrary',
             type: 'umd'
         }
     },
     devServer: {
-        contentBase: path.join(__dirname, 'public'),
+        static: path.join(__dirname, 'public'),
         port: 3000,
-        publicPath: '/scripts/',
-        watchContentBase: true,
         compress: true,
+        hot:true
     }
 };

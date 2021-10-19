@@ -26,12 +26,24 @@ class Factory {
         this.instance.setStep(stepNumber);
     }
 
+    public getObjects() {
+        return this.instance.getObjects();
+    }
+
     public on(selector: ObjectID, event: string, callback: Function) {
         this.selectItem(selector)
             ?.getMesh()
             .addEventListener(event, (e: Event) => {
                 callback(e);
             });
+    }
+    
+    public group(event: string, callback: Function) {
+        this.getObjects().forEach((item) => {
+            item.getMesh().addEventListener(event, (e) => {
+                callback(e);
+            });
+        });
     }
 }
 

@@ -8,6 +8,7 @@ import Overlay from "./initialization/Overlay";
 import Stepper from "./initialization/Stepper";
 import Window from "./initialization/Window";
 
+
 class Init {
     private window: Window;
     private overlay: HTMLDivElement;
@@ -61,12 +62,10 @@ class Init {
     }
 
     private checkConfig(config: Config) {
-        if (config == null) {
-            throw new Error("Config is not defined!");
-        }
-        if (config.container == null) {
-            throw new Error("Container is not defined!");
-        }
+        console.log(config)
+        const conf = config;
+        console.log(conf)
+        return true;
     }
 
     public getObjects() {

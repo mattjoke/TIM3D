@@ -2,29 +2,21 @@ import {
     BackSide,
     BufferGeometry,
     Color,
-    Event,
-    EventDispatcher,
     Mesh,
     MeshBasicMaterial,
     MeshStandardMaterial,
 } from "three";
 import { File } from "@manualTypes/jsonTypes";
 
-class Object3D extends EventDispatcher {
+class Object3D {
     private geometry: BufferGeometry;
     private mesh: Mesh;
     private outline: Mesh;
 
     constructor(geometry: BufferGeometry, file: File) {
-        super();
-
         this.geometry = geometry;
         this.mesh = this.buildMesh(this.geometry, file);
         this.outline = this.buildOutline(this.geometry, file);
-
-        this.mesh.addEventListener("start", (ev: Event) => {
-            // this.dispatchEvent({ type: "click", message: this.mesh });
-        });
     }
 
     public getMesh() {
