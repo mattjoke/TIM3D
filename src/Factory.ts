@@ -15,6 +15,7 @@ class Factory {
     }
     public async loadJSON(json: JSON) {
         await this.instance.withJSON(json);
+        this.objectsLoaded = true;
         return this;
     }
 

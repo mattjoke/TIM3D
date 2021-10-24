@@ -91,7 +91,7 @@ class Window {
         return this.renderer.domElement.getBoundingClientRect();
     }
 
-    onWindowResize() {
+    private onWindowResize() {
         this.camera.aspect =
             this.container.clientWidth / this.container.clientHeight;
         this.camera.updateProjectionMatrix();
@@ -101,13 +101,13 @@ class Window {
         );
     }
 
-    addObject(...objects: Object3D[]) {
+    public addObject(...objects: Object3D[]) {
         objects.forEach((object) => {
             this.scene.add(object);
         });
     }
 
-    selectObject(position: inputPosition, canvas: DOMRect) {
+    private selectObject(position: inputPosition, canvas: DOMRect) {
         // this.mouse.set(ev.clientX, ev.clientY)
         const { clientX, clientY } = position;
         this.mouse.set(
@@ -132,7 +132,7 @@ class Window {
         // this.insideContainer = false;
     }
 
-    animate() {
+    private animate() {
         requestAnimationFrame(this.animate.bind(this));
 
         this.onWindowResize();

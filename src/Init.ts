@@ -7,7 +7,7 @@ import { Objects3D } from "./types/applicationTypes";
 import Overlay from "./initialization/Overlay";
 import Stepper from "./initialization/Stepper";
 import Window from "./initialization/Window";
-
+import ConfigCheck from "./stuff/ConfigCheck";
 
 class Init {
     private window: Window;
@@ -62,10 +62,11 @@ class Init {
     }
 
     private checkConfig(config: Config) {
-        console.log(config)
-        const conf = config;
-        console.log(conf)
-        return true;
+        const {value, error} = ConfigCheck(config);
+        if (error){
+            console.error(error);
+        } 
+        return value;
     }
 
     public getObjects() {

@@ -72,7 +72,8 @@ const json = {
 
 const config = {
     container: document.getElementById("container"),
-    color: "#ffaa4c"
+    color: "orange",
+    shool:true
 };
 
 (async () => {
