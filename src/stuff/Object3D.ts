@@ -40,7 +40,19 @@ class Object3D {
         }
         geometry.computeVertexNormals();
         const mesh = new Mesh(geometry, material);
-        mesh.position.set(Math.floor(Math.random() * -700 + 300), 0, 0);
+
+        mesh.position.set(
+            file.position?.[0] || Math.floor(Math.random() * -700 + 300),
+            file.position?.[1] || 0,
+            file.position?.[2] || Math.floor(Math.random() * -700 + 300)
+        );
+
+        mesh.rotation.set(
+            file.rotation?.[0] || 0,
+            file.rotation?.[1] || 0,
+            file.rotation?.[2] || 0
+        );
+
         mesh.rotateX(-Math.PI / 2);
         mesh.name = file.name.toString();
         return mesh;

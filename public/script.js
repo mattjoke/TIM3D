@@ -6,6 +6,7 @@ const json = {
             file: "models/files/Bar1.stl",
             color: "yellow",
             name: "1",
+            position: [10, 10, 10]
         },
         {
             file: "models/files/Bar2.stl",
@@ -36,7 +37,7 @@ const json = {
         {
             file: "models/files/Bolt_slide_top.stl",
             name: "8",
-        },
+        }
     ],
     steps: [
         {
@@ -91,7 +92,11 @@ const config = {
     });
 
     t1.group("click", (e) => {
-        console.log(e.data);
+        // console.log(e.data);
+    })
+
+    t1.on("5","hover", () => {
+        // console.log("hovered!")
     })
 
     const btn = document.getElementById("jump");

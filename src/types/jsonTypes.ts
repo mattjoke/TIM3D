@@ -12,8 +12,10 @@ export interface JSON {
 
 export interface File {
     file: string;
-    color?: Color | string;
     name: ObjectID;
+    color?: Color | string;
+    position?: [x: number, y: number, z: number];
+    rotation?: [x: number, y: number, z: number];
 }
 
 export interface Step {
@@ -23,6 +25,6 @@ export interface Step {
 
 export interface Position {
     name: ObjectID;
-    position: Vector3;
-    rotation?: Vector3;
+    position: [x: number, y: number, z: number];
+    rotation?: [x: number, y: number, z: number];
 }

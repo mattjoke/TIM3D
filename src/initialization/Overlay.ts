@@ -30,15 +30,24 @@ const Overlay = (stepper: Stepper, window: Window) => {
     slider.style.pointerEvents = "auto";
     slider.style.flexGrow = "4";
 
+
+    const counter = document.createElement("span");
+    counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
+    counter.style.color = "black";
+    counter.style.bottom = "0";
+    counter.style.position = "absolute"
+
+
     overlay.addEventListener("update", (ev: CustomEventInit) => {
         slider.value = ev.detail;
+        counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
     });
-
+    
     slider.addEventListener("change", (ev: Event) => {
         ev.preventDefault();
         stepper.setStep(Number(slider.value));
     });
-
+    
     function step(inc: number) {
         if (inc > 0) {
             slider.stepUp();
@@ -48,6 +57,7 @@ const Overlay = (stepper: Stepper, window: Window) => {
             stepper.moveStepDown();
         }
         slider.value = stepper.getCurrentStep().toString();
+        counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
     }
     // Buttons moves current step
     const buttonLeft = document.createElement("button");
@@ -99,6 +109,15 @@ const Overlay = (stepper: Stepper, window: Window) => {
 
     overlay.appendChild(container);
 
+
+    const bottomContainer = document.createElement("div");
+    bottomContainer.style.display = "flex";
+    bottomContainer.style.width = "100%";
+    bottomContainer.style.flexDirection = "row";
+    bottomContainer.style.justifyContent = "space-evenly";
+    bottomContainer.style.flexWrap = "no-wrap";
+    bottomContainer.style.overflow = "hidden";
+
     // Sets div to fullscreen
     const fullscreen = document.createElement("button");
     fullscreen.innerHTML = "🗖";
@@ -110,7 +129,9 @@ const Overlay = (stepper: Stepper, window: Window) => {
         toggleFullscreen(window.container);
     });
 
-    overlay.appendChild(fullscreen);
+    bottomContainer.appendChild(fullscreen);
+
+    bottomContainer.appendChild(counter);
 
     // Resets camera to basic position
     const reset = document.createElement("button");
@@ -123,7 +144,9 @@ const Overlay = (stepper: Stepper, window: Window) => {
         window.resetCamera();
     });
 
-    overlay.appendChild(reset);
+    bottomContainer.appendChild(reset);
+
+    overlay.appendChild(bottomContainer);
 
     console.log("Overlay instantiated");
     return overlay;

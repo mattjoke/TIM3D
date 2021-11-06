@@ -1,5 +1,6 @@
 import {
     Color,
+    Mesh,
     Object3D,
     PerspectiveCamera,
     Raycaster,
@@ -21,6 +22,9 @@ class Window {
     private mouse: Vector2;
     private raycaster: Raycaster;
 
+    private lastHighlight: Object3D | null = null;
+    private locker = true;
+
     private animators: any[] = [];
 
     constructor(container: HTMLElement) {
@@ -29,12 +33,12 @@ class Window {
             console.warn("Container not specified! Using default one");
         }
 
-        this.scene.background = new Color("teal");
+        this.scene.background = new Color("#ede7e6");
         this.camera = new PerspectiveCamera(
             75,
             window.innerWidth / window.innerHeight,
             0.1,
-            1000
+            2000
         );
 
         this.container = container ?? document.getElementById("container");
@@ -53,6 +57,7 @@ class Window {
         this.renderer.domElement.addEventListener(
             "touchstart",
             (ev: TouchEvent) => {
+                if (!this.locker) return;
                 const touch = ev.touches[0];
                 const pos = { clientX: touch.clientX, clientY: touch.clientY };
                 this.selectObject(
@@ -61,20 +66,45 @@ class Window {
                 );
             }
         );
-        this.renderer.domElement.addEventListener("click", (ev: MouseEvent) => {
-            const pos = { clientX: ev.clientX, clientY: ev.clientY };
-            this.selectObject(
-                pos,
-                this.renderer.domElement.getBoundingClientRect()
-            );
-        });
+        this.renderer.domElement.addEventListener(
+            "dblclick",
+            (ev: MouseEvent) => {
+                if (!this.locker) return;
+                const pos = { clientX: ev.clientX, clientY: ev.clientY };
+                this.selectObject(
+                    pos,
+                    this.renderer.domElement.getBoundingClientRect()
+                );
+            }
+        );
+
+        this.renderer.domElement.addEventListener(
+            "mousemove",
+            (ev: MouseEvent) => {
+                if (!this.locker) return;
+                const pos = { clientX: ev.clientX, clientY: ev.clientY };
+                this.highlightObject(
+                    pos,
+                    this.renderer.domElement.getBoundingClientRect()
+                );
+            }
+        );
 
         // this.renderer.domElement.addEventListener("touchstart", this.selectObject);
 
+        //Orbital controls
         this.orbitalControls = new OrbitControls(
             this.camera,
             this.renderer.domElement
         );
+        this.orbitalControls.enableDamping = true;
+        this.orbitalControls.dampingFactor = 0.05;
+        this.orbitalControls.addEventListener("start", (ev)=>{
+            this.locker = false;
+        })
+        this.orbitalControls.addEventListener("end", (ev)=>{
+            this.locker = true;
+        });
 
         requestAnimationFrame(this.animate.bind(this));
     }
@@ -107,6 +137,13 @@ class Window {
         });
     }
 
+    public addAnimator(...objects: Object3D[]) {
+        objects.forEach((object) => {
+            this.animators.push(object);
+        });
+    }
+    
+
     private selectObject(position: inputPosition, canvas: DOMRect) {
         // this.mouse.set(ev.clientX, ev.clientY)
         const { clientX, clientY } = position;
@@ -132,14 +169,56 @@ class Window {
         // this.insideContainer = false;
     }
 
-    private animate() {
+    private highlightObject(positon: inputPosition, canvas: DOMRect) {
+        const raycaster = new Raycaster();
+        const mouse = {
+            x:
+                ((positon.clientX - canvas.left) /
+                    (canvas.right - canvas.left)) *
+                    2 -
+                1,
+            y:
+                -(
+                    (positon.clientY - canvas.top) /
+                    (canvas.bottom - canvas.top)
+                ) *
+                    2 +
+                1,
+        };
+
+        raycaster.setFromCamera(mouse, this.camera);
+        const intersects = raycaster.intersectObjects(this.scene.children);
+
+        if (this.lastHighlight != null && intersects.length == 0) {
+            //@ts-ignore
+            this.lastHighlight.material.emissive.setHex(this.lastHighlight.lastHex);
+            this.lastHighlight = null;
+        }
+
+        for (let i = 0; i < intersects.length; i++) {
+            const obj = intersects[i].object;
+            if (obj.type !== "Mesh") {
+                continue;
+            }
+            if (this.lastHighlight == null && !obj.name.includes("-outline")) {
+                this.lastHighlight = obj;
+                //@ts-ignore
+                this.lastHighlight.lastHex = obj.material.emissive.getHex();
+                //@ts-ignore
+                obj.material.emissive.setHex(0x0000ff);
+                obj.dispatchEvent({type:"hover", data:obj});
+                break;
+            }
+        }
+        // this.insideContainer = false;
+    }
+
+    public animate() {
         requestAnimationFrame(this.animate.bind(this));
 
         this.onWindowResize();
 
-        this.animators.forEach((object) => {
-            object.animate();
-        });
+        this.orbitalControls.update()
 
         this.renderer.render(this.scene, this.camera);
     }

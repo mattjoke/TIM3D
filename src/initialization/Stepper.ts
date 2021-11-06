@@ -50,7 +50,7 @@ class Stepper {
 
     private redraw() {
         for (const position of this.currentStep.positions) {
-            const { x, y, z } = position.position;
+            const [ x, y, z]  = position.position;
             this.objects.get(position.name)?.getMesh().position.set(x, y, z);
             this.objects.get(position.name)?.getOutline().position.set(x, y, z);
         }
