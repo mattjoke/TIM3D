@@ -1,6 +1,9 @@
+import { Color } from "three";
+
 export interface Config {
-    container?: HTMLElement;
+    container?: HTMLElement | null;
     enviroment?: {};
     overlay?: Element;
     movement?: {};
+    color?: Color | string;
 }

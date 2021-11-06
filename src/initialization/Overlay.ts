@@ -1,4 +1,3 @@
-import Selector from "../stuff/Selector";
 import Stepper from "./Stepper";
 import Window from "./Window";
 
@@ -26,17 +25,29 @@ const Overlay = (stepper: Stepper, window: Window) => {
     slider.type = "range";
     slider.min = "0";
     slider.max = (stepper.length - 1).toString();
-    slider.value = "0";
+    slider.value = `${stepper.getCurrentStep()}`;
     slider.step = "1";
     slider.style.pointerEvents = "auto";
-    slider.style.flexGrow="4"
+    slider.style.flexGrow = "4";
 
+
+    const counter = document.createElement("span");
+    counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
+    counter.style.color = "black";
+    counter.style.bottom = "0";
+    counter.style.position = "absolute"
+
+
+    overlay.addEventListener("update", (ev: CustomEventInit) => {
+        slider.value = ev.detail;
+        counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
+    });
+    
     slider.addEventListener("change", (ev: Event) => {
         ev.preventDefault();
-        console.log("yey")
         stepper.setStep(Number(slider.value));
     });
-
+    
     function step(inc: number) {
         if (inc > 0) {
             slider.stepUp();
@@ -45,6 +56,8 @@ const Overlay = (stepper: Stepper, window: Window) => {
             slider.stepDown();
             stepper.moveStepDown();
         }
+        slider.value = stepper.getCurrentStep().toString();
+        counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
     }
     // Buttons moves current step
     const buttonLeft = document.createElement("button");
@@ -67,8 +80,8 @@ const Overlay = (stepper: Stepper, window: Window) => {
     start.innerHTML = "⏮";
     start.style.pointerEvents = "auto";
     start.addEventListener("click", (e: Event) => {
-        slider.value = "0";
         stepper.setStep(0);
+        slider.value = `${stepper.getCurrentStep()}`;
     });
 
     // End
@@ -76,18 +89,17 @@ const Overlay = (stepper: Stepper, window: Window) => {
     end.innerHTML = "⏭";
     end.style.pointerEvents = "auto";
     end.addEventListener("click", (e: Event) => {
-        slider.value = `${stepper.length - 1}`
         stepper.setStep(999);
+        slider.value = `${stepper.getCurrentStep()}`;
     });
 
     const container = document.createElement("div");
-    container.style.display="flex" 
-    container.style.width = "100%"
-    container.style.flexDirection = "row"
-    container.style.justifyContent= "space-evenly"
-    container.style.flexWrap= "no-wrap"
-    container.style.overflow= "hidden"
-
+    container.style.display = "flex";
+    container.style.width = "100%";
+    container.style.flexDirection = "row";
+    container.style.justifyContent = "space-evenly";
+    container.style.flexWrap = "no-wrap";
+    container.style.overflow = "hidden";
 
     container.appendChild(start);
     container.appendChild(buttonLeft);
@@ -95,7 +107,16 @@ const Overlay = (stepper: Stepper, window: Window) => {
     container.appendChild(buttonRight);
     container.appendChild(end);
 
-    overlay.appendChild(container)
+    overlay.appendChild(container);
+
+
+    const bottomContainer = document.createElement("div");
+    bottomContainer.style.display = "flex";
+    bottomContainer.style.width = "100%";
+    bottomContainer.style.flexDirection = "row";
+    bottomContainer.style.justifyContent = "space-evenly";
+    bottomContainer.style.flexWrap = "no-wrap";
+    bottomContainer.style.overflow = "hidden";
 
     // Sets div to fullscreen
     const fullscreen = document.createElement("button");
@@ -108,7 +129,9 @@ const Overlay = (stepper: Stepper, window: Window) => {
         toggleFullscreen(window.container);
     });
 
-    overlay.appendChild(fullscreen);
+    bottomContainer.appendChild(fullscreen);
+
+    bottomContainer.appendChild(counter);
 
     // Resets camera to basic position
     const reset = document.createElement("button");
@@ -121,9 +144,9 @@ const Overlay = (stepper: Stepper, window: Window) => {
         window.resetCamera();
     });
 
-    overlay.appendChild(reset);
+    bottomContainer.appendChild(reset);
 
-    overlay.addEventListener("mousedown", Selector);
+    overlay.appendChild(bottomContainer);
 
     console.log("Overlay instantiated");
     return overlay;
