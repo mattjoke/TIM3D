@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+}
+#container {
+    width: 100%;
+    height: 30vh;
+}
+
+#second {
+    width: 30vw;
+    height: 30vh;
+}
+
+#third {
+    width: 30vw;
+    height: 30vh;
+    resize: both;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.container > div {
+    margin: 30px;
+}
+
+#data{
+    display: inline-block !important;
+    max-width: 100vw;
+}

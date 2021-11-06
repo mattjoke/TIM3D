@@ -5,21 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Demo</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <style>
-            body {
-                margin: 0;
-            }
-            #container {
-                width: 100vw;
-                height: 100vh;
-            }
-        </style>
-        <div id="container" />
-        <script src="scripts/bundle.js"></script>
-        <script>
-            console.log("Init!");
-        </script>
+        <h1>Three.js library</h1>
+        <div class="container">
+            <div id="container"></div>
+            <!--<div id="second"></div>
+            <div id="third"></div> -->
+        </div>
+        <span>Move to the <a href id="jump">step three</a>.</span>
+        <p>Uuid of item with callback</p>
+        <span id="data">None</span>
+        <!--<script src="http://localhost:3000/bundle.js"></script>-->
+        <script type="module" src="./script.js"></script>
     </body>
 </html>
