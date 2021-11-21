@@ -55,7 +55,7 @@ const json = {
                 {
                     name: "1",
                     position: [0, 0, 0],
-                    rotation: [0.3, 0.7, 0.4],
+                    rotation: [0.3, 0.7, 0.4, 0.1],
                 },
             ],
         },
@@ -73,8 +73,8 @@ const json = {
 
 const config = {
     container: document.getElementById("container"),
-    color: "orange",
-    shool:true
+    color: "blue",
+    shool: true
 };
 
 (async () => {
@@ -95,7 +95,7 @@ const config = {
         // console.log(e.data);
     })
 
-    t1.on("5","hover", () => {
+    t1.on("5", "hover", () => {
         // console.log("hovered!")
     })
 

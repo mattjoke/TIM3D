@@ -1,13 +1,14 @@
+import { ConfigCheck, JsonCheck } from "./inputChecking/InputCheck";
 import { AmbientLight, Color, PointLight } from "three";
 import Axis from "./initialization/Axis";
-import { Config } from "./types/configTypes";
-import { JSON } from "./types/jsonTypes";
-import Loader from "./stuff/Loader";
-import { Objects3D } from "./types/applicationTypes";
 import Overlay from "./initialization/Overlay";
 import Stepper from "./initialization/Stepper";
 import Window from "./initialization/Window";
-import ConfigCheck from "./stuff/ConfigCheck";
+import Loader from "./stuff/Loader";
+import { Objects3D } from "./types/applicationTypes";
+import { Config } from "./types/configTypes";
+import { JSON } from "./types/jsonTypes";
+import { SafeParseReturnType } from "zod";
 
 class Init {
     private window: Window;
@@ -18,7 +19,7 @@ class Init {
     public objectsLoaded = false;
 
     constructor(config: Config) {
-        this.checkConfig(config);
+        this.checker(config, ConfigCheck);
 
         this.window = new Window(config.container!);
         this.initPlane();
@@ -47,6 +48,8 @@ class Init {
     }
 
     public async withJSON(json: JSON) {
+        this.checker(json, JsonCheck);
+
         this.objects = await Loader(
             json.files ?? [],
             this.window.container,
@@ -61,12 +64,17 @@ class Init {
         this.objectsLoaded = this.objects.size > 0;
     }
 
-    private checkConfig(config: Config) {
-        const {value, error} = ConfigCheck(config);
-        if (error){
-            console.error(error);
-        } 
-        return value;
+    private checker(
+        object: object,
+        checker: typeof JsonCheck | typeof ConfigCheck
+    ) {
+        const check = checker(object);
+        if (!check.success) {
+            check.error.issues.forEach((issue) => {
+                console.error(`${issue.message}`);
+            });
+        }
+        return check.success;
     }
 
     public getObjects() {

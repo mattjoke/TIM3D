@@ -1,11 +1,9 @@
-import { BufferGeometry } from "three";
-import { File } from "@manualTypes/jsonTypes";
-import LoaderOverlay from "./LoaderOverlay";
-import Object3D from "./Object3D";
 import { Objects3D } from "@manualTypes/applicationTypes";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { File } from "@manualTypes/jsonTypes";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import Window from "../initialization/Window";
+import LoaderOverlay from "./LoaderOverlay";
+import Object3D from "./Object3D";
 
 const Loader = async (
     files: File[],
@@ -25,7 +23,7 @@ const Loader = async (
 
                 window.addObject(obj.getMesh());
                 window.addObject(obj.getOutline());
-                window.addAnimator(obj.getMesh());
+                // window.addAnimator(obj.getMesh());
             })
             .catch((error) => {
                 console.error(error);

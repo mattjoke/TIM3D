@@ -5,6 +5,7 @@ import {
     Mesh,
     MeshBasicMaterial,
     MeshStandardMaterial,
+    Quaternion,
 } from "three";
 import { File } from "@manualTypes/jsonTypes";
 
@@ -47,10 +48,13 @@ class Object3D {
             file.position?.[2] || Math.floor(Math.random() * -700 + 300)
         );
 
-        mesh.rotation.set(
-            file.rotation?.[0] || 0,
-            file.rotation?.[1] || 0,
-            file.rotation?.[2] || 0
+        mesh.rotation.setFromQuaternion(
+            new Quaternion(
+                file.rotation?.[0] || 0,
+                file.rotation?.[1] || 0,
+                file.rotation?.[2] || 0,
+                file.rotation?.[3] || 0
+            )
         );
 
         mesh.rotateX(-Math.PI / 2);
@@ -62,21 +66,21 @@ class Object3D {
             color: "blue",
             side: BackSide,
         });
-        const selected = new Mesh(geometry, outline);
-        selected.name = `${file.name.toString()}-outline`;
-        selected.position.set(
+        const shadow = new Mesh(geometry, outline);
+        shadow.name = `${file.name.toString()}-outline`;
+        shadow.position.set(
             this.mesh.position.x,
             this.mesh.position.y,
             this.mesh.position.z
         );
-        selected.rotation.set(
+        shadow.rotation.set(
             this.mesh.rotation.x,
             this.mesh.rotation.y,
             this.mesh.rotation.z
         );
-        selected.scale.multiplyScalar(1.07);
-        selected.layers.set(1);
-        return selected;
+        shadow.scale.multiplyScalar(1.07);
+        shadow.layers.set(1);
+        return shadow;
     }
 }
 

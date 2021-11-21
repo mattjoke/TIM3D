@@ -31,6 +31,6 @@ module.exports = {
         static: path.join(__dirname, 'public'),
         port: 3000,
         compress: true,
-        hot:true
+        hot: true
     }
 };

@@ -7,3 +7,8 @@ export interface inputPosition {
     clientX: number;
     clientY: number;
 }
+
+export interface containerSize {
+    width: number;
+    height: number;
+}

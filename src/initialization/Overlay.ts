@@ -30,34 +30,30 @@ const Overlay = (stepper: Stepper, window: Window) => {
     slider.style.pointerEvents = "auto";
     slider.style.flexGrow = "4";
 
-
     const counter = document.createElement("span");
-    counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
+    counter.textContent = `${stepper.getCurrentStep()}/${stepper.length - 1}`;
     counter.style.color = "black";
     counter.style.bottom = "0";
-    counter.style.position = "absolute"
-
+    counter.style.position = "absolute";
 
     overlay.addEventListener("update", (ev: CustomEventInit) => {
         slider.value = ev.detail;
-        counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
+        counter.textContent = `${stepper.getCurrentStep()}/${
+            stepper.length - 1
+        }`;
     });
-    
+
     slider.addEventListener("change", (ev: Event) => {
         ev.preventDefault();
-        stepper.setStep(Number(slider.value));
+        step(Number(slider.value));
     });
-    
-    function step(inc: number) {
-        if (inc > 0) {
-            slider.stepUp();
-            stepper.moveStepUp();
-        } else {
-            slider.stepDown();
-            stepper.moveStepDown();
-        }
+
+    function step(stepNum: number) {
+        stepper.setStep(stepNum);
         slider.value = stepper.getCurrentStep().toString();
-        counter.textContent = `${stepper.getCurrentStep()}/${stepper.length-1}`
+        counter.textContent = `${stepper.getCurrentStep()}/${
+            stepper.length - 1
+        }`;
     }
     // Buttons moves current step
     const buttonLeft = document.createElement("button");
@@ -65,14 +61,14 @@ const Overlay = (stepper: Stepper, window: Window) => {
     buttonLeft.style.pointerEvents = "auto";
     buttonLeft.addEventListener("click", (e: Event) => {
         e.preventDefault();
-        step(-1);
+        step(stepper.getCurrentStep() - 1);
     });
     const buttonRight = document.createElement("button");
     buttonRight.innerHTML = ">";
     buttonRight.style.pointerEvents = "auto";
     buttonRight.addEventListener("click", (e: Event) => {
         e.preventDefault();
-        step(1);
+        step(stepper.getCurrentStep() + 1);
     });
 
     // Start
@@ -89,7 +85,7 @@ const Overlay = (stepper: Stepper, window: Window) => {
     end.innerHTML = "⏭";
     end.style.pointerEvents = "auto";
     end.addEventListener("click", (e: Event) => {
-        stepper.setStep(999);
+        stepper.setStep(99999);
         slider.value = `${stepper.getCurrentStep()}`;
     });
 
@@ -108,7 +104,6 @@ const Overlay = (stepper: Stepper, window: Window) => {
     container.appendChild(end);
 
     overlay.appendChild(container);
-
 
     const bottomContainer = document.createElement("div");
     bottomContainer.style.display = "flex";
@@ -135,7 +130,7 @@ const Overlay = (stepper: Stepper, window: Window) => {
 
     // Resets camera to basic position
     const reset = document.createElement("button");
-    reset.innerHTML = "🔄";
+    reset.innerHTML = "🔃";
     reset.style.position = "absolute";
     reset.style.bottom = "0";
     reset.style.left = "0";
