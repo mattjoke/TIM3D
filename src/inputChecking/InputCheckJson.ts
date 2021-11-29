@@ -19,11 +19,11 @@ const fileSchema = z
         file: z.string(),
         name: objectID,
         color: z.optional(z.string().or(z.instanceof(Color))),
-        position: z.optional(z.array(z.number()).length(3)),
-        rotation: z.optional(
-            z
-                .array(z.number())
-                .length(4)
+        pose: z.optional(
+            z.object({
+                position: z.optional(z.array(z.number()).length(3)),
+                orientation: z.optional(z.array(z.number()).length(4)),
+            })
         ),
     })
     .strict();
@@ -40,11 +40,9 @@ const positionSchema = z
         name: objectID,
         position: z.array(z.number()).length(3),
         rotation: z.optional(
-            z
-                .array(z.number())
-                .length(4, {
-                    message: "Rotation array does not have enough items",
-                })
+            z.array(z.number()).length(4, {
+                message: "Rotation array does not have enough items",
+            })
         ),
     })
     .strict();

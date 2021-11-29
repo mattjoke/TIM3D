@@ -42,18 +42,19 @@ class Object3D {
         geometry.computeVertexNormals();
         const mesh = new Mesh(geometry, material);
 
+        const pose = file.pose;
         mesh.position.set(
-            file.position?.[0] || Math.floor(Math.random() * -700 + 300),
-            file.position?.[1] || 0,
-            file.position?.[2] || Math.floor(Math.random() * -700 + 300)
+            pose?.position?.[0] || Math.floor(Math.random() * -700 + 300),
+            pose?.position?.[1] || 0,
+            pose?.position?.[2] || Math.floor(Math.random() * -700 + 300)
         );
 
         mesh.rotation.setFromQuaternion(
             new Quaternion(
-                file.rotation?.[0] || 0,
-                file.rotation?.[1] || 0,
-                file.rotation?.[2] || 0,
-                file.rotation?.[3] || 0
+                pose?.orientation?.[0] || 0,
+                pose?.orientation?.[1] || 0,
+                pose?.orientation?.[2] || 0,
+                pose?.orientation?.[3] || 0
             )
         );
 

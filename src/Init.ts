@@ -1,14 +1,13 @@
-import { ConfigCheck, JsonCheck } from "./inputChecking/InputCheck";
 import { AmbientLight, Color, PointLight } from "three";
 import Axis from "./initialization/Axis";
-import Overlay from "./initialization/Overlay";
 import Stepper from "./initialization/Stepper";
 import Window from "./initialization/Window";
+import Overlay from "./initialization/window/Overlay";
+import { ConfigCheck, JsonCheck } from "./inputChecking/InputCheck";
 import Loader from "./stuff/Loader";
 import { Objects3D } from "./types/applicationTypes";
 import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
-import { SafeParseReturnType } from "zod";
 
 class Init {
     private window: Window;
