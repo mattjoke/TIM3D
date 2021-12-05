@@ -5,6 +5,7 @@ import {
     Mesh,
     MeshBasicMaterial,
     MeshStandardMaterial,
+    Quaternion,
 } from "three";
 import { File } from "@manualTypes/jsonTypes";
 
@@ -25,6 +26,10 @@ class Object3D {
     public getOutline() {
         return this.outline;
     }
+    public getEmissive(){
+        return this.mesh.material;
+    }
+
     private buildMesh(geometry: BufferGeometry, file: File) {
         const material = new MeshStandardMaterial({
             name: file.name.toString(),
@@ -34,23 +39,24 @@ class Object3D {
             clipShadows: false,
             metalness: 0,
         });
-
-        if (file.name == "5") {
-            material.color = new Color("green");
-        }
+        
         geometry.computeVertexNormals();
         const mesh = new Mesh(geometry, material);
 
+        const pose = file.pose;
         mesh.position.set(
-            file.position?.[0] || Math.floor(Math.random() * -700 + 300),
-            file.position?.[1] || 0,
-            file.position?.[2] || Math.floor(Math.random() * -700 + 300)
+            pose?.position?.[0] || Math.floor(Math.random() * -700 + 300),
+            pose?.position?.[1] || 0,
+            pose?.position?.[2] || Math.floor(Math.random() * -700 + 300)
         );
 
-        mesh.rotation.set(
-            file.rotation?.[0] || 0,
-            file.rotation?.[1] || 0,
-            file.rotation?.[2] || 0
+        mesh.rotation.setFromQuaternion(
+            new Quaternion(
+                pose?.orientation?.[0] || 0,
+                pose?.orientation?.[1] || 0,
+                pose?.orientation?.[2] || 0,
+                pose?.orientation?.[3] || 0
+            )
         );
 
         mesh.rotateX(-Math.PI / 2);
@@ -62,21 +68,21 @@ class Object3D {
             color: "blue",
             side: BackSide,
         });
-        const selected = new Mesh(geometry, outline);
-        selected.name = `${file.name.toString()}-outline`;
-        selected.position.set(
+        const shadow = new Mesh(geometry, outline);
+        shadow.name = `${file.name.toString()}-outline`;
+        shadow.position.set(
             this.mesh.position.x,
             this.mesh.position.y,
             this.mesh.position.z
         );
-        selected.rotation.set(
+        shadow.rotation.set(
             this.mesh.rotation.x,
             this.mesh.rotation.y,
             this.mesh.rotation.z
         );
-        selected.scale.multiplyScalar(1.07);
-        selected.layers.set(1);
-        return selected;
+        shadow.scale.multiplyScalar(1.07);
+        shadow.layers.set(1);
+        return shadow;
     }
 }
 

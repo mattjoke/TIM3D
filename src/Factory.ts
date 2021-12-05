@@ -1,8 +1,8 @@
-import { Config } from "./types/configTypes";
 import { Event } from "three";
-import Init from "./Init";
-import { JSON } from "./types/jsonTypes";
+import Init from "./initialization/Init";
 import { ObjectID } from "./types/applicationTypes";
+import { Config } from "./types/configTypes";
+import { JSON } from "./types/jsonTypes";
 
 class Factory {
     private instance: Init;
@@ -17,6 +17,10 @@ class Factory {
         await this.instance.withJSON(json);
         this.objectsLoaded = true;
         return this;
+    }
+
+    public destroy() {
+        throw new Error("Destroy of instance not implemented!");
     }
 
     public selectItem(id: ObjectID) {
@@ -38,7 +42,7 @@ class Factory {
                 callback(e);
             });
     }
-    
+
     public group(event: string, callback: Function) {
         this.getObjects().forEach((item) => {
             item.getMesh().addEventListener(event, (e) => {

@@ -1,38 +1,38 @@
-import { BufferGeometry } from "three";
-import { File } from "@manualTypes/jsonTypes";
-import LoaderOverlay from "./LoaderOverlay";
-import Object3D from "./Object3D";
 import { Objects3D } from "@manualTypes/applicationTypes";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { File } from "@manualTypes/jsonTypes";
+import { BufferGeometry } from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import Window from "../initialization/Window";
+import LoaderOverlay from "./LoaderOverlay";
+import Object3D from "./Object3D";
 
 const Loader = async (
     files: File[],
-    container: HTMLElement,
-    window: Window
+    window: Window,
+    overlay?: HTMLElement
 ): Promise<Objects3D> => {
-    const div = LoaderOverlay(container);
+    const div = overlay ?? LoaderOverlay();
+    div.style.zIndex = "100";
+    window.container.appendChild(div);
     const items: Objects3D = new Map();
     for (const file of files) {
         const loader = new STLLoader();
         await loader
             .loadAsync(file.file)
-            .then((geometry: any) => {
+            .then((geometry: BufferGeometry) => {
                 const obj = new Object3D(geometry, file);
 
                 items.set(file.name, obj);
 
-                window.addObject(obj.getMesh());
-                window.addObject(obj.getOutline());
-                window.addAnimator(obj.getMesh());
+                window.getScene().addObject(obj.getMesh());
+                window.getScene().addObject(obj.getOutline());
             })
             .catch((error) => {
                 console.error(error);
             });
     }
 
-    container.removeChild(div);
+    window.container.removeChild(div);
 
     return items;
 };

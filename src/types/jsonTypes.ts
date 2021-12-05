@@ -1,21 +1,18 @@
-import { Color, Mesh, Vector3 } from "three";
-import { Config } from "./configTypes";
+import { Color, Mesh, Quaternion } from "three";
 import { ObjectID } from "./applicationTypes";
+import { Config } from "./configTypes";
 
 export type Objects = Map<string | number, Mesh>;
 
-export interface JSON {
-    config?: Config;
-    files?: File[];
-    steps?: Step[];
+export interface Pose {
+    position: [x: number, y: number, z: number];
+    orientation?: [x: number, y: number, z: number, w: number];
 }
 
-export interface File {
-    file: string;
+export interface Position {
     name: ObjectID;
-    color?: Color | string;
-    position?: [x: number, y: number, z: number];
-    rotation?: [x: number, y: number, z: number];
+    position: [x: number, y: number, z: number];
+    rotation?: [x: number, y: number, z: number, w: number];
 }
 
 export interface Step {
@@ -23,8 +20,15 @@ export interface Step {
     positions: Position[];
 }
 
-export interface Position {
+export interface File {
+    file: string;
     name: ObjectID;
-    position: [x: number, y: number, z: number];
-    rotation?: [x: number, y: number, z: number];
+    color?: Color | string;
+    pose?: Pose;
+}
+
+export interface JSON {
+    config?: Config;
+    files?: File[];
+    steps?: Step[];
 }
