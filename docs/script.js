@@ -78,8 +78,7 @@ const config = {
     container: document.getElementById("container"),
     backgroundColor: "rgb(",
     shool: true,
-    sidebarShown: true,
-    sidebar: overlay
+    sidebarShown: true
 };
 
 (async () => {
