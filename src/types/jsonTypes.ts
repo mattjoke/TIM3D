@@ -5,7 +5,7 @@ import { Config } from "./configTypes";
 export type Objects = Map<string | number, Mesh>;
 
 export interface Pose {
-    position?: [x: number, y: number, z: number];
+    position: [x: number, y: number, z: number];
     orientation?: [x: number, y: number, z: number, w: number];
 }
 

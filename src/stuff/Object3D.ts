@@ -26,6 +26,10 @@ class Object3D {
     public getOutline() {
         return this.outline;
     }
+    public getEmissive(){
+        return this.mesh.material;
+    }
+
     private buildMesh(geometry: BufferGeometry, file: File) {
         const material = new MeshStandardMaterial({
             name: file.name.toString(),
@@ -35,10 +39,7 @@ class Object3D {
             clipShadows: false,
             metalness: 0,
         });
-
-        if (file.name == "5") {
-            material.color = new Color("green");
-        }
+        
         geometry.computeVertexNormals();
         const mesh = new Mesh(geometry, material);
 

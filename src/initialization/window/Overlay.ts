@@ -3,6 +3,20 @@ import Stepper from "../Stepper";
 import Window from "../Window";
 
 const toggleFullscreen = (container: HTMLElement, sidebar: HTMLElement) => {
+    document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+            obj.width = 15;
+            obj.opacity = 100;
+            new Tween(obj)
+                .to({ width: 0, opacity: 0 })
+                .onUpdate(() => {
+                    sidebar.style.width = `${obj.width}%`;
+                    sidebar.style.opacity = `${obj.opacity}%`;
+                })
+                .start();
+        }
+    });
+
     const obj = {
         width: 0,
         opacity: 0,
@@ -51,6 +65,7 @@ const Overlay = (
     overlay.style.top = "0";
     overlay.style.width = "inherit";
     overlay.style.height = "inherit";
+    overlay.className = "noselect";
 
     // Slider
     const slider = document.createElement("input");
@@ -148,7 +163,7 @@ const Overlay = (
     fullscreen.innerHTML = "🗖";
     fullscreen.style.pointerEvents = "auto";
     fullscreen.addEventListener("click", (e: Event) => {
-        toggleFullscreen(window.container, sidebar);
+        toggleFullscreen(window.getContainer(), sidebar);
     });
 
     // Resets camera to basic position
@@ -203,7 +218,8 @@ function showcaseSidebar(): HTMLElement {
     h1.textContent = "This is sidebar!";
 
     const p = document.createElement("p");
-    p.textContent = "This is example side bar, you can turn it off  or change its appearance in configuration object."
+    p.textContent =
+        "This is example side bar, you can turn it off  or change its appearance in configuration object.";
 
     div.appendChild(h1);
     div.appendChild(p);

@@ -1,13 +1,15 @@
 import { Objects3D } from "@manualTypes/applicationTypes";
 import { File } from "@manualTypes/jsonTypes";
+import { BufferGeometry } from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import Window from "../initialization/Window";
+import Container from "../initialization/window/Container";
 import LoaderOverlay from "./LoaderOverlay";
 import Object3D from "./Object3D";
 
 const Loader = async (
     files: File[],
-    container: HTMLElement,
+    container: Container,
     window: Window
 ): Promise<Objects3D> => {
     const div = LoaderOverlay(container);
@@ -16,14 +18,13 @@ const Loader = async (
         const loader = new STLLoader();
         await loader
             .loadAsync(file.file)
-            .then((geometry: any) => {
+            .then((geometry: BufferGeometry) => {
                 const obj = new Object3D(geometry, file);
 
                 items.set(file.name, obj);
 
-                window.addObject(obj.getMesh());
-                window.addObject(obj.getOutline());
-                // window.addAnimator(obj.getMesh());
+                window.getScene().addObject(obj.getMesh());
+                window.getScene().addObject(obj.getOutline());
             })
             .catch((error) => {
                 console.error(error);

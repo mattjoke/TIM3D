@@ -79,8 +79,9 @@ const json = {
 
 const config = {
     container: document.getElementById("container"),
-    color: "blue",
-    shool: true
+    backgroundColor: "ble",
+    shool: true.valueOf,
+    sidebarShown: false
 };
 
 (async () => {

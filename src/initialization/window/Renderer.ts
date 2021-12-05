@@ -1,7 +1,8 @@
+import { Easing, Tween } from "@tweenjs/tween.js";
 import {
     Camera,
-    Color,
-    Object3D,
+    Mesh,
+    MeshStandardMaterial,
     PerspectiveCamera,
     Raycaster,
     Scene,
@@ -16,8 +17,7 @@ class Renderer {
 
     private locker = true;
 
-    private lastHighlight: Object3D | null = null;
-    private lastHex: Color | null = null;
+    private lastHighlight: Mesh | null = null;
 
     constructor(
         { width, height }: containerSize,
@@ -37,7 +37,7 @@ class Renderer {
             "touchstart",
             (ev: TouchEvent) => {
                 if (!this.locker) return;
-                
+
                 const touch = ev.touches[0];
                 const pos = { clientX: touch.clientX, clientY: touch.clientY };
                 this.selectObject(pos, scene, camera);
@@ -66,8 +66,8 @@ class Renderer {
     }
 
     public lockHighlight() {
-        //@ts-ignore
-        this.lastHighlight?.material.emissive.setHex(this.lastHex);
+        const material = this.lastHighlight?.material as MeshStandardMaterial;
+        material?.emissive.setHex(0x000000);
         this.lastHighlight = null;
         this.locker = false;
     }
@@ -130,22 +130,30 @@ class Renderer {
         const intersects = this.computeRaycast(position, scene, camera);
 
         if (this.lastHighlight != null && intersects.length == 0) {
-            //@ts-ignore
-            this.lastHighlight.material.emissive.setHex(this.lastHex);
+            const material = this.lastHighlight
+                .material as MeshStandardMaterial;
+            const startHex = {
+                hex: material.emissive.getHex(),
+            };
+            new Tween(startHex)
+                .to({ hex: 0x000000 }, 200)
+                .easing(Easing.Linear.None)
+                .onUpdate(() => {
+                    material.emissive.setHex(startHex.hex);
+                })
+                .start();
             this.lastHighlight = null;
         }
 
         for (let i = 0; i < intersects.length; i++) {
-            const obj = intersects[i].object;
+            const obj = intersects[i].object as Mesh;
             if (obj.type !== "Mesh" || obj.name.includes("-outline")) {
                 return;
             }
+            const material = obj.material as MeshStandardMaterial;
             if (this.lastHighlight == null) {
                 this.lastHighlight = obj;
-                //@ts-ignore
-                this.lastHex = obj.material.emissive.getHex();
-                //@ts-ignore
-                obj.material.emissive.setHex(0x0000ff);
+                material.emissive.setHex(0x0000ff);
                 obj.dispatchEvent({ type: "hover", data: obj });
                 break;
             }

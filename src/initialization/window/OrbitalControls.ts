@@ -1,5 +1,5 @@
 import { Easing, Tween } from "@tweenjs/tween.js";
-import { Camera } from "three";
+import { Camera, EqualDepth, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Renderer from "./Renderer";
 
@@ -26,11 +26,15 @@ class OrbitalControls {
         this.controls.update();
     }
     public reset() {
-        new Tween(this.camera.position) 
+        new Tween(this.camera.position)
             .to({ x: 100, y: 100, z: 110 }, 1000)
             .easing(Easing.Quadratic.Out)
             .start();
-        this.controls.reset();
+        new Tween(this.controls.target)
+            .to({ x: 0, y: 0, z: 0 })
+            .easing(Easing.Quadratic.Out)
+            .start();
+        //this.controls.reset();
     }
 }
 

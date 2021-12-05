@@ -1,13 +1,14 @@
-import { AmbientLight, Color, PointLight } from "three";
-import Axis from "./initialization/Axis";
-import Stepper from "./initialization/Stepper";
-import Window from "./initialization/Window";
-import Overlay from "./initialization/window/Overlay";
-import { ConfigCheck, JsonCheck } from "./inputChecking/InputCheck";
-import Loader from "./stuff/Loader";
-import { Objects3D } from "./types/applicationTypes";
-import { Config } from "./types/configTypes";
-import { JSON } from "./types/jsonTypes";
+import { Color, Object3D } from "three";
+import { ConfigCheck, JsonCheck } from "../inputChecking/InputCheck";
+import Loader from "../stuff/Loader";
+import { Objects3D } from "../types/applicationTypes";
+import { Config } from "../types/configTypes";
+import { JSON } from "../types/jsonTypes";
+import Axis from "./init/Axis";
+import PlaneInit from "./init/PlaneInit";
+import Stepper from "./Stepper";
+import Window from "./Window";
+import Overlay from "./window/Overlay";
 
 class Init {
     private window: Window;
@@ -20,10 +21,10 @@ class Init {
     constructor(config: Config) {
         this.checker(config, ConfigCheck);
 
-        this.window = new Window(config.container!);
+        this.objects = new Map();
+        this.window = new Window(config);
         this.initPlane();
         this.initAxes();
-        this.objects = new Map();
         this.overlay = document.createElement("div");
 
         // Run the animations
@@ -31,19 +32,14 @@ class Init {
     }
 
     public initPlane() {
-        const light = new AmbientLight("white");
-        light.intensity = 0.3;
-        const l = new PointLight("white");
-        l.intensity = 0.6;
-        l.position.set(150, 150, 105);
-        // const helper = new GridHelper(1000, 1000);
-        this.window.addObject(light, l);
+        const [light, ambient] = PlaneInit();
+        this.addObjects(light, ambient);
     }
 
     private initAxes() {
-        this.window.addObject(Axis(10, new Color("blue"), [1, 0, 0]));
-        this.window.addObject(Axis(10, new Color("red"), [0, 0, 1]));
-        this.window.addObject(Axis(10, new Color("green"), [0, 1, 0]));
+        this.addObjects(Axis(10, new Color("blue"), [1, 0, 0]));
+        this.addObjects(Axis(10, new Color("red"), [0, 0, 1]));
+        this.addObjects(Axis(10, new Color("green"), [0, 1, 0]));
     }
 
     public async withJSON(json: JSON) {
@@ -55,7 +51,7 @@ class Init {
             this.window
         );
 
-        this.stepper = new Stepper(json, this.objects);
+        this.stepper = new Stepper(json, this.objects.get.bind(this.objects));
 
         this.overlay = Overlay(this.stepper, this.window);
         this.window.container.appendChild(this.overlay);
@@ -81,6 +77,12 @@ class Init {
     }
     public getStepper() {
         return this.stepper;
+    }
+
+    public addObjects(...objects: any) {
+        objects.forEach((obj: Object3D) => {
+            this.window.getScene().addObject(obj);
+        });
     }
 
     public setStep(stepNumber: number) {

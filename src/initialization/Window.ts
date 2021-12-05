@@ -1,46 +1,35 @@
+import { Config } from "@manualTypes/configTypes";
 import { update } from "@tweenjs/tween.js";
-import { Color, Object3D, PerspectiveCamera, Scene } from "three";
+import { Object3D, Vector3 } from "three";
+import Camera from "./window/Camera";
+import Container from "./window/Container";
 import OrbitalControls from "./window/OrbitalControls";
 import Renderer from "./window/Renderer";
+import Scene from "./window/Scene";
 
 class Window {
-    public scene: Scene = new Scene();
+    public scene: Scene;
     private renderer: Renderer;
-    private camera: PerspectiveCamera;
-    public container: HTMLElement;
+    private camera;
+    public container: Container;
 
     private orbitalControls: OrbitalControls;
 
     private animators: any[] = [];
 
-    constructor(container: HTMLElement) {
-        if (container == null) {
-            this.container = document.createElement("div");
-            this.container.id = "container";
-            document.appendChild(this.container);
-            console.warn("Container not specified! Using default one");
-        }
+    constructor(config: Config) {
+        this.container = new Container(config.container);
 
-        this.scene.background = new Color("#ede7e6");
+        this.scene = new Scene(config.backgroundColor);
 
-        this.camera = new PerspectiveCamera(
-            75,
+        this.camera = Camera(
             window.innerWidth / window.innerHeight,
-            0.1,
-            2000
+            new Vector3(100, 100, 110)
         );
-        
-        this.camera.position.set(100, 100, 110);
-        this.container = container ?? document.getElementById("container");
-        this.container.style.backgroundColor = "blue";
-        this.container.style.position = "relative";
 
         this.renderer = new Renderer(
-            {
-                width: this.container.offsetWidth,
-                height: this.container.offsetHeight,
-            },
-            this.scene,
+            this.container.getSizing(),
+            this.scene.getInstance(),
             this.camera
         );
 
@@ -61,21 +50,15 @@ class Window {
     public getScene() {
         return this.scene;
     }
-
-    private onWindowResize() {
-        this.camera.aspect =
-            this.container.clientWidth / this.container.clientHeight;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize({
-            width: this.container.clientWidth,
-            height: this.container.clientHeight,
-        });
+    public getContainer() {
+        return this.container.getInstance();
     }
 
-    public addObject(...objects: Object3D[]) {
-        objects.forEach((object) => {
-            this.scene.add(object);
-        });
+    private onWindowResize() {
+        const sizing = this.container.getSizing();
+        this.camera.aspect = sizing.width / sizing.height;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(sizing);
     }
 
     public addAnimator(...objects: Object3D[]) {
@@ -91,9 +74,8 @@ class Window {
 
         this.orbitalControls.update();
 
-        this.renderer.render(this.scene, this.camera);
+        this.renderer.render(this.scene.getInstance(), this.camera);
 
-        // Tween update
         update();
     }
 }

@@ -3,20 +3,21 @@ import { z } from "zod";
 
 /*
 export interface Config {
-    container?: HTMLElement | null;
-    enviroment?: {};
-    overlay?: Element;
-    movement?: {};
-    color?: Color | string;
+    backgrounColor?:  Color | string;
+    container?: HTMLElement;
+    loadingOverlay?: HTMLElement;
+    sidebar?: HTMLElement;
+    extensions?: Extension;
 }
 */
 const configSchema = z
     .object({
-        container: z.optional(z.nullable(z.instanceof(HTMLElement))),
-        enviroment: z.optional(z.object({})),
-        overlay: z.optional(z.instanceof(Element)),
-        movement: z.optional(z.object({})),
-        color: z.optional(z.string().or(z.instanceof(Color))),
+        backgroundColor: z.optional(z.string().or(z.instanceof(Color))),
+        container: z.optional(z.instanceof(HTMLElement)),
+        loadingOverlay: z.optional(z.instanceof(HTMLElement)),
+        sidebar: z.optional(z.instanceof(HTMLElement)),
+        sidebarShown: z.optional(z.boolean()),
+        extensions: z.optional(z.object({})),
     })
     .strict();
 

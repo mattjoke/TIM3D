@@ -1,6 +1,7 @@
+import Container from "initialization/window/Container";
 import "../statics/loader.css";
 
-const LoaderOverlay = (container: HTMLElement) => {
+const LoaderOverlay = (container: Container) => {
     const div = document.createElement("div");
     div.style.position = "absolute";
     div.innerText = "Loading...";
