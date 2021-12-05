@@ -6,7 +6,9 @@ const json = {
             file: "models/files/Bar1.stl",
             color: "yellow",
             name: "1",
-            position: [10, 10, 10]
+            pose: {
+                position: [10, 10, 10]
+            }
         },
         {
             file: "models/files/Bar2.stl",
@@ -55,7 +57,11 @@ const json = {
                 {
                     name: "1",
                     position: [0, 0, 0],
-                    rotation: [0.3, 0.7, 0.4],
+                    rotation: [0.3, 0.7, 0.4, 0.1],
+                },
+                {
+                    name: "2",
+                    position: [30, 10, 25]
                 },
             ],
         },
