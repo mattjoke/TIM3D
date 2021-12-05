@@ -3,16 +3,17 @@ import { File } from "@manualTypes/jsonTypes";
 import { BufferGeometry } from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import Window from "../initialization/Window";
-import Container from "../initialization/window/Container";
 import LoaderOverlay from "./LoaderOverlay";
 import Object3D from "./Object3D";
 
 const Loader = async (
     files: File[],
-    container: Container,
-    window: Window
+    window: Window,
+    overlay?: HTMLElement
 ): Promise<Objects3D> => {
-    const div = LoaderOverlay(container);
+    const div = overlay ?? LoaderOverlay();
+    div.style.zIndex = "100";
+    window.container.appendChild(div);
     const items: Objects3D = new Map();
     for (const file of files) {
         const loader = new STLLoader();
@@ -31,7 +32,7 @@ const Loader = async (
             });
     }
 
-    container.removeChild(div);
+    window.container.removeChild(div);
 
     return items;
 };

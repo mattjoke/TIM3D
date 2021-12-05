@@ -1,10 +1,52 @@
+import { Sidebar } from "../../types/configTypes";
 import { Tween } from "@tweenjs/tween.js";
 import Stepper from "../Stepper";
 import Window from "../Window";
 
-const toggleFullscreen = (container: HTMLElement, sidebar: HTMLElement) => {
+const toggleFullscreen = (container: HTMLElement, sidebar?: HTMLElement) => {
     document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
+            obj.width = 15;
+            obj.opacity = 100;
+            if (sidebar != null) {
+                new Tween(obj)
+                    .to({ width: 0, opacity: 0 })
+                    .onUpdate(() => {
+                        sidebar.style.width = `${obj.width}%`;
+                        sidebar.style.opacity = `${obj.opacity}%`;
+                    })
+                    .start();
+            }
+        }
+    });
+
+    const obj = {
+        width: 0,
+        opacity: 0,
+    };
+
+    if (!document.fullscreenElement) {
+        if (sidebar != null) {
+            new Tween(obj)
+                .to({ opacity: 100 })
+                .onUpdate(() => {
+                    sidebar.style.opacity = `${obj.opacity}%`;
+                })
+                .start();
+            new Tween(obj)
+                .to({ width: 15 })
+                .onUpdate(() => {
+                    sidebar.style.width = `${obj.width}%`;
+                })
+                .start();
+        }
+        container.requestFullscreen().catch((err) => {
+            alert(
+                `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+            );
+        });
+    } else {
+        if (sidebar != null) {
             obj.width = 15;
             obj.opacity = 100;
             new Tween(obj)
@@ -15,50 +57,11 @@ const toggleFullscreen = (container: HTMLElement, sidebar: HTMLElement) => {
                 })
                 .start();
         }
-    });
-
-    const obj = {
-        width: 0,
-        opacity: 0,
-    };
-
-    if (!document.fullscreenElement) {
-        new Tween(obj)
-            .to({ opacity: 100 })
-            .onUpdate(() => {
-                sidebar.style.opacity = `${obj.opacity}%`;
-            })
-            .start();
-        new Tween(obj)
-            .to({ width: 15 })
-            .onUpdate(() => {
-                sidebar.style.width = `${obj.width}%`;
-            })
-            .start();
-        container.requestFullscreen().catch((err) => {
-            alert(
-                `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
-            );
-        });
-    } else {
-        obj.width = 15;
-        obj.opacity = 100;
-        new Tween(obj)
-            .to({ width: 0, opacity: 0 })
-            .onUpdate(() => {
-                sidebar.style.width = `${obj.width}%`;
-                sidebar.style.opacity = `${obj.opacity}%`;
-            })
-            .start();
         document.exitFullscreen();
     }
 };
 
-const Overlay = (
-    stepper: Stepper,
-    window: Window,
-    sidebarElement?: HTMLElement
-) => {
+const Overlay = (stepper: Stepper, window: Window, customSidebar: Sidebar) => {
     const overlay = document.createElement("div");
     overlay.style.position = "absolute";
     overlay.style.pointerEvents = "none";
@@ -154,8 +157,8 @@ const Overlay = (
     sidebar.style.backgroundColor = "green";
     sidebar.style.pointerEvents = "none";
     sidebar.style.opacity = "0%";
-    sidebarElement
-        ? sidebar.appendChild(sidebarElement)
+    customSidebar.sidebarElem
+        ? sidebar.appendChild(customSidebar.sidebarElem)
         : sidebar.appendChild(showcaseSidebar());
 
     // Sets div to fullscreen
@@ -163,7 +166,10 @@ const Overlay = (
     fullscreen.innerHTML = "🗖";
     fullscreen.style.pointerEvents = "auto";
     fullscreen.addEventListener("click", (e: Event) => {
-        toggleFullscreen(window.getContainer(), sidebar);
+        toggleFullscreen(
+            window.getContainer(),
+            customSidebar.show ? sidebar : undefined
+        );
     });
 
     // Resets camera to basic position

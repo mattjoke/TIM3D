@@ -18,8 +18,11 @@ class Init {
 
     public objectsLoaded = false;
 
+    private config: Config;
+
     constructor(config: Config) {
         this.checker(config, ConfigCheck);
+        this.config = config;
 
         this.objects = new Map();
         this.window = new Window(config);
@@ -47,13 +50,16 @@ class Init {
 
         this.objects = await Loader(
             json.files ?? [],
-            this.window.container,
-            this.window
+            this.window,
+            this.config.loadingOverlay
         );
 
         this.stepper = new Stepper(json, this.objects.get.bind(this.objects));
 
-        this.overlay = Overlay(this.stepper, this.window);
+        this.overlay = Overlay(this.stepper, this.window, {
+            sidebarElem: this.config.sidebar,
+            show: this.config.sidebarShown,
+        });
         this.window.container.appendChild(this.overlay);
 
         this.objectsLoaded = this.objects.size > 0;

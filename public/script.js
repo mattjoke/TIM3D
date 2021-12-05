@@ -77,11 +77,15 @@ const json = {
     ],
 };
 
+var overlay = document.createElement("div");
+overlay.innerHTML = "<p>LOADING</p>";
+
 const config = {
     container: document.getElementById("container"),
-    backgroundColor: "ble",
-    shool: true.valueOf,
-    sidebarShown: false
+    backgroundColor: "rgb(",
+    shool: true,
+    sidebarShown: true,
+    sidebar: overlay
 };
 
 (async () => {

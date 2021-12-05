@@ -5,7 +5,9 @@ class WindowsContainer {
             this.instance = document.createElement("div");
             this.instance.id = "container";
             document.body.appendChild(this.instance);
-            console.warn("Container not specified! Using default one");
+            console.warn(
+                "Container not specified! Appending to the body. Consider specifying default container."
+            );
         } else {
             this.instance = container;
         }

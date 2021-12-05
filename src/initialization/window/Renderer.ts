@@ -1,13 +1,14 @@
 import { Easing, Tween } from "@tweenjs/tween.js";
 import {
     Camera,
+    Color,
     Mesh,
     MeshStandardMaterial,
     PerspectiveCamera,
     Raycaster,
     Scene,
     Vector2,
-    WebGLRenderer,
+    WebGLRenderer
 } from "three";
 import { containerSize, inputPosition } from "../../types/applicationTypes";
 
@@ -18,15 +19,18 @@ class Renderer {
     private locker = true;
 
     private lastHighlight: Mesh | null = null;
+    private customEmissive: Color | string | undefined;
 
     constructor(
         { width, height }: containerSize,
         scene: Scene,
-        camera: Camera
+        camera: Camera,
+        emissiveColor?: Color | string
     ) {
         this.renderer = new WebGLRenderer({ antialias: true });
-
         this.renderer.setSize(width, height);
+
+        this.customEmissive = emissiveColor;
 
         this.domElement = this.renderer.domElement;
         this.initCallbacks(scene, camera);
@@ -153,7 +157,7 @@ class Renderer {
             const material = obj.material as MeshStandardMaterial;
             if (this.lastHighlight == null) {
                 this.lastHighlight = obj;
-                material.emissive.setHex(0x0000ff);
+                material.emissive = new Color(this.customEmissive ?? 0x0000ff);
                 obj.dispatchEvent({ type: "hover", data: obj });
                 break;
             }

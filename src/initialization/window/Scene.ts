@@ -5,13 +5,11 @@ class Scene {
     constructor(backgroundColor?: Color | string) {
         this.instance = new ThreeScene();
 
-        console.log(backgroundColor);
+        this.instance.background = new Color(backgroundColor);
 
-        if (backgroundColor instanceof Color) {
-            this.instance.background = backgroundColor;
-        } else {
-            console.log(new Color( "#ede7e6"));
-            this.instance.background = new Color(backgroundColor);
+        if (this.instance.background.equals(new Color())) {
+            console.warn("Cannot parse unknown color:", backgroundColor);
+            this.instance.background = new Color("#ede7e6");
         }
     }
 

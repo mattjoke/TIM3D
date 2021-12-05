@@ -30,7 +30,8 @@ class Window {
         this.renderer = new Renderer(
             this.container.getSizing(),
             this.scene.getInstance(),
-            this.camera
+            this.camera,
+            config.emissiveColor
         );
 
         this.container.appendChild(this.renderer.domElement);
