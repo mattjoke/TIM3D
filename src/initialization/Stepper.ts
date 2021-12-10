@@ -26,30 +26,19 @@ class Stepper {
                 if (this.currentStep.next == null) {
                     break;
                 }
-                this.moveStepUp();
+                this.currentStep = this.currentStep.next;
+                this.currentStepPosition++;
+                this.redraw();
             } else {
                 if (this.currentStep.prev == null) {
                     break;
                 }
-                this.moveStepDown();
+                this.currentStep = this.currentStep.prev;
+                this.currentStepPosition--;
             }
+            this.redraw();
         }
         return this.currentStepPosition;
-    }
-    public moveStepUp() {
-        if (this.currentStep.next) {
-            this.currentStep = this.currentStep.next;
-            this.currentStepPosition++;
-        }
-        this.redraw();
-    }
-
-    public moveStepDown() {
-        if (this.currentStep.prev) {
-            this.currentStep = this.currentStep.prev;
-            this.currentStepPosition--;
-        }
-        this.redraw();
     }
 
     public getCurrentStep() {

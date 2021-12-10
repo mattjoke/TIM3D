@@ -61,7 +61,11 @@ const toggleFullscreen = (container: HTMLElement, sidebar?: HTMLElement) => {
     }
 };
 
-const Overlay = (stepper: Stepper, window: Window, customSidebar: Sidebar) => {
+const Overlay = (
+    stepper: Stepper,
+    window: Window,
+    customSidebar?: { body?: HTMLElement; visible: boolean }
+) => {
     const overlay = document.createElement("div");
     overlay.style.position = "absolute";
     overlay.style.pointerEvents = "none";
@@ -81,6 +85,9 @@ const Overlay = (stepper: Stepper, window: Window, customSidebar: Sidebar) => {
     slider.style.flexGrow = "4";
 
     const counter = document.createElement("span");
+    if (stepper.length == 0) {
+        counter.style.display = "none";
+    }
     counter.textContent = `${stepper.getCurrentStep()}/${stepper.length - 1}`;
     counter.style.color = "black";
 
@@ -97,7 +104,7 @@ const Overlay = (stepper: Stepper, window: Window, customSidebar: Sidebar) => {
     });
 
     function step(stepNum: number) {
-        stepper.setStep(stepNum);
+        stepper.setStep(stepNum > -1 ? stepNum : Number.POSITIVE_INFINITY);
         slider.value = stepper.getCurrentStep().toString();
         counter.textContent = `${stepper.getCurrentStep()}/${
             stepper.length - 1
@@ -124,8 +131,8 @@ const Overlay = (stepper: Stepper, window: Window, customSidebar: Sidebar) => {
     start.innerHTML = "⏮";
     start.style.pointerEvents = "auto";
     start.addEventListener("click", (e: Event) => {
-        stepper.setStep(0);
-        slider.value = `${stepper.getCurrentStep()}`;
+        e.preventDefault();
+        step(0);
     });
 
     // End
@@ -133,8 +140,8 @@ const Overlay = (stepper: Stepper, window: Window, customSidebar: Sidebar) => {
     end.innerHTML = "⏭";
     end.style.pointerEvents = "auto";
     end.addEventListener("click", (e: Event) => {
-        stepper.setStep(99999);
-        slider.value = `${stepper.getCurrentStep()}`;
+        e.preventDefault();
+        step(-1);
     });
 
     const upContainer = document.createElement("div");
@@ -157,8 +164,8 @@ const Overlay = (stepper: Stepper, window: Window, customSidebar: Sidebar) => {
     sidebar.style.backgroundColor = "green";
     sidebar.style.pointerEvents = "none";
     sidebar.style.opacity = "0%";
-    customSidebar.sidebarElem
-        ? sidebar.appendChild(customSidebar.sidebarElem)
+    customSidebar?.body
+        ? sidebar.appendChild(customSidebar.body)
         : sidebar.appendChild(showcaseSidebar());
 
     // Sets div to fullscreen
@@ -168,7 +175,7 @@ const Overlay = (stepper: Stepper, window: Window, customSidebar: Sidebar) => {
     fullscreen.addEventListener("click", (e: Event) => {
         toggleFullscreen(
             window.getContainer(),
-            customSidebar.show ? sidebar : undefined
+            customSidebar?.visible ? sidebar : undefined
         );
     });
 

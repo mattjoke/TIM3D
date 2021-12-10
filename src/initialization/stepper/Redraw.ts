@@ -28,6 +28,18 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
             obj.getMesh().position,
             new Vector3().fromArray(position.position)
         );
+        if (position.rotation) {
+            obj.getMesh().rotation.z = 0;
+            const screw = new Tween(obj.getMesh().rotation)
+                .to({ z: 180 }, 500)
+                .easing(Easing.Quadratic.InOut);
+            new Tween(obj.getMesh().rotation)
+                .to({ z: 180 }, 500)
+                .easing(Easing.Quadratic.InOut)
+                .chain(screw)
+                .start();
+        }
+        /*
         animateRotation(obj.getMesh().rotation, rotation);
 
         animatePosition(
@@ -35,8 +47,8 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
             new Vector3().fromArray(position.position)
         );
         animateRotation(obj.getOutline().rotation, rotation);
+        */
     }
 };
 
 export { Redraw, animatePosition, animateRotation };
-

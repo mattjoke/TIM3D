@@ -1,3 +1,4 @@
+import { Colors } from "../../types/configTypes";
 import { Easing, Tween } from "@tweenjs/tween.js";
 import {
     Camera,
@@ -8,7 +9,7 @@ import {
     Raycaster,
     Scene,
     Vector2,
-    WebGLRenderer
+    WebGLRenderer,
 } from "three";
 import { containerSize, inputPosition } from "../../types/applicationTypes";
 
@@ -25,12 +26,12 @@ class Renderer {
         { width, height }: containerSize,
         scene: Scene,
         camera: Camera,
-        emissiveColor?: Color | string
+        colors?: Colors
     ) {
         this.renderer = new WebGLRenderer({ antialias: true });
         this.renderer.setSize(width, height);
 
-        this.customEmissive = emissiveColor;
+        this.customEmissive = colors?.emissiveColor;
 
         this.domElement = this.renderer.domElement;
         this.initCallbacks(scene, camera);
@@ -117,7 +118,7 @@ class Renderer {
         for (let i = 0; i < intersects.length; i++) {
             const obj = intersects[i].object;
             if (obj.type !== "Mesh" || obj.name.includes("-outline")) {
-                return;
+                continue;
             }
             const outline = scene.getObjectByName(`${obj.name}-outline`);
             if (!outline) break;
@@ -152,14 +153,14 @@ class Renderer {
         for (let i = 0; i < intersects.length; i++) {
             const obj = intersects[i].object as Mesh;
             if (obj.type !== "Mesh" || obj.name.includes("-outline")) {
-                return;
+                continue;
             }
+
             const material = obj.material as MeshStandardMaterial;
             if (this.lastHighlight == null) {
                 this.lastHighlight = obj;
                 material.emissive = new Color(this.customEmissive ?? 0x0000ff);
                 obj.dispatchEvent({ type: "hover", data: obj });
-                break;
             }
         }
     }

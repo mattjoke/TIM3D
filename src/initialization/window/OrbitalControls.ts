@@ -7,6 +7,9 @@ class OrbitalControls {
     private controls: OrbitControls;
     private camera: Camera;
 
+    private startingPosition = new Vector3(100, 100, 110);
+    private worldPosition = new Vector3(0, 0, 0);
+
     constructor(camera: Camera, renderer: Renderer) {
         this.controls = new OrbitControls(camera, renderer.domElement);
         this.controls.enableDamping = true;
@@ -22,16 +25,24 @@ class OrbitalControls {
         this.camera = camera;
     }
 
+    public setStartingPosition(position: Vector3) {
+        this.startingPosition = position;
+    }
+    public setWorldPosition(worldPosition: Vector3) {
+        this.worldPosition = worldPosition;
+        this.controls.target = this.worldPosition;
+    }
+
     public update() {
         this.controls.update();
     }
     public reset() {
         new Tween(this.camera.position)
-            .to({ x: 100, y: 100, z: 110 }, 1000)
+            .to(this.startingPosition, 500)
             .easing(Easing.Quadratic.Out)
             .start();
         new Tween(this.controls.target)
-            .to({ x: 0, y: 0, z: 0 })
+            .to(this.worldPosition, 500)
             .easing(Easing.Quadratic.Out)
             .start();
         //this.controls.reset();

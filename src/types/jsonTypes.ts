@@ -28,7 +28,6 @@ export interface File {
 }
 
 export interface JSON {
-    config?: Config;
     files?: File[];
     steps?: Step[];
 }

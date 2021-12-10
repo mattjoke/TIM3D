@@ -51,15 +51,12 @@ class Init {
         this.objects = await Loader(
             json.files ?? [],
             this.window,
-            this.config.loadingOverlay
+            this.config
         );
 
         this.stepper = new Stepper(json, this.objects.get.bind(this.objects));
 
-        this.overlay = Overlay(this.stepper, this.window, {
-            sidebarElem: this.config.sidebar,
-            show: this.config.sidebarShown,
-        });
+        this.overlay = Overlay(this.stepper, this.window, this.config.sidebar);
         this.window.container.appendChild(this.overlay);
 
         this.objectsLoaded = this.objects.size > 0;

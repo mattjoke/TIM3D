@@ -1,3 +1,4 @@
+import { isColor } from "../../stuff/Utils";
 import { Color, Object3D, Scene as ThreeScene } from "three";
 
 class Scene {
@@ -5,11 +6,13 @@ class Scene {
     constructor(backgroundColor?: Color | string) {
         this.instance = new ThreeScene();
 
-        this.instance.background = new Color(backgroundColor);
-
-        if (this.instance.background.equals(new Color())) {
-            console.warn("Cannot parse unknown color:", backgroundColor);
+        if (backgroundColor == null){
             this.instance.background = new Color("#ede7e6");
+        }else if (typeof backgroundColor === "string" && !isColor(backgroundColor)) {
+            this.instance.background = new Color("#ede7e6");
+            console.warn("Cannot parse unknown color:", backgroundColor);
+        } else {
+            this.instance.background = new Color(backgroundColor);
         }
     }
 

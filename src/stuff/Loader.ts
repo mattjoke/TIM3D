@@ -1,4 +1,5 @@
 import { Objects3D } from "@manualTypes/applicationTypes";
+import { Config } from "@manualTypes/configTypes";
 import { File } from "@manualTypes/jsonTypes";
 import { BufferGeometry } from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
@@ -9,9 +10,9 @@ import Object3D from "./Object3D";
 const Loader = async (
     files: File[],
     window: Window,
-    overlay?: HTMLElement
+    config?: Config
 ): Promise<Objects3D> => {
-    const div = overlay ?? LoaderOverlay();
+    const div = config?.loadingOverlay ?? LoaderOverlay();
     div.style.zIndex = "100";
     window.container.appendChild(div);
     const items: Objects3D = new Map();
@@ -21,6 +22,8 @@ const Loader = async (
             .loadAsync(file.file)
             .then((geometry: BufferGeometry) => {
                 const obj = new Object3D(geometry, file);
+
+                obj.setOutlineColor(config?.colors?.selectionColor);
 
                 items.set(file.name, obj);
 

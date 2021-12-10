@@ -11,23 +11,35 @@ export interface Extension {
 
 type ShowSidebar = false;
 
-
 export interface Sidebar {
-    sidebarElem?: HTMLElement
-    show: boolean
-}   
+    sidebarElem?: HTMLElement;
+    show: boolean;
+}
 
-export interface Config {
+export interface Colors {
     //Scene color
     backgroundColor?: Color | string;
     //Highlight color
     emissiveColor?: Color | string;
+    //Selection color
+    selectionColor?: Color | string;
+}
+
+export interface Config {
+    colors?: Colors;
+    world?: {
+        startPosition: [x: number, y: number, z: number];
+        centerOfWorld: [x: number, y: number, z: number];
+    };
     //Instance container
     container?: HTMLElement;
     //Overlay div
     loadingOverlay?: HTMLElement;
     //Sidebar div
-    sidebar?: HTMLElement;
-    sidebarShown: ShowSidebar;
+    sidebar?: {
+        body?: HTMLElement;
+        visible: ShowSidebar;
+    };
+
     extensions?: Extension;
 }

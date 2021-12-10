@@ -20,24 +20,36 @@ class Window {
     constructor(config: Config) {
         this.container = new Container(config.container);
 
-        this.scene = new Scene(config.backgroundColor);
+        this.scene = new Scene(config.colors?.backgroundColor);
+
+        const startPosition =
+            config.world?.startPosition
+                ? new Vector3().fromArray(config.world.startPosition)
+                : new Vector3(100, 100, 110);
 
         this.camera = Camera(
             window.innerWidth / window.innerHeight,
-            new Vector3(100, 100, 110)
+            startPosition
         );
 
         this.renderer = new Renderer(
             this.container.getSizing(),
             this.scene.getInstance(),
             this.camera,
-            config.emissiveColor
+            config.colors
         );
 
         this.container.appendChild(this.renderer.domElement);
 
         //Orbital controls
         this.orbitalControls = new OrbitalControls(this.camera, this.renderer);
+        this.orbitalControls.setStartingPosition(startPosition);
+
+        const worldPosition =
+            config.world?.centerOfWorld
+                ? new Vector3().fromArray(config.world.centerOfWorld)
+                : new Vector3(0, 0, 0);
+        this.orbitalControls.setWorldPosition(worldPosition);
 
         this.animate();
     }

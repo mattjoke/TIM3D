@@ -82,10 +82,14 @@ overlay.innerHTML = "<p>LOADING</p>";
 
 const config = {
     container: document.getElementById("container"),
-    backgroundColor: "rgb(",
+    colors: {
+        backgroundColor: "rgb(",
+    },
     shool: true,
-    sidebarShown: true,
-    sidebar: overlay
+    sidebar: {
+        body: overlay,
+        visible: true,
+    }
 };
 
 (async () => {
@@ -116,3 +120,52 @@ const config = {
         t1.moveToStep(3);
     });
 })();
+
+
+const json2 = {
+    files: [
+        {
+            file: "models/files/screw.stl",
+            color: "yellow",
+            name: "1",
+            pose: {
+                position: [0, 0, 0]
+            }
+        }
+    ],
+    steps: [
+        {
+            name: "Init",
+            positions: [
+                {
+                    name: "1",
+                    position: [0, 10, 0],
+                },
+            ],
+        },
+        {
+            name: "First Step",
+            positions: [
+                {
+                    name: "1",
+                    position: [0, 0, 0],
+                }
+            ],
+        }
+    ],
+};
+
+
+
+(async () => {
+    const c = {
+        container: document.getElementById("second"),
+        world: {
+            startPosition: [50, 0, 0],
+            centerOfWorld: [0,10,0]
+        },
+    };
+
+    const t2 = await new Factory(c).loadJSON(json2);
+})();
+
