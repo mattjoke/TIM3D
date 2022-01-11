@@ -1,6 +1,6 @@
+import { Tween } from "@tweenjs/tween.js";
 import { Color, Mesh, Quaternion } from "three";
 import { ObjectID } from "./applicationTypes";
-import { Config } from "./configTypes";
 
 export type Objects = Map<string | number, Mesh>;
 
@@ -13,11 +13,13 @@ export interface Position {
     name: ObjectID;
     position: [x: number, y: number, z: number];
     rotation?: [x: number, y: number, z: number, w: number];
+    animation? : Function;
 }
 
 export interface Step {
     name?: string;
     positions: Position[];
+    animation?: string;
 }
 
 export interface File {

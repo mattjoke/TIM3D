@@ -1,10 +1,14 @@
 import { Position, Step } from "@manualTypes/jsonTypes";
+import { Tween } from "@tweenjs/tween.js";
+import { object, TypeOf } from "zod";
+import AnimationStorage from "./AnimationStorage";
 
 class ManualStep {
     prev: ManualStep | null = null;
     next: ManualStep | null = null;
     name!: string;
     positions: Position[] = [];
+    animation?: Function;
 }
 
 const buildSteps = (steps: Step[] | undefined) => {
@@ -15,6 +19,7 @@ const buildSteps = (steps: Step[] | undefined) => {
         const curr = new ManualStep();
         curr.name = step.name ?? length.toString();
         curr.positions = step.positions;
+        curr.animation = AnimationStorage.Instance.getAnimation(step.animation ?? "") as Function;     
         curr.prev = prev;
         if (prev) {
             prev.next = curr;

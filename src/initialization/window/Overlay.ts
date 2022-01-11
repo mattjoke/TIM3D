@@ -98,6 +98,8 @@ const Overlay = (
         }`;
     });
 
+    
+
     slider.addEventListener("change", (ev: Event) => {
         ev.preventDefault();
         step(Number(slider.value));

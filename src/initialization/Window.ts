@@ -1,6 +1,6 @@
 import { Config } from "@manualTypes/configTypes";
 import { update } from "@tweenjs/tween.js";
-import { Object3D, Vector3 } from "three";
+import { AxesHelper, Object3D, PerspectiveCamera, Vector3 } from "three";
 import Camera from "./window/Camera";
 import Container from "./window/Container";
 import OrbitalControls from "./window/OrbitalControls";

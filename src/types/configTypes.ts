@@ -41,5 +41,7 @@ export interface Config {
         visible: ShowSidebar;
     };
 
+    animationLoop: [string];
+
     extensions?: Extension;
 }

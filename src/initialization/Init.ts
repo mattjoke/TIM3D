@@ -48,13 +48,13 @@ class Init {
     public async withJSON(json: JSON) {
         this.checker(json, JsonCheck);
 
-        this.objects = await Loader(
-            json.files ?? [],
-            this.window,
-            this.config
-        );
+        this.objects = await Loader(json.files ?? [], this.window, this.config);
 
-        this.stepper = new Stepper(json, this.objects.get.bind(this.objects));
+        this.stepper = new Stepper(
+            json,
+            this.objects.get.bind(this.objects),
+            this.config.animationLoop ?? []
+        );
 
         this.overlay = Overlay(this.stepper, this.window, this.config.sidebar);
         this.window.container.appendChild(this.overlay);

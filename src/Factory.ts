@@ -1,3 +1,4 @@
+import AnimationStorage from "./initialization/stepper/AnimationStorage";
 import { Event } from "three";
 import Init from "./initialization/Init";
 import { ObjectID } from "./types/applicationTypes";
@@ -49,6 +50,10 @@ class Factory {
                 callback(e);
             });
         });
+    }
+
+    public getAnimations(){
+        return AnimationStorage.getAnimations();
     }
 }
 

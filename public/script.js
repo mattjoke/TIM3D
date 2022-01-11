@@ -64,6 +64,7 @@ const json = {
                     position: [30, 10, 25]
                 },
             ],
+            animation: "x90deg"
         },
         {
             name: "Second Step",
@@ -73,6 +74,7 @@ const json = {
                     position: [20, 15, 7],
                 },
             ],
+            animation: "y90deg"
         },
     ],
 };
@@ -88,7 +90,6 @@ const config = {
     shool: true,
     sidebar: {
         body: overlay,
-        visible: true,
     }
 };
 
@@ -119,6 +120,8 @@ const config = {
         ev.preventDefault();
         t1.moveToStep(3);
     });
+    t1.selectItem("1");
+    console.log(t1.getAnimations());
 })();
 
 
@@ -139,7 +142,7 @@ const json2 = {
             positions: [
                 {
                     name: "1",
-                    position: [0, 10, 0],
+                    position: [0, 0, 0],
                 },
             ],
         },
@@ -148,9 +151,20 @@ const json2 = {
             positions: [
                 {
                     name: "1",
-                    position: [0, 0, 0],
+                    position: [0, 10, 0],
                 }
             ],
+            animation: "y180deg"
+        },
+        {
+            name: "Second Step",
+            positions: [
+                {
+                    name: "1",
+                    position: [0, -10, 0],
+                }
+            ],
+            animation: "z360deg"
         }
     ],
 };
@@ -162,10 +176,12 @@ const json2 = {
         container: document.getElementById("second"),
         world: {
             startPosition: [50, 0, 0],
-            centerOfWorld: [0,10,0]
+            centerOfWorld: [0, 10, 0]
         },
+        animationLoop: ["Init", "First Step", "Second Step"]
     };
 
-    const t2 = await new Factory(c).loadJSON(json2);
+    await new Factory(c).loadJSON(json2);
+
 })();
 

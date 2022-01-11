@@ -1,6 +1,7 @@
 import { Colors } from "../../types/configTypes";
-import { Easing, Tween } from "@tweenjs/tween.js";
+import { Easing, Sequence, Tween } from "@tweenjs/tween.js";
 import {
+    AxesHelper,
     Camera,
     Color,
     Mesh,
@@ -9,6 +10,7 @@ import {
     Raycaster,
     Scene,
     Vector2,
+    Vector3,
     WebGLRenderer,
 } from "three";
 import { containerSize, inputPosition } from "../../types/applicationTypes";
@@ -85,7 +87,17 @@ class Renderer {
         this.domElement = this.renderer.domElement;
     }
     public render(scene: Scene, camera: PerspectiveCamera) {
+        //this.renderer.autoClear = false;
         this.renderer.render(scene, camera);
+
+        /*camera.layers.set(3);
+        this.renderer.clearDepth();
+        this.renderer.setScissorTest(true);
+        this.renderer.setScissor(0,50,100,100);
+        this.renderer.setViewport(0,50,100,100);
+        this.renderer.render(scene, camera);
+        this.renderer.setScissorTest(false);        
+        camera.layers.set(0);*/
     }
 
     public getBoundingRect() {
