@@ -9,16 +9,16 @@ class Stepper {
     public length = 0;
 
     private root: ManualStep | null;
-    private animationLoop: [string];
+    private animationLoop: [string] | [];
 
-    constructor(json: JSON, getObject: Function, animationLoop: [string]) {
+    constructor(json: JSON, getObject: Function, animationLoop?: [string]) {
         this.getObject = getObject;
         const { root, length } = buildSteps(json.steps);
         this.currentStep = root ?? new ManualStep();
         this.root = root;
         this.length = length;
 
-        this.animationLoop = animationLoop;
+        this.animationLoop = animationLoop ?? [];
 
         requestAnimationFrame(this.redraw.bind(this));
 

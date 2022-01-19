@@ -1,3 +1,4 @@
+import { File } from "@manualTypes/jsonTypes";
 import {
     BackSide,
     BufferGeometry,
@@ -5,9 +6,8 @@ import {
     Mesh,
     MeshBasicMaterial,
     MeshStandardMaterial,
-    Quaternion,
+    Quaternion
 } from "three";
-import { File } from "@manualTypes/jsonTypes";
 import { isColor } from "./Utils";
 
 class Object3D {
@@ -24,6 +24,11 @@ class Object3D {
     public getMesh() {
         return this.mesh;
     }
+    public setScale(x:number, y:number, z:number) {
+        this.mesh.scale.set(x,y,z);
+        this.outline.scale.set(x,y,z);  
+        this.outline.scale.multiplyScalar(1.07);
+    }
     public getOutline() {
         return this.outline;
     }
@@ -32,7 +37,7 @@ class Object3D {
     }
     public setOutlineColor(selectionColor: string | Color | undefined) {
         try {
-            if (selectionColor == null){
+            if (selectionColor == null) {
                 return;
             }
             if (

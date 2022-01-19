@@ -21,7 +21,7 @@ class Scene {
         } else {
             this.instance.background = new Color(backgroundColor);
         }
-        //this.initAxexHelper();
+        this.initAxexHelper();
     }
 
     private initAxexHelper() {

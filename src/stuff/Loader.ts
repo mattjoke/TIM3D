@@ -1,10 +1,10 @@
-import { Objects3D } from "@manualTypes/applicationTypes";
+import { Objects3D } from "../types/applicationTypes";
 import { Config } from "@manualTypes/configTypes";
 import { File } from "@manualTypes/jsonTypes";
-import { BufferGeometry } from "three";
-import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
+import { Group, Mesh } from "three";
 import Window from "../initialization/Window";
-import LoaderOverlay from "./LoaderOverlay";
+import LoaderOverlay from "./loaders/LoaderOverlay";
+import LoaderManager from "./loaders/LoaderManager";
 import Object3D from "./Object3D";
 
 const Loader = async (
@@ -15,24 +15,35 @@ const Loader = async (
     const div = config?.loadingOverlay ?? LoaderOverlay();
     div.style.zIndex = "100";
     window.container.appendChild(div);
+
     const items: Objects3D = new Map();
+
+    const manager = LoaderManager();
+
     for (const file of files) {
-        const loader = new STLLoader();
-        await loader
-            .loadAsync(file.file)
-            .then((geometry: BufferGeometry) => {
-                const obj = new Object3D(geometry, file);
+        const loader = manager.getHandler(file.file);
 
-                obj.setOutlineColor(config?.colors?.selectionColor);
+        await loader?.loadAsync(file.file).then((object) => {
+            let obj: Object3D;
+            switch (object.type) {
+                case "Group":
+                    const o = object as Group;
+                    const child = o.children[0] as Mesh;
+                    obj = new Object3D(child.geometry, file);
+                    obj.setScale(50,50,50);
+                    break;
+                default:
+                    obj = new Object3D(object, file);
+                    break;
+            }
 
-                items.set(file.name, obj);
+            obj.setOutlineColor(config?.colors?.selectionColor);
 
-                window.getScene().addObject(obj.getMesh());
-                window.getScene().addObject(obj.getOutline());
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+            items.set(file.name, obj);
+
+            window.getScene().addObject(obj.getMesh());
+            window.getScene().addObject(obj.getOutline());
+        });
     }
 
     window.container.removeChild(div);

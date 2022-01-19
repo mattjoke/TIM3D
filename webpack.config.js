@@ -14,11 +14,18 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.hbs$/i,
+                loader: "handlebars-loader",
             }
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js', 'html'],
+        fallback: {
+            "fs": false
+        }
     },
     output: {
         filename: 'bundle.js',

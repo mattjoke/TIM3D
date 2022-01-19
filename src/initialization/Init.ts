@@ -53,7 +53,7 @@ class Init {
         this.stepper = new Stepper(
             json,
             this.objects.get.bind(this.objects),
-            this.config.animationLoop ?? []
+            this.config.animationLoop
         );
 
         this.overlay = Overlay(this.stepper, this.window, this.config.sidebar);

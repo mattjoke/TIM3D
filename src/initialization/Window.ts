@@ -43,6 +43,7 @@ class Window {
 
         //Orbital controls
         this.orbitalControls = new OrbitalControls(this.camera, this.renderer);
+
         this.orbitalControls.setStartingPosition(startPosition);
 
         const worldPosition =

@@ -22,6 +22,8 @@ class OrbitalControls {
             renderer.unlockHightlight();
         });
 
+        
+
         this.camera = camera;
     }
 

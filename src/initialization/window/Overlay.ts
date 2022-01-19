@@ -2,6 +2,7 @@ import { Sidebar } from "../../types/configTypes";
 import { Tween } from "@tweenjs/tween.js";
 import Stepper from "../Stepper";
 import Window from "../Window";
+import { OverlayLoader } from "./OverlayLoader";
 
 const toggleFullscreen = (container: HTMLElement, sidebar?: HTMLElement) => {
     document.addEventListener("fullscreenchange", () => {
@@ -61,11 +62,9 @@ const toggleFullscreen = (container: HTMLElement, sidebar?: HTMLElement) => {
     }
 };
 
-const Overlay = (
-    stepper: Stepper,
-    window: Window,
-    customSidebar?: { body?: HTMLElement; visible: boolean }
-) => {
+const Overlay = (stepper: Stepper, window: Window, customSidebar?: Sidebar) => {
+
+    OverlayLoader(stepper, window, customSidebar);
     const overlay = document.createElement("div");
     overlay.style.position = "absolute";
     overlay.style.pointerEvents = "none";
@@ -97,8 +96,6 @@ const Overlay = (
             stepper.length - 1
         }`;
     });
-
-    
 
     slider.addEventListener("change", (ev: Event) => {
         ev.preventDefault();

@@ -39,6 +39,10 @@ const json = {
         {
             file: "models/files/Bolt_slide_top.stl",
             name: "8",
+        },
+        {
+            file: "models/files/cube.obj",
+            name: "9"
         }
     ],
     steps: [
@@ -121,7 +125,6 @@ const config = {
         t1.moveToStep(3);
     });
     t1.selectItem("1");
-    console.log(t1.getAnimations());
 })();
 
 

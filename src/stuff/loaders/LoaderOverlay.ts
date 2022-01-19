@@ -1,4 +1,4 @@
-import "../statics/loader.css";
+import "../../statics/loader.css";
 
 const LoaderOverlay = () => {
     const div = document.createElement("div");

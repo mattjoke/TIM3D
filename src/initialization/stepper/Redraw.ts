@@ -1,6 +1,6 @@
 import { Easing, Tween } from "@tweenjs/tween.js";
 import Object3D from "stuff/Object3D";
-import { Euler, Quaternion, Vector3 } from "three";
+import { Euler, NearestMipmapLinearFilter, Quaternion, Vector3 } from "three";
 import { ManualStep } from "./ManualStep";
 
 const animatePosition = (from: Object3D, to: Vector3, delay?: number) => {
@@ -40,8 +40,9 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
             new Vector3().fromArray(position.position)
         ).chain(animateRotation(obj, rotation));
 
-        if (currentStep.animation) {
-            animation.chain(currentStep.animation(obj));
+        const anim = currentStep.animation;
+        if (anim != null && anim instanceof Tween){ 
+            animation.chain(anim);
         }
         animation.easing(Easing.Quadratic.InOut);
         animation.start();

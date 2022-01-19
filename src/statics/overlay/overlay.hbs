@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="overlay.css" />
+
+<div id="overlay">
+    <div id="wrapper">
+        <div id="sidebar"></div>
+        <div id="container">
+            <!--UpperContainer-->
+            <div id="upContainer">
+                <button id="buttonLeft"><</button>
+                <button id="buttonStart">⏮</button>
+                <!--Slider-->
+                <input
+                    type="range"
+                    name="slider"
+                    id="slider"
+                    min="0"
+                    max=`${ {{stepper.length}}}`
+                    step="1"
+                />
+                <button id="buttonRight">></button>
+                <button id="buttonEnd">⏭</button>
+            </div>
+
+            <!--BottomContainer-->
+            <div id="bottomContainer">
+                <button id="buttonReset">🔃</button>
+                <!--Coutner-->
+                <span id="counter"></span>
+                <button id="buttonFullscreen">🗖</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+</script>

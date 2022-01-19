@@ -5,7 +5,8 @@ import { Color as ThreeColor } from "three";
 export type ObjectID = string | number;
 export type Objects3D = Map<ObjectID, Object3D>;
 export type Color = ThreeColor | string;
-export type Animations = Map<string, Object>;
+export type Animations = Map<string, AnimationDef>;
+export type AnimationDef = (obj: Object3D) => Tween<any> | void;
 
 export interface inputPosition {
     clientX: number;
