@@ -1,27 +1,28 @@
+import { AnimationDef } from "@manualTypes/applicationTypes";
 import { Easing, Tween } from "@tweenjs/tween.js";
 import Object3D from "stuff/Object3D";
-import { Euler, NearestMipmapLinearFilter, Quaternion, Vector3 } from "three";
+import { Euler, InstancedInterleavedBuffer, Quaternion, Vector3 } from "three";
 import { ManualStep } from "./ManualStep";
 
 const animatePosition = (from: Object3D, to: Vector3, delay?: number) => {
     return new Tween(from.getMesh().position)
         .to({ x: to.x, y: to.y, z: to.z }, delay ?? 500)
-        .chain(
-            new Tween(from.getOutline().position).to(
-                { x: to.x, y: to.y, z: to.z },
-                delay ?? 500
-            )
-        );
+        .onStart(() => {
+            new Tween(from.getOutline().position)
+                .to({ x: to.x, y: to.y, z: to.z }, delay ?? 500)
+                .start();
+        });
 };
 
 const animateRotation = (from: Object3D, to: Euler, delay?: number) => {
     return new Tween(from.getMesh().rotation)
         .to({ x: to.x, y: to.y, z: to.z }, delay ?? 500)
-        .chain(
-            new Tween(from.getOutline().rotation)
-                .to({ x: to.x, y: to.y, z: to.z }, delay ?? 500)
-                .easing(Easing.Quadratic.InOut)
-        );
+        .onStart(() => {
+            new Tween(from.getOutline().rotation).to(
+                { x: to.x, y: to.y, z: to.z },
+                delay ?? 500
+            );
+        });
 };
 
 const Redraw = (currentStep: ManualStep, getObject: Function) => {
@@ -40,9 +41,12 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
             new Vector3().fromArray(position.position)
         ).chain(animateRotation(obj, rotation));
 
-        const anim = currentStep.animation;
-        if (anim != null && anim instanceof Tween){ 
-            animation.chain(anim);
+        const anim = currentStep.animation as AnimationDef;
+        if (anim != null) {
+            const computeAnimation = anim(obj);
+            if (computeAnimation) {
+                animation.chain(computeAnimation);
+            }
         }
         animation.easing(Easing.Quadratic.InOut);
         animation.start();
@@ -60,4 +64,3 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
 };
 
 export { Redraw, animatePosition, animateRotation };
-

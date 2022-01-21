@@ -1,7 +1,5 @@
-import { Colors } from "../../types/configTypes";
-import { Easing, Sequence, Tween } from "@tweenjs/tween.js";
+import { Easing, Tween } from "@tweenjs/tween.js";
 import {
-    AxesHelper,
     Camera,
     Color,
     Mesh,
@@ -9,11 +7,10 @@ import {
     PerspectiveCamera,
     Raycaster,
     Scene,
-    Vector2,
-    Vector3,
-    WebGLRenderer,
+    Vector2, WebGLRenderer
 } from "three";
 import { containerSize, inputPosition } from "../../types/applicationTypes";
+import { Colors } from "../../types/configTypes";
 
 class Renderer {
     private renderer: WebGLRenderer;
@@ -80,6 +77,14 @@ class Renderer {
     }
     public unlockHightlight() {
         this.locker = true;
+    }
+
+    public destroy(){
+        this.renderer.clear();
+        this.domElement.remove();
+        this.locker = false;
+        this.lastHighlight = null;
+        this.customEmissive = undefined;
     }
 
     public setSize({ width, height }: containerSize) {

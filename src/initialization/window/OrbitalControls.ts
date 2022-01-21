@@ -1,5 +1,5 @@
 import { Easing, Tween } from "@tweenjs/tween.js";
-import { Camera, EqualDepth, Vector3 } from "three";
+import { Camera, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Renderer from "./Renderer";
 
@@ -22,22 +22,32 @@ class OrbitalControls {
             renderer.unlockHightlight();
         });
 
-        
-
         this.camera = camera;
     }
 
     public setStartingPosition(position: Vector3) {
         this.startingPosition = position;
     }
+
     public setWorldPosition(worldPosition: Vector3) {
         this.worldPosition = worldPosition;
-        this.controls.target = this.worldPosition;
+        this.controls.target.set(
+            worldPosition.x,
+            worldPosition.y,
+            worldPosition.z
+        );
+        this.controls.target.normalize();
+    }
+
+    public destroy() {
+        this.controls.dispose();
+        this.camera.clear();
     }
 
     public update() {
         this.controls.update();
     }
+
     public reset() {
         new Tween(this.camera.position)
             .to(this.startingPosition, 500)
@@ -47,6 +57,7 @@ class OrbitalControls {
             .to(this.worldPosition, 500)
             .easing(Easing.Quadratic.Out)
             .start();
+
         //this.controls.reset();
     }
 }

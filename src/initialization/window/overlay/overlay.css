@@ -2,8 +2,8 @@
     position: absolute;
     pointer-events: none;
     top: 0;
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 100%;
 }
 
 #upContainer {
@@ -20,8 +20,12 @@
     justify-content: space-evenly;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    overflow: hidden;
 }
+
+#upContainer > button > svg {
+    width: 15px;
+}
+
 #bottomContainer {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -39,21 +43,30 @@
     overflow: hidden;
 }
 
+#bottomContainer > button > svg {
+    width: 15px;
+}
+
 #slider {
     pointer-events: auto;
     -webkit-box-flex: 4;
     -ms-flex-positive: 4;
     flex-grow: 4;
+    width: 0;
 }
 
 #sidebar {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    flex-direction: column;
     width: 0;
     background-color: green;
     pointer-events: none;
     opacity: 0%;
+}
+#sidebar > * {
+    height: 100%;
 }
 
 #container {
@@ -106,6 +119,6 @@
 #buttonFullscreen {
     pointer-events: auto;
 }
-#buttonREset {
+#buttonReset {
     pointer-events: auto;
 }

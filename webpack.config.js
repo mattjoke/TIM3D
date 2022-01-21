@@ -18,11 +18,15 @@ module.exports = {
             {
                 test: /\.hbs$/i,
                 loader: "handlebars-loader",
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
             }
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', 'html'],
+        extensions: ['.tsx', '.ts', '.js', '.html', '.hbs', '.svg'],
         fallback: {
             "fs": false
         }

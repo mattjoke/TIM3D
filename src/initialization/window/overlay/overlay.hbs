@@ -1,0 +1,40 @@
+<div id="overlay">
+    <div id="wrapper">
+        <div id="sidebar">
+            {{#if sidebar.visible}}
+                {{#if sidebar.body}}
+                    {{{sidebar.body}}}
+                {{/if}}
+            {{/if}}
+        </div>
+        <div id="container">
+            <!--UpperContainer-->
+            <div id="upContainer">
+                <button id="buttonStart">{{{icons.btnStart}}}</button>
+                <button id="buttonLeft">{{{icons.btnLeft}}}</button>
+                <!--Slider-->
+                <input
+                    type="range"
+                    name="slider"
+                    id="slider"
+                    min="0"
+                    max={{stepper.max}}
+                    step="1"
+                    value={{stepper.value}}
+                />
+                <button id="buttonRight">{{{icons.btnRight}}}</button>
+                <button id="buttonEnd">{{{icons.btnEnd}}}</button>
+            </div>
+
+            <!--BottomContainer-->
+            <div id="bottomContainer">
+                <button id="buttonReset">{{{icons.btnReload}}}</button>
+                <!--Coutner-->
+                {{#if counter}}
+                    <span id="counter">{{stepper.value}}/{{stepper.max}}</span>
+                {{/if}}
+                <button id="buttonFullscreen">{{{icons.btnFullscreen}}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,4 @@
-import {
-    AxesHelper,
-    Color, Object3D,
-    Scene as ThreeScene
-} from "three";
+import { AxesHelper, Color, Object3D, Scene as ThreeScene } from "three";
 import { isColor } from "../../stuff/Utils";
 
 class Scene {
@@ -35,6 +31,9 @@ class Scene {
 
     public getInstance() {
         return this.instance;
+    }
+    public destroy() {
+        this.instance.clear();
     }
 
     public addObject(...objects: Object3D[]) {

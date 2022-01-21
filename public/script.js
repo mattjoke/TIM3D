@@ -87,13 +87,14 @@ var overlay = document.createElement("div");
 overlay.innerHTML = "<p>LOADING</p>";
 
 const config = {
-    container: document.getElementById("container"),
+    container: document.getElementById("first"),
     colors: {
         backgroundColor: "rgb(",
     },
     shool: true,
     sidebar: {
         body: overlay,
+        visible:true
     }
 };
 
@@ -108,15 +109,16 @@ const config = {
     });
 
     t1.on("1", "click", () => {
-        t1.moveToStep(0);
     });
-
+    
     t1.group("click", (e) => {
         // console.log(e.data);
+        //t1.destroy();
+        console.log("KLIKD")
     })
 
     t1.on("5", "hover", () => {
-        // console.log("hovered!")
+        
     })
 
     const btn = document.getElementById("jump");
@@ -167,7 +169,7 @@ const json2 = {
                     position: [0, -10, 0],
                 }
             ],
-            animation: "z360deg"
+            animation: "x360deg"
         }
     ],
 };

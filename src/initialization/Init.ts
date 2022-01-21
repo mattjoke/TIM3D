@@ -94,6 +94,14 @@ class Init {
             new CustomEvent("update", { detail: currStep })
         );
     }
+    
+    public destroy(){
+        this.window.destroy();
+        this.overlay.remove();
+        this.stepper?.destroy();
+        this.objects.clear();
+        this.objectsLoaded = false;
+    }
 }
 
 export default Init;

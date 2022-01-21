@@ -74,17 +74,20 @@ class AnimationStorage {
                             switch (label) {
                                 case "x":
                                     obj.getMesh().rotateX(radians);
-                                    obj.getOutline().rotateX(radians);
                                     break;
                                 case "y":
                                     obj.getMesh().rotateY(radians);
-                                    obj.getOutline().rotateY(radians);
                                     break;
                                 case "z":
                                     obj.getMesh().rotateZ(radians);
-                                    obj.getOutline().rotateZ(radians);
                                     break;
                             }
+                            obj.getOutline().position.copy(
+                                obj.getMesh().position
+                            );
+                            obj.getOutline().rotation.copy(
+                                obj.getMesh().rotation
+                            );
                             lastAngle = angle;
                         });
                     }

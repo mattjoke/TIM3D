@@ -46,6 +46,14 @@ class Stepper {
         Redraw(this.currentStep, this.getObject);
     }
 
+    public destroy(){
+        this.currentStep = new ManualStep();
+        this.currentStepPosition = 0;
+        this.length = 0;
+        this.root = null;
+        this.animationLoop = [];
+    }
+
     private loopStep(name: string) {
         if (this.root == null) {
             return;

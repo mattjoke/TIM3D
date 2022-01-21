@@ -1,6 +1,6 @@
 import { Config } from "@manualTypes/configTypes";
 import { update } from "@tweenjs/tween.js";
-import { AxesHelper, Object3D, PerspectiveCamera, Vector3 } from "three";
+import { Object3D, Vector3 } from "three";
 import Camera from "./window/Camera";
 import Container from "./window/Container";
 import OrbitalControls from "./window/OrbitalControls";
@@ -12,7 +12,6 @@ class Window {
     private renderer: Renderer;
     private camera;
     public container: Container;
-
     private orbitalControls: OrbitalControls;
 
     private animators: any[] = [];
@@ -66,6 +65,14 @@ class Window {
     }
     public getContainer() {
         return this.container.getInstance();
+    }
+
+    public destroy(){
+        this.scene.destroy();  
+        this.renderer.destroy();
+        this.camera.clear();
+        this.container.destroy();
+        this.orbitalControls.destroy();
     }
 
     private onWindowResize() {
