@@ -1,4 +1,4 @@
-import "http://localhost:3000/bundle.js";
+import "./scripts/bundle.js";
 
 const json = {
     files: [
