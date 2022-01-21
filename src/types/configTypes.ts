@@ -6,28 +6,42 @@ export interface Extension {
     controls?: Function;
     overlay?: Function;
     renderer?: Function;
-    scene?: Function;
+    scene?: object;
 }
 
-type ShowSidebar = false;
-
+type ShowSidebar = boolean | false;
 
 export interface Sidebar {
-    sidebarElem?: HTMLElement
-    show: boolean
-}   
+    body?: HTMLElement;
+    visible?: boolean;
+}
 
-export interface Config {
+export interface Colors {
     //Scene color
     backgroundColor?: Color | string;
     //Highlight color
     emissiveColor?: Color | string;
+    //Selection color
+    selectionColor?: Color | string;
+}
+
+export interface Config {
+    colors?: Colors;
+    world?: {
+        startPosition?: [x: number, y: number, z: number];
+        centerOfWorld?: [x: number, y: number, z: number];
+    };
     //Instance container
     container?: HTMLElement;
     //Overlay div
     loadingOverlay?: HTMLElement;
     //Sidebar div
-    sidebar?: HTMLElement;
-    sidebarShown: ShowSidebar;
+    sidebar?: {
+        body?: HTMLElement;
+        visible?: ShowSidebar;
+    };
+
+    animationLoop?: [string];
+
     extensions?: Extension;
 }

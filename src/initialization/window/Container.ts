@@ -18,6 +18,9 @@ class WindowsContainer {
     public getInstance() {
         return this.instance;
     }
+    public destroy() {
+        this.instance.remove();
+    }
     public getSizing() {
         return {
             width: this.instance.offsetWidth,

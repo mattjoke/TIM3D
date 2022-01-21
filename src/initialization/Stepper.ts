@@ -8,16 +8,66 @@ class Stepper {
     private currentStepPosition = 0;
     public length = 0;
 
-    constructor(json: JSON, getObject: Function) {
+    private root: ManualStep | null;
+    private animationLoop: [string] | [];
+
+    constructor(json: JSON, getObject: Function, animationLoop?: [string]) {
         this.getObject = getObject;
         const { root, length } = buildSteps(json.steps);
         this.currentStep = root ?? new ManualStep();
+        this.root = root;
         this.length = length;
+
+        this.animationLoop = animationLoop ?? [];
+
         requestAnimationFrame(this.redraw.bind(this));
+
+        //Loop Animations
+        if (this.animationLoop.length > 0) {
+            let i = 0;
+            const loop = () => {
+                setTimeout(() => {
+                    const el = this.animationLoop[i];
+                    setTimeout(() => {
+                        this.loopStep(el);
+                    }, 1000);
+                    i++;
+                    if (i >= this.animationLoop.length) {
+                        i = 0;
+                    }
+                    loop();
+                }, 1000 * this.animationLoop.length);
+            };
+            loop();
+        }
     }
 
     private redraw() {
         Redraw(this.currentStep, this.getObject);
+    }
+
+    public destroy(){
+        this.currentStep = new ManualStep();
+        this.currentStepPosition = 0;
+        this.length = 0;
+        this.root = null;
+        this.animationLoop = [];
+    }
+
+    private loopStep(name: string) {
+        if (this.root == null) {
+            return;
+        }
+        let curr = this.root;
+        let pos = 0;
+        while (curr.name != name) {
+            if (curr.next == null) {
+                break;
+            }
+            curr = curr.next;
+            pos++;
+        }
+        this.setStep(pos);
     }
 
     public setStep(position: number) {
@@ -26,30 +76,19 @@ class Stepper {
                 if (this.currentStep.next == null) {
                     break;
                 }
-                this.moveStepUp();
+                this.currentStep = this.currentStep.next;
+                this.currentStepPosition++;
+                this.redraw();
             } else {
                 if (this.currentStep.prev == null) {
                     break;
                 }
-                this.moveStepDown();
+                this.currentStep = this.currentStep.prev;
+                this.currentStepPosition--;
             }
+            this.redraw();
         }
         return this.currentStepPosition;
-    }
-    public moveStepUp() {
-        if (this.currentStep.next) {
-            this.currentStep = this.currentStep.next;
-            this.currentStepPosition++;
-        }
-        this.redraw();
-    }
-
-    public moveStepDown() {
-        if (this.currentStep.prev) {
-            this.currentStep = this.currentStep.prev;
-            this.currentStepPosition--;
-        }
-        this.redraw();
     }
 
     public getCurrentStep() {

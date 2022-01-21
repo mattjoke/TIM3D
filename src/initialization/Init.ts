@@ -48,18 +48,15 @@ class Init {
     public async withJSON(json: JSON) {
         this.checker(json, JsonCheck);
 
-        this.objects = await Loader(
-            json.files ?? [],
-            this.window,
-            this.config.loadingOverlay
+        this.objects = await Loader(json.files ?? [], this.window, this.config);
+
+        this.stepper = new Stepper(
+            json,
+            this.objects.get.bind(this.objects),
+            this.config.animationLoop
         );
 
-        this.stepper = new Stepper(json, this.objects.get.bind(this.objects));
-
-        this.overlay = Overlay(this.stepper, this.window, {
-            sidebarElem: this.config.sidebar,
-            show: this.config.sidebarShown,
-        });
+        this.overlay = Overlay(this.stepper, this.window, this.config.sidebar);
         this.window.container.appendChild(this.overlay);
 
         this.objectsLoaded = this.objects.size > 0;
@@ -96,6 +93,14 @@ class Init {
         this.overlay.dispatchEvent(
             new CustomEvent("update", { detail: currStep })
         );
+    }
+    
+    public destroy(){
+        this.window.destroy();
+        this.overlay.remove();
+        this.stepper?.destroy();
+        this.objects.clear();
+        this.objectsLoaded = false;
     }
 }
 

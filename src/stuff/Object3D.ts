@@ -1,3 +1,4 @@
+import { File } from "@manualTypes/jsonTypes";
 import {
     BackSide,
     BufferGeometry,
@@ -5,9 +6,9 @@ import {
     Mesh,
     MeshBasicMaterial,
     MeshStandardMaterial,
-    Quaternion,
+    Quaternion
 } from "three";
-import { File } from "@manualTypes/jsonTypes";
+import { isColor } from "./Utils";
 
 class Object3D {
     private geometry: BufferGeometry;
@@ -23,11 +24,35 @@ class Object3D {
     public getMesh() {
         return this.mesh;
     }
+    public setScale(x:number, y:number, z:number) {
+        this.mesh.scale.set(x,y,z);
+        this.outline.scale.set(x,y,z);  
+        this.outline.scale.multiplyScalar(1.07);
+    }
     public getOutline() {
         return this.outline;
     }
-    public getEmissive(){
+    public getEmissive() {
         return this.mesh.material;
+    }
+    public setOutlineColor(selectionColor: string | Color | undefined) {
+        try {
+            if (selectionColor == null) {
+                return;
+            }
+            if (
+                typeof selectionColor === "string" &&
+                !isColor(selectionColor)
+            ) {
+                throw new Error(
+                    `Cannot parse unknown color: ${selectionColor}`
+                );
+            }
+            const material = this.getOutline().material as MeshStandardMaterial;
+            material.color = new Color(selectionColor);
+        } catch (error) {
+            console.warn(error);
+        }
     }
 
     private buildMesh(geometry: BufferGeometry, file: File) {
@@ -39,7 +64,7 @@ class Object3D {
             clipShadows: false,
             metalness: 0,
         });
-        
+
         geometry.computeVertexNormals();
         const mesh = new Mesh(geometry, material);
 

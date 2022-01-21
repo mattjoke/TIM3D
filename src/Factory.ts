@@ -1,3 +1,4 @@
+import AnimationStorage from "./initialization/stepper/AnimationStorage";
 import { Event } from "three";
 import Init from "./initialization/Init";
 import { ObjectID } from "./types/applicationTypes";
@@ -5,7 +6,7 @@ import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
 
 class Factory {
-    private instance: Init;
+    private instance: Init | null;
     public objectsLoaded = false;
 
     constructor(config?: Config) {
@@ -14,25 +15,27 @@ class Factory {
         return this;
     }
     public async loadJSON(json: JSON) {
-        await this.instance.withJSON(json);
+        await this.instance?.withJSON(json);
         this.objectsLoaded = true;
         return this;
     }
 
     public destroy() {
-        throw new Error("Destroy of instance not implemented!");
+        this.instance?.destroy();
+        this.objectsLoaded = false;
+        this.instance = null;
     }
 
     public selectItem(id: ObjectID) {
-        return this.instance.getObjects().get(id);
+        return this.instance?.getObjects().get(id);
     }
 
     public moveToStep(stepNumber: number) {
-        this.instance.setStep(stepNumber);
+        this.instance?.setStep(stepNumber);
     }
 
     public getObjects() {
-        return this.instance.getObjects();
+        return this.instance?.getObjects();
     }
 
     public on(selector: ObjectID, event: string, callback: Function) {
@@ -44,11 +47,15 @@ class Factory {
     }
 
     public group(event: string, callback: Function) {
-        this.getObjects().forEach((item) => {
+        this.getObjects()?.forEach((item) => {
             item.getMesh().addEventListener(event, (e) => {
                 callback(e);
             });
         });
+    }
+
+    public getAnimations(){
+        return AnimationStorage.getAnimations();
     }
 }
 

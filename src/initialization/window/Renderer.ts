@@ -7,10 +7,10 @@ import {
     PerspectiveCamera,
     Raycaster,
     Scene,
-    Vector2,
-    WebGLRenderer
+    Vector2, WebGLRenderer
 } from "three";
 import { containerSize, inputPosition } from "../../types/applicationTypes";
+import { Colors } from "../../types/configTypes";
 
 class Renderer {
     private renderer: WebGLRenderer;
@@ -25,12 +25,12 @@ class Renderer {
         { width, height }: containerSize,
         scene: Scene,
         camera: Camera,
-        emissiveColor?: Color | string
+        colors?: Colors
     ) {
         this.renderer = new WebGLRenderer({ antialias: true });
         this.renderer.setSize(width, height);
 
-        this.customEmissive = emissiveColor;
+        this.customEmissive = colors?.emissiveColor;
 
         this.domElement = this.renderer.domElement;
         this.initCallbacks(scene, camera);
@@ -79,12 +79,30 @@ class Renderer {
         this.locker = true;
     }
 
+    public destroy(){
+        this.renderer.clear();
+        this.domElement.remove();
+        this.locker = false;
+        this.lastHighlight = null;
+        this.customEmissive = undefined;
+    }
+
     public setSize({ width, height }: containerSize) {
         this.renderer.setSize(width, height);
         this.domElement = this.renderer.domElement;
     }
     public render(scene: Scene, camera: PerspectiveCamera) {
+        //this.renderer.autoClear = false;
         this.renderer.render(scene, camera);
+
+        /*camera.layers.set(3);
+        this.renderer.clearDepth();
+        this.renderer.setScissorTest(true);
+        this.renderer.setScissor(0,50,100,100);
+        this.renderer.setViewport(0,50,100,100);
+        this.renderer.render(scene, camera);
+        this.renderer.setScissorTest(false);        
+        camera.layers.set(0);*/
     }
 
     public getBoundingRect() {
@@ -117,7 +135,7 @@ class Renderer {
         for (let i = 0; i < intersects.length; i++) {
             const obj = intersects[i].object;
             if (obj.type !== "Mesh" || obj.name.includes("-outline")) {
-                return;
+                continue;
             }
             const outline = scene.getObjectByName(`${obj.name}-outline`);
             if (!outline) break;
@@ -152,14 +170,14 @@ class Renderer {
         for (let i = 0; i < intersects.length; i++) {
             const obj = intersects[i].object as Mesh;
             if (obj.type !== "Mesh" || obj.name.includes("-outline")) {
-                return;
+                continue;
             }
+
             const material = obj.material as MeshStandardMaterial;
             if (this.lastHighlight == null) {
                 this.lastHighlight = obj;
                 material.emissive = new Color(this.customEmissive ?? 0x0000ff);
                 obj.dispatchEvent({ type: "hover", data: obj });
-                break;
             }
         }
     }

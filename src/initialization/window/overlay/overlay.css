@@ -1,0 +1,124 @@
+#overlay {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#upContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+#upContainer > button > svg {
+    width: 15px;
+}
+
+#bottomContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+#bottomContainer > button > svg {
+    width: 15px;
+}
+
+#slider {
+    pointer-events: auto;
+    -webkit-box-flex: 4;
+    -ms-flex-positive: 4;
+    flex-grow: 4;
+    width: 0;
+}
+
+#sidebar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    width: 0;
+    background-color: green;
+    pointer-events: none;
+    opacity: 0%;
+}
+#sidebar > * {
+    height: 100%;
+}
+
+#container {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+#wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+#counter {
+    color: black;
+}
+
+#buttonLeft {
+    pointer-events: auto;
+}
+
+#buttonRight {
+    pointer-events: auto;
+}
+
+#buttonStart {
+    pointer-events: auto;
+}
+
+#buttonEnd {
+    pointer-events: auto;
+}
+
+#buttonFullscreen {
+    pointer-events: auto;
+}
+#buttonReset {
+    pointer-events: auto;
+}

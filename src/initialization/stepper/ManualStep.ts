@@ -1,10 +1,13 @@
+import { AnimationDef } from "@manualTypes/applicationTypes";
 import { Position, Step } from "@manualTypes/jsonTypes";
+import AnimationStorage from "./AnimationStorage";
 
 class ManualStep {
     prev: ManualStep | null = null;
     next: ManualStep | null = null;
     name!: string;
     positions: Position[] = [];
+    animation?: AnimationDef;
 }
 
 const buildSteps = (steps: Step[] | undefined) => {
@@ -15,6 +18,9 @@ const buildSteps = (steps: Step[] | undefined) => {
         const curr = new ManualStep();
         curr.name = step.name ?? length.toString();
         curr.positions = step.positions;
+        curr.animation = AnimationStorage.Instance.getAnimation(
+            step.animation ?? ""
+        );
         curr.prev = prev;
         if (prev) {
             prev.next = curr;
