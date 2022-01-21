@@ -1,4 +1,4 @@
-import "./scripts/bundle.js";
+import "http://localhost:3000/bundle.js";
 
 const json = {
     files: [
@@ -39,6 +39,10 @@ const json = {
         {
             file: "models/files/Bolt_slide_top.stl",
             name: "8",
+        },
+        {
+            file: "models/files/cube.obj",
+            name: "9"
         }
     ],
     steps: [
@@ -64,6 +68,7 @@ const json = {
                     position: [30, 10, 25]
                 },
             ],
+            animation: "x90deg"
         },
         {
             name: "Second Step",
@@ -73,6 +78,7 @@ const json = {
                     position: [20, 15, 7],
                 },
             ],
+            animation: "y90deg"
         },
     ],
 };
@@ -81,10 +87,15 @@ var overlay = document.createElement("div");
 overlay.innerHTML = "<p>LOADING</p>";
 
 const config = {
-    container: document.getElementById("container"),
-    backgroundColor: "rgb(",
+    container: document.getElementById("first"),
+    colors: {
+        backgroundColor: "rgb(",
+    },
     shool: true,
-    sidebarShown: true
+    sidebar: {
+        body: overlay,
+        visible:true
+    }
 };
 
 (async () => {
@@ -98,15 +109,16 @@ const config = {
     });
 
     t1.on("1", "click", () => {
-        t1.moveToStep(0);
     });
-
+    
     t1.group("click", (e) => {
         // console.log(e.data);
+        //t1.destroy();
+        console.log("KLIKD")
     })
 
-    t1.on("5","hover", () => {
-        // console.log("hovered!")
+    t1.on("5", "hover", () => {
+        
     })
 
     const btn = document.getElementById("jump");
@@ -114,4 +126,67 @@ const config = {
         ev.preventDefault();
         t1.moveToStep(3);
     });
+    t1.selectItem("1");
 })();
+
+
+const json2 = {
+    files: [
+        {
+            file: "models/files/screw.stl",
+            color: "yellow",
+            name: "1",
+            pose: {
+                position: [0, 0, 0]
+            }
+        }
+    ],
+    steps: [
+        {
+            name: "Init",
+            positions: [
+                {
+                    name: "1",
+                    position: [0, 0, 0],
+                },
+            ],
+        },
+        {
+            name: "First Step",
+            positions: [
+                {
+                    name: "1",
+                    position: [0, 10, 0],
+                }
+            ],
+            animation: "y180deg"
+        },
+        {
+            name: "Second Step",
+            positions: [
+                {
+                    name: "1",
+                    position: [0, -10, 0],
+                }
+            ],
+            animation: "x360deg"
+        }
+    ],
+};
+
+
+
+(async () => {
+    const c = {
+        container: document.getElementById("second"),
+        world: {
+            startPosition: [50, 0, 0],
+            centerOfWorld: [0, 10, 0]
+        },
+        animationLoop: ["Init", "First Step", "Second Step"]
+    };
+
+    await new Factory(c).loadJSON(json2);
+
+})();
+
