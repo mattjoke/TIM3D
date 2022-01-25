@@ -6,7 +6,7 @@ import {
     Mesh,
     MeshBasicMaterial,
     MeshStandardMaterial,
-    Quaternion
+    Quaternion,
 } from "three";
 import { isColor } from "./Utils";
 
@@ -24,11 +24,17 @@ class Object3D {
     public getMesh() {
         return this.mesh;
     }
-    public setScale(x:number, y:number, z:number) {
-        this.mesh.scale.set(x,y,z);
-        this.outline.scale.set(x,y,z);  
+    public setScale(x: number, y: number, z: number) {
+        this.mesh.scale.set(x, y, z);
+        this.outline.scale.set(x, y, z);
         this.outline.scale.multiplyScalar(1.07);
     }
+
+    public setRotation(rotation: Quaternion) {
+        this.getMesh().setRotationFromQuaternion(rotation);
+        this.getOutline().setRotationFromQuaternion(rotation);
+    }
+
     public getOutline() {
         return this.outline;
     }
@@ -84,7 +90,7 @@ class Object3D {
             )
         );
 
-        mesh.rotateX(-Math.PI / 2);
+        //mesh.rotateX(-Math.PI / 2);
         mesh.name = file.name.toString();
         return mesh;
     }

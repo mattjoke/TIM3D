@@ -1,7 +1,7 @@
-import AnimationStorage from "./initialization/stepper/AnimationStorage";
 import { Event } from "three";
 import Init from "./initialization/Init";
-import { ObjectID } from "./types/applicationTypes";
+import AnimationStorage from "./initialization/stepper/AnimationStorage";
+import { CallbackFunction, ObjectID } from "./types/applicationTypes";
 import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
 
@@ -38,23 +38,25 @@ class Factory {
         return this.instance?.getObjects();
     }
 
-    public on(selector: ObjectID, event: string, callback: Function) {
-        this.selectItem(selector)
-            ?.getMesh()
-            .addEventListener(event, (e: Event) => {
-                callback(e);
-            });
+    public on(selector: ObjectID, event: string, callback: CallbackFunction) {
+        const item = this.selectItem(selector);
+        if (item == null) {
+            return;
+        }
+        item.getMesh().addEventListener(event, (e: Event) => {
+            callback(item, e);
+        });
     }
 
-    public group(event: string, callback: Function) {
+    public group(event: string, callback: CallbackFunction) {
         this.getObjects()?.forEach((item) => {
             item.getMesh().addEventListener(event, (e) => {
-                callback(e);
+                callback(item, e);
             });
         });
     }
 
-    public getAnimations(){
+    public getAnimations() {
         return AnimationStorage.getAnimations();
     }
 }

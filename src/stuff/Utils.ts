@@ -10,4 +10,18 @@ const parseExtension = (filename: ObjectID) => {
     return filename.toString().split(".").pop();
 };
 
-export { isColor, parseExtension };
+// TS igonre for Typescript unknown functions
+const checkFullscreen = (document?: Document) => {
+    if (document == null){
+        return false;
+    } 
+    return document.fullscreenElement || 
+        //@ts-ignore
+        document.webkitIsFullscreen || //Webkit browsers
+        //@ts-ignore
+        document.mozFullScreen || // Firefox
+        //@ts-ignore
+        document.msFullscreenElement !== undefined // IE
+};
+
+export { isColor, parseExtension, checkFullscreen };

@@ -1,4 +1,4 @@
-import { Color, Object3D } from "three";
+import { Color, Line, Object3D } from "three";
 import { ConfigCheck, JsonCheck } from "../inputChecking/InputCheck";
 import Loader from "../stuff/Loader";
 import { Objects3D } from "../types/applicationTypes";
@@ -40,12 +40,13 @@ class Init {
     }
 
     private initAxes() {
-        this.addObjects(Axis(10, new Color("blue"), [1, 0, 0]));
-        this.addObjects(Axis(10, new Color("red"), [0, 0, 1]));
-        this.addObjects(Axis(10, new Color("green"), [0, 1, 0]));
+        const init = Axis(1.0);
+        init.forEach((axis: Line) => {
+            this.addObjects(axis);
+        });
     }
 
-    public async withJSON(json: JSON) {
+    public withJSON = async (json: JSON) => {
         this.checker(json, JsonCheck);
 
         this.objects = await Loader(json.files ?? [], this.window, this.config);
@@ -60,7 +61,8 @@ class Init {
         this.window.container.appendChild(this.overlay);
 
         this.objectsLoaded = this.objects.size > 0;
-    }
+        return this;
+    };
 
     private checker(
         object: object,
@@ -94,8 +96,8 @@ class Init {
             new CustomEvent("update", { detail: currStep })
         );
     }
-    
-    public destroy(){
+
+    public destroy() {
         this.window.destroy();
         this.overlay.remove();
         this.stepper?.destroy();

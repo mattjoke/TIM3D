@@ -7,7 +7,8 @@ import {
     PerspectiveCamera,
     Raycaster,
     Scene,
-    Vector2, WebGLRenderer
+    Vector2,
+    WebGLRenderer,
 } from "three";
 import { containerSize, inputPosition } from "../../types/applicationTypes";
 import { Colors } from "../../types/configTypes";
@@ -79,7 +80,7 @@ class Renderer {
         this.locker = true;
     }
 
-    public destroy(){
+    public destroy() {
         this.renderer.clear();
         this.domElement.remove();
         this.locker = false;
@@ -123,7 +124,7 @@ class Renderer {
         );
 
         raycaster.setFromCamera(mouse, camera);
-        return raycaster.intersectObjects(scene.children);
+        return raycaster.intersectObjects(scene.children, true);
     }
 
     private selectObject(

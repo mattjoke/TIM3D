@@ -59,7 +59,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     width: 0;
     background-color: green;
     pointer-events: none;
@@ -96,29 +99,53 @@
     flex-direction: row;
 }
 
+#container > div > button > svg {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    pointer-events: auto;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    vertical-align: center;
+}
+
+#helper {
+    pointer-events: none;
+    width: clamp(50px, 10vw, 75px);
+    margin-left: auto;
+    padding: 5px;
+}
+
 #counter {
     color: black;
 }
 
 #buttonLeft {
     pointer-events: auto;
+    vertical-align: middle;
 }
 
 #buttonRight {
     pointer-events: auto;
+    vertical-align: middle;
 }
 
 #buttonStart {
     pointer-events: auto;
+    vertical-align: middle;
 }
 
 #buttonEnd {
     pointer-events: auto;
+    vertical-align: middle;
 }
 
 #buttonFullscreen {
     pointer-events: auto;
+    vertical-align: middle;
 }
 #buttonReset {
     pointer-events: auto;
+    vertical-align: middle;
 }

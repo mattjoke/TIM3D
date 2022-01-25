@@ -66,7 +66,9 @@ const Overlay = (stepper: Stepper, window: Window, customSidebar?: Sidebar) => {
             ev.preventDefault();
             toggleFullscreen(
                 window.getContainer(),
-                template.querySelector("#sidebar") as HTMLElement
+                customSidebar?.visible
+                    ? (template.querySelector("#sidebar") as HTMLElement)
+                    : undefined
             );
         });
 

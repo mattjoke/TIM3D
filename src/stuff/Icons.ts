@@ -4,6 +4,9 @@ const start = require("../stuff/icons/arrow-left-circle.svg");
 const right = require("../stuff/icons/arrow-right.svg");
 const end = require("../stuff/icons/arrow-right-circle.svg");
 const fullscreen = require("../stuff/icons/full-screen.svg");
+const fullscreenToggle = require("../stuff/icons/full-screen-toggle.svg");
+
+const axes = require("../stuff/icons/axis.svg");
 
 class Icons {
     static Reload = reload;
@@ -12,6 +15,10 @@ class Icons {
     static EndArrow = end;
     static StartArrow = start;
     static FullScreen = fullscreen;
+    static FullScreenToggle = fullscreenToggle;
+    static AxesHelper = axes;
+
+
     static getIcons = () => {
         return {
             btnStart: Icons.StartArrow,
@@ -20,8 +27,10 @@ class Icons {
             btnEnd: Icons.EndArrow,
             btnReload: Icons.Reload,
             btnFullscreen: Icons.FullScreen,
+            btnFullscreenToggle: Icons.FullScreenToggle,
+            axesHelper: Icons.AxesHelper
         };
-    }
+    };
 }
 
 export default Icons;

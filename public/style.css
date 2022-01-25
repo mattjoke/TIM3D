@@ -18,15 +18,21 @@ body {
 }
 
 .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
 .container > div {
     margin: 30px;
 }
 
-#data{
+#data {
     display: inline-block !important;
     max-width: 100vw;
 }

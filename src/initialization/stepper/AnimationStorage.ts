@@ -67,7 +67,7 @@ class AnimationStorage {
                             angle: i,
                         };
                         let lastAngle = 0;
-                        return new Tween(start).to(stop, 500).onUpdate(() => {
+                        return new Tween(start).to(stop, 300).onUpdate(() => {
                             const angle = start.angle;
                             const radians =
                                 MathUtils.degToRad(angle - lastAngle) / 2;

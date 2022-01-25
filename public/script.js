@@ -95,6 +95,9 @@ const config = {
     sidebar: {
         body: overlay,
         visible:true
+    },
+    world: {
+        globalRotation: [-0.7071068, 0, 0, 0.7071068]
     }
 };
 
@@ -117,8 +120,10 @@ const config = {
         console.log("KLIKD")
     })
 
-    t1.on("5", "hover", () => {
-        
+    t1.on("5", "hover", (e) => {
+        /*obj.getMesh().position.x += 5;
+        obj.getOutline().position.x += 5*/
+        console.log(e)
     })
 
     const btn = document.getElementById("jump");

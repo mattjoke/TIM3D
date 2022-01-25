@@ -1,7 +1,7 @@
 import { Sidebar } from "@manualTypes/configTypes";
 import Stepper from "initialization/Stepper";
+import { checkFullscreen } from "../../../stuff/Utils";
 import Icons from "../../../stuff/Icons";
-
 import "../overlay/overlay.css";
 
 const overlay = require("./overlay.hbs");
@@ -34,7 +34,7 @@ const Loader = (stepper: Stepper, sidebar?: Sidebar) => {
             body: sidebar?.body?.outerHTML ?? showcaseSidebar(),
             visible: sidebar?.visible ?? false,
         },
-        icons : Icons.getIcons()
+        icons: Icons.getIcons(),
     });
     const div = document.createElement("div");
     div.innerHTML = template;
@@ -44,7 +44,7 @@ const Loader = (stepper: Stepper, sidebar?: Sidebar) => {
     const counter = div.querySelector("#counter") as HTMLSpanElement;
 
     const step = (stepNum: number) => {
-        stepper.setStep(stepNum > -1 ? stepNum : Number.POSITIVE_INFINITY);
+        stepper.setStep(stepNum == -2 ? Number.POSITIVE_INFINITY : stepNum);
         if (counter != null) {
             counter.textContent = `${stepper.getCurrentStep()}/${
                 stepper.length - 1
@@ -81,10 +81,27 @@ const Loader = (stepper: Stepper, sidebar?: Sidebar) => {
     );
     div.querySelector("#buttonEnd")?.addEventListener("click", (ev: Event) => {
         ev.preventDefault();
-        step(-1);
+        step(-2);
     });
 
-    console.log(div);
+    div.querySelector("#buttonFullscreen")?.addEventListener(
+        "click",
+        (ev: Event) => {}
+    );
+
+    document.addEventListener("fullscreenchange", (ev: Event) => {
+        ev.preventDefault();
+        const element = document.fullscreenElement;
+        const btn = document?.querySelector(
+            "#buttonFullscreen"
+        ) as HTMLButtonElement;
+        if (element && checkFullscreen(document)) {
+            btn.innerHTML = Icons.FullScreenToggle;
+        } else {
+            console.log("I shoudl change nah?", btn);
+            btn.innerHTML = Icons.FullScreen;
+        }
+    });
 
     return div;
 };

@@ -1,6 +1,6 @@
 import { Config } from "@manualTypes/configTypes";
 import { update } from "@tweenjs/tween.js";
-import { Object3D, Vector3 } from "three";
+import { Vector3 } from "three";
 import Camera from "./window/Camera";
 import Container from "./window/Container";
 import OrbitalControls from "./window/OrbitalControls";
@@ -13,8 +13,6 @@ class Window {
     private camera;
     public container: Container;
     private orbitalControls: OrbitalControls;
-
-    private animators: any[] = [];
 
     constructor(config: Config) {
         this.container = new Container(config.container);
@@ -80,12 +78,6 @@ class Window {
         this.camera.aspect = sizing.width / sizing.height;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(sizing);
-    }
-
-    public addAnimator(...objects: Object3D[]) {
-        objects.forEach((object) => {
-            this.animators.push(object);
-        });
     }
 
     public animate() {
