@@ -1,19 +1,38 @@
 import { Event } from "three";
 import Init from "./initialization/Init";
 import AnimationStorage from "./initialization/stepper/AnimationStorage";
-import { CallbackFunction, ObjectID } from "./types/applicationTypes";
+import { CallbackFunction, ObjectID, UUID } from "./types/applicationTypes";
 import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
+import { v4 as uuidv4 } from "uuid";
 
 class Factory {
     private instance: Init | null;
     public objectsLoaded = false;
+    private uuid: UUID;
+
+    static instanceCounter = 0;
 
     constructor(config?: Config) {
         if (config == null) throw new Error("Config not specified!");
-        this.instance = new Init(config);
+        Factory.instanceCounter = Math.max(Factory.instanceCounter, 0) + 1;
+        this.uuid = this.generateUUID();
+        this.instance = new Init(config, this.uuid);
         return this;
     }
+
+    private generateUUID() {
+        let uuid = uuidv4();
+        uuid = uuid.replace(/-/g, "");
+
+        console.log(
+            "Factory instance:",
+            Factory.instanceCounter,
+            " with uuid: " + uuid
+        );
+        return uuid;
+    }
+
     public async loadJSON(json: JSON) {
         await this.instance?.withJSON(json);
         this.objectsLoaded = true;

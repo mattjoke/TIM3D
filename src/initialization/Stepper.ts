@@ -7,12 +7,15 @@ class Stepper {
     private currentStep: ManualStep;
     private currentStepPosition = 0;
     public length = 0;
+    public signaler;
 
     private root: ManualStep | null;
     private animationLoop: [string] | [];
 
     constructor(json: JSON, getObject: Function, animationLoop?: [string]) {
         this.getObject = getObject;
+        this.signaler = new EventTarget();
+
         const { root, length } = buildSteps(json.steps);
         this.currentStep = root ?? new ManualStep();
         this.root = root;
@@ -29,7 +32,7 @@ class Stepper {
                 setTimeout(() => {
                     const el = this.animationLoop[i];
                     setTimeout(() => {
-                        this.loopStep(el);
+                        this.findLoopNext(el);
                     }, 1000);
                     i++;
                     if (i >= this.animationLoop.length) {
@@ -44,9 +47,14 @@ class Stepper {
 
     private redraw() {
         Redraw(this.currentStep, this.getObject);
+        this.signaler.dispatchEvent(
+            new CustomEvent("update", {
+                detail: this.currentStepPosition,
+            })
+        );
     }
 
-    public destroy(){
+    public destroy() {
         this.currentStep = new ManualStep();
         this.currentStepPosition = 0;
         this.length = 0;
@@ -54,7 +62,7 @@ class Stepper {
         this.animationLoop = [];
     }
 
-    private loopStep(name: string) {
+    private findLoopNext(name: string) {
         if (this.root == null) {
             return;
         }

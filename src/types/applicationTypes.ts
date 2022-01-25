@@ -7,6 +7,7 @@ export type Objects3D = Map<ObjectID, Object3D>;
 export type Color = ThreeColor | string;
 export type Animations = Map<string, AnimationDef>;
 export type AnimationDef = (obj: Object3D) => Tween<any> | void;
+export type UUID = string;
 
 export type CallbackFunction = (obj: Object3D, ev: Event) => void;
 

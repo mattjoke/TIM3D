@@ -1,4 +1,11 @@
 const path = require('path');
+const hbs = require('handlebars');
+
+hbs.registerHelper('id', (id) => {
+    console.log("ASDASFAS")
+    return id;
+})
+
 
 module.exports = {
     mode: 'development',

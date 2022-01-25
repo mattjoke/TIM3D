@@ -1,4 +1,4 @@
-import { Color, Line, Object3D } from "three";
+import { Line, Object3D } from "three";
 import { ConfigCheck, JsonCheck } from "../inputChecking/InputCheck";
 import Loader from "../stuff/Loader";
 import { Objects3D } from "../types/applicationTypes";
@@ -17,12 +17,14 @@ class Init {
     private objects: Objects3D;
 
     public objectsLoaded = false;
+    public parentUUID: string;
 
     private config: Config;
 
-    constructor(config: Config) {
+    constructor(config: Config, uuid: string) {
         this.checker(config, ConfigCheck);
         this.config = config;
+        this.parentUUID = uuid;
 
         this.objects = new Map();
         this.window = new Window(config);
@@ -57,7 +59,12 @@ class Init {
             this.config.animationLoop
         );
 
-        this.overlay = Overlay(this.stepper, this.window, this.config.sidebar);
+        this.overlay = Overlay(
+            this.stepper,
+            this.window,
+            this.parentUUID,
+            this.config.sidebar
+        );
         this.window.container.appendChild(this.overlay);
 
         this.objectsLoaded = this.objects.size > 0;

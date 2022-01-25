@@ -1,10 +1,10 @@
-import { Objects3D } from "../types/applicationTypes";
 import { Config } from "@manualTypes/configTypes";
 import { File } from "@manualTypes/jsonTypes";
 import { Group, Mesh, Quaternion } from "three";
 import Window from "../initialization/Window";
-import LoaderOverlay from "./loaders/LoaderOverlay";
+import { Objects3D } from "../types/applicationTypes";
 import LoaderManager from "./loaders/LoaderManager";
+import LoaderOverlay from "./loaders/LoaderOverlay";
 import Object3D from "./Object3D";
 
 const Loader = async (
