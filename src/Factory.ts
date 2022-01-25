@@ -1,7 +1,12 @@
 import { Event } from "three";
 import Init from "./initialization/Init";
 import AnimationStorage from "./initialization/stepper/AnimationStorage";
-import { CallbackFunction, ObjectID, UUID } from "./types/applicationTypes";
+import {
+    AnimationDef,
+    CallbackFunction,
+    ObjectID,
+    UUID,
+} from "./types/applicationTypes";
 import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
 import { v4 as uuidv4 } from "uuid";
@@ -57,6 +62,7 @@ class Factory {
         return this.instance?.getObjects();
     }
 
+    //Listeners functions
     public on(selector: ObjectID, event: string, callback: CallbackFunction) {
         const item = this.selectItem(selector);
         if (item == null) {
@@ -75,8 +81,12 @@ class Factory {
         });
     }
 
+    //Animation functions
     public getAnimations() {
         return AnimationStorage.getAnimations();
+    }
+    public addAdnimation(animationName: string, animtaion: AnimationDef) {
+        AnimationStorage.addAnimation(animationName, animtaion);
     }
 }
 

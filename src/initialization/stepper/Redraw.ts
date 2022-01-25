@@ -2,6 +2,7 @@ import { AnimationDef } from "@manualTypes/applicationTypes";
 import { Easing, Tween } from "@tweenjs/tween.js";
 import Object3D from "stuff/Object3D";
 import { Euler, Quaternion, Vector3 } from "three";
+import AnimationStorage from "./AnimationStorage";
 import { ManualStep } from "./ManualStep";
 
 const animatePosition = (from: Object3D, to: Vector3, delay?: number) => {
@@ -47,13 +48,26 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
                 animation.chain(computeAnimation);
             }
         }
+
+        currentStep.positions.forEach((position) => {
+            if (position.animation == null) return;
+            const anim = AnimationStorage.Instance.getAnimation(
+                position.animation
+            );
+            if (anim == null) return;
+            console.log(anim);
+            const object = getObject(position.name);
+            const result = anim(object);
+            if (result) {
+                animation.chain(result);
+            }
+        });
+
         animation.easing(Easing.Quadratic.InOut);
         animation.start();
 
-        obj.getOutline().position.copy(obj.getMesh().position);
-        obj.getOutline().rotation.copy(obj.getMesh().rotation);
+        obj.setOutlineFromMesh();
     }
 };
 
 export { Redraw, animatePosition, animateRotation };
-

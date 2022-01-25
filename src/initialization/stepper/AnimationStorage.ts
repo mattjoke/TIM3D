@@ -30,15 +30,9 @@ class AnimationStorage {
                                     obj.getMesh().rotateX(
                                         start.angle - lastRotation
                                     );
-                                    obj.getOutline().rotateX(
-                                        start.angle - lastRotation
-                                    );
                                     break;
                                 case "y":
                                     obj.getMesh().rotateY(
-                                        start.angle - lastRotation
-                                    );
-                                    obj.getOutline().rotateY(
                                         start.angle - lastRotation
                                     );
                                     break;
@@ -46,11 +40,9 @@ class AnimationStorage {
                                     obj.getMesh().rotateZ(
                                         start.angle - lastRotation
                                     );
-                                    obj.getOutline().rotateZ(
-                                        start.angle - lastRotation
-                                    );
                                     break;
                             }
+                            obj.setOutlineFromMesh();
                             lastRotation = start.angle;
                         });
                 }
@@ -67,7 +59,7 @@ class AnimationStorage {
                             angle: i,
                         };
                         let lastAngle = 0;
-                        return new Tween(start).to(stop, 300).onUpdate(() => {
+                        return new Tween(start).to(stop, 500).onUpdate(() => {
                             const angle = start.angle;
                             const radians =
                                 MathUtils.degToRad(angle - lastAngle) / 2;
@@ -82,12 +74,7 @@ class AnimationStorage {
                                     obj.getMesh().rotateZ(radians);
                                     break;
                             }
-                            obj.getOutline().position.copy(
-                                obj.getMesh().position
-                            );
-                            obj.getOutline().rotation.copy(
-                                obj.getMesh().rotation
-                            );
+                            obj.setOutlineFromMesh();
                             lastAngle = angle;
                         });
                     }

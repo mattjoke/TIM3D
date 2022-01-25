@@ -2,11 +2,10 @@ import { File } from "@manualTypes/jsonTypes";
 import {
     BackSide,
     BufferGeometry,
-    Color,
-    Mesh,
+    Color, Mesh,
     MeshBasicMaterial,
     MeshStandardMaterial,
-    Quaternion,
+    Quaternion
 } from "three";
 import { isColor } from "./Utils";
 
@@ -35,12 +34,23 @@ class Object3D {
         this.getOutline().setRotationFromQuaternion(rotation);
     }
 
-    public getOutline() {
-        return this.outline;
+    public setOutlineFromMesh() {
+        this.outline.position.copy(this.mesh.position);
+        this.outline.rotation.copy(this.mesh.rotation);
     }
+    public setMeshFromOutline() {
+        this.mesh.position.copy(this.outline.position);
+        this.mesh.rotation.copy(this.outline.rotation);
+    }
+
     public getEmissive() {
         return this.mesh.material;
     }
+
+    public getOutline() {
+        return this.outline;
+    }
+
     public setOutlineColor(selectionColor: string | Color | undefined) {
         try {
             if (selectionColor == null) {

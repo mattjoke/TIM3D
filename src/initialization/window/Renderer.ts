@@ -68,6 +68,19 @@ class Renderer {
                 this.highlightObject(pos, scene, camera);
             }
         );
+
+        this.renderer.domElement.addEventListener(
+            "mouseenter",
+            (ev: MouseEvent) => {
+                this.unlockHightlight();
+            }
+        );
+        this.renderer.domElement.addEventListener(
+            "mouseleave",
+            (ev: MouseEvent) => {
+                this.lockHighlight();
+            }
+        );
     }
 
     public lockHighlight() {

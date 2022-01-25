@@ -65,10 +65,10 @@ const json = {
                 },
                 {
                     name: "2",
-                    position: [30, 10, 25]
+                    position: [30, 10, 25],
+                    animation: "z360deg"
                 },
             ],
-            animation: "x90deg"
         },
         {
             name: "Second Step",

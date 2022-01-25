@@ -49,6 +49,7 @@ class Init {
     }
 
     public withJSON = async (json: JSON) => {
+        this.objectsLoaded = false;
         this.checker(json, JsonCheck);
 
         this.objects = await Loader(json.files ?? [], this.window, this.config);
