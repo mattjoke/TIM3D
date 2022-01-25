@@ -25,16 +25,17 @@ const fileSchema = z
                 orientation: z.optional(z.array(z.number()).length(4)),
             })
         ),
+        animation: z.optional(z.string()),
     })
     .strict();
 
 /*
-export interface Position {
-    name: ObjectID;
-    position: [x: number, y: number, z: number];
-    rotation?: [x: number, y: number, z: number];
-}
-*/
+    export interface Position {
+        name: ObjectID;
+        position: [x: number, y: number, z: number];
+        rotation?: [x: number, y: number, z: number];
+    }
+    */
 const positionSchema = z
     .object({
         name: objectID,
@@ -44,18 +45,20 @@ const positionSchema = z
                 message: "Rotation array does not have enough items",
             })
         ),
+        animation: z.optional(z.string()),
     })
     .strict();
 /*    
-export interface Step {
-    name?: string;
-    positions: Position[];
-}
-*/
+    export interface Step {
+        name?: string;
+        positions: Position[];
+    }
+    */
 const stepSchema = z
     .object({
         name: z.optional(z.string()),
         positions: z.array(positionSchema),
+        animation: z.optional(z.string()),
     })
     .strict();
 
@@ -68,7 +71,6 @@ export interface JSON {
 */
 const jsonSchema = z
     .object({
-        config: z.optional(configSchema),
         files: z.optional(z.array(fileSchema)),
         steps: z.optional(z.array(stepSchema)),
     })

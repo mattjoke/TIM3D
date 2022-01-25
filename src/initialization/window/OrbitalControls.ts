@@ -49,6 +49,7 @@ class OrbitalControls {
     }
 
     public reset() {
+        this.controls.enableDamping = false;
         new Tween(this.camera.position)
             .to(this.startingPosition, 500)
             .easing(Easing.Quadratic.Out)
@@ -56,9 +57,10 @@ class OrbitalControls {
         new Tween(this.controls.target)
             .to(this.worldPosition, 500)
             .easing(Easing.Quadratic.Out)
-            .start();
-
-        //this.controls.reset();
+            .start()
+            .onComplete((_) => {
+                this.controls.enableDamping = true;
+            });
     }
 }
 

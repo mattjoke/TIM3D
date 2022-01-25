@@ -30,15 +30,9 @@ class AnimationStorage {
                                     obj.getMesh().rotateX(
                                         start.angle - lastRotation
                                     );
-                                    obj.getOutline().rotateX(
-                                        start.angle - lastRotation
-                                    );
                                     break;
                                 case "y":
                                     obj.getMesh().rotateY(
-                                        start.angle - lastRotation
-                                    );
-                                    obj.getOutline().rotateY(
                                         start.angle - lastRotation
                                     );
                                     break;
@@ -46,11 +40,9 @@ class AnimationStorage {
                                     obj.getMesh().rotateZ(
                                         start.angle - lastRotation
                                     );
-                                    obj.getOutline().rotateZ(
-                                        start.angle - lastRotation
-                                    );
                                     break;
                             }
+                            obj.setOutlineFromMesh();
                             lastRotation = start.angle;
                         });
                 }
@@ -82,12 +74,7 @@ class AnimationStorage {
                                     obj.getMesh().rotateZ(radians);
                                     break;
                             }
-                            obj.getOutline().position.copy(
-                                obj.getMesh().position
-                            );
-                            obj.getOutline().rotation.copy(
-                                obj.getMesh().rotation
-                            );
+                            obj.setOutlineFromMesh();
                             lastAngle = angle;
                         });
                     }
@@ -105,7 +92,7 @@ class AnimationStorage {
     }
 
     public static getAnimations() {
-        return AnimationStorage.animations;
+        return AnimationStorage.Instance.animations;
     }
 
     public static getAnimation(name: string): AnimationDef | undefined {
@@ -114,6 +101,15 @@ class AnimationStorage {
 
     public static addAnimation(name: string, animation: AnimationDef) {
         AnimationStorage.getAnimations().set(name, animation);
+    }
+    public static removeAnimation(name: string) {
+        AnimationStorage.getAnimations().delete(name);
+    }
+    //Two functions with same function but 2 different names (e.g. x360deg, xscrew)
+    public static setAlias(animationName: string, aliasName: string) {
+        const animation = AnimationStorage.getAnimation(animationName);
+        if (animation == null) return;
+        AnimationStorage.getAnimations().set(aliasName, animation);
     }
 }
 

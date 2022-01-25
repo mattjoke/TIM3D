@@ -1,21 +1,45 @@
-import AnimationStorage from "./initialization/stepper/AnimationStorage";
 import { Event } from "three";
 import Init from "./initialization/Init";
-import { ObjectID } from "./types/applicationTypes";
+import AnimationStorage from "./initialization/stepper/AnimationStorage";
+import {
+    AnimationDef,
+    CallbackFunction,
+    ObjectID,
+    UUID,
+} from "./types/applicationTypes";
 import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
+import { v4 as uuidv4 } from "uuid";
 
 class Factory {
     private instance: Init | null;
     public objectsLoaded = false;
+    private uuid: UUID;
+
+    static instanceCounter = 0;
 
     constructor(config?: Config) {
         if (config == null) throw new Error("Config not specified!");
-        this.instance = new Init(config);
+        Factory.instanceCounter = Math.max(Factory.instanceCounter, 0) + 1;
+        this.uuid = this.generateUUID();
+        this.instance = new Init(config, this.uuid);
         return this;
     }
-    public async loadJSON(json: JSON) {
-        await this.instance?.withJSON(json);
+
+    private generateUUID() {
+        let uuid = uuidv4();
+        uuid = uuid.replace(/-/g, "");
+
+        console.log(
+            "Factory instance:",
+            Factory.instanceCounter,
+            " with uuid: " + uuid
+        );
+        return uuid;
+    }
+
+    public loadJSON(json: JSON) {
+        this.instance?.withJSON(json);
         this.objectsLoaded = true;
         return this;
     }
@@ -38,24 +62,40 @@ class Factory {
         return this.instance?.getObjects();
     }
 
-    public on(selector: ObjectID, event: string, callback: Function) {
-        this.selectItem(selector)
-            ?.getMesh()
-            .addEventListener(event, (e: Event) => {
-                callback(e);
-            });
+    //Listeners functions
+    public on(selector: ObjectID, event: string, callback: CallbackFunction) {
+        const item = this.selectItem(selector);
+        if (item == null) {
+            return;
+        }
+        item.getMesh().addEventListener(event, (e: Event) => {
+            callback(item, e);
+        });
     }
 
-    public group(event: string, callback: Function) {
+    public group(event: string, callback: CallbackFunction) {
         this.getObjects()?.forEach((item) => {
             item.getMesh().addEventListener(event, (e) => {
-                callback(e);
+                callback(item, e);
             });
         });
     }
 
-    public getAnimations(){
+    //Animation functions
+    public getAnimation(animationName: string) {
+        return AnimationStorage.getAnimation(animationName);
+    }
+    public getAnimations() {
         return AnimationStorage.getAnimations();
+    }
+    public addAdnimation(animationName: string, animtaion: AnimationDef) {
+        AnimationStorage.addAnimation(animationName, animtaion);
+    }
+    public removeAnimation(animationName: string) {
+        AnimationStorage.removeAnimation(animationName);
+    }
+    public aliasAnimation(animationName: string, aliasName: string) {
+        AnimationStorage.setAlias(animationName, aliasName);
     }
 }
 

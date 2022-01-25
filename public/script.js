@@ -65,10 +65,10 @@ const json = {
                 },
                 {
                     name: "2",
-                    position: [30, 10, 25]
+                    position: [30, 10, 25],
+                    animation: "z360deg"
                 },
             ],
-            animation: "x90deg"
         },
         {
             name: "Second Step",
@@ -91,43 +91,45 @@ const config = {
     colors: {
         backgroundColor: "rgb(",
     },
-    shool: true,
     sidebar: {
         body: overlay,
-        visible:true
+        visible: true
+    },
+    world: {
+        globalRotation: [-0.7071068, 0, 0, 0.7071068]
     }
 };
 
-(async () => {
-    const t1 = await new Factory(config).loadJSON(json);
+const t1 = await new Factory(config).loadJSON(json);
 
-    t1.on("5", "click", (e) => {
-        const span = document.getElementById("data");
-        if (span != null) {
-            span.innerText = JSON.stringify(e.data);
-        }
-    });
+t1.on("5", "click", (e) => {
+    const span = document.getElementById("data");
+    if (span != null) {
+        span.innerText = JSON.stringify(e.data);
+    }
+});
 
-    t1.on("1", "click", () => {
-    });
-    
-    t1.group("click", (e) => {
-        // console.log(e.data);
-        //t1.destroy();
-        console.log("KLIKD")
-    })
+t1.on("1", "click", () => {
+});
 
-    t1.on("5", "hover", () => {
-        
-    })
+t1.group("click", (e) => {
+    // console.log(e.data);
+    //t1.destroy();
+    console.log("KLIKD")
+})
 
-    const btn = document.getElementById("jump");
-    btn.addEventListener("click", (ev) => {
-        ev.preventDefault();
-        t1.moveToStep(3);
-    });
-    t1.selectItem("1");
-})();
+t1.on("5", "hover", (e) => {
+    /*obj.getMesh().position.x += 5;
+    obj.getOutline().position.x += 5*/
+    console.log(e)
+})
+
+const btn = document.getElementById("jump");
+btn.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    t1.moveToStep(3);
+});
+t1.selectItem("1");
 
 
 const json2 = {
@@ -176,17 +178,13 @@ const json2 = {
 
 
 
-(async () => {
-    const c = {
-        container: document.getElementById("second"),
-        world: {
-            startPosition: [50, 0, 0],
-            centerOfWorld: [0, 10, 0]
-        },
-        animationLoop: ["Init", "First Step", "Second Step"]
-    };
+const c = {
+    container: document.getElementById("second"),
+    world: {
+        startPosition: [50, 0, 0],
+        centerOfWorld: [0, 10, 0]
+    },
+    animationLoop: ["Init", "First Step", "Second Step"]
+};
 
-    await new Factory(c).loadJSON(json2);
-
-})();
-
+new Factory(c).loadJSON(json2);

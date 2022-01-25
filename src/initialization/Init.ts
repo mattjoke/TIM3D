@@ -1,4 +1,4 @@
-import { Color, Object3D } from "three";
+import { Line, Object3D } from "three";
 import { ConfigCheck, JsonCheck } from "../inputChecking/InputCheck";
 import Loader from "../stuff/Loader";
 import { Objects3D } from "../types/applicationTypes";
@@ -16,13 +16,15 @@ class Init {
     private stepper: Stepper | undefined;
     private objects: Objects3D;
 
+    private parentUUID: string;
+    private config: Config;
+    
     public objectsLoaded = false;
 
-    private config: Config;
-
-    constructor(config: Config) {
+    constructor(config: Config, uuid: string) {
         this.checker(config, ConfigCheck);
         this.config = config;
+        this.parentUUID = uuid;
 
         this.objects = new Map();
         this.window = new Window(config);
@@ -40,26 +42,36 @@ class Init {
     }
 
     private initAxes() {
-        this.addObjects(Axis(10, new Color("blue"), [1, 0, 0]));
-        this.addObjects(Axis(10, new Color("red"), [0, 0, 1]));
-        this.addObjects(Axis(10, new Color("green"), [0, 1, 0]));
+        const init = Axis(1.0);
+        init.forEach((axis: Line) => {
+            this.addObjects(axis);
+        });
     }
 
-    public async withJSON(json: JSON) {
+    public withJSON(json: JSON) {
+        this.objectsLoaded = false;
         this.checker(json, JsonCheck);
 
-        this.objects = await Loader(json.files ?? [], this.window, this.config);
+        Loader(json.files ?? [], this.window, this.config).then((value) => {
+            this.objects = value;
+            this.objectsLoaded = this.objects.size > 0;
 
-        this.stepper = new Stepper(
-            json,
-            this.objects.get.bind(this.objects),
-            this.config.animationLoop
-        );
+            this.stepper = new Stepper(
+                json,
+                this.objects.get.bind(this.objects),
+                this.config.animationLoop
+            );
 
-        this.overlay = Overlay(this.stepper, this.window, this.config.sidebar);
-        this.window.container.appendChild(this.overlay);
+            this.overlay = Overlay(
+                this.stepper,
+                this.window,
+                this.parentUUID,
+                this.config.sidebar
+            );
+            this.window.container.appendChild(this.overlay);
+        });
 
-        this.objectsLoaded = this.objects.size > 0;
+        return this;
     }
 
     private checker(
@@ -69,9 +81,10 @@ class Init {
         const check = checker(object);
         if (!check.success) {
             check.error.issues.forEach((issue) => {
-                console.error(`${issue.message}`);
+                throw new SyntaxError(`${issue.message}`)
             });
         }
+        
         return check.success;
     }
 
@@ -94,8 +107,8 @@ class Init {
             new CustomEvent("update", { detail: currStep })
         );
     }
-    
-    public destroy(){
+
+    public destroy() {
         this.window.destroy();
         this.overlay.remove();
         this.stepper?.destroy();

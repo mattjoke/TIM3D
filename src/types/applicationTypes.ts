@@ -1,12 +1,15 @@
 import { Tween } from "@tweenjs/tween.js";
 import Object3D from "stuff/Object3D";
-import { Color as ThreeColor } from "three";
+import { Color as ThreeColor, Event } from "three";
 
 export type ObjectID = string | number;
 export type Objects3D = Map<ObjectID, Object3D>;
 export type Color = ThreeColor | string;
 export type Animations = Map<string, AnimationDef>;
 export type AnimationDef = (obj: Object3D) => Tween<any> | void;
+export type UUID = string;
+
+export type CallbackFunction = (obj: Object3D, ev: Event) => void;
 
 export interface inputPosition {
     clientX: number;

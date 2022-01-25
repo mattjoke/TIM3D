@@ -26,6 +26,7 @@ export interface File {
     name: ObjectID;
     color?: Color | string;
     pose?: Pose;
+    animation?: string;
 }
 
 export interface JSON {

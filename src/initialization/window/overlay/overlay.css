@@ -1,4 +1,4 @@
-#overlay {
+[id^="overlay"] {
     position: absolute;
     pointer-events: none;
     top: 0;
@@ -6,7 +6,7 @@
     height: 100%;
 }
 
-#upContainer {
+[id^="upContainer"] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -22,11 +22,11 @@
     flex-wrap: nowrap;
 }
 
-#upContainer > button > svg {
+[id^="upContainer"] > button > svg {
     width: 15px;
 }
 
-#bottomContainer {
+[id^="bottomContainer"] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -43,11 +43,11 @@
     overflow: hidden;
 }
 
-#bottomContainer > button > svg {
+[id^="bottomContainer"] > button > svg {
     width: 15px;
 }
 
-#slider {
+[id^="slider"] {
     pointer-events: auto;
     -webkit-box-flex: 4;
     -ms-flex-positive: 4;
@@ -55,21 +55,24 @@
     width: 0;
 }
 
-#sidebar {
+[id^="sidebar"] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     width: 0;
     background-color: green;
     pointer-events: none;
     opacity: 0%;
 }
-#sidebar > * {
+[id^="sidebar"] > * {
     height: 100%;
 }
 
-#container {
+[id^="container"] {
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -83,7 +86,7 @@
     justify-content: space-between;
 }
 
-#wrapper {
+[id^="wrapper"] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -96,29 +99,47 @@
     flex-direction: row;
 }
 
-#counter {
+[id^="container"] > div > button > svg {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    pointer-events: auto;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    vertical-align: center;
+}
+
+[id^="helper"] {
+    pointer-events: none;
+    width: clamp(50px, 10vw, 75px);
+    margin-left: auto;
+    padding: 5px;
+}
+
+[id^="counter"] {
     color: black;
 }
 
-#buttonLeft {
+[id^="buttonLeft"] {
     pointer-events: auto;
 }
 
-#buttonRight {
+[id^="buttonRight"] {
     pointer-events: auto;
 }
 
-#buttonStart {
+[id^="buttonStart"] {
     pointer-events: auto;
 }
 
-#buttonEnd {
+[id^="buttonEnd"] {
     pointer-events: auto;
 }
 
-#buttonFullscreen {
+[id^="buttonFullscreen"] {
     pointer-events: auto;
 }
-#buttonReset {
+[id^="buttonReset"] {
     pointer-events: auto;
 }

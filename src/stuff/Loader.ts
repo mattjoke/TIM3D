@@ -1,10 +1,10 @@
-import { Objects3D } from "../types/applicationTypes";
 import { Config } from "@manualTypes/configTypes";
 import { File } from "@manualTypes/jsonTypes";
-import { Group, Mesh } from "three";
+import { Group, Mesh, Quaternion } from "three";
 import Window from "../initialization/Window";
-import LoaderOverlay from "./loaders/LoaderOverlay";
+import { Objects3D } from "../types/applicationTypes";
 import LoaderManager from "./loaders/LoaderManager";
+import LoaderOverlay from "./loaders/LoaderOverlay";
 import Object3D from "./Object3D";
 
 const Loader = async (
@@ -30,7 +30,7 @@ const Loader = async (
                     const o = object as Group;
                     const child = o.children[0] as Mesh;
                     obj = new Object3D(child.geometry, file);
-                    obj.setScale(50,50,50);
+                    obj.setScale(50, 50, 50);
                     break;
                 default:
                     obj = new Object3D(object, file);
@@ -39,7 +39,22 @@ const Loader = async (
 
             obj.setOutlineColor(config?.colors?.selectionColor);
 
+            if (items.get(file.name)) {
+                throw new Error(`Duplicate object name: ${file.name}, please check files array.`)
+            }
+
             items.set(file.name, obj);
+
+            if (config?.world?.globalRotation != null) {
+                const rotation = new Quaternion();
+                rotation.set(
+                    config?.world?.globalRotation?.[0],
+                    config?.world?.globalRotation?.[1],
+                    config?.world?.globalRotation?.[2],
+                    config?.world?.globalRotation?.[3]
+                );
+                obj.setRotation(rotation);
+            }
 
             window.getScene().addObject(obj.getMesh());
             window.getScene().addObject(obj.getOutline());

@@ -30,6 +30,7 @@ export interface Config {
     world?: {
         startPosition?: [x: number, y: number, z: number];
         centerOfWorld?: [x: number, y: number, z: number];
+        globalRotation?: [x: number, y: number, z: number, w: number];
     };
     //Instance container
     container?: HTMLElement;
