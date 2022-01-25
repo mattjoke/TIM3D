@@ -16,10 +16,10 @@ class Init {
     private stepper: Stepper | undefined;
     private objects: Objects3D;
 
-    public objectsLoaded = false;
-    public parentUUID: string;
-
+    private parentUUID: string;
     private config: Config;
+    
+    public objectsLoaded = false;
 
     constructor(config: Config, uuid: string) {
         this.checker(config, ConfigCheck);
@@ -48,29 +48,31 @@ class Init {
         });
     }
 
-    public withJSON = async (json: JSON) => {
+    public withJSON(json: JSON) {
         this.objectsLoaded = false;
         this.checker(json, JsonCheck);
 
-        this.objects = await Loader(json.files ?? [], this.window, this.config);
+        Loader(json.files ?? [], this.window, this.config).then((value) => {
+            this.objects = value;
+            this.objectsLoaded = this.objects.size > 0;
 
-        this.stepper = new Stepper(
-            json,
-            this.objects.get.bind(this.objects),
-            this.config.animationLoop
-        );
+            this.stepper = new Stepper(
+                json,
+                this.objects.get.bind(this.objects),
+                this.config.animationLoop
+            );
 
-        this.overlay = Overlay(
-            this.stepper,
-            this.window,
-            this.parentUUID,
-            this.config.sidebar
-        );
-        this.window.container.appendChild(this.overlay);
+            this.overlay = Overlay(
+                this.stepper,
+                this.window,
+                this.parentUUID,
+                this.config.sidebar
+            );
+            this.window.container.appendChild(this.overlay);
+        });
 
-        this.objectsLoaded = this.objects.size > 0;
         return this;
-    };
+    }
 
     private checker(
         object: object,
@@ -79,7 +81,7 @@ class Init {
         const check = checker(object);
         if (!check.success) {
             check.error.issues.forEach((issue) => {
-                console.error(`${issue.message}`);
+                throw new SyntaxError(`${issue.message}`)
             });
         }
         return check.success;

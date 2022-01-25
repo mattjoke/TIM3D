@@ -18,7 +18,7 @@ const json = {
         {
             file: "models/files/Bar3.stl",
             color: "#192833",
-            name: "3",
+            name: "2",
         },
         {
             file: "models/files/Bar4.stl",
@@ -91,10 +91,9 @@ const config = {
     colors: {
         backgroundColor: "rgb(",
     },
-    shool: true,
     sidebar: {
         body: overlay,
-        visible:true
+        visible: true
     },
     world: {
         globalRotation: [-0.7071068, 0, 0, 0.7071068]
@@ -113,7 +112,7 @@ const config = {
 
     t1.on("1", "click", () => {
     });
-    
+
     t1.group("click", (e) => {
         // console.log(e.data);
         //t1.destroy();
@@ -181,17 +180,13 @@ const json2 = {
 
 
 
-(async () => {
-    const c = {
-        container: document.getElementById("second"),
-        world: {
-            startPosition: [50, 0, 0],
-            centerOfWorld: [0, 10, 0]
-        },
-        animationLoop: ["Init", "First Step", "Second Step"]
-    };
+const c = {
+    container: document.getElementById("second"),
+    world: {
+        startPosition: [50, 0, 0],
+        centerOfWorld: [0, 10, 0]
+    },
+    animationLoop: ["Init", "First Step", "Second Step"]
+};
 
-    await new Factory(c).loadJSON(json2);
-
-})();
-
+new Factory(c).loadJSON(json2);

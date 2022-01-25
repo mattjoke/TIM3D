@@ -72,7 +72,9 @@ const Overlay = (
             toggleFullscreen(
                 window.getContainer(),
                 customSidebar?.visible
-                    ? (template.querySelector(`#sidebar${parentUUID}`) as HTMLElement)
+                    ? (template.querySelector(
+                          `#sidebar${parentUUID}`
+                      ) as HTMLElement)
                     : undefined
             );
         });
@@ -90,7 +92,6 @@ const Overlay = (
             ?.dispatchEvent(new CustomEvent("update", { detail: ev.detail }));
     }) as EventListener);
 
-    console.log("Overlay instantiated");
     return template;
 };
 

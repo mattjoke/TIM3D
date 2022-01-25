@@ -92,7 +92,7 @@ class AnimationStorage {
     }
 
     public static getAnimations() {
-        return AnimationStorage.animations;
+        return AnimationStorage.Instance.animations;
     }
 
     public static getAnimation(name: string): AnimationDef | undefined {
@@ -101,6 +101,15 @@ class AnimationStorage {
 
     public static addAnimation(name: string, animation: AnimationDef) {
         AnimationStorage.getAnimations().set(name, animation);
+    }
+    public static removeAnimation(name: string) {
+        AnimationStorage.getAnimations().delete(name);
+    }
+    //Two functions with same function but 2 different names (e.g. x360deg, xscrew)
+    public static setAlias(animationName: string, aliasName: string) {
+        const animation = AnimationStorage.getAnimation(animationName);
+        if (animation == null) return;
+        AnimationStorage.getAnimations().set(aliasName, animation);
     }
 }
 

@@ -88,6 +88,9 @@ class Factory {
     public addAdnimation(animationName: string, animtaion: AnimationDef) {
         AnimationStorage.addAnimation(animationName, animtaion);
     }
+    public removeAnimation(animationName:string){
+        AnimationStorage.removeAnimation(animationName);
+    }
 }
 
 export default Factory;

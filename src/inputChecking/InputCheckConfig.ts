@@ -22,6 +22,7 @@ const configSchema = z
             z.object({
                 startPosition: z.optional(z.array(z.number()).length(3)),
                 centerOfWorld: z.optional(z.array(z.number()).length(3)),
+                globalRotation: z.optional(z.array(z.number()).length(4)),
             })
         ),
         container: z.optional(z.instanceof(HTMLElement)),
@@ -32,6 +33,7 @@ const configSchema = z
                 visible: z.optional(z.boolean()),
             })
         ),
+        animationLoop: z.optional(z.array(z.string())),
         extensions: z.optional(z.object({})),
     })
     .strict();

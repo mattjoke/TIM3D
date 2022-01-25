@@ -55,7 +55,6 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
                 position.animation
             );
             if (anim == null) return;
-            console.log(anim);
             const object = getObject(position.name);
             const result = anim(object);
             if (result) {
