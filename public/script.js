@@ -18,7 +18,7 @@ const json = {
         {
             file: "models/files/Bar3.stl",
             color: "#192833",
-            name: "2",
+            name: "3",
         },
         {
             file: "models/files/Bar4.stl",
@@ -100,38 +100,36 @@ const config = {
     }
 };
 
-(async () => {
-    const t1 = await new Factory(config).loadJSON(json);
+const t1 = await new Factory(config).loadJSON(json);
 
-    t1.on("5", "click", (e) => {
-        const span = document.getElementById("data");
-        if (span != null) {
-            span.innerText = JSON.stringify(e.data);
-        }
-    });
+t1.on("5", "click", (e) => {
+    const span = document.getElementById("data");
+    if (span != null) {
+        span.innerText = JSON.stringify(e.data);
+    }
+});
 
-    t1.on("1", "click", () => {
-    });
+t1.on("1", "click", () => {
+});
 
-    t1.group("click", (e) => {
-        // console.log(e.data);
-        //t1.destroy();
-        console.log("KLIKD")
-    })
+t1.group("click", (e) => {
+    // console.log(e.data);
+    //t1.destroy();
+    console.log("KLIKD")
+})
 
-    t1.on("5", "hover", (e) => {
-        /*obj.getMesh().position.x += 5;
-        obj.getOutline().position.x += 5*/
-        console.log(e)
-    })
+t1.on("5", "hover", (e) => {
+    /*obj.getMesh().position.x += 5;
+    obj.getOutline().position.x += 5*/
+    console.log(e)
+})
 
-    const btn = document.getElementById("jump");
-    btn.addEventListener("click", (ev) => {
-        ev.preventDefault();
-        t1.moveToStep(3);
-    });
-    t1.selectItem("1");
-})();
+const btn = document.getElementById("jump");
+btn.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    t1.moveToStep(3);
+});
+t1.selectItem("1");
 
 
 const json2 = {

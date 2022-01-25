@@ -39,6 +39,10 @@ const Loader = async (
 
             obj.setOutlineColor(config?.colors?.selectionColor);
 
+            if (items.get(file.name)) {
+                throw new Error(`Duplicate object name: ${file.name}, please check files array.`)
+            }
+
             items.set(file.name, obj);
 
             if (config?.world?.globalRotation != null) {

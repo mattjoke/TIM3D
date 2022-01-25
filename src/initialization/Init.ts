@@ -84,6 +84,7 @@ class Init {
                 throw new SyntaxError(`${issue.message}`)
             });
         }
+        
         return check.success;
     }
 

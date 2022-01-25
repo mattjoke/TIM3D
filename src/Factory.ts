@@ -38,8 +38,8 @@ class Factory {
         return uuid;
     }
 
-    public async loadJSON(json: JSON) {
-        await this.instance?.withJSON(json);
+    public loadJSON(json: JSON) {
+        this.instance?.withJSON(json);
         this.objectsLoaded = true;
         return this;
     }
@@ -82,14 +82,20 @@ class Factory {
     }
 
     //Animation functions
+    public getAnimation(animationName: string) {
+        return AnimationStorage.getAnimation(animationName);
+    }
     public getAnimations() {
         return AnimationStorage.getAnimations();
     }
     public addAdnimation(animationName: string, animtaion: AnimationDef) {
         AnimationStorage.addAnimation(animationName, animtaion);
     }
-    public removeAnimation(animationName:string){
+    public removeAnimation(animationName: string) {
         AnimationStorage.removeAnimation(animationName);
+    }
+    public aliasAnimation(animationName: string, aliasName: string) {
+        AnimationStorage.setAlias(animationName, aliasName);
     }
 }
 
