@@ -2,6 +2,7 @@ import { Tween } from "@tweenjs/tween.js";
 import { Sidebar } from "../../types/configTypes";
 import Stepper from "../Stepper";
 import Window from "../Window";
+import generateId from "./overlay/generate-id";
 import { OverlayLoader } from "./overlay/OverlayLoader";
 
 const toggleFullscreen = (container: HTMLElement, sidebar?: HTMLElement) => {
@@ -66,21 +67,21 @@ const Overlay = (
     //Instantiate basic logic and listeners
     const template = OverlayLoader(stepper, parentUUID, customSidebar);
     template
-        .querySelector(`#buttonFullscreen${parentUUID}`)
+        .querySelector(`#${generateId("buttonFullscreen", parentUUID)}`)
         ?.addEventListener("click", (ev: Event) => {
             ev.preventDefault();
             toggleFullscreen(
                 window.getContainer(),
                 customSidebar?.visible
                     ? (template.querySelector(
-                          `#sidebar${parentUUID}`
+                          `#${generateId("sidebar", parentUUID)}`
                       ) as HTMLElement)
                     : undefined
             );
         });
 
     template
-        .querySelector(`#buttonReset${parentUUID}`)
+        .querySelector(`#${generateId("buttonReset", parentUUID)}`)
         ?.addEventListener("click", (ev: Event) => {
             ev.preventDefault();
             window.resetCamera();
@@ -88,7 +89,7 @@ const Overlay = (
 
     stepper.signaler.addEventListener("update", ((ev: CustomEvent) => {
         template
-            .querySelector(`#counter${parentUUID}`)
+            .querySelector(`#${generateId("counter", parentUUID)}`)
             ?.dispatchEvent(new CustomEvent("update", { detail: ev.detail }));
     }) as EventListener);
 

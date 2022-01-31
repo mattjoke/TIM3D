@@ -1,8 +1,9 @@
 import { Sidebar } from "@manualTypes/configTypes";
 import Stepper from "initialization/Stepper";
-import { checkFullscreen } from "../../../stuff/Utils";
 import Icons from "../../../stuff/Icons";
+import { checkFullscreen } from "../../../stuff/Utils";
 import "../overlay/overlay.css";
+import generateId from "./generate-id.js";
 
 const overlay = require("./overlay.hbs");
 
@@ -37,15 +38,16 @@ const Loader = (stepper: Stepper, parentUUID: string, sidebar?: Sidebar) => {
         },
         icons: Icons.getIcons(),
     });
+
     const div = document.createElement("div");
     div.innerHTML = template;
 
     //Adds basic event listeners
     const slider = div.querySelector(
-        `#slider${parentUUID}`
+        `#${generateId("slider", parentUUID)}`
     ) as HTMLInputElement;
     const counter = div.querySelector(
-        `#counter${parentUUID}`
+        `#${generateId("counter", parentUUID)}`
     ) as HTMLSpanElement;
 
     const step = (stepNum: number) => {
@@ -65,58 +67,53 @@ const Loader = (stepper: Stepper, parentUUID: string, sidebar?: Sidebar) => {
         step(Number(slider.value));
     });
 
-    div.querySelector(`#counter${parentUUID}`)?.addEventListener("update", ((
-        ev: CustomEvent
-    ) => {
+    div.querySelector(
+        `#${generateId("counter", parentUUID)}`
+    )?.addEventListener("update", ((ev: CustomEvent) => {
         ev.preventDefault();
         step(ev.detail);
     }) as EventListener);
 
-    div.querySelector(`#buttonLeft${parentUUID}`)?.addEventListener(
-        "click",
-        (ev: Event) => {
-            ev.preventDefault();
-            step(stepper.getCurrentStep() - 1);
-        }
-    );
-    div.querySelector(`#buttonRight${parentUUID}`)?.addEventListener(
-        "click",
-        (ev: Event) => {
-            ev.preventDefault();
-            step(stepper.getCurrentStep() + 1);
-        }
-    );
+    div.querySelector(
+        `#${generateId("buttonLeft", parentUUID)}`
+    )?.addEventListener("click", (ev: Event) => {
+        ev.preventDefault();
+        step(stepper.getCurrentStep() - 1);
+    });
+    div.querySelector(
+        `#${generateId("buttonRight", parentUUID)}`
+    )?.addEventListener("click", (ev: Event) => {
+        ev.preventDefault();
+        step(stepper.getCurrentStep() + 1);
+    });
 
-    div.querySelector(`#buttonStart${parentUUID}`)?.addEventListener(
-        "click",
-        (ev: Event) => {
-            ev.preventDefault();
-            step(0);
-        }
-    );
-    div.querySelector(`#buttonEnd${parentUUID}`)?.addEventListener(
-        "click",
-        (ev: Event) => {
-            ev.preventDefault();
-            step(-2);
-        }
-    );
+    div.querySelector(
+        `#${generateId("buttonStart", parentUUID)}`
+    )?.addEventListener("click", (ev: Event) => {
+        ev.preventDefault();
+        step(0);
+    });
+    div.querySelector(
+        `#${generateId("buttonEnd", parentUUID)}`
+    )?.addEventListener("click", (ev: Event) => {
+        ev.preventDefault();
+        step(-2);
+    });
 
     document.addEventListener("fullscreenchange", (ev: Event) => {
         ev.preventDefault();
         const element = document.fullscreenElement;
         const btn = document?.querySelector(
-            `#buttonFullscreen${parentUUID}`
+            `#${generateId("buttonFullscreen", parentUUID)}`
         ) as HTMLButtonElement;
 
         if (element && checkFullscreen(document)) {
             btn.innerHTML = Icons.FullScreenToggle;
         } else {
             const btn = div?.querySelector(
-                `#buttonFullscreen${parentUUID}`
+                `#${generateId("buttonFullscreen", parentUUID)}`
             ) as HTMLButtonElement;
             btn.innerHTML = Icons.FullScreen;
-
         }
     });
 
