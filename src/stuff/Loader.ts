@@ -39,11 +39,11 @@ const Loader = async (
 
             obj.setOutlineColor(config?.colors?.selectionColor);
 
-            if (items.get(file.name)) {
-                throw new Error(`Duplicate object name: ${file.name}, please check files array.`)
+            if (items.get(file.id)) {
+                throw new Error(`Duplicate object name: ${file.id}, please check your files array.`)
             }
 
-            items.set(file.name, obj);
+            items.set(file.id, obj);
 
             if (config?.world?.globalRotation != null) {
                 const rotation = new Quaternion();

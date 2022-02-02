@@ -1,5 +1,5 @@
 import { Color } from "three";
-import { z } from "zod";
+import { string, z } from "zod";
 import { configSchema } from "./InputCheckConfig";
 
 // export type ObjectID = string | number;
@@ -9,6 +9,7 @@ const objectID = z.string().or(z.number());
 export interface File {
     file: string;
     name: ObjectID;
+    id: string;
     color?: Color | string;
     position?: [x: number, y: number, z: number];
     rotation?: [x: number, y: number, z: number];
@@ -18,6 +19,7 @@ const fileSchema = z
     .object({
         file: z.string(),
         name: objectID,
+        id: z.optional(z.string()),
         color: z.optional(z.string().or(z.instanceof(Color))),
         pose: z.optional(
             z.object({
