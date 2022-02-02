@@ -18,6 +18,9 @@ module.exports = {
             {
                 test: /\.hbs$/i,
                 loader: "handlebars-loader",
+                options: {
+                    knownHelpersOnly: false,
+                }
             },
             {
                 test: /\.svg$/,

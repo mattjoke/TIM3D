@@ -1,4 +1,4 @@
-[id^="overlay"] {
+[id^="tw-"][id$="-overlay"] {
     position: absolute;
     pointer-events: none;
     top: 0;
@@ -6,7 +6,7 @@
     height: 100%;
 }
 
-[id^="upContainer"] {
+[id^="tw-"][id$="-upContainer"] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -22,11 +22,11 @@
     flex-wrap: nowrap;
 }
 
-[id^="upContainer"] > button > svg {
+[id^="tw-"][id$="-upContainer"] > button > svg {
     width: 15px;
 }
 
-[id^="bottomContainer"] {
+[id^="tw-"][id$="-bottomContainer"] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -43,19 +43,19 @@
     overflow: hidden;
 }
 
-[id^="bottomContainer"] > button > svg {
+[id^="tw-"][id$="-bottomContainer"] > button > svg {
     width: 15px;
 }
 
-[id^="slider"] {
+[id^="tw-"][id$="-slider"] {
     pointer-events: auto;
     -webkit-box-flex: 4;
     -ms-flex-positive: 4;
     flex-grow: 4;
-    width: 0;
+    width: 0 auto;
 }
 
-[id^="sidebar"] {
+[id^="tw-"][id$="-sidebar"] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -68,11 +68,11 @@
     pointer-events: none;
     opacity: 0%;
 }
-[id^="sidebar"] > * {
+[id^="tw-"][id$="-sidebar"] > * {
     height: 100%;
 }
 
-[id^="container"] {
+[id^="tw-"][id$="-container"] {
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -86,7 +86,7 @@
     justify-content: space-between;
 }
 
-[id^="wrapper"] {
+[id^="tw-"][id$="-wrapper"] {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -99,7 +99,7 @@
     flex-direction: row;
 }
 
-[id^="container"] > div > button > svg {
+[id^="tw-"][id$="-container"] > div > button > svg {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -110,36 +110,36 @@
     vertical-align: center;
 }
 
-[id^="helper"] {
+[id^="tw-"][id$="-helper"] {
     pointer-events: none;
     width: clamp(50px, 10vw, 75px);
     margin-left: auto;
     padding: 5px;
 }
 
-[id^="counter"] {
+[id^="tw-"][id$="-counter"] {
     color: black;
 }
 
-[id^="buttonLeft"] {
+[id^="tw-"][id$="-buttonLeft"] {
     pointer-events: auto;
 }
 
-[id^="buttonRight"] {
+[id^="tw-"][id$="-buttonRight"] {
     pointer-events: auto;
 }
 
-[id^="buttonStart"] {
+[id^="tw-"][id$="-buttonStart"] {
     pointer-events: auto;
 }
 
-[id^="buttonEnd"] {
+[id^="tw-"][id$="-buttonEnd"] {
     pointer-events: auto;
 }
 
-[id^="buttonFullscreen"] {
+[id^="tw-"][id$="-buttonFullscreen"] {
     pointer-events: auto;
 }
-[id^="buttonReset"] {
+[id^="tw-"][id$="-buttonReset"] {
     pointer-events: auto;
 }
