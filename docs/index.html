@@ -4,20 +4,32 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Demo</title>
+        <title>Three-watcher-showcase</title>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <h1>Three.js library</h1>
-        <div class="container">
+        <div class="content">
+            <div class="header">
+                <h1>This is three-watcher.ts</h1>
+                <sub>(Name is still WIP)</sub>
+                <h5>A Three.js implenetation of interactive manual</h5>
+            </div>
+
+            <p>Go ahead! Try it out!</p>
+
             <div id="first"></div>
-            <div id="second"></div>
-            <!--<div id="third"></div> -->
+
+            <div class="info"></div>
+
+            <div class="container">
+                <div id="second"></div>
+                <!--<div id="third"></div> -->
+            </div>
+            <span>Move to the <a href id="jump">step three</a>.</span>
+            <p>Uuid of item with callback</p>
+            <span id="data">None</span>
+            <!--<script src="http://localhost:3000/bundle.js"></script>-->
+            <script type="module" src="./script.js"></script>
         </div>
-        <span>Move to the <a href id="jump">step three</a>.</span>
-        <p>Uuid of item with callback</p>
-        <span id="data">None</span>
-        <!--<script src="http://localhost:3000/bundle.js"></script>-->
-        <script type="module" src="./script.js"></script>
     </body>
 </html>
