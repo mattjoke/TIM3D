@@ -1,6 +1,25 @@
 body {
     margin: 0;
+    background-color: bisque;
 }
+
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    background-color: azure;
+    height: 100%;
+    margin: auto;
+    padding: 30px;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #first {
     width: 100%;
     height: 30vh;
