@@ -2,20 +2,23 @@ import { File } from "@manualTypes/jsonTypes";
 import {
     BackSide,
     BufferGeometry,
-    Color, Mesh,
+    Color,
+    Mesh,
     MeshBasicMaterial,
     MeshStandardMaterial,
-    Quaternion
+    Quaternion,
 } from "three";
 import { isColor } from "./Utils";
 
 class Object3D {
+    private file: File;
     private geometry: BufferGeometry;
     private mesh: Mesh;
     private outline: Mesh;
 
     constructor(geometry: BufferGeometry, file: File) {
         this.geometry = geometry;
+        this.file = file;
         this.mesh = this.buildMesh(this.geometry, file);
         this.outline = this.buildOutline(this.geometry, file);
     }
