@@ -18,7 +18,7 @@ class Init {
 
     private parentUUID: string;
     private config: Config;
-    
+
     public objectsLoaded = false;
 
     constructor(config: Config, uuid: string) {
@@ -52,8 +52,8 @@ class Init {
         this.objectsLoaded = false;
         this.checker(json, JsonCheck);
 
-        Loader(json.files ?? [], this.window, this.config).then((value) => {
-            this.objects = value;
+        Loader(json.files ?? [], this.window, this.config).then((items) => {
+            this.objects = items;
             this.objectsLoaded = this.objects.size > 0;
 
             this.stepper = new Stepper(
@@ -70,8 +70,6 @@ class Init {
             );
             this.window.container.appendChild(this.overlay);
         });
-
-        return this;
     }
 
     private checker(
@@ -81,10 +79,10 @@ class Init {
         const check = checker(object);
         if (!check.success) {
             check.error.issues.forEach((issue) => {
-                throw new SyntaxError(`${issue.message}`)
+                throw new SyntaxError(`${this.parentUUID}-${issue.message}`);
             });
         }
-        
+
         return check.success;
     }
 

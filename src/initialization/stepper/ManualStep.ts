@@ -5,7 +5,7 @@ import AnimationStorage from "./AnimationStorage";
 class ManualStep {
     prev: ManualStep | null = null;
     next: ManualStep | null = null;
-    name!: string;
+    name: string = "";
     positions: Position[] = [];
     animation?: AnimationDef;
 }
@@ -16,7 +16,7 @@ const buildSteps = (steps: Step[] | undefined) => {
     let length = 0;
     for (const step of steps) {
         const curr = new ManualStep();
-        curr.name = step.name ?? length.toString();
+        curr.name = step.name.toString() || "";
         curr.positions = step.positions;
         curr.animation = AnimationStorage.Instance.getAnimation(
             step.animation ?? ""

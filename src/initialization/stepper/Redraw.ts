@@ -27,7 +27,7 @@ const animateRotation = (from: Object3D, to: Euler, delay?: number) => {
 
 const Redraw = (currentStep: ManualStep, getObject: Function) => {
     for (const position of currentStep.positions) {
-        const obj: Object3D = getObject(position.name);
+        const obj: Object3D = getObject(position.id);
         if (obj == null) continue;
 
         const quaterRotation = new Quaternion().fromArray(
@@ -55,7 +55,7 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
                 position.animation
             );
             if (anim == null) return;
-            const object = getObject(position.name);
+            const object = getObject(position.id);
             const result = anim(object);
             if (result) {
                 animation.chain(result);
