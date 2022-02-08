@@ -76,7 +76,7 @@ class Object3D {
 
     private buildMesh(geometry: BufferGeometry, file: File) {
         const material = new MeshStandardMaterial({
-            name: file.name.toString(),
+            name: `${file.id}-${file.name ?? "defName"}`,
             color: file.color || "white",
             opacity: 0.5,
             flatShading: false,
@@ -104,7 +104,7 @@ class Object3D {
         );
 
         //mesh.rotateX(-Math.PI / 2);
-        mesh.name = file.name.toString();
+        mesh.name = `${file.id}-${file.name ?? "defName"}`;
         return mesh;
     }
     private buildOutline(geometry: BufferGeometry, file: File): Mesh {
@@ -113,7 +113,7 @@ class Object3D {
             side: BackSide,
         });
         const shadow = new Mesh(geometry, outline);
-        shadow.name = `${file.name.toString()}-outline`;
+        shadow.name = `${file.id}-${file.name ?? "defName"}-outline`;
         shadow.position.set(
             this.mesh.position.x,
             this.mesh.position.y,

@@ -1,10 +1,18 @@
 import { Color } from "three";
-import { z } from "zod";
+import {
+    array,
+    boolean,
+    number,
+    object,
+    optional,
+    string,
+    instanceof as zedInstance,
+} from "zod";
 
-const Colors = z.object({
-    backgroundColor: z.optional(z.string().or(z.instanceof(Color))),
-    emissiveColor: z.optional(z.string().or(z.instanceof(Color))),
-    selectionColor: z.optional(z.string().or(z.instanceof(Color))),
+const Colors = object({
+    backgroundColor: optional(string().or(zedInstance(Color))),
+    emissiveColor: optional(string().or(zedInstance(Color))),
+    selectionColor: optional(string().or(zedInstance(Color))),
 });
 /*
 export interface Config {
@@ -15,27 +23,25 @@ export interface Config {
     extensions?: Extension;
 }
 */
-const configSchema = z
-    .object({
-        colors: z.optional(Colors),
-        world: z.optional(
-            z.object({
-                startPosition: z.optional(z.array(z.number()).length(3)),
-                centerOfWorld: z.optional(z.array(z.number()).length(3)),
-                globalRotation: z.optional(z.array(z.number()).length(4)),
-            })
-        ),
-        container: z.optional(z.instanceof(HTMLElement)),
-        loadingOverlay: z.optional(z.instanceof(HTMLElement)),
-        sidebar: z.optional(
-            z.object({
-                body: z.optional(z.instanceof(HTMLElement)),
-                visible: z.optional(z.boolean()),
-            })
-        ),
-        animationLoop: z.optional(z.array(z.string())),
-        extensions: z.optional(z.object({})),
-    })
-    .strict();
+const configSchema = object({
+    colors: optional(Colors),
+    world: optional(
+        object({
+            startPosition: optional(array(number()).length(3)),
+            centerOfWorld: optional(array(number()).length(3)),
+            globalRotation: optional(array(number()).length(4)),
+        })
+    ),
+    container: optional(zedInstance(HTMLElement)),
+    loadingOverlay: optional(zedInstance(HTMLElement)),
+    sidebar: optional(
+        object({
+            body: optional(zedInstance(HTMLElement)),
+            visible: optional(boolean()),
+        })
+    ),
+    animationLoop: optional(array(string())),
+    extensions: optional(object({})),
+}).strict();
 
 export { configSchema };

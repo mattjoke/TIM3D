@@ -1,4 +1,5 @@
 import { ObjectID } from "@manualTypes/applicationTypes";
+import { ZodIssue } from "zod";
 
 const isColor = (strColor: string) => {
     const s = new Option().style;
@@ -12,16 +13,18 @@ const parseExtension = (filename: ObjectID) => {
 
 // TS igonre for Typescript unknown functions
 const checkFullscreen = (document?: Document) => {
-    if (document == null){
+    if (document == null) {
         return false;
-    } 
-    return document.fullscreenElement || 
+    }
+    return (
+        document.fullscreenElement ||
         //@ts-ignore
         document.webkitIsFullscreen || //Webkit browsers
         //@ts-ignore
         document.mozFullScreen || // Firefox
         //@ts-ignore
-        document.msFullscreenElement !== undefined // IE
+        document.msFullscreenElement !== undefined
+    ); // IE
 };
 
 export { isColor, parseExtension, checkFullscreen };

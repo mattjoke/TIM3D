@@ -1,9 +1,15 @@
 import { Color } from "three";
-import { string, z } from "zod";
-import { configSchema } from "./InputCheckConfig";
+import {
+    array,
+    number,
+    object,
+    optional,
+    string,
+    instanceof as zedInstance,
+} from "zod";
 
 // export type ObjectID = string | number;
-const objectID = z.string().or(z.number());
+const objectID = string().or(number());
 
 /*
 export interface File {
@@ -15,21 +21,19 @@ export interface File {
     rotation?: [x: number, y: number, z: number];
 }
 */
-const fileSchema = z
-    .object({
-        file: z.string(),
-        name: objectID,
-        id: z.optional(z.string()),
-        color: z.optional(z.string().or(z.instanceof(Color))),
-        pose: z.optional(
-            z.object({
-                position: z.optional(z.array(z.number()).length(3)),
-                orientation: z.optional(z.array(z.number()).length(4)),
-            })
-        ),
-        animation: z.optional(z.string()),
-    })
-    .strict();
+const fileSchema = object({
+    id: string(),
+    name: optional(objectID),
+    file: string(),
+    color: optional(string().or(zedInstance(Color))),
+    pose: optional(
+        object({
+            position: optional(array(number()).length(3)),
+            orientation: optional(array(number()).length(4)),
+        })
+    ),
+    animation: optional(string()),
+}).strict();
 
 /*
     export interface Position {
@@ -38,31 +42,28 @@ const fileSchema = z
         rotation?: [x: number, y: number, z: number];
     }
     */
-const positionSchema = z
-    .object({
-        name: objectID,
-        position: z.array(z.number()).length(3),
-        rotation: z.optional(
-            z.array(z.number()).length(4, {
-                message: "Rotation array does not have enough items",
-            })
-        ),
-        animation: z.optional(z.string()),
-    })
-    .strict();
+const positionSchema = object({
+    id: string(),
+    name: optional(objectID),
+    position: array(number()).length(3),
+    rotation: optional(
+        array(number()).length(4, {
+            message: "Rotation array does not have enough items",
+        })
+    ),
+    animation: optional(string()),
+}).strict();
 /*    
     export interface Step {
         name?: string;
         positions: Position[];
     }
     */
-const stepSchema = z
-    .object({
-        name: z.optional(z.string()),
-        positions: z.array(positionSchema),
-        animation: z.optional(z.string()),
-    })
-    .strict();
+const stepSchema = object({
+    name: optional(string()),
+    positions: array(positionSchema),
+    animation: optional(string()),
+}).strict();
 
 /*
 export interface JSON {
@@ -71,11 +72,9 @@ export interface JSON {
     steps?: Step[];
 }
 */
-const jsonSchema = z
-    .object({
-        files: z.optional(z.array(fileSchema)),
-        steps: z.optional(z.array(stepSchema)),
-    })
-    .strict();
+const jsonSchema = object({
+    files: optional(array(fileSchema)),
+    steps: optional(array(stepSchema)),
+}).strict();
 
 export { jsonSchema, fileSchema, stepSchema, positionSchema };
