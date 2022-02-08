@@ -13,7 +13,7 @@ const json = {
         {
             file: "models/files/Bar2.stl",
             color: "orange",
-            id: "1",
+            id: "2",
         },
         {
             file: "models/files/Bar3.stl",
@@ -129,7 +129,7 @@ btn.addEventListener("click", (ev) => {
     ev.preventDefault();
     t1.moveToStep(3);
 });
-t1.selectItem("1");
+t1.getItem("1");
 
 
 const json2 = {
@@ -157,7 +157,7 @@ const json2 = {
             name: "First Step",
             positions: [
                 {
-                    //id: "1",
+                    id: "1",
                     position: [0, 10, 0],
                 }
             ],
@@ -182,9 +182,14 @@ const c = {
     container: document.getElementById("second"),
     world: {
         startPosition: [50, 0, 0],
-        centerOfWorld: [0, 10, 0]
+        centerOfWorld: [0, -25, 0]
     },
     animationLoop: ["Init", "First Step", "Second Step"]
 };
 
-new Factory(c).loadJSON(json2);
+const f = new Factory(c).loadJSON(json2);
+
+f.on("1", "hover", (ev) => {
+    console.log("Inside!")
+    console.log(ev)
+})

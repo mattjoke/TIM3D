@@ -4,19 +4,19 @@ import { ObjectID } from "./applicationTypes";
 export type Objects = Map<string | number, Mesh>;
 
 export interface Pose {
-    position: [x: number, y: number, z: number];
+    position?: [x: number, y: number, z: number];
     orientation?: [x: number, y: number, z: number, w: number];
 }
 
 export interface Position {
-    name: ObjectID;
+    id: ObjectID;
     position: [x: number, y: number, z: number];
     rotation?: [x: number, y: number, z: number, w: number];
     animation?: string;
 }
 
 export interface Step {
-    name?: string;
+    name: string;
     positions: Position[];
     animation?: string;
 }

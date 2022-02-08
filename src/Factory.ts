@@ -29,7 +29,7 @@ class Factory {
     private generateUUID() {
         let uuid = uuidv4();
         uuid = uuid.replace(/-/g, "");
-        uuid = `tw-${uuid}`;   
+        uuid = `tw-${uuid}`;
 
         console.log(
             "Factory instance:",
@@ -51,8 +51,14 @@ class Factory {
         this.instance = null;
     }
 
+    public getItem(id: ObjectID) {
+        return this.instance?.getObjects()?.get(id);
+    }
     public selectItem(id: ObjectID) {
-        return this.instance?.getObjects().get(id);
+        const obj = this.instance?.getObjects()?.get(id);
+        const outline = obj?.getOutline();
+        outline?.layers.toggle(0);
+        obj?.getMesh().dispatchEvent({ type: "click", data: obj });
     }
 
     public moveToStep(stepNumber: number) {
@@ -65,7 +71,7 @@ class Factory {
 
     //Listeners functions
     public on(selector: ObjectID, event: string, callback: CallbackFunction) {
-        const item = this.selectItem(selector);
+        const item = this.getItem(selector);
         if (item == null) {
             return;
         }

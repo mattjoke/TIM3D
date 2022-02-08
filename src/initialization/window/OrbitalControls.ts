@@ -37,6 +37,7 @@ class OrbitalControls {
             worldPosition.z
         );
         this.controls.target.normalize();
+        this.reset();
     }
 
     public destroy() {

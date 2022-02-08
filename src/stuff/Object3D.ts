@@ -20,7 +20,7 @@ class Object3D {
         this.geometry = geometry;
         this.file = file;
         this.mesh = this.buildMesh(this.geometry, file);
-        this.outline = this.buildOutline(this.geometry, file);
+        this.outline = this.buildOutline(this.geometry);
     }
 
     public getMesh() {
@@ -88,11 +88,13 @@ class Object3D {
         const mesh = new Mesh(geometry, material);
 
         const pose = file.pose;
-        mesh.position.set(
-            pose?.position?.[0] || Math.floor(Math.random() * -700 + 300),
-            pose?.position?.[1] || 0,
-            pose?.position?.[2] || Math.floor(Math.random() * -700 + 300)
-        );
+        //Custom default position or random position on board
+        const position = pose?.position || [
+            Math.floor(Math.random() * -700 + 300),
+            0,
+            Math.floor(Math.random() * -700 + 300),
+        ];
+        mesh.position.set(position[0], position[1], position[2]);
 
         mesh.rotation.setFromQuaternion(
             new Quaternion(
@@ -107,13 +109,13 @@ class Object3D {
         mesh.name = `${file.id}-${file.name ?? "defName"}`;
         return mesh;
     }
-    private buildOutline(geometry: BufferGeometry, file: File): Mesh {
+    private buildOutline(geometry: BufferGeometry): Mesh {
         const outline = new MeshBasicMaterial({
             color: "blue",
             side: BackSide,
         });
         const shadow = new Mesh(geometry, outline);
-        shadow.name = `${file.id}-${file.name ?? "defName"}-outline`;
+        shadow.name = `${this.mesh.name}-outline`;
         shadow.position.set(
             this.mesh.position.x,
             this.mesh.position.y,
