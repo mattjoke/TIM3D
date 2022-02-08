@@ -13,7 +13,7 @@ const json = {
         {
             file: "models/files/Bar2.stl",
             color: "orange",
-            id: "1",
+            id: "2",
         },
         {
             file: "models/files/Bar3.stl",
