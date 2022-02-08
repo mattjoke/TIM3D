@@ -5,7 +5,7 @@ const json = {
         {
             file: "models/files/Bar1.stl",
             color: "yellow",
-            name: "1",
+            id: "1",
             pose: {
                 position: [10, 10, 10]
             }
@@ -13,36 +13,36 @@ const json = {
         {
             file: "models/files/Bar2.stl",
             color: "orange",
-            name: "2",
+            id: "1",
         },
         {
             file: "models/files/Bar3.stl",
             color: "#192833",
-            name: "3",
+            id: "3",
         },
         {
             file: "models/files/Bar4.stl",
-            name: "4",
+            id: "4",
         },
         {
             file: "models/files/Base_gr.stl",
-            name: "5",
+            id: "5",
         },
         {
             file: "models/files/Base_top.stl",
-            name: "6",
+            id: "6",
         },
         {
             file: "models/files/Bolt_slide_gr.stl",
-            name: "7",
+            id: "7",
         },
         {
             file: "models/files/Bolt_slide_top.stl",
-            name: "8",
+            id: "8",
         },
         {
             file: "models/files/cube.obj",
-            name: "9"
+            id: "9"
         }
     ],
     steps: [
@@ -50,7 +50,7 @@ const json = {
             name: "Init",
             positions: [
                 {
-                    name: "1",
+                    id: "1",
                     position: [10, 10, 10],
                 },
             ],
@@ -59,12 +59,12 @@ const json = {
             name: "First Step",
             positions: [
                 {
-                    name: "1",
+                    id: "1",
                     position: [0, 0, 0],
                     rotation: [0.3, 0.7, 0.4, 0.1],
                 },
                 {
-                    name: "2",
+                    id: "2",
                     position: [30, 10, 25],
                     animation: "z360deg"
                 },
@@ -74,7 +74,7 @@ const json = {
             name: "Second Step",
             positions: [
                 {
-                    name: "1",
+                    id: "1",
                     position: [20, 15, 7],
                 },
             ],
@@ -100,7 +100,7 @@ const config = {
     }
 };
 
-const t1 = await new Factory(config).loadJSON(json);
+const t1 = new Factory(config).loadJSON(json);
 
 t1.on("5", "click", (e) => {
     const span = document.getElementById("data");
@@ -137,7 +137,7 @@ const json2 = {
         {
             file: "models/files/screw.stl",
             color: "yellow",
-            name: "1",
+            id: "1",
             pose: {
                 position: [0, 0, 0]
             }
@@ -148,7 +148,7 @@ const json2 = {
             name: "Init",
             positions: [
                 {
-                    name: "1",
+                    id: "1",
                     position: [0, 0, 0],
                 },
             ],
@@ -157,7 +157,7 @@ const json2 = {
             name: "First Step",
             positions: [
                 {
-                    name: "1",
+                    //id: "1",
                     position: [0, 10, 0],
                 }
             ],
@@ -167,7 +167,7 @@ const json2 = {
             name: "Second Step",
             positions: [
                 {
-                    name: "1",
+                    id: "1",
                     position: [0, -10, 0],
                 }
             ],

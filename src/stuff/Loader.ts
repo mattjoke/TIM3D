@@ -23,42 +23,49 @@ const Loader = async (
     for (const file of files) {
         const loader = manager.getHandler(file.file);
 
-        await loader?.loadAsync(file.file).then((object) => {
-            let obj: Object3D;
-            switch (object.type) {
-                case "Group":
-                    const o = object as Group;
-                    const child = o.children[0] as Mesh;
-                    obj = new Object3D(child.geometry, file);
-                    obj.setScale(50, 50, 50);
-                    break;
-                default:
-                    obj = new Object3D(object, file);
-                    break;
-            }
+        await loader
+            ?.loadAsync(file.file)
+            .then((object) => {
+                let obj: Object3D;
+                switch (object.type) {
+                    case "Group":
+                        const o = object as Group;
+                        const child = o.children[0] as Mesh;
+                        obj = new Object3D(child.geometry, file);
+                        obj.setScale(50, 50, 50);
+                        break;
+                    default:
+                        obj = new Object3D(object, file);
+                        break;
+                }
 
-            obj.setOutlineColor(config?.colors?.selectionColor);
+                obj.setOutlineColor(config?.colors?.selectionColor);
 
-            if (items.get(file.id)) {
-                throw new Error(`Duplicate object name: ${file.id}, please check your files array.`)
-            }
+                if (items.get(file.id)) {
+                    throw new Error(
+                        `Duplicate object name: ${file.id}, please check your files array.`
+                    );
+                }
 
-            items.set(file.id, obj);
+                items.set(file.id, obj);
 
-            if (config?.world?.globalRotation != null) {
-                const rotation = new Quaternion();
-                rotation.set(
-                    config?.world?.globalRotation?.[0],
-                    config?.world?.globalRotation?.[1],
-                    config?.world?.globalRotation?.[2],
-                    config?.world?.globalRotation?.[3]
-                );
-                obj.setRotation(rotation);
-            }
+                if (config?.world?.globalRotation != null) {
+                    const rotation = new Quaternion();
+                    rotation.set(
+                        config?.world?.globalRotation?.[0],
+                        config?.world?.globalRotation?.[1],
+                        config?.world?.globalRotation?.[2],
+                        config?.world?.globalRotation?.[3]
+                    );
+                    obj.setRotation(rotation);
+                }
 
-            window.getScene().addObject(obj.getMesh());
-            window.getScene().addObject(obj.getOutline());
-        });
+                window.getScene().addObject(obj.getMesh());
+                window.getScene().addObject(obj.getOutline());
+            })
+            .catch((error) => {
+                throw new Error(error);
+            });
     }
 
     window.container.removeChild(div);

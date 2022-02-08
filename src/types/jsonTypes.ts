@@ -23,7 +23,7 @@ export interface Step {
 
 export interface File {
     file: string;
-    name: ObjectID;
+    name?: ObjectID;
     id: string;
     color?: Color | string;
     pose?: Pose;
