@@ -5,11 +5,13 @@ import {
     AnimationDef,
     CallbackFunction,
     ObjectID,
+    Objects3D,
     UUID,
 } from "./types/applicationTypes";
 import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
 import { v4 as uuidv4 } from "uuid";
+import Object3D from "stuff/Object3D";
 
 class Factory {
     private instance: Init | null;
@@ -51,14 +53,17 @@ class Factory {
         this.instance = null;
     }
 
-    public getItem(id: ObjectID) {
-        return this.instance?.getObjects()?.get(id);
+    public getItem(id:ObjectID){
+        return this.instance?.getItem(id);
     }
+
     public selectItem(id: ObjectID) {
-        const obj = this.instance?.getObjects()?.get(id);
-        const outline = obj?.getOutline();
-        outline?.layers.toggle(0);
-        obj?.getMesh().dispatchEvent({ type: "click", data: obj });
+        const obj = this.instance?.getItem(id);
+        obj?.then(res => {
+            const outline = res?.getOutline();
+            outline?.layers.toggle(0);
+            res?.getMesh().dispatchEvent({ type: "click", data: res });
+        })
     }
 
     public moveToStep(stepNumber: number) {
@@ -66,24 +71,30 @@ class Factory {
     }
 
     public getObjects() {
-        return this.instance?.getObjects();
+        this.instance?.getItems().then((result) => {
+            return result;
+        });
     }
 
     //Listeners functions
     public on(selector: ObjectID, event: string, callback: CallbackFunction) {
-        const item = this.getItem(selector);
-        if (item == null) {
-            return;
-        }
-        item.getMesh().addEventListener(event, (e: Event) => {
-            callback(item, e);
+        this.instance?.getItems()?.then((res) => {
+            const item = res.get(selector);
+            if (item == null){
+                return;
+            }
+            item.getMesh().addEventListener(event, (e:Event)=>{
+                callback(item, e);
+            })
         });
     }
 
     public group(event: string, callback: CallbackFunction) {
-        this.getObjects()?.forEach((item) => {
-            item.getMesh().addEventListener(event, (e) => {
-                callback(item, e);
+        this.instance?.getItems().then((objects: Objects3D) => {
+            objects.forEach((item: Object3D) => {
+                item.getMesh().addEventListener(event, (e) => {
+                    callback(item, e);
+                });
             });
         });
     }

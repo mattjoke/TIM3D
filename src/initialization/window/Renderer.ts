@@ -152,9 +152,6 @@ class Renderer {
                 continue;
             }
             const outline = scene.getObjectByName(`${obj.name}-outline`);
-            console.log(obj.name);
-            console.log(scene.children)
-            console.log(scene.getObjectByName(`${obj.name}-outline`));
             if (!outline) break;
             outline.layers.toggle(0);
             obj.dispatchEvent({ type: "click", data: obj });

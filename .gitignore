@@ -1,4 +1,5 @@
 node_modules
 public/models/*
+public/jsons/*
 
 dist

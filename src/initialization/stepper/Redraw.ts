@@ -15,11 +15,11 @@ const animatePosition = (from: Object3D, to: Vector3, delay?: number) => {
         });
 };
 
-const animateRotation = (from: Object3D, to: Euler, delay?: number) => {
-    return new Tween(from.getMesh().rotation)
+const animateRotation = (from: Object3D, to: Quaternion, delay?: number) => {
+    return new Tween(from.getMesh().quaternion)
         .to({ x: to.x, y: to.y, z: to.z }, delay ?? 500)
         .onStart(() => {
-            new Tween(from.getOutline().rotation)
+            new Tween(from.getOutline().quaternion)
                 .to({ x: to.x, y: to.y, z: to.z }, delay ?? 500)
                 .start();
         });
@@ -30,11 +30,9 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
         const obj: Object3D = getObject(position.id);
         if (obj == null) continue;
 
-        const quaterRotation = new Quaternion().fromArray(
-            position.rotation ?? [-0.7071068, 0, 0, 0.7071068]
+        const rotation = new Quaternion().fromArray(
+            position.rotation ?? [0, 0, 0, 0]
         );
-
-        const rotation = new Euler().setFromQuaternion(quaterRotation);
 
         const animation = animatePosition(
             obj,

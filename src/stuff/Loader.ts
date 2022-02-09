@@ -1,6 +1,6 @@
 import { Config } from "@manualTypes/configTypes";
 import { File } from "@manualTypes/jsonTypes";
-import { Group, Mesh, Quaternion } from "three";
+import { AxesHelper, Group, Mesh, Quaternion, Vector3 } from "three";
 import Window from "../initialization/Window";
 import { Objects3D } from "../types/applicationTypes";
 import LoaderManager from "./loaders/LoaderManager";
@@ -49,6 +49,8 @@ const Loader = async (
 
                 items.set(file.id, obj);
 
+                
+                
                 if (config?.world?.globalRotation != null) {
                     const rotation = new Quaternion();
                     rotation.set(
@@ -60,6 +62,9 @@ const Loader = async (
                     obj.setRotation(rotation);
                 }
 
+                const helper= new AxesHelper(20);
+                obj.getMesh().add(helper);
+                
                 window.getScene().addObject(obj.getMesh());
                 window.getScene().addObject(obj.getOutline());
             })
