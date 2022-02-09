@@ -1,7 +1,11 @@
 import { Line, Object3D } from "three";
 import { ConfigCheck, JsonCheck } from "../inputChecking/InputCheck";
 import Loader from "../stuff/Loader";
-import { Objects3D } from "../types/applicationTypes";
+import {
+    CallbackFunction,
+    ObjectID,
+    Objects3D,
+} from "../types/applicationTypes";
 import { Config } from "../types/configTypes";
 import { JSON } from "../types/jsonTypes";
 import Axis from "./init/Axis";
@@ -86,11 +90,31 @@ class Init {
         return check.success;
     }
 
-    public getObjects() {
-        return this.objects;
-    }
     public getStepper() {
         return this.stepper;
+    }
+
+    private delay(t: number) {
+        return new Promise((resolve) => setTimeout(resolve, t));
+    }
+
+    public async getItems() {
+        while (!this.objectsLoaded) {
+            await this.delay(100);
+        }
+        return this.objects;
+    }
+
+    public async getItem(selector: ObjectID) {
+        return Promise.resolve(
+            this.getItems().then((objects) => {
+                const object = objects.get(selector);
+                if (object == null) {
+                    return;
+                }
+                return object;
+            })
+        );
     }
 
     public addObjects(...objects: any) {

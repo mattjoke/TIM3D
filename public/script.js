@@ -1,107 +1,158 @@
 import "http://localhost:3000/bundle.js";
 
 const json = {
-    files: [
+    "files": [
         {
-            file: "models/files/Bar1.stl",
-            color: "yellow",
-            id: "1",
-            pose: {
-                position: [10, 10, 10]
+            "id": "1:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_body_T24_",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_body_T24_.stl",
+            "name": "LX15D_U_body(T24)",
+            "pose": { "position": [40, 0, 0], "orientation": [1, 0, 0, 0] }
+        },
+        {
+            "id": "2:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_T24_",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_T24_.stl",
+            "name": "LX15D_U_plate(T24)",
+            "pose": { "position": [0, 0, 0], "orientation": [1, 0, 0, 0] }
+        },
+        {
+            "id": "3:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_T24_",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_T24_.stl",
+            "name": "LX15D_U_plate_cable(T24)",
+            "pose": {
+                "position": [0, 0, 0],
+                "orientation": [6.123233995736766e-17, 1, 0, 0]
             }
         },
         {
-            file: "models/files/Bar2.stl",
-            color: "orange",
-            id: "2",
+            "id": "4:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_lock_T24_2.0_2.0_",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_lock_T24_2.0_2.0_.stl",
+            "name": "LX15D_U_plate_cable_lock(T24,2.0,2.0)",
+            "pose": { "position": [0, 0, 0], "orientation": [1, 0, 0, 0] }
         },
         {
-            file: "models/files/Bar3.stl",
-            color: "#192833",
-            id: "3",
+            "id": "5:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x12_screw",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x12_screw.stl",
+            "name": "Cylinder M2x12 screw",
+            "pose": {
+                "position": [37, -8, -18.75],
+                "orientation": [1, 0, 0, 0]
+            }
         },
         {
-            file: "models/files/Bar4.stl",
-            id: "4",
+            "id": "6:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x12_screw",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x12_screw.stl",
+            "name": "Cylinder M2x12 screw",
+            "pose": { "position": [37, 8, -18.75], "orientation": [1, 0, 0, 0] }
         },
         {
-            file: "models/files/Base_gr.stl",
-            id: "5",
+            "id": "7:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
+            "name": "Cylinder M2x8 screw",
+            "pose": {
+                "position": [37, -8, 14.75],
+                "orientation": [6.123233995736766e-17, 1, 0, 0]
+            }
         },
         {
-            file: "models/files/Base_top.stl",
-            id: "6",
+            "id": "8:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
+            "name": "Cylinder M2x8 screw",
+            "pose": {
+                "position": [37, 8, 14.75],
+                "orientation": [6.123233995736766e-17, 1, 0, 0]
+            }
         },
         {
-            file: "models/files/Bolt_slide_gr.stl",
-            id: "7",
+            "id": "9:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
+            "name": "Cylinder M2x8 screw",
+            "pose": {
+                "position": [32.025000000000006, -9, -14.75],
+                "orientation": [1, 0, 0, 0]
+            }
         },
         {
-            file: "models/files/Bolt_slide_top.stl",
-            id: "8",
+            "id": "10:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
+            "name": "Cylinder M2x8 screw",
+            "pose": {
+                "position": [32.025000000000006, -9, 14.75],
+                "orientation": [6.123233995736766e-17, 1, 0, 0]
+            }
         },
         {
-            file: "models/files/cube.obj",
-            id: "9"
+            "id": "11:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
+            "name": "Cylinder M2x8 screw",
+            "pose": {
+                "position": [32.025000000000006, 9, -14.75],
+                "orientation": [1, 0, 0, 0]
+            }
+        },
+        {
+            "id": "12:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
+            "name": "Cylinder M2x8 screw",
+            "pose": {
+                "position": [32.025000000000006, 9, 14.75],
+                "orientation": [6.123233995736766e-17, 1, 0, 0]
+            }
+        },
+        {
+            "id": "13:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
+            "name": "M2 nut",
+            "pose": {
+                "position": [37, -8, -10.75],
+                "orientation": [1, 0, 0, 0]
+            }
+        },
+        {
+            "id": "14:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
+            "name": "M2 nut",
+            "pose": {
+                "position": [37, -8, 10.75],
+                "orientation": [6.123233995736766e-17, 1, 0, 0]
+            }
+        },
+        {
+            "id": "15:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
+            "name": "M2 nut",
+            "pose": { "position": [37, 8, -10.75], "orientation": [1, 0, 0, 0] }
+        },
+        {
+            "id": "16:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
+            "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
+            "name": "M2 nut",
+            "pose": {
+                "position": [37, 8, 10.75],
+                "orientation": [6.123233995736766e-17, 1, 0, 0]
+            }
         }
     ],
-    steps: [
-        {
-            name: "Init",
-            positions: [
-                {
-                    id: "1",
-                    position: [10, 10, 10],
-                },
-            ],
-        },
-        {
-            name: "First Step",
-            positions: [
-                {
-                    id: "1",
-                    position: [0, 0, 0],
-                    rotation: [0.3, 0.7, 0.4, 0.1],
-                },
-                {
-                    id: "2",
-                    position: [30, 10, 25],
-                    animation: "z360deg"
-                },
-            ],
-        },
-        {
-            name: "Second Step",
-            positions: [
-                {
-                    id: "1",
-                    position: [20, 15, 7],
-                },
-            ],
-            animation: "y90deg"
-        },
-    ],
-};
+    "steps": []
+}
+
+
+
 
 var overlay = document.createElement("div");
 overlay.innerHTML = "<p>LOADING</p>";
 
 const config = {
     container: document.getElementById("first"),
-    colors: {
-        backgroundColor: "rgb(",
-    },
-    sidebar: {
-        body: overlay,
-        visible: true
-    },
-    world: {
-        globalRotation: [-0.7071068, 0, 0, 0.7071068]
-    }
 };
 
 const t1 = new Factory(config).loadJSON(json);
 
+t1.group("hover", (e) => {
+    console.log(e.getMesh())
+    //e.setScale(5, 5, 5);
+    //e.getMesh().position.x += 5;
+    //e.setOutlineFromMesh();
+})
 t1.on("5", "click", (e) => {
     const span = document.getElementById("data");
     if (span != null) {
@@ -110,13 +161,9 @@ t1.on("5", "click", (e) => {
 });
 
 t1.on("1", "click", () => {
+    console.log("KEK")
 });
 
-t1.group("click", (e) => {
-    // console.log(e.data);
-    //t1.destroy();
-    console.log("KLIKD")
-})
 
 t1.on("5", "hover", (e) => {
     /*obj.getMesh().position.x += 5;
@@ -182,10 +229,16 @@ const c = {
     container: document.getElementById("second"),
     world: {
         startPosition: [50, 0, 0],
-        centerOfWorld: [0, -25, 0]
+        centerOfWorld: [0, -25, 0],
+        globalRotation: [
+            1,
+            0,
+            0,
+            1,
+        ]
     },
-    animationLoop: ["Init", "First Step", "Second Step"]
-};
+    animationLoop: ["Init", "First Step", "Second Step"],
+}
 
 const f = new Factory(c).loadJSON(json2);
 

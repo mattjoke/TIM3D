@@ -7,6 +7,7 @@ import {
     MeshBasicMaterial,
     MeshStandardMaterial,
     Quaternion,
+    Vector3,
 } from "three";
 import { isColor } from "./Utils";
 
@@ -32,6 +33,16 @@ class Object3D {
         this.outline.scale.multiplyScalar(1.07);
     }
 
+    public updateMatrix() {
+        this.getMesh().updateMatrix();
+        this.getOutline().updateMatrix();
+    }
+
+    public setPosition(position: Vector3) {
+        this.getMesh().position.set(position.x, position.y, position.z);
+        this.setOutlineFromMesh();
+    }
+
     public setRotation(rotation: Quaternion) {
         this.getMesh().setRotationFromQuaternion(rotation);
         this.getOutline().setRotationFromQuaternion(rotation);
@@ -40,10 +51,12 @@ class Object3D {
     public setOutlineFromMesh() {
         this.outline.position.copy(this.mesh.position);
         this.outline.rotation.copy(this.mesh.rotation);
+        this.updateMatrix();
     }
     public setMeshFromOutline() {
         this.mesh.position.copy(this.outline.position);
         this.mesh.rotation.copy(this.outline.rotation);
+        this.updateMatrix();
     }
 
     public getEmissive() {
@@ -85,27 +98,28 @@ class Object3D {
         });
 
         geometry.computeVertexNormals();
+        geometry.center();
+        
         const mesh = new Mesh(geometry, material);
-
         const pose = file.pose;
         //Custom default position or random position on board
         const position = pose?.position || [
-            Math.floor(Math.random() * -700 + 300),
+            0, //Math.floor(Math.random() * -700 + 300),
             0,
-            Math.floor(Math.random() * -700 + 300),
+            0, //Math.floor(Math.random() * -700 + 300),
         ];
         mesh.position.set(position[0], position[1], position[2]);
 
-        mesh.rotation.setFromQuaternion(
-            new Quaternion(
-                pose?.orientation?.[0] || 0,
-                pose?.orientation?.[1] || 0,
-                pose?.orientation?.[2] || 0,
-                pose?.orientation?.[3] || 0
-            )
-        );
+        const orientation = pose?.orientation || [0, 0, 0, 0];
 
-        //mesh.rotateX(-Math.PI / 2);
+        mesh.quaternion.set(
+            orientation[1],
+            orientation[2],
+            orientation[3],
+            orientation[0],
+        );
+        mesh.quaternion.normalize();
+
         mesh.name = `${file.id}-${file.name ?? "defName"}`;
         return mesh;
     }
