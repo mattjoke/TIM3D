@@ -95,9 +95,6 @@ const config = {
         body: overlay,
         visible: true
     },
-    world: {
-        globalRotation: [-0.7071068, 0, 0, 0.7071068]
-    }
 };
 
 const t1 = new Factory(config).loadJSON(json);
