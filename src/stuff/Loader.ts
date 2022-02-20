@@ -1,6 +1,14 @@
 import { Config } from "@manualTypes/configTypes";
 import { File } from "@manualTypes/jsonTypes";
-import { AxesHelper, Group, Mesh, Quaternion, Vector3 } from "three";
+import {
+    AxesHelper,
+    BoxHelper,
+    Group,
+    Mesh,
+    Quaternion,
+    Vector3,
+    WebGLIndexedBufferRenderer,
+} from "three";
 import Window from "../initialization/Window";
 import { Objects3D } from "../types/applicationTypes";
 import LoaderManager from "./loaders/LoaderManager";
@@ -25,7 +33,7 @@ const Loader = async (
 
         await loader
             ?.loadAsync(file.file)
-            .then((object) => {
+            .then(async (object) => {
                 let obj: Object3D;
                 switch (object.type) {
                     case "Group":
@@ -49,8 +57,6 @@ const Loader = async (
 
                 items.set(file.id, obj);
 
-                
-                
                 if (config?.world?.globalRotation != null) {
                     const rotation = new Quaternion();
                     rotation.set(
@@ -62,9 +68,14 @@ const Loader = async (
                     obj.setRotation(rotation);
                 }
 
-                const helper= new AxesHelper(20);
+                const helper = new AxesHelper(20);
                 obj.getMesh().add(helper);
+
+                const box = new BoxHelper(obj.getMesh(), 0xffff00);
+
                 
+
+                window.getScene().addObject(box);
                 window.getScene().addObject(obj.getMesh());
                 window.getScene().addObject(obj.getOutline());
             })

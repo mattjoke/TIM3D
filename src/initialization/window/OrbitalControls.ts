@@ -14,6 +14,7 @@ class OrbitalControls {
         this.controls = new OrbitControls(camera, renderer.domElement);
         this.controls.enableDamping = true;
         this.controls.dampingFactor = 0.05;
+        this.controls.minDistance = -5000;
 
         this.controls.addEventListener("start", () => {
             renderer.lockHighlight();

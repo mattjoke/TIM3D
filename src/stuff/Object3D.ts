@@ -7,7 +7,7 @@ import {
     MeshBasicMaterial,
     MeshStandardMaterial,
     Quaternion,
-    Vector3,
+    Vector3
 } from "three";
 import { isColor } from "./Utils";
 
@@ -46,6 +46,20 @@ class Object3D {
     public setRotation(rotation: Quaternion) {
         this.getMesh().setRotationFromQuaternion(rotation);
         this.getOutline().setRotationFromQuaternion(rotation);
+    }
+
+    public addPosition(position: Vector3 | [number, number, number]) {
+        if (position instanceof Vector3) {
+            this.getMesh().position.add(position);
+        } else {
+            this.getMesh().position.add(
+                new Vector3(position[0], position[1], position[2])
+            );
+        }
+        this.setOutlineFromMesh();
+    }
+    public addRotation(rotation: Quaternion) {
+        this.setOutlineFromMesh();
     }
 
     public setOutlineFromMesh() {
@@ -98,8 +112,7 @@ class Object3D {
         });
 
         geometry.computeVertexNormals();
-        geometry.center();
-        
+
         const mesh = new Mesh(geometry, material);
         const pose = file.pose;
         //Custom default position or random position on board
@@ -108,7 +121,7 @@ class Object3D {
             0,
             0, //Math.floor(Math.random() * -700 + 300),
         ];
-        mesh.position.set(position[0], position[1], position[2]);
+        mesh.position.add(new Vector3(position[0], position[1], position[2]));
 
         const orientation = pose?.orientation || [0, 0, 0, 0];
 
@@ -116,7 +129,7 @@ class Object3D {
             orientation[1],
             orientation[2],
             orientation[3],
-            orientation[0],
+            orientation[0]
         );
         mesh.quaternion.normalize();
 

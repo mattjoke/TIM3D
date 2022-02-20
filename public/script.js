@@ -12,7 +12,7 @@ const json = {
             "id": "2:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_T24_",
             "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_T24_.stl",
             "name": "LX15D_U_plate(T24)",
-            "pose": { "position": [0, 0, 0], "orientation": [1, 0, 0, 0] }
+            "color": "green"
         },
         {
             "id": "3:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_T24_",
@@ -52,6 +52,7 @@ const json = {
                 "position": [37, -8, 14.75],
                 "orientation": [6.123233995736766e-17, 1, 0, 0]
             }
+            , "color": "yellow"
         },
         {
             "id": "8:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
@@ -61,6 +62,7 @@ const json = {
                 "position": [37, 8, 14.75],
                 "orientation": [6.123233995736766e-17, 1, 0, 0]
             }
+            , "color": "yellow"
         },
         {
             "id": "9:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
@@ -70,6 +72,7 @@ const json = {
                 "position": [32.025000000000006, -9, -14.75],
                 "orientation": [1, 0, 0, 0]
             }
+            , "color": "yellow"
         },
         {
             "id": "10:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
@@ -79,6 +82,7 @@ const json = {
                 "position": [32.025000000000006, -9, 14.75],
                 "orientation": [6.123233995736766e-17, 1, 0, 0]
             }
+            , "color": "yellow"
         },
         {
             "id": "11:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
@@ -88,6 +92,7 @@ const json = {
                 "position": [32.025000000000006, 9, -14.75],
                 "orientation": [1, 0, 0, 0]
             }
+            , "color": "yellow"
         },
         {
             "id": "12:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw",
@@ -97,6 +102,7 @@ const json = {
                 "position": [32.025000000000006, 9, 14.75],
                 "orientation": [6.123233995736766e-17, 1, 0, 0]
             }
+            , "color": "yellow"
         },
         {
             "id": "13:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
@@ -106,6 +112,7 @@ const json = {
                 "position": [37, -8, -10.75],
                 "orientation": [1, 0, 0, 0]
             }
+            , "color": "yellow"
         },
         {
             "id": "14:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
@@ -115,6 +122,7 @@ const json = {
                 "position": [37, -8, 10.75],
                 "orientation": [6.123233995736766e-17, 1, 0, 0]
             }
+            , "color": "yellow"
         },
         {
             "id": "15:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
@@ -129,30 +137,29 @@ const json = {
             "pose": {
                 "position": [37, 8, 10.75],
                 "orientation": [6.123233995736766e-17, 1, 0, 0]
-            }
+            },
+            "color": "yellow"
         }
     ],
     "steps": []
-}
-
-
-
+};
 
 var overlay = document.createElement("div");
 overlay.innerHTML = "<p>LOADING</p>";
 
 const config = {
     container: document.getElementById("first"),
+    colors: {
+        backgroundColor: "rgb(",
+    },
+    sidebar: {
+        body: overlay,
+        visible: false
+    },
 };
 
 const t1 = new Factory(config).loadJSON(json);
 
-t1.group("hover", (e) => {
-    console.log(e.getMesh())
-    //e.setScale(5, 5, 5);
-    //e.getMesh().position.x += 5;
-    //e.setOutlineFromMesh();
-})
 t1.on("5", "click", (e) => {
     const span = document.getElementById("data");
     if (span != null) {
@@ -161,9 +168,14 @@ t1.on("5", "click", (e) => {
 });
 
 t1.on("1", "click", () => {
-    console.log("KEK")
 });
 
+t1.group("click", (e) => {
+    console.log(e);
+    e.addPosition([10, 0, 0])
+    //t1.destroy();
+    console.log("KLIKD")
+})
 
 t1.on("5", "hover", (e) => {
     /*obj.getMesh().position.x += 5;
@@ -229,16 +241,10 @@ const c = {
     container: document.getElementById("second"),
     world: {
         startPosition: [50, 0, 0],
-        centerOfWorld: [0, -25, 0],
-        globalRotation: [
-            1,
-            0,
-            0,
-            1,
-        ]
+        centerOfWorld: [0, -25, 0]
     },
-    animationLoop: ["Init", "First Step", "Second Step"],
-}
+    animationLoop: ["Init", "First Step", "Second Step"]
+};
 
 const f = new Factory(c).loadJSON(json2);
 

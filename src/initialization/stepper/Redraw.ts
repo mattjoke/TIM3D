@@ -43,6 +43,7 @@ const Redraw = (currentStep: ManualStep, getObject: Function) => {
         if (anim != null) {
             const computeAnimation = anim(obj);
             if (computeAnimation) {
+                //@ts-ignore
                 animation.chain(computeAnimation);
             }
         }
