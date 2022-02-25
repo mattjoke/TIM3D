@@ -1,9 +1,9 @@
 import { LoadingManager } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { PRWMLoader } from "three/examples/jsm/loaders/PRWMLoader";
 import { PCDLoader } from "three/examples/jsm/loaders/PCDLoader";
+import { PRWMLoader } from "three/examples/jsm/loaders/PRWMLoader";
+import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 
 const LoaderManager = () => {
     const manager = new LoadingManager();

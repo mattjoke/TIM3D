@@ -9,7 +9,7 @@ import {
     Quaternion,
     Vector3,
 } from "three";
-import { isColor } from "./Utils";
+import { generateRandomColor, generateRandomSeededColor, isColor } from "./Utils";
 
 class Object3D {
     private file: File;
@@ -46,6 +46,20 @@ class Object3D {
     public setRotation(rotation: Quaternion) {
         this.getMesh().setRotationFromQuaternion(rotation);
         this.getOutline().setRotationFromQuaternion(rotation);
+    }
+
+    public addPosition(position: Vector3 | [number, number, number]) {
+        if (position instanceof Vector3) {
+            this.getMesh().position.add(position);
+        } else {
+            this.getMesh().position.add(
+                new Vector3(position[0], position[1], position[2])
+            );
+        }
+        this.setOutlineFromMesh();
+    }
+    public addRotation(rotation: Quaternion) {
+        this.setOutlineFromMesh();
     }
 
     public setOutlineFromMesh() {
@@ -88,9 +102,18 @@ class Object3D {
     }
 
     private buildMesh(geometry: BufferGeometry, file: File) {
+        let objColor = file.color || "random";
+        if (objColor === "random") {
+            objColor = new Color(generateRandomSeededColor());
+        }
+        if (!isColor(objColor)) {
+            console.warn(`${objColor} is not a valid color! Setting a random one.`)
+            objColor = new Color(generateRandomSeededColor());
+        }
+
         const material = new MeshStandardMaterial({
             name: `${file.id}-${file.name ?? "defName"}`,
-            color: file.color || "white",
+            color: objColor,
             opacity: 0.5,
             flatShading: false,
             clipShadows: false,
@@ -98,25 +121,21 @@ class Object3D {
         });
 
         geometry.computeVertexNormals();
-        geometry.center();
-        
+
         const mesh = new Mesh(geometry, material);
         const pose = file.pose;
-        //Custom default position or random position on board
-        const position = pose?.position || [
-            0, //Math.floor(Math.random() * -700 + 300),
-            0,
-            0, //Math.floor(Math.random() * -700 + 300),
-        ];
-        mesh.position.set(position[0], position[1], position[2]);
 
+        //Custom default position
+        const position = pose?.position || [0, 0, 0];
+        mesh.position.add(new Vector3(position[0], position[1], position[2]));
+
+        //Custom default orientation
         const orientation = pose?.orientation || [0, 0, 0, 0];
-
         mesh.quaternion.set(
             orientation[1],
             orientation[2],
             orientation[3],
-            orientation[0],
+            orientation[0]
         );
         mesh.quaternion.normalize();
 

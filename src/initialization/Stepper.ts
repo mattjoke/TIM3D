@@ -20,7 +20,6 @@ class Stepper {
         this.currentStep = root ?? new ManualStep();
         this.root = root;
         this.length = length;
-        console.log(root)
 
         this.animationLoop = animationLoop ?? [];
 
