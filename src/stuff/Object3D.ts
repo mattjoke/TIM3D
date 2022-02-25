@@ -7,9 +7,9 @@ import {
     MeshBasicMaterial,
     MeshStandardMaterial,
     Quaternion,
-    Vector3
+    Vector3,
 } from "three";
-import { isColor } from "./Utils";
+import { generateRandomColor, generateRandomSeededColor, isColor } from "./Utils";
 
 class Object3D {
     private file: File;
@@ -102,9 +102,18 @@ class Object3D {
     }
 
     private buildMesh(geometry: BufferGeometry, file: File) {
+        let objColor = file.color || "random";
+        if (objColor === "random") {
+            objColor = new Color(generateRandomSeededColor());
+        }
+        if (!isColor(objColor)) {
+            console.warn(`${objColor} is not a valid color! Setting a random one.`)
+            objColor = new Color(generateRandomSeededColor());
+        }
+
         const material = new MeshStandardMaterial({
             name: `${file.id}-${file.name ?? "defName"}`,
-            color: file.color || "white",
+            color: objColor,
             opacity: 0.5,
             flatShading: false,
             clipShadows: false,
@@ -115,16 +124,13 @@ class Object3D {
 
         const mesh = new Mesh(geometry, material);
         const pose = file.pose;
-        //Custom default position or random position on board
-        const position = pose?.position || [
-            0, //Math.floor(Math.random() * -700 + 300),
-            0,
-            0, //Math.floor(Math.random() * -700 + 300),
-        ];
+
+        //Custom default position
+        const position = pose?.position || [0, 0, 0];
         mesh.position.add(new Vector3(position[0], position[1], position[2]));
 
+        //Custom default orientation
         const orientation = pose?.orientation || [0, 0, 0, 0];
-
         mesh.quaternion.set(
             orientation[1],
             orientation[2],

@@ -12,6 +12,7 @@ import { Config } from "./types/configTypes";
 import { JSON } from "./types/jsonTypes";
 import { v4 as uuidv4 } from "uuid";
 import Object3D from "stuff/Object3D";
+import { object } from "zod";
 
 class Factory {
     private instance: Init | null;
@@ -53,17 +54,17 @@ class Factory {
         this.instance = null;
     }
 
-    public getItem(id:ObjectID){
+    public getItem(id: ObjectID) {
         return this.instance?.getItem(id);
     }
 
     public selectItem(id: ObjectID) {
         const obj = this.instance?.getItem(id);
-        obj?.then(res => {
+        obj?.then((res) => {
             const outline = res?.getOutline();
             outline?.layers.toggle(0);
             res?.getMesh().dispatchEvent({ type: "click", data: res });
-        })
+        });
     }
 
     public moveToStep(stepNumber: number) {
@@ -71,8 +72,16 @@ class Factory {
     }
 
     public getObjects() {
-        this.instance?.getItems().then((result) => {
+        return this.instance?.getItems().then((result: Objects3D) => {
             return result;
+        });
+    }
+
+    public setScaling(scaling: number) {
+        this.getObjects()?.then((data: Objects3D) => {
+            data.forEach((object) => {
+                object.setScale(scaling, scaling, scaling);
+            });
         });
     }
 
@@ -80,12 +89,12 @@ class Factory {
     public on(selector: ObjectID, event: string, callback: CallbackFunction) {
         this.instance?.getItems()?.then((res) => {
             const item = res.get(selector);
-            if (item == null){
+            if (item == null) {
                 return;
             }
-            item.getMesh().addEventListener(event, (e:Event)=>{
+            item.getMesh().addEventListener(event, (e: Event) => {
                 callback(item, e);
-            })
+            });
         });
     }
 

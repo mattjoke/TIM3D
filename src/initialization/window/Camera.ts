@@ -5,7 +5,7 @@ const Camera = (perspective :number, defPosition: Vector3) => {
         75,
         perspective,
         0.1,
-        2000
+        5000
     );
 
     camera.position.set(defPosition.x, defPosition.y, defPosition.z);

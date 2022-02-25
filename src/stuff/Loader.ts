@@ -1,14 +1,6 @@
 import { Config } from "@manualTypes/configTypes";
 import { File } from "@manualTypes/jsonTypes";
-import {
-    AxesHelper,
-    BoxHelper,
-    Group,
-    Mesh,
-    Quaternion,
-    Vector3,
-    WebGLIndexedBufferRenderer,
-} from "three";
+import { AxesHelper, BoxHelper, Group, Mesh, Quaternion, Vector3 } from "three";
 import Window from "../initialization/Window";
 import { Objects3D } from "../types/applicationTypes";
 import LoaderManager from "./loaders/LoaderManager";
@@ -57,31 +49,36 @@ const Loader = async (
 
                 items.set(file.id, obj);
 
-                if (config?.world?.globalRotation != null) {
-                    const rotation = new Quaternion();
-                    rotation.set(
-                        config?.world?.globalRotation?.[0],
-                        config?.world?.globalRotation?.[1],
-                        config?.world?.globalRotation?.[2],
-                        config?.world?.globalRotation?.[3]
-                    );
-                    obj.setRotation(rotation);
-                }
-
+                /*
                 const helper = new AxesHelper(20);
                 obj.getMesh().add(helper);
 
                 const box = new BoxHelper(obj.getMesh(), 0xffff00);
 
-                
-
                 window.getScene().addObject(box);
+                */
                 window.getScene().addObject(obj.getMesh());
                 window.getScene().addObject(obj.getOutline());
             })
             .catch((error) => {
                 throw new Error(error);
             });
+    }
+
+    if (config?.world?.globalRotation != null) {
+        const rotation = new Quaternion();
+        rotation.set(
+            config?.world?.globalRotation?.[0],
+            config?.world?.globalRotation?.[1],
+            config?.world?.globalRotation?.[2],
+            config?.world?.globalRotation?.[3]
+        );
+        window.getScene().getInstance().setRotationFromQuaternion(rotation);
+    } else {
+        window
+            .getScene()
+            .getInstance()
+            .rotateOnWorldAxis(new Vector3(1, 0, 0), -Math.PI / 2);
     }
 
     window.container.removeChild(div);

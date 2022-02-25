@@ -121,14 +121,15 @@ const json = {
             "pose": {
                 "position": [37, -8, 10.75],
                 "orientation": [6.123233995736766e-17, 1, 0, 0]
-            }
-            , "color": "yellow"
+            },
+            "color": "random"
         },
         {
             "id": "15:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
             "file": "jsons/LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
             "name": "M2 nut",
-            "pose": { "position": [37, 8, -10.75], "orientation": [1, 0, 0, 0] }
+            "pose": { "position": [37, 8, -10.75], "orientation": [1, 0, 0, 0] },
+            "color": "random"
         },
         {
             "id": "16:LX15D_U_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut",
@@ -138,7 +139,7 @@ const json = {
                 "position": [37, 8, 10.75],
                 "orientation": [6.123233995736766e-17, 1, 0, 0]
             },
-            "color": "yellow"
+            "color": "random"
         }
     ],
     "steps": []
@@ -156,6 +157,10 @@ const config = {
         body: overlay,
         visible: false
     },
+    world: {
+        startPosition: [10, 10, 10],
+        centerOfWorld: [40,0,0]
+    }
 };
 
 const t1 = new Factory(config).loadJSON(json);
