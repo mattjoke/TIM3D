@@ -1,0 +1,28 @@
+name: Generate Documentation
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build 🛠
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./src
+          output_dir: ./out
+          template: minami
+          front_page: README.md
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages-build
+          folder: out
+          target-folder: docs/docs
