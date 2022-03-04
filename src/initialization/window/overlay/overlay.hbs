@@ -1,59 +1,59 @@
-<div id="{{generate-id 'overlay' uuid}}">
-    <div id="{{generate-id 'wrapper' uuid}}">
-        <div id="{{generate-id 'sidebar' uuid}}">
-            {{#if sidebar.visible}}
-                {{#if sidebar.body}}
-                    {{{sidebar.body}}}
-                {{/if}}
-            {{/if}}
-        </div>
-        <div id="{{generate-id 'container' uuid}}">
-            <!--UpperContainer-->
-            <div id="{{generate-id 'upContainer' uuid}}">
-                <button
-                    id="{{generate-id 'buttonStart' uuid}}"
-                >{{{icons.btnStart}}}</button>
-                <button
-                    id="{{generate-id 'buttonLeft' uuid}}"
-                >{{{icons.btnLeft}}}</button>
-                <!--Slider-->
-                <input
-                    type="range"
-                    name="slider"
-                    id="{{generate-id 'slider' uuid}}"
-                    min="0"
-                    max={{stepper.max}}
-                    step="1"
-                    value={{stepper.value}}
-                />
-                <button
-                    id="{{generate-id 'buttonRight' uuid}}"
-                >{{{icons.btnRight}}}</button>
-                <button
-                    id="{{generate-id 'buttonEnd' uuid}}"
-                >{{{icons.btnEnd}}}</button>
-            </div>
-
-            <div id="{{generate-id 'helper' uuid}}">
-                {{{icons.axesHelper}}}
-            </div>
-
-            <!--BottomContainer-->
-            <div id="{{generate-id 'bottomContainer' uuid}}">
-                <button
-                    id="{{generate-id 'buttonReset' uuid}}"
-                >{{{icons.btnReload}}}</button>
-                <!--Coutner-->
-                {{#if counter}}
-                    <span
-                        id="{{generate-id 'counter' uuid}}"
-                    >{{stepper.value}}/{{stepper.max}}</span>
-                {{/if}}
-
-                <button
-                    id="{{generate-id 'buttonFullscreen' uuid}}"
-                >{{{icons.btnFullscreen}}}</button>
-            </div>
-        </div>
+<div id='{{generate-id "overlay" uuid}}'>
+  <div id='{{generate-id "wrapper" uuid}}'>
+    <div id='{{generate-id "sidebar" uuid}}'>
+      {{#if sidebar.visible}}
+        {{#if sidebar.body}}
+          {{{sidebar.body}}}
+        {{/if}}
+      {{/if}}
     </div>
+    <div id='{{generate-id "container" uuid}}'>
+      <!--UpperContainer-->
+      <div id='{{generate-id "upContainer" uuid}}'>
+        <button
+          id='{{generate-id "buttonStart" uuid}}'
+        >{{{icons.btnStart}}}</button>
+        <button
+          id='{{generate-id "buttonLeft" uuid}}'
+        >{{{icons.btnLeft}}}</button>
+        <!--Slider-->
+        <input
+          type='range'
+          name='slider'
+          id='{{generate-id "slider" uuid}}'
+          min='0'
+          max={{stepper.max}}
+          step='1'
+          value={{stepper.value}}
+        />
+        <button
+          id='{{generate-id "buttonRight" uuid}}'
+        >{{{icons.btnRight}}}</button>
+        <button
+          id='{{generate-id "buttonEnd" uuid}}'
+        >{{{icons.btnEnd}}}</button>
+      </div>
+
+      <div id='{{generate-id "helper" uuid}}'>
+        {{{icons.axesHelper}}}
+      </div>
+
+      <!--BottomContainer-->
+      <div id='{{generate-id "bottomContainer" uuid}}'>
+        <button
+          id='{{generate-id "buttonReset" uuid}}'
+        >{{{icons.btnReload}}}</button>
+        <!--Coutner-->
+        {{#if counter}}
+          <span
+            id='{{generate-id "counter" uuid}}'
+          >{{stepper.value}}/{{stepper.max}}</span>
+        {{/if}}
+
+        <button
+          id='{{generate-id "buttonFullscreen" uuid}}'
+        >{{{icons.btnFullscreen}}}</button>
+      </div>
+    </div>
+  </div>
 </div>

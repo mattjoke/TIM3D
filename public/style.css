@@ -1,57 +1,57 @@
 body {
-    margin: 0;
-    background-color: bisque;
+  margin: 0;
+  background-color: bisque;
 }
 
-.content{
-    display: flex;
-    flex-direction: column;
-    width: 75vw;
-    background-color: azure;
-    height: 100%;
-    margin: auto;
-    padding: 30px;
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  background-color: azure;
+  height: 100%;
+  margin: auto;
+  padding: 30px;
 }
 
-.header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #first {
-    width: 100%;
-    height: 30vh;
+  width: 100%;
+  height: 30vh;
 }
 
 #second {
-    width: 30vw;
-    height: 30vh;
+  width: 30vw;
+  height: 30vh;
 }
 
 #third {
-    width: 30vw;
-    height: 30vh;
-    resize: both;
+  width: 30vw;
+  height: 30vh;
+  resize: both;
 }
 
 .container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .container > div {
-    margin: 30px;
+  margin: 30px;
 }
 
 #data {
-    display: inline-block !important;
-    max-width: 100vw;
+  display: inline-block !important;
+  max-width: 100vw;
 }

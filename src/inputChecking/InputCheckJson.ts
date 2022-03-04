@@ -1,80 +1,78 @@
-import { Color } from "three";
 import {
-    array,
-    number,
-    object,
-    optional,
-    string,
-    instanceof as zedInstance,
-} from "zod";
+  array,
+  number,
+  object,
+  optional,
+  string,
+  instanceof as zedInstance
+} from 'zod';
 
-// export type ObjectID = string | number;
+import { Color } from 'three';
+
+/**
+ * Description placeholder
+ * @author Matej Hakoš
+ *
+ * @type {*}
+ */
 const objectID = string().or(number());
 
-/*
-export interface File {
-    file: string;
-    name: ObjectID;
-    id: string;
-    color?: Color | string;
-    position?: [x: number, y: number, z: number];
-    rotation?: [x: number, y: number, z: number];
-}
-*/
+/**
+ * Description placeholder
+ * @author Matej Hakoš
+ *
+ * @type {*}
+ */
 const fileSchema = object({
-    id: string(),
-    name: optional(objectID),
-    file: string(),
-    color: optional(string().or(zedInstance(Color))),
-    pose: optional(
-        object({
-            position: optional(array(number()).length(3)),
-            orientation: optional(array(number()).length(4)),
-        })
-    ),
-    animation: optional(string()),
+  id: string(),
+  name: optional(objectID),
+  file: string(),
+  color: optional(string().or(zedInstance(Color))),
+  pose: optional(
+    object({
+      position: optional(array(number()).length(3)),
+      orientation: optional(array(number()).length(4))
+    })
+  ),
+  animation: optional(string())
 }).strict();
 
-/*
-    export interface Position {
-        name: ObjectID;
-        position: [x: number, y: number, z: number];
-        rotation?: [x: number, y: number, z: number];
-    }
-    */
+/**
+ * Description placeholder
+ * @author Matej Hakoš
+ *
+ * @type {*}
+ */
 const positionSchema = object({
-    id: string(),
-    name: optional(objectID),
-    position: array(number()).length(3),
-    rotation: optional(
-        array(number()).length(4, {
-            message: "Rotation array does not have enough items",
-        })
-    ),
-    animation: optional(string()),
+  id: string(),
+  name: optional(objectID),
+  pose: object({
+    position: optional(array(number()).length(3)),
+    orientation: optional(array(number()).length(4))
+  }),
+  animation: optional(string())
 }).strict();
-/*    
-    export interface Step {
-        name?: string;
-        positions: Position[];
-    }
-    */
+/**
+ * Description placeholder
+ * @author Matej Hakoš
+ *
+ * @type {*}
+ */
 const stepSchema = object({
-    name: optional(string()),
-    positions: array(positionSchema),
-    animation: optional(string()),
+  name: optional(string()),
+  positions: array(positionSchema),
+  animation: optional(string())
 }).strict();
 
-/*
-export interface JSON {
-    config?: Config;
-    files?: File[];
-    steps?: Step[];
-}
-*/
+/**
+ * Description placeholder
+ * @author Matej Hakoš
+ *
+ * @type {*}
+ */
 const jsonSchema = object({
-    files: optional(array(fileSchema)),
-    steps: optional(array(stepSchema)),
+  files: optional(array(fileSchema)),
+  steps: optional(array(stepSchema))
 }).strict();
 
 export { jsonSchema, fileSchema, stepSchema, positionSchema };

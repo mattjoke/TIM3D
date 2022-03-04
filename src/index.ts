@@ -1,4 +1,3 @@
-import Factory from "./Factory";
+import Factory from './Factory';
 
 export { Factory };
-
