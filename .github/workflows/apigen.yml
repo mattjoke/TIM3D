@@ -19,7 +19,7 @@ jobs:
           source_dir: ./src
           output_dir: ./out
           template: minami
-          front_page: README.md
+          recurse: true
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
