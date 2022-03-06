@@ -4,53 +4,46 @@ import { AnimationDef } from '../../types/applicationTypes';
 import { AnimationStorage } from './AnimationStorage';
 
 /**
- * This is simple class
+ * Class that hold information about currently shown/displayed
+ * step.
+ * @author Matej Hakoš
+ *
+ * @class ManualStep
+ * @typedef {ManualStep}
  */
 class ManualStep {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Link to previous Manual Step.
    *
    * @type {(ManualStep | null)}
    */
   prev: ManualStep | null = null;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Link to next Manual Step.
    *
    * @type {(ManualStep | null)}
    */
   next: ManualStep | null = null;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Name of currenty drawn/displayed step.
    *
    * @type {string}
    */
   name = '';
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * An array of objects with Pose, where they should move.
    *
    * @type {Position[]}
    */
   positions: Position[] = [];
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Optional animation.
    *
    * @type {?AnimationDef}
    */
   animation?: AnimationDef;
 }
 
-/**
- * Description placeholder
- * @author Matej Hakoš
- *
- * @param {(Step[] | undefined)} steps
- * @return {{ root: any; length: number; }}
- */
 const buildSteps = (steps: Step[] | undefined) => {
   if (steps == null) return { root: null, length: 0 };
   let prev = null;

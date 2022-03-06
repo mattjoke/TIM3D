@@ -3,8 +3,7 @@ import { AxesHelper, Color, Object3D, Scene as ThreeScene } from 'three';
 import { isColor } from '../../stuff/Utils';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 12:19:22 PM
+ * Wrapper over Three.js's Scene.
  * @author Matej Hakoš
  *
  * @class Scene
@@ -12,8 +11,7 @@ import { isColor } from '../../stuff/Utils';
  */
 class Scene {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Three.js instance of Scene.
    *
    * @private
    * @type {ThreeScene}
@@ -22,7 +20,6 @@ class Scene {
 
   /**
    * Creates an instance of Scene.
-   * @date 3/4/2022 - 12:19:30 PM
    *
    * @constructor
    * @param {?(Color | string)} [backgroundColor]
@@ -45,8 +42,7 @@ class Scene {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:19:42 PM
+   * Initializes axes helper (for debug).
    *
    * @private
    */
@@ -60,19 +56,17 @@ class Scene {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:19:47 PM
+   * Returns instance of Three.js Scene.
    *
    * @public
-   * @return {*}
+   * @return {ThreeScene}
    */
   public getInstance() {
     return this.instance;
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:20:08 PM
+   * Destroys current instance.
    *
    * @public
    */
@@ -81,8 +75,7 @@ class Scene {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:20:17 PM
+   * Adds object/s to the Scene.
    *
    * @public
    * @param {...Object3D[]} objects

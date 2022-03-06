@@ -2,6 +2,7 @@ import {
   BackSide,
   BufferGeometry,
   Color,
+  Material,
   Mesh,
   MeshBasicMaterial,
   MeshStandardMaterial,
@@ -16,8 +17,8 @@ import {
 import { File } from '../types/jsonTypes';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 12:28:44 PM
+ * Class that has all the relevant geometries/data/animations
+ * for specific object.
  * @author Matej Hakoš
  *
  * @class Object3D
@@ -25,32 +26,28 @@ import { File } from '../types/jsonTypes';
  */
 class Object3D {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Input file.
    *
    * @private
    * @type {File}
    */
   private file: File;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Computed Buffer Geometry.
    *
    * @private
    * @type {BufferGeometry}
    */
   private geometry: BufferGeometry;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Computed Mesh.
    *
    * @private
    * @type {Mesh}
    */
   private mesh: Mesh;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Computed Mesh of outline (double-click).
    *
    * @private
    * @type {Mesh}
@@ -59,7 +56,6 @@ class Object3D {
 
   /**
    * Creates an instance of Object3D.
-   * @date 3/4/2022 - 12:28:47 PM
    *
    * @constructor
    * @param {BufferGeometry} geometry
@@ -73,19 +69,17 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:28:50 PM
+   * Returns Mesh of the object.
    *
    * @public
-   * @return {*}
+   * @return {Mesh}
    */
   public getMesh() {
     return this.mesh;
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:29:01 PM
+   * Set scaling for object (and also outline).
    *
    * @public
    * @param {number} x
@@ -99,8 +93,7 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:29:06 PM
+   * Updates matries for Mesh and Outline.
    *
    * @public
    */
@@ -110,8 +103,7 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:29:11 PM
+   * Sets position of object to specific location. 
    *
    * @public
    * @param {Vector3} position
@@ -122,8 +114,7 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:29:20 PM
+   * Sets rotation of object.
    *
    * @public
    * @param {Quaternion} rotation
@@ -134,8 +125,7 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:29:26 PM
+   * Adds to the position of object.
    *
    * @public
    * @param {(Vector3 | [number, number, number])} position
@@ -152,8 +142,7 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:29:37 PM
+   * Adds to the rotation of the object.
    *
    * @public
    * @param {Quaternion} rotation
@@ -163,8 +152,7 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:29:43 PM
+   * Sets data (position & rotation) from outline to mesh.
    *
    * @public
    */
@@ -175,8 +163,7 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:29:50 PM
+   * Sets data (position & rotation) from mesh to outline.
    *
    * @public
    */
@@ -187,32 +174,27 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:30:12 PM
-   * @author Matej Hakoš
+   * Returns material of emissive (highlight color)
    *
    * @public
-   * @return {*}
+   * @return {Material}
    */
   public getEmissive() {
     return this.mesh.material;
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:37:17 PM
+   * Returns outline of the Mesh.
    *
    * @public
-   * @return {*}
+   * @return {Mesh}
    */
   public getOutline() {
     return this.outline;
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:37:36 PM
-   * @author Matej Hakoš
+   * Sets outline color.
    *
    * @public
    * @param {(string | Color | undefined)} selectionColor
@@ -233,14 +215,12 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:37:40 PM
-   * @author Matej Hakoš
+   * Builds Mesh based on geometry and file.
    *
    * @private
    * @param {BufferGeometry} geometry
    * @param {File} file
-   * @return {*}
+   * @return {Mesh}
    */
   private buildMesh(geometry: BufferGeometry, file: File) {
     let objColor = file.color || 'random';
@@ -285,9 +265,7 @@ class Object3D {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:37:48 PM
-   * @author Matej Hakoš
+   * Builds outline based on data from object.
    *
    * @private
    * @param {BufferGeometry} geometry
