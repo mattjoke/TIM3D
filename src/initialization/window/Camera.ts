@@ -1,15 +1,18 @@
-import { PerspectiveCamera, Vector3 } from "three";
+import { PerspectiveCamera, Vector3 } from 'three';
 
-const Camera = (perspective :number, defPosition: Vector3) => {
-    const camera = new PerspectiveCamera(
-        75,
-        perspective,
-        0.1,
-        5000
-    );
+/**
+ * Description placeholder
+ * @author Matej Hakoš
+ *
+ * @param {number} perspective
+ * @param {Vector3} defPosition
+ * @return {*}
+ */
+const Camera = (perspective: number, defPosition: Vector3) => {
+  const camera = new PerspectiveCamera(75, perspective, 0.1, 5000);
 
-    camera.position.set(defPosition.x, defPosition.y, defPosition.z);
-    return camera;
+  camera.position.set(defPosition.x, defPosition.y, defPosition.z);
+  return camera;
 };
 
 export default Camera;
