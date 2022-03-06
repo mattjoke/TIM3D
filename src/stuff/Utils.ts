@@ -2,7 +2,7 @@ import { Color } from 'three';
 import { ObjectID } from '../types/applicationTypes';
 
 /**
- * Description placeholder
+ * Checks if input is parsable color.
  * @author Matej Hakoš
  *
  * @param {(string | Color)} color
@@ -18,23 +18,24 @@ const isColor = (color: string | Color) => {
 };
 
 /**
- * Description placeholder
+ * Parse file extension from file path.
  * @author Matej Hakoš
  *
+ * @deprecated
  * @param {ObjectID} filename
- * @return {*}
+ * @return {string}
  */
 const parseExtension = (filename: ObjectID) => {
   return filename.toString().split('.').pop();
 };
 
-// TS igonre for Typescript unknown functions
 /**
- * Description placeholder
+ * Checks if document is already in fullscreen.
+ * (Note: @ts-ignore is required because of unsupported types.)
  * @author Matej Hakoš
  *
  * @param {?Document} [document]
- * @return {*}
+ * @return{boolean}
  */
 const checkFullscreen = (document?: Document) => {
   if (document == null) {
@@ -52,7 +53,7 @@ const checkFullscreen = (document?: Document) => {
 };
 
 /**
- * Description placeholder
+ * Generated (pseudo)random color.
  * @author Matej Hakoš
  *
  * @return {number}
@@ -62,10 +63,10 @@ const generateRandomColor = () => {
 };
 
 /**
- * Description placeholder
+ * Generates random color from list of known css colors.
  * @author Matej Hakoš
  *
- * @return {*}
+ * @return {string}
  */
 const generateRandomSeededColor = () => {
   const colors = [

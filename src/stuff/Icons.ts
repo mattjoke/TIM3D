@@ -1,17 +1,14 @@
-const reload = require('../stuff/icons/reload.svg');
-const left = require('../stuff/icons/arrow-left.svg');
-const start = require('../stuff/icons/arrow-left-circle.svg');
-const right = require('../stuff/icons/arrow-right.svg');
-const end = require('../stuff/icons/arrow-right-circle.svg');
-const fullscreen = require('../stuff/icons/full-screen.svg');
-const fullscreenToggle = require('../stuff/icons/full-screen-toggle.svg');
-
-const axes = require('../stuff/icons/axis.svg');
-
+import axes from './icons/axis.svg';
+import end from './icons/arrow-right-circle.svg';
+import fullscreen from './icons/full-screen.svg';
+import fullscreenToggle from './icons/full-screen-toggle.svg';
+import left from './icons/arrow-left.svg';
+import reload from './icons/reload.svg';
+import right from './icons/arrow-right.svg';
+import start from './icons/arrow-left-circle.svg';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 12:28:14 PM
+ * Static class which governs all icons.
  * @author Matej Hakoš
  *
  * @class Icons
@@ -41,4 +38,4 @@ class Icons {
   };
 }
 
-export default Icons;
+export { Icons };

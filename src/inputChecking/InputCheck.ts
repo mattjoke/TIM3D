@@ -1,23 +1,24 @@
+import { SafeParseReturnType } from 'zod';
 import { configSchema } from './InputCheckConfig';
 import { jsonSchema } from './InputCheckJson';
 
 /**
- * Description placeholder
+ * Checks if input obejct is correct according to the template.
  * @author Matej Hakoš
  *
  * @param {object} object
- * @return {*}
+ * @return {SafeParseReturnType}
  */
 const ConfigCheck = (object: object) => {
   return configSchema.safeParse(object);
 };
 
 /**
- * Description placeholder
+ * Checks if input obejct is correct according to the template.
  * @author Matej Hakoš
  *
  * @param {object} object
- * @return {*}
+ * @return {SafeParseReturnType}
  */
 const JsonCheck = (object: object) => {
   return jsonSchema.safeParse(object);

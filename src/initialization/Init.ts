@@ -2,18 +2,17 @@ import { ConfigCheck, JsonCheck } from '../inputChecking/InputCheck';
 import { Line, Object3D } from 'three';
 import { ObjectID, Objects3D } from '../types/applicationTypes';
 
-import { Axis } from './init/Axis';
 import { Config } from '../types/configTypes';
 import { JSON } from '../types/jsonTypes';
-import { Loader } from '../stuff/Loader';
-import { Overlay } from './window/Overlay';
-import { PlaneInit } from './init/PlaneInit';
 import { Stepper } from './Stepper';
 import { Window } from './Window';
+import { axis } from './init/axis';
+import { loader } from '../stuff/loader';
+import { overlay } from './window/overlay';
+import { planeInit } from './init/planeInit';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 12:22:17 PM
+ * Initialization class, handles all important classes.
  * @author Matej Hakoš
  *
  * @class Init
@@ -21,32 +20,28 @@ import { Window } from './Window';
  */
 class Init {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * A Window instance, which handles Scene and Renderer.
    *
    * @private
    * @type {Window}
    */
   private window: Window;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * An overlay HTML Div element.
    *
    * @private
    * @type {HTMLDivElement}
    */
   private overlay: HTMLDivElement;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * A Stepper instance.
    *
    * @private
    * @type {(Stepper | undefined)}
    */
   private stepper: Stepper | undefined;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Map which contains all loaded and drawn objects.
    *
    * @private
    * @type {Objects3D}
@@ -54,16 +49,14 @@ class Init {
   private objects: Objects3D;
 
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Unique ID of instance.
    *
    * @private
    * @type {string}
    */
   private parentUUID: string;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Current loaded and parsed config.
    *
    * @private
    * @type {Config}
@@ -71,8 +64,7 @@ class Init {
   private config: Config;
 
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Boolean, which signalizes, if objects are successfully loaded.
    *
    * @public
    * @type {boolean}
@@ -81,7 +73,6 @@ class Init {
 
   /**
    * Creates an instance of Init.
-   * @date 3/4/2022 - 12:22:30 PM
    *
    * @constructor
    * @param {Config} config
@@ -103,32 +94,29 @@ class Init {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:22:35 PM
+   * Calls planeInit and initializes lights.
    *
    * @public
    */
   public initPlane() {
-    const [light, ambient] = PlaneInit();
+    const [light, ambient] = planeInit();
     this.addObjects(light, ambient);
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:22:39 PM
+   * Initializes axes.
    *
    * @private
    */
   private initAxes() {
-    const init = Axis(1.0);
+    const init = axis(1.0);
     init.forEach((axis: Line) => {
       this.addObjects(axis);
     });
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:22:42 PM
+   * Async function, which takes JSON as input, checks it, parses it and loads all files.
    *
    * @public
    * @param {JSON} json
@@ -137,7 +125,7 @@ class Init {
     this.objectsLoaded = false;
     this.checker(json, JsonCheck);
 
-    Loader(json.files ?? [], this.window, this.config).then((items) => {
+    loader(json.files ?? [], this.window, this.config).then((items) => {
       this.objects = items;
       this.objectsLoaded = this.objects.size > 0;
 
@@ -147,7 +135,7 @@ class Init {
         this.config.animationLoop
       );
 
-      this.overlay = Overlay(
+      this.overlay = overlay(
         this.stepper,
         this.window,
         this.parentUUID,
@@ -158,12 +146,11 @@ class Init {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:23:02 PM
+   * Check input object for patter matching and input sanitization.
    *
    * @private
    * @param {object} object
-   * @param {(typeof JsonCheck | typeof ConfigCheck)} checker
+   * @param {JsonCheck | ConfigCheck} checker
    * @return {boolean}
    */
   private checker(
@@ -181,35 +168,32 @@ class Init {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:23:14 PM
+   * Returns this instace of Stepper.
    *
    * @public
-   * @return {*}
+   * @return {Stepper}
    */
   public getStepper() {
     return this.stepper;
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:23:19 PM
+   * Returns a new promise and resolves it after t miliseconds.
    *
    * @private
    * @param {number} t
-   * @return {*}
+   * @return {Promise}
    */
   private delay(t: number) {
     return new Promise((resolve) => setTimeout(resolve, t));
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:23:24 PM
+   * Asynchronously returns items.
    *
    * @public
    * @async
-   * @return {unknown}
+   * @return {Objects3D}
    */
   public async getItems() {
     while (!this.objectsLoaded) {
@@ -219,13 +203,12 @@ class Init {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:23:30 PM
+   * Asynchronously finds and item and returns it.
    *
    * @public
    * @async
    * @param {ObjectID} selector
-   * @return {unknown}
+   * @return {Object3D}
    */
   public async getItem(selector: ObjectID) {
     return Promise.resolve(
@@ -240,8 +223,7 @@ class Init {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:23:36 PM
+   * Adds objects to rendering Scene.
    *
    * @public
    * @param {...*} objects
@@ -253,8 +235,7 @@ class Init {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:23:41 PM
+   * Sets Stepper's step programatically.
    *
    * @public
    * @param {number} stepNumber
@@ -265,8 +246,7 @@ class Init {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:23:50 PM
+   * Destorys this instance.
    *
    * @public
    */

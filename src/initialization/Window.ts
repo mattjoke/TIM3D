@@ -1,55 +1,50 @@
-import { Camera } from './window/Camera';
 import { Config } from '../types/configTypes';
 import { Container } from './window/Container';
 import { OrbitalControls } from './window/OrbitalControls';
 import { Renderer } from './window/Renderer';
 import { Scene } from './window/Scene';
 import { Vector3 } from 'three';
+import { camera } from './window/camera';
 import { update } from '@tweenjs/tween.js';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 12:26:02 PM
+ * Class that handles rendering and handleing animating.
+ * @author Matej Hakoš
  *
  * @class Window
  * @typedef {Window}
  */
 class Window {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Instance of scene.
    *
    * @public
    * @type {Scene}
    */
   public scene: Scene;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Instance of renderer.
    *
    * @private
    * @type {Renderer}
    */
   private renderer: Renderer;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Instance of Camera.
    *
    * @private
    * @type {*}
    */
   private camera;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Instance of HTML Container.
    *
    * @public
    * @type {Container}
    */
   public container: Container;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Instance of OrbitalControls.
    *
    * @private
    * @type {OrbitalControls}
@@ -58,8 +53,6 @@ class Window {
 
   /**
    * Creates an instance of Window.
-   * @date 3/4/2022 - 12:26:09 PM
-   * @author Matej Hakoš
    *
    * @constructor
    * @param {Config} config
@@ -73,7 +66,7 @@ class Window {
       ? new Vector3().fromArray(config.world.startPosition)
       : new Vector3(100, 100, 110);
 
-    this.camera = Camera(window.innerWidth / window.innerHeight, startPosition);
+    this.camera = camera(window.innerWidth / window.innerHeight, startPosition);
 
     this.renderer = new Renderer(
       this.container.getSizing(),
@@ -98,9 +91,7 @@ class Window {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:26:14 PM
-   * @author Matej Hakoš
+   * Resets camera to starting postion.
    *
    * @public
    */
@@ -109,21 +100,17 @@ class Window {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:26:18 PM
-   * @author Matej Hakoš
+   * Returns current instance of camera.
    *
    * @public
-   * @return {*}
+   * @return {Camera}
    */
   public getCamera() {
     return this.camera;
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:26:22 PM
-   * @author Matej Hakoš
+   * Returns current instance of Scene.
    *
    * @public
    * @return {Scene}
@@ -133,9 +120,7 @@ class Window {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:26:25 PM
-   * @author Matej Hakoš
+   * Returns current instance of container.
    *
    * @public
    * @return {*}
@@ -145,9 +130,7 @@ class Window {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:26:33 PM
-   * @author Matej Hakoš
+   * Destroys this instance.
    *
    * @public
    */
@@ -160,9 +143,7 @@ class Window {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:26:37 PM
-   * @author Matej Hakoš
+   * Callback which handles sizing issues while resizing of the window.
    *
    * @private
    */
@@ -174,9 +155,8 @@ class Window {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:26:40 PM
-   * @author Matej Hakoš
+   * Renders animations, updates renderer.
+   * Possible pause of animations/rendering.
    *
    * @public
    */

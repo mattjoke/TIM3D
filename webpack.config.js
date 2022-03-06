@@ -31,12 +31,13 @@ module.exports = {
       }
     ]
   },
+  
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.html', '.hbs', '.svg'],
     fallback: {
       fs: false
     },
-    plugins: [new TsconfigPathsPlugin()]
+    plugins: [new TsconfigPathsPlugin()],
   },
   output: {
     filename: 'bundle.js',

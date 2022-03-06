@@ -1,6 +1,6 @@
 import { Event, Color as ThreeColor } from 'three';
 
-import { Object3D } from "stuff/Object3D";
+import { Object3D } from 'stuff/Object3D';
 import { Tween } from '@tweenjs/tween.js';
 
 /**
@@ -60,6 +60,16 @@ export type UUID = string;
  * @typedef {CallbackFunction}
  */
 export type CallbackFunction = (obj: Object3D, ev: Event) => void;
+
+/**
+ * Description placeholder
+ *
+ * @export
+ * @typedef {getObjectFunction}
+ */
+export type getObjectFunction = (key: ObjectID) => Object3D | undefined;
+
+export type elementSizing = { width: number; height: number };
 
 /**
  * Description placeholder

@@ -1,4 +1,5 @@
 import {
+  ZodObject,
   array,
   boolean,
   number,
@@ -11,10 +12,10 @@ import {
 import { Color } from 'three';
 
 /**
- * Description placeholder
+ * Helper object which consists of colors used in input Config.
  * @author Matej Hakoš
  *
- * @type {*}
+ * @type {ZodObject}
  */
 const Colors = object({
   backgroundColor: optional(string().or(zedInstance(Color))),
@@ -23,10 +24,10 @@ const Colors = object({
 });
 
 /**
- * Description placeholder
+ * Input template for Config 
  * @author Matej Hakoš
  *
- * @type {*}
+ * @type {ZodObject}
  */
 const configSchema = object({
   colors: optional(Colors),

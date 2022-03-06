@@ -1,12 +1,12 @@
 import '../loaders/loader.css';
 
 /**
- * Description placeholder
+ * Creates overlay div and plays loading animation.
  * @author Matej Hakoš
  *
- * @return {*}
+ * @return {HTMLDivElement}
  */
-const LoaderOverlay = () => {
+const loaderOverlay = () => {
   const div = document.createElement('div');
   div.style.position = 'absolute';
   div.innerText = 'Loading...';
@@ -23,4 +23,4 @@ const LoaderOverlay = () => {
   return div;
 };
 
-export { LoaderOverlay };
+export { loaderOverlay };
