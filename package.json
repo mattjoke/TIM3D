@@ -9,7 +9,7 @@
     "lint:fix": "eslint . --fix",
     "prettier:write": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "docs:gen": "typedoc --entryPoints ./src/apiGen.ts"
+    "docs:gen": "typedoc --entryPoints ./src/index.ts"
   },
   "author": "Matej Hakoš",
   "license": "ISC",
