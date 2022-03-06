@@ -15,7 +15,7 @@ import { Object3D } from 'stuff/Object3D';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
- * Factory of instacn
+ * Factory of instance.
  * @author Matej Hakoš
  *
  * @class Factory
