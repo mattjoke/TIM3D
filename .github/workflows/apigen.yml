@@ -12,18 +12,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Build 🛠
-        uses: andstor/jsdoc-action@v1
-        with:
-          source_dir: ./src
-          output_dir: ./out
-          template: minami
-          recurse: true
+      
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run docs:gen
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages-build
-          folder: out
+          folder: docs
           target-folder: docs/docs
