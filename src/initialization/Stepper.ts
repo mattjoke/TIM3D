@@ -1,11 +1,11 @@
 import { ManualStep, buildSteps } from './stepper/ManualStep';
 
 import { JSON } from '../types/jsonTypes';
-import { Redraw } from './stepper/Redraw';
+import { getObjectFunction } from '../types/applicationTypes';
+import { redraw } from './stepper/redraw';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 12:25:03 PM
+ * This class handles 'stepping' of manual.
  * @author Matej Hakoš
  *
  * @class Stepper
@@ -13,75 +13,66 @@ import { Redraw } from './stepper/Redraw';
  */
 class Stepper {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * A helper function that returns object from Init class.
    *
    * @private
    * @type {Function}
    */
-  private getObject: Function;
+  private getObject: getObjectFunction;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Currently drawn step of manual.
    *
    * @private
    * @type {ManualStep}
    */
   private currentStep: ManualStep;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Current index of step.
    *
    * @private
    * @type {number}
    */
   private currentStepPosition = 0;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Overall length of all steps.
    *
    * @public
    * @type {number}
    */
   public length = 0;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Signaler that sends callback to other classes.
    *
    * @public
-   * @type {*}
+   * @type {EventTarget}
    */
   public signaler;
 
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * The root of the manual steps.
    *
    * @private
    * @type {(ManualStep | null)}
    */
   private root: ManualStep | null;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * An array of strings, which corresponds to names of steps, 
+   * which will be indefinately looped.
    *
    * @private
    * @type {([string] | [])}
    */
   private animationLoop: [string] | [];
 
-  
   /**
    * Creates an instance of Stepper.
-   * @date 3/4/2022 - 12:25:09 PM
-   * @author Matej Hakoš
    *
    * @constructor
    * @param {JSON} json
    * @param {Function} getObject
    * @param {?[string]} [animationLoop]
    */
-  constructor(json: JSON, getObject: Function, animationLoop?: [string]) {
+  constructor(json: JSON, getObject: getObjectFunction, animationLoop?: [string]) {
     this.getObject = getObject;
     this.signaler = new EventTarget();
 
@@ -114,16 +105,14 @@ class Stepper {
     }
   }
 
-  
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:25:16 PM
-   * @author Matej Hakoš
+   * Redraw current frame with camera and scene.
+   * Sends update event.
    *
    * @private
    */
   private redraw() {
-    Redraw(this.currentStep, this.getObject);
+    redraw(this.currentStep, this.getObject);
     this.signaler.dispatchEvent(
       new CustomEvent('update', {
         detail: this.currentStepPosition
@@ -131,11 +120,8 @@ class Stepper {
     );
   }
 
-  
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:25:19 PM
-   * @author Matej Hakoš
+   * Destroys this instance.
    *
    * @public
    */
@@ -147,11 +133,8 @@ class Stepper {
     this.animationLoop = [];
   }
 
-  
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:25:22 PM
-   * @author Matej Hakoš
+   * Finds next step based on name of the step in input JSON.
    *
    * @private
    * @param {string} name
@@ -172,11 +155,8 @@ class Stepper {
     this.setStep(pos);
   }
 
-  
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:25:26 PM
-   * @author Matej Hakoš
+   * Sets position of stepper to postion.
    *
    * @public
    * @param {number} position
@@ -203,11 +183,8 @@ class Stepper {
     return this.currentStepPosition;
   }
 
-  
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 12:25:31 PM
-   * @author Matej Hakoš
+   * Returns index of current step.
    *
    * @public
    * @return {number}
@@ -217,4 +194,4 @@ class Stepper {
   }
 }
 
-export default Stepper;
+export { Stepper };

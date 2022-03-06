@@ -1,16 +1,15 @@
-import { number } from "zod";
+import { elementSizing } from '../../types/applicationTypes';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 11:06:01 AM
+ * Instance of a HTML container, which is rendered to page.
+ * @author Matej Hakoš
  *
- * @class WindowsContainer
- * @typedef {WindowsContainer}
+ * @class Container
+ * @typedef {Container}
  */
-class WindowsContainer {
+class Container {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Current instance drawn to page.
    *
    * @private
    * @type {HTMLElement}
@@ -18,11 +17,10 @@ class WindowsContainer {
   private instance: HTMLElement;
 
   /**
-   * Creates an instance of WindowsContainer.
-   * @date 3/4/2022 - 11:06:07 AM
+   * Creates an instance of Container.
    *
    * @constructor
-   * @param {?HTMLElement} [container]
+   * @param {?HTMLElement} [container] Programatically predefined (optional) container.
    */
   constructor(container?: HTMLElement) {
     if (container == null) {
@@ -41,8 +39,7 @@ class WindowsContainer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:06:13 AM
+   * Returns current instance.
    *
    * @public
    * @return {*}
@@ -52,8 +49,7 @@ class WindowsContainer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:06:17 AM
+   * Destroys current instance.
    *
    * @public
    */
@@ -62,13 +58,12 @@ class WindowsContainer {
   }
 
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Returns current sizing of element.
    *
    * @public
-   * @returns {{width:number; height:number}}
+   * @return {elementSizing}
    */
-  public getSizing() : {width:number; height:number} {
+  public getSizing(): elementSizing {
     return {
       width: this.instance.offsetWidth,
       height: this.instance.offsetHeight
@@ -76,8 +71,7 @@ class WindowsContainer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:06:37 AM
+   * Appends a DOM element to instance.
    *
    * @public
    * @param {HTMLElement} domElement
@@ -87,8 +81,7 @@ class WindowsContainer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:06:41 AM
+   * Removes DOM element from instance.
    *
    * @public
    * @param {HTMLElement} domElement
@@ -98,4 +91,4 @@ class WindowsContainer {
   }
 }
 
-export default WindowsContainer;
+export { Container };

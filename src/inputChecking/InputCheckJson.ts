@@ -1,4 +1,5 @@
 import {
+  ZodObject,
   array,
   number,
   object,
@@ -10,18 +11,18 @@ import {
 import { Color } from 'three';
 
 /**
- * Description placeholder
+ * Template for obejctID
  * @author Matej Hakoš
  *
- * @type {*}
+ * @type {ZosString}
  */
 const objectID = string().or(number());
 
 /**
- * Description placeholder
+ * Strictly checks if input Files are corresponding with template.
  * @author Matej Hakoš
  *
- * @type {*}
+ * @type {ZodObject}
  */
 const fileSchema = object({
   id: string(),
@@ -38,10 +39,10 @@ const fileSchema = object({
 }).strict();
 
 /**
- * Description placeholder
+ * Strictly checks if input Positions are corresponding with template.
  * @author Matej Hakoš
  *
- * @type {*}
+ * @type {ZodObject}
  */
 const positionSchema = object({
   id: string(),
@@ -53,10 +54,10 @@ const positionSchema = object({
   animation: optional(string())
 }).strict();
 /**
- * Description placeholder
+ * Strictly checks if input Steps are corresponding with template.
  * @author Matej Hakoš
  *
- * @type {*}
+ * @type {ZodObject}
  */
 const stepSchema = object({
   name: optional(string()),
@@ -65,10 +66,10 @@ const stepSchema = object({
 }).strict();
 
 /**
- * Description placeholder
+ * Strictly checks if input JSON is corresponding with template.
  * @author Matej Hakoš
  *
- * @type {*}
+ * @type {ZodObject}
  */
 const jsonSchema = object({
   files: optional(array(fileSchema)),

@@ -2,52 +2,47 @@ import { Camera, Vector3 } from 'three';
 import { Easing, Tween } from '@tweenjs/tween.js';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import Renderer from './Renderer';
+import { Renderer } from './Renderer';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 11:08:16 AM
+ * Class that initializes Three.js's OrbitControls and handles user interaction.
+ * @author Matej Hakoš
  *
  * @class OrbitalControls
  * @typedef {OrbitalControls}
  */
 class OrbitalControls {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Current instance of OrbitControls.
    *
    * @private
    * @type {OrbitControls}
    */
   private controls: OrbitControls;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Current instance of Camera.
    *
    * @private
    * @type {Camera}
    */
   private camera: Camera;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Starting camera/controls postion.
    *
    * @private
-   * @type {*}
+   * @type {Vector3}
    */
   private startingPosition = new Vector3(100, 100, 110);
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Focus point of OrbitControls.
    *
    * @private
-   * @type {*}
+   * @type {Vector3}
    */
   private worldPosition = new Vector3(0, 0, 0);
 
   /**
    * Creates an instance of OrbitalControls.
-   * @date 3/4/2022 - 11:08:16 AM
    *
    * @constructor
    * @param {Camera} camera
@@ -70,8 +65,7 @@ class OrbitalControls {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:08:16 AM
+   * Sets starting postion of camera.
    *
    * @public
    * @param {Vector3} position
@@ -81,8 +75,7 @@ class OrbitalControls {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:08:16 AM
+   * Sets starting focus point for controls.
    *
    * @public
    * @param {Vector3} worldPosition
@@ -95,8 +88,7 @@ class OrbitalControls {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:08:16 AM
+   * Destroys instances.
    *
    * @public
    */
@@ -106,8 +98,7 @@ class OrbitalControls {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:08:16 AM
+   * Manually updates controls (important for easing).
    *
    * @public
    */
@@ -116,8 +107,7 @@ class OrbitalControls {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:08:16 AM
+   * Resets current control postion to predefined position (animated).
    *
    * @public
    */
@@ -137,4 +127,4 @@ class OrbitalControls {
   }
 }
 
-export default OrbitalControls;
+export { OrbitalControls };

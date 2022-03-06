@@ -1,9 +1,7 @@
 import { Color } from 'three';
 
-// TODO implement class type inference
 /**
- * Description placeholder
- * @author Matej Hakoš
+ * Experimental (WIP) functions.
  *
  * @export
  * @interface Extension
@@ -12,35 +10,12 @@ import { Color } from 'three';
 export interface Extension {
   /**
    * Description placeholder
-   * @author Matej Hakoš
    *
-   * @type {?Function}
+   * @type {?() => void}
    */
-  camera?: Function;
+  renderer?: () => void;
   /**
    * Description placeholder
-   * @author Matej Hakoš
-   *
-   * @type {?Function}
-   */
-  controls?: Function;
-  /**
-   * Description placeholder
-   * @author Matej Hakoš
-   *
-   * @type {?Function}
-   */
-  overlay?: Function;
-  /**
-   * Description placeholder
-   * @author Matej Hakoš
-   *
-   * @type {?Function}
-   */
-  renderer?: Function;
-  /**
-   * Description placeholder
-   * @author Matej Hakoš
    *
    * @type {?object}
    */
@@ -48,7 +23,7 @@ export interface Extension {
 }
 
 /**
- * Description placeholder
+ * Boolean type if sidebar is shown.
  * @author Matej Hakoš
  *
  * @typedef {ShowSidebar}
@@ -56,7 +31,7 @@ export interface Extension {
 type ShowSidebar = boolean | false;
 
 /**
- * Description placeholder
+ * Sidebar basic config
  * @author Matej Hakoš
  *
  * @export
@@ -65,15 +40,13 @@ type ShowSidebar = boolean | false;
  */
 export interface Sidebar {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Contains HTML element which will render on fullscreen.
    *
    * @type {?HTMLElement}
    */
   body?: HTMLElement;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * If body should be rendered on fullscreen.
    *
    * @type {?boolean}
    */
@@ -81,7 +54,7 @@ export interface Sidebar {
 }
 
 /**
- * Description placeholder
+ * Basic color config setup.
  * @author Matej Hakoš
  *
  * @export
@@ -89,26 +62,20 @@ export interface Sidebar {
  * @typedef {Colors}
  */
 export interface Colors {
-  // Scene color
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Background scene color.
    *
    * @type {?(Color | string)}
    */
   backgroundColor?: Color | string;
-  // Highlight color
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Emissive (highlight) color.
    *
    * @type {?(Color | string)}
    */
   emissiveColor?: Color | string;
-  // Selection color
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Color of selected item.
    *
    * @type {?(Color | string)}
    */
@@ -116,7 +83,9 @@ export interface Colors {
 }
 
 /**
- * Description placeholder
+ * Interface for Config declaration.
+ * This config interface is resposible for initial setup of colors,
+ * positons and overlays.
  * @author Matej Hakoš
  *
  * @export
@@ -125,15 +94,13 @@ export interface Colors {
  */
 export interface Config {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Color setup for manual.
    *
    * @type {?Colors}
    */
   colors?: Colors;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Sets position of camera, OrbitalControls and global orientation.
    *
    * @type {?{
       startPosition?: [x: number, y: number, z: number];
@@ -146,26 +113,22 @@ export interface Config {
     centerOfWorld?: [x: number, y: number, z: number];
     globalRotation?: [x: number, y: number, z: number, w: number];
   };
-  // Instance container
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * HTML element to which manual should 'bind' and start to render.
    *
    * @type {?HTMLElement}
    */
   container?: HTMLElement;
-  // Overlay div
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * HTML of custom loading overlay.
    *
    * @type {?HTMLElement}
    */
   loadingOverlay?: HTMLElement;
-  // Sidebar div
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Sidebar config, with 'body' containing HTML element,
+   * which should be rendered and 'visible' if the body is visible
+   * on fullscreen.
    *
    * @type {?{
       body?: HTMLElement;
@@ -178,16 +141,14 @@ export interface Config {
   };
 
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * An array of steps which should loop.
    *
    * @type {?[string]}
    */
   animationLoop?: [string];
 
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Antoher extension fields. (WIP)
    *
    * @type {?Extension}
    */

@@ -6,12 +6,12 @@ import { PRWMLoader } from 'three/examples/jsm/loaders/PRWMLoader';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
 
 /**
- * Description placeholder
+ * Sets up loading managers supported by Three.js
  * @author Matej Hakoš
  *
- * @return {*}
+ * @return {LoadingManager}
  */
-const LoaderManager = () => {
+const loaderManager = () => {
   const manager = new LoadingManager();
 
   manager.addHandler(/\.gltf$/i, new GLTFLoader());
@@ -22,4 +22,4 @@ const LoaderManager = () => {
   return manager;
 };
 
-export default LoaderManager;
+export {loaderManager };

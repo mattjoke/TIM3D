@@ -1,6 +1,7 @@
 import {
   Camera,
   Color,
+  Intersection,
   Mesh,
   MeshStandardMaterial,
   PerspectiveCamera,
@@ -15,8 +16,7 @@ import { containerSize, inputPosition } from '../../types/applicationTypes';
 import { Colors } from '../../types/configTypes';
 
 /**
- * Description placeholder
- * @date 3/4/2022 - 11:09:06 AM
+ * Initializes and handles rendering.
  * @author Matej Hakoš
  *
  * @class Renderer
@@ -24,40 +24,35 @@ import { Colors } from '../../types/configTypes';
  */
 class Renderer {
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Current WebGL rendering instance.
    *
    * @private
    * @type {WebGLRenderer}
    */
   private renderer: WebGLRenderer;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * HTML element to which renderer render data.
    *
    * @public
    * @type {HTMLElement}
    */
   public domElement: HTMLElement;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Locks highlight rendering.
    *
    * @private
    * @type {boolean}
    */
   private locker = true;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Last highlighted Mesh.
    *
    * @private
    * @type {(Mesh | null)}
    */
   private lastHighlight: Mesh | null = null;
   /**
-   * Description placeholder
-   * @author Matej Hakoš
+   * Custom highlight color.
    *
    * @private
    * @type {(Color | string | undefined)}
@@ -66,7 +61,6 @@ class Renderer {
 
   /**
    * Creates an instance of Renderer.
-   * @date 3/4/2022 - 11:09:06 AM
    *
    * @constructor
    * @param {containerSize} { width, height }
@@ -90,8 +84,7 @@ class Renderer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Initializes basic callbacks (touch events, double click...).
    *
    * @public
    * @param {Scene} scene
@@ -133,8 +126,7 @@ class Renderer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Locks rendering and sets lastHighlight to normal color.
    *
    * @public
    */
@@ -145,8 +137,7 @@ class Renderer {
     this.locker = false;
   }
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Unlocks highlight.
    *
    * @public
    */
@@ -155,8 +146,7 @@ class Renderer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Destroys this instance.
    *
    * @public
    */
@@ -169,8 +159,7 @@ class Renderer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Sets size of renderer and DOM element.
    *
    * @public
    * @param {containerSize} { width, height }
@@ -180,8 +169,7 @@ class Renderer {
     this.domElement = this.renderer.domElement;
   }
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Renders this scene with camera.
    *
    * @public
    * @param {Scene} scene
@@ -190,7 +178,6 @@ class Renderer {
   public render(scene: Scene, camera: PerspectiveCamera) {
     // this.renderer.autoClear = false;
     this.renderer.render(scene, camera);
-
     /* camera.layers.set(3);
         this.renderer.clearDepth();
         this.renderer.setScissorTest(true);
@@ -202,25 +189,23 @@ class Renderer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Returns bounding box of DOM element.
    *
    * @public
-   * @return {*}
+   * @return {DOMRect}
    */
   public getBoundingRect() {
     return this.renderer.domElement.getBoundingClientRect();
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Computes raycast based on input postion, scene and camera.
    *
    * @private
    * @param {inputPosition} position
    * @param {Scene} scene
    * @param {Camera} camera
-   * @return {*}
+   * @return {Intersection[]}
    */
   private computeRaycast(
     position: inputPosition,
@@ -240,8 +225,7 @@ class Renderer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Handles "click" of the object.
    *
    * @private
    * @param {inputPosition} position
@@ -263,8 +247,7 @@ class Renderer {
   }
 
   /**
-   * Description placeholder
-   * @date 3/4/2022 - 11:09:06 AM
+   * Handles "hover" over the object.
    *
    * @private
    * @param {inputPosition} position
@@ -309,4 +292,4 @@ class Renderer {
   }
 }
 
-export default Renderer;
+export { Renderer };

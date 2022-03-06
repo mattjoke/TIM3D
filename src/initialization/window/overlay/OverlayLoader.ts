@@ -1,12 +1,19 @@
-import { Sidebar } from '@manualTypes/configTypes';
-import Stepper from 'initialization/Stepper';
-import Icons from '../../../stuff/Icons';
-import { checkFullscreen } from '../../../stuff/Utils';
 import '../overlay/overlay.css';
+
+// @ts-ignore
+import * as overlay from './overlay.hbs';
+
+import { Icons } from '../../../stuff/Icons';
+import { Sidebar } from '../../../types/configTypes';
+import { Stepper } from 'initialization/Stepper';
+import { checkFullscreen } from '../../../stuff/Utils';
 import generateId from './generate-id.js';
 
-const overlay = require('./overlay.hbs');
-
+/**
+ * Generate an example sidebar.
+ *
+ * @return {HTMLDivElement}
+ */
 const showcaseSidebar = (): string => {
   const div = document.createElement('div');
   div.style.backgroundColor = 'beige';
@@ -23,6 +30,14 @@ const showcaseSidebar = (): string => {
   return div.outerHTML;
 };
 
+/**
+ * Loads a handlebars template, renders it and initializes appropriate callbacks.
+ *
+ * @param {Stepper} stepper A Stepper instance.
+ * @param {string} parentUUID UUID of current instance.
+ * @param {?Sidebar} [sidebar] Optional sidebar to render.
+ * @return {HTMLDivElement} A div with rendered data.
+ */
 const Loader = (stepper: Stepper, parentUUID: string, sidebar?: Sidebar) => {
   // Intantiate overlay with static info
   const template = overlay({
@@ -118,4 +133,4 @@ const Loader = (stepper: Stepper, parentUUID: string, sidebar?: Sidebar) => {
   return div;
 };
 
-export { Loader as OverlayLoader };
+export { Loader as overlayLoader };

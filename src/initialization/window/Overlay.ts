@@ -1,13 +1,12 @@
-import { OverlayLoader } from './overlay/OverlayLoader';
 import { Sidebar } from '../../types/configTypes';
-import Stepper from '../Stepper';
+import { Stepper } from '../Stepper';
 import { Tween } from '@tweenjs/tween.js';
-import Window from '../Window';
+import { Window } from '../Window';
 import generateId from './overlay/generate-id';
+import { overlayLoader } from './overlay/overlayLoader';
 
 /**
- * Description placeholder
- * @author Matej Hakoš
+ * Toggles between full and windowed screen.
  *
  * @param {HTMLElement} container
  * @param {?HTMLElement} [sidebar]
@@ -66,23 +65,23 @@ const toggleFullscreen = (container: HTMLElement, sidebar?: HTMLElement) => {
 };
 
 /**
- * Description placeholder
+ * Loads overlay, adds fullscreen and reset callbacks
  * @author Matej Hakoš
  *
  * @param {Stepper} stepper
  * @param {Window} window
  * @param {string} parentUUID
  * @param {?Sidebar} [customSidebar]
- * @return {*}
+ * @return {HTMLDivElement}
  */
-const Overlay = (
+const overlay = (
   stepper: Stepper,
   window: Window,
   parentUUID: string,
   customSidebar?: Sidebar
 ) => {
   // Instantiate basic logic and listeners
-  const template = OverlayLoader(stepper, parentUUID, customSidebar);
+  const template = overlayLoader(stepper, parentUUID, customSidebar);
   template
     .querySelector(`#${generateId('buttonFullscreen', parentUUID)}`)
     ?.addEventListener('click', (ev: Event) => {
@@ -113,4 +112,4 @@ const Overlay = (
   return template;
 };
 
-export default Overlay;
+export { overlay };

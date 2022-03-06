@@ -1,15 +1,15 @@
 import { Group, Mesh, Quaternion, Vector3 } from 'three';
 
-import { Config } from '@manualTypes/configTypes';
-import { File } from '@manualTypes/jsonTypes';
-import LoaderManager from './loaders/LoaderManager';
-import LoaderOverlay from './loaders/LoaderOverlay';
-import Object3D from './Object3D';
+import { Config } from '../types/configTypes';
+import { File } from '../types/jsonTypes';
+import { Object3D } from './Object3D';
 import { Objects3D } from '../types/applicationTypes';
-import Window from '../initialization/Window';
+import { Window } from '../initialization/Window';
+import { loaderManager } from './loaders/loaderManager';
+import { loaderOverlay } from './loaders/loaderOverlay';
 
 /**
- * Description placeholder
+ * Asynchronously loads files and prepares them and adds them to scene.
  * @author Matej Hakoš
  *
  * @async
@@ -18,18 +18,18 @@ import Window from '../initialization/Window';
  * @param {?Config} [config]
  * @return {Promise<Objects3D>}
  */
-const Loader = async (
+const loader = async (
   files: File[],
   window: Window,
   config?: Config
 ): Promise<Objects3D> => {
-  const div = config?.loadingOverlay ?? LoaderOverlay();
+  const div = config?.loadingOverlay ?? loaderOverlay();
   div.style.zIndex = '100';
   window.container.appendChild(div);
 
   const items: Objects3D = new Map();
 
-  const manager = LoaderManager();
+  const manager = loaderManager();
 
   for (const file of files) {
     const loader = manager.getHandler(file.file);
@@ -88,4 +88,4 @@ const Loader = async (
   return items;
 };
 
-export default Loader;
+export { loader };

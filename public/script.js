@@ -213,7 +213,9 @@ const json2 = {
       positions: [
         {
           id: '1',
-          position: [0, 0, 0]
+          pose: {
+            position: [0, 0, 0]
+          }
         }
       ]
     },
@@ -222,7 +224,9 @@ const json2 = {
       positions: [
         {
           id: '1',
-          position: [0, 10, 0]
+          pose: {
+            position: [0, 10, 0]
+          }
         }
       ],
       animation: 'y180deg'
@@ -232,7 +236,9 @@ const json2 = {
       positions: [
         {
           id: '1',
-          position: [0, -10, 0]
+          pose: {
+            position: [0, -10, 0]
+          }
         }
       ],
       animation: 'x360deg'
