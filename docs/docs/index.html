@@ -1,66 +1,206 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>threetesting</title><meta name="description" content="Documentation for threetesting"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">threetesting</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1> threetesting</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#three-js-manual" id="three-js-manual" style="color: inherit; text-decoration: none;">
+  <h1>Three JS Manual</h1>
+</a>
+<p>This repo contains source code for this project.
+GitHub Workflow automatically deploys latest push to GitHub pages.</p>
+<ul>
+<li><a href="https://mattjoke.github.io/ThreeJS-library/">https://mattjoke.github.io/ThreeJS-library/</a></li>
+</ul>
+<p>Trello with ToDo (view-only:</p>
+<ul>
+<li><a href="https://trello.com/b/hXZva22f/threejs-library-to-do">https://trello.com/b/hXZva22f/threejs-library-to-do</a></li>
+</ul>
 
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-<body>
+<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
+  <h2>Basic usage</h2>
+</a>
+<p><em>This usage is subject to change</em></p>
+<pre><code><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">data</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">files:</span><span class="hl-1"> [</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-3">file:</span><span class="hl-1"> </span><span class="hl-4">&quot;models/files/Bar1.stl&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">color:</span><span class="hl-1"> </span><span class="hl-4">&quot;yellow&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;1&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-3">file:</span><span class="hl-1"> </span><span class="hl-4">&quot;models/files/Bar2.stl&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">color:</span><span class="hl-1"> </span><span class="hl-4">&quot;orange&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;2&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-3">file:</span><span class="hl-1"> </span><span class="hl-4">&quot;models/files/Bar3.stl&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">color:</span><span class="hl-1"> </span><span class="hl-4">&quot;#192833&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;3&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-3">file:</span><span class="hl-1"> </span><span class="hl-4">&quot;models/files/Bar4.stl&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;4&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-3">file:</span><span class="hl-1"> </span><span class="hl-4">&quot;models/files/Base_gr.stl&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;5&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        }</span><br/><span class="hl-1">    ],</span><br/><span class="hl-1">    </span><span class="hl-3">steps:</span><span class="hl-1"> [</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;Init&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">positions:</span><span class="hl-1"> [</span><br/><span class="hl-1">                {</span><br/><span class="hl-1">                    </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;1&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">                    </span><span class="hl-3">position:</span><span class="hl-1"> </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-5">Vector3</span><span class="hl-1">(</span><span class="hl-6">10</span><span class="hl-1">, </span><span class="hl-6">10</span><span class="hl-1">, </span><span class="hl-6">10</span><span class="hl-1">),</span><br/><span class="hl-1">                },</span><br/><span class="hl-1">            ],</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;First Step&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">positions:</span><span class="hl-1"> [</span><br/><span class="hl-1">                {</span><br/><span class="hl-1">                    </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;1&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">                    </span><span class="hl-3">position:</span><span class="hl-1"> </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-5">Vector3</span><span class="hl-1">(</span><span class="hl-6">7</span><span class="hl-1">, </span><span class="hl-6">7</span><span class="hl-1">, </span><span class="hl-6">7</span><span class="hl-1">),</span><br/><span class="hl-1">                },</span><br/><span class="hl-1">            ],</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">        {</span><br/><span class="hl-1">            </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;Second Step&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-3">positions:</span><span class="hl-1"> [</span><br/><span class="hl-1">                {</span><br/><span class="hl-1">                    </span><span class="hl-3">name:</span><span class="hl-1"> </span><span class="hl-4">&quot;1&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">                    </span><span class="hl-3">position:</span><span class="hl-1"> </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-5">Vector3</span><span class="hl-1">(</span><span class="hl-6">5</span><span class="hl-1">, </span><span class="hl-6">10</span><span class="hl-1">, </span><span class="hl-6">10</span><span class="hl-1">),</span><br/><span class="hl-1">                },</span><br/><span class="hl-1">            ],</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">    ],</span><br/><span class="hl-1">};</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">config</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">container:</span><span class="hl-1"> </span><span class="hl-3">document</span><span class="hl-1">.</span><span class="hl-5">getElementById</span><span class="hl-1">(</span><span class="hl-4">&quot;third&quot;</span><span class="hl-1">),</span><br/><span class="hl-1">    </span><span class="hl-3">color:</span><span class="hl-1"> </span><span class="hl-4">&quot;#123456&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span><br/><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">t2</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-5">Init</span><span class="hl-1">(</span><span class="hl-3">config</span><span class="hl-1">);</span><br/><span class="hl-3">t2</span><span class="hl-1">.</span><span class="hl-5">withJSON</span><span class="hl-1">(</span><span class="hl-3">data</span><span class="hl-1">);</span>
+</code></pre>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
+<a href="#classes" id="classes" style="color: inherit; text-decoration: none;">
+  <h2>Classes</h2>
+</a>
+<p>Main class the user will interact is currently <em>Init</em> class, this will likely change with added Observer/Factory class.</p>
 
-<label for="nav-trigger" class="overlay"></label>
+<a href="#high-level-look-at-the-classes" id="high-level-look-at-the-classes" style="color: inherit; text-decoration: none;">
+  <h3>High level look at the classes</h3>
+</a>
+<p>This image contains basic high-level look on the class scheme (updated 30.9.2021)
+<img src="./static/model.png" alt="Image of model"></p>
 
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li>
-</nav>
+<a href="#factory" id="factory" style="color: inherit; text-decoration: none;">
+  <h2>Factory</h2>
+</a>
+<p>This class is basic interface for developers.</p>
 
-<div id="main">
-    
+<a href="#properties" id="properties" style="color: inherit; text-decoration: none;">
+  <h3>Properties</h3>
+</a>
+<ul>
+<li><p><em>private</em> instance - contains current instance of Init class</p>
+</li>
+<li><p><em>public</em> objectsLoaded - changed to true after successful call of <em>loadJSON</em> function</p>
+</li>
+</ul>
 
-    
+<a href="#functions" id="functions" style="color: inherit; text-decoration: none;">
+  <h3>Functions</h3>
+</a>
+<ul>
+<li><p><em>public async</em> loadJSON(json: JSON) - loads and places objects to scene</p>
+</li>
+<li><p><em>public</em> selectItem(id: ObjectID) - returns instance of Object3D (contains loaded geometry, visible mesh and outline mesh)</p>
+</li>
+<li><p><em>public</em> moveToStep(stepNumber: number) - moves Stepper instance to specified step and syncs it with Overlay</p>
+</li>
+<li><p><em>public</em> on(selector: ObejctID, event: string, callback: Function) - adds callbacks to object specified with selector.</p>
+</li>
+<li><p><em>public</em> group(event: string, callback: Function) - adds callback for ALL objects on specified event.</p>
+</li>
+</ul>
 
+<a href="#init" id="init" style="color: inherit; text-decoration: none;">
+  <h2>Init</h2>
+</a>
+<p>Handles Window, Overlay, Stepper and Object initialization</p>
 
+<a href="#properties-1" id="properties-1" style="color: inherit; text-decoration: none;">
+  <h3>Properties</h3>
+</a>
+<ul>
+<li><em>private</em> window: Window;</li>
+<li><em>private</em> overlay: HTMLDivElement;</li>
+<li><em>private</em> stepper: Stepper | undefined;</li>
+<li><em>private</em> objects: Objects3D;</li>
+</ul>
 
-    
+<a href="#functions-1" id="functions-1" style="color: inherit; text-decoration: none;">
+  <h3>Functions</h3>
+</a>
+<ul>
+<li><em>public</em> initPlane()</li>
+<li><em>private</em> initAxes()</li>
+<li><em>public</em> async withJSON(json: JSON) - handles loading with JSON</li>
+<li><em>private</em> checkConfig(config: Config)</li>
+<li><em>public</em> getObjects()</li>
+<li><em>public</em> getStepper()</li>
+<li><em>public</em> setStep(stepNumber: number)</li>
+</ul>
 
+<a href="#loader" id="loader" style="color: inherit; text-decoration: none;">
+  <h2>Loader</h2>
+</a>
+<p>Fuction, that loads models specified by input JSON.
+Also loads Loader Overlay, which is only HTML Element (showed when models are loading).</p>
+<p>Returns: Objects3D - Map containing loaded models</p>
 
+<a href="#overlay" id="overlay" style="color: inherit; text-decoration: none;">
+  <h2>Overlay</h2>
+</a>
+<p>Function, that initializes Overlay/Menu of the window</p>
+<p>Input parameters: instance of Stepper, instance of Window</p>
+<p>Returns: HTMLDivElement, containing Initialized stepper</p>
 
+<a href="#axis-currently-broken" id="axis-currently-broken" style="color: inherit; text-decoration: none;">
+  <h2>Axis (currently broken)</h2>
+</a>
+<p>Function, that initializes axes.</p>
+<p>Returns: Computed axes.</p>
 
+<a href="#stepper" id="stepper" style="color: inherit; text-decoration: none;">
+  <h2>Stepper</h2>
+</a>
+<p>Class that initializes steps and handles redrawing on positions specified in JSON.</p>
 
+<a href="#properties-2" id="properties-2" style="color: inherit; text-decoration: none;">
+  <h3>Properties</h3>
+</a>
+<ul>
+<li><em>private</em> objects: Objects3D;</li>
+<li><em>private</em> currentStep: StepOfManual;</li>
+<li><em>private</em> currentStepPosition: number;</li>
+<li><em>public</em> length: number;</li>
+</ul>
 
+<a href="#functions-2" id="functions-2" style="color: inherit; text-decoration: none;">
+  <h3>Functions</h3>
+</a>
+<ul>
+<li><em>private</em> redraw()</li>
+<li><em>public</em> setStep(position: number) - sets stepper for specific step</li>
+<li><em>public</em> moveStepUp()</li>
+<li><em>public</em> moveStepDown()</li>
+<li><em>public</em> getCurrentStep()</li>
+</ul>
 
+<a href="#stepofmanual" id="stepofmanual" style="color: inherit; text-decoration: none;">
+  <h2>StepOfManual</h2>
+</a>
+<p>Sub-class of Stepper. Is used as building block for linked list of Steps.</p>
 
+<a href="#properties-3" id="properties-3" style="color: inherit; text-decoration: none;">
+  <h3>Properties</h3>
+</a>
+<ul>
+<li>prev: StepOfManual | null</li>
+<li>next: StepOfManual | null</li>
+<li>name: string;</li>
+<li>positions: Position[]</li>
+</ul>
 
-    
+<a href="#window" id="window" style="color: inherit; text-decoration: none;">
+  <h2>Window</h2>
+</a>
+<p>Initializes and handles actual drawing to div.</p>
 
+<a href="#properties-4" id="properties-4" style="color: inherit; text-decoration: none;">
+  <h3>Properties</h3>
+</a>
+<ul>
+<li>
+<a href="#window-specific" id="window-specific" style="color: inherit; text-decoration: none;">
+  <h4>Window specific</h4>
+</a>
+<ul>
+<li><em>public</em> scene: Scene;</li>
+<li><em>private</em> renderer: WebGLRenderer;</li>
+<li><em>private</em> camera: PerspectiveCamera;</li>
+<li><em>public</em> container: HTMLElement;</li>
+</ul>
+</li>
+<li>
+<a href="#controlselection-specific" id="controlselection-specific" style="color: inherit; text-decoration: none;">
+  <h4>Control/selection specific</h4>
+</a>
+<ul>
+<li><em>private</em> orbitalControls: OrbitControls;</li>
+<li><em>private</em> mouse: Vector2;</li>
+<li><em>private</em> raycaster: Raycaster;</li>
+</ul>
+</li>
+<li>
+<a href="#animation-specific" id="animation-specific" style="color: inherit; text-decoration: none;">
+  <h4>Animation specific</h4>
+</a>
+<ul>
+<li><em>private</em> animators: any[]</li>
+</ul>
+</li>
+</ul>
 
-
-
-
-
-
-</div>
-
-<br class="clear">
-
-<footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Fri Mar 04 2022 12:32:34 GMT+0000 (Coordinated Universal Time) using the Minami theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
-</body>
-</html>
+<a href="#functions-3" id="functions-3" style="color: inherit; text-decoration: none;">
+  <h3>Functions</h3>
+</a>
+<ul>
+<li><em>public</em> resetCamera()</li>
+<li><em>public</em> getCamera()</li>
+<li><em>public</em> getDomRect()</li>
+<li><em>private</em> onWindowResize()</li>
+<li><em>public</em> addObject(...objects: Object3D[]) - adds object/s to scene</li>
+<li><em>private</em> selectObject(position: inputPosition, canvas: DOMRect) - shoots ray and calculates selection of item</li>
+<li><em>private</em> animate()</li>
+</ul>
+<p>Other classes are used from ThreeJS library.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Modules</a></li><li class=" tsd-kind-module"><a href="modules/Factory.html">Factory</a></li><li class=" tsd-kind-module"><a href="modules/index.html">index</a></li><li class=" tsd-kind-module"><a href="modules/initialization_Init.html">initialization/<wbr/>Init</a></li><li class=" tsd-kind-module"><a href="modules/initialization_Stepper.html">initialization/<wbr/>Stepper</a></li><li class=" tsd-kind-module"><a href="modules/initialization_Window.html">initialization/<wbr/>Window</a></li><li class=" tsd-kind-module"><a href="modules/initialization_init_Axis.html">initialization/init/<wbr/>Axis</a></li><li class=" tsd-kind-module"><a href="modules/initialization_init_PlaneInit.html">initialization/init/<wbr/>Plane<wbr/>Init</a></li><li class=" tsd-kind-module"><a href="modules/initialization_stepper_AnimationStorage.html">initialization/stepper/<wbr/>Animation<wbr/>Storage</a></li><li class=" tsd-kind-module"><a href="modules/initialization_stepper_ManualStep.html">initialization/stepper/<wbr/>Manual<wbr/>Step</a></li><li class=" tsd-kind-module"><a href="modules/initialization_stepper_Redraw.html">initialization/stepper/<wbr/>Redraw</a></li><li class=" tsd-kind-module"><a href="modules/initialization_window_Camera.html">initialization/window/<wbr/>Camera</a></li><li class=" tsd-kind-module"><a href="modules/initialization_window_Container.html">initialization/window/<wbr/>Container</a></li><li class=" tsd-kind-module"><a href="modules/initialization_window_OrbitalControls.html">initialization/window/<wbr/>Orbital<wbr/>Controls</a></li><li class=" tsd-kind-module"><a href="modules/initialization_window_Overlay.html">initialization/window/<wbr/>Overlay</a></li><li class=" tsd-kind-module"><a href="modules/initialization_window_Renderer.html">initialization/window/<wbr/>Renderer</a></li><li class=" tsd-kind-module"><a href="modules/initialization_window_Scene.html">initialization/window/<wbr/>Scene</a></li><li class=" tsd-kind-module"><a href="modules/initialization_window_overlay_OverlayLoader.html">initialization/window/overlay/<wbr/>Overlay<wbr/>Loader</a></li><li class=" tsd-kind-module"><a href="modules/initialization_window_overlay_generate_id.html">initialization/window/overlay/generate-<wbr/>id</a></li><li class=" tsd-kind-module"><a href="modules/inputChecking_InputCheck.html">input<wbr/>Checking/<wbr/>Input<wbr/>Check</a></li><li class=" tsd-kind-module"><a href="modules/inputChecking_InputCheckConfig.html">input<wbr/>Checking/<wbr/>Input<wbr/>Check<wbr/>Config</a></li><li class=" tsd-kind-module"><a href="modules/inputChecking_InputCheckJson.html">input<wbr/>Checking/<wbr/>Input<wbr/>Check<wbr/>Json</a></li><li class=" tsd-kind-module"><a href="modules/stuff_Icons.html">stuff/<wbr/>Icons</a></li><li class=" tsd-kind-module"><a href="modules/stuff_Loader.html">stuff/<wbr/>Loader</a></li><li class=" tsd-kind-module"><a href="modules/stuff_Object3D.html">stuff/<wbr/>Object3D</a></li><li class=" tsd-kind-module"><a href="modules/stuff_Utils.html">stuff/<wbr/>Utils</a></li><li class=" tsd-kind-module"><a href="modules/stuff_loaders_LoaderManager.html">stuff/loaders/<wbr/>Loader<wbr/>Manager</a></li><li class=" tsd-kind-module"><a href="modules/stuff_loaders_LoaderOverlay.html">stuff/loaders/<wbr/>Loader<wbr/>Overlay</a></li><li class=" tsd-kind-module"><a href="modules/types_applicationTypes.html">types/application<wbr/>Types</a></li><li class=" tsd-kind-module"><a href="modules/types_configTypes.html">types/config<wbr/>Types</a></li><li class=" tsd-kind-module"><a href="modules/types_jsonTypes.html">types/json<wbr/>Types</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li><li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li><li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li><li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
