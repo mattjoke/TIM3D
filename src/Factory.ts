@@ -6,12 +6,12 @@ import {
   UUID
 } from './types/applicationTypes';
 
-import AnimationStorage from './initialization/stepper/AnimationStorage';
+import { AnimationStorage } from './initialization/stepper/AnimationStorage';
 import { Config } from './types/configTypes';
 import { Event } from 'three';
-import Init from './initialization/Init';
+import { Init } from './initialization/Init';
 import { JSON } from './types/jsonTypes';
-import Object3D from 'stuff/Object3D';
+import { Object3D } from 'stuff/Object3D';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -19,6 +19,7 @@ import { v4 as uuidv4 } from 'uuid';
  * @author Matej Hakoš
  *
  * @class Factory
+ * @module Factory
  * @typedef {Factory}
  */
 class Factory {
@@ -270,4 +271,4 @@ class Factory {
   }
 }
 
-export default Factory;
+export { Factory };

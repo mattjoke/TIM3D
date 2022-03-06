@@ -1,8 +1,9 @@
-import { Sidebar } from '@manualTypes/configTypes';
-import Stepper from 'initialization/Stepper';
-import Icons from '../../../stuff/Icons';
-import { checkFullscreen } from '../../../stuff/Utils';
 import '../overlay/overlay.css';
+
+import Icons from '../../../stuff/Icons';
+import { Sidebar } from '../../../types/configTypes';
+import {Stepper} from 'initialization/Stepper';
+import { checkFullscreen } from '../../../stuff/Utils';
 import generateId from './generate-id.js';
 
 const overlay = require('./overlay.hbs');

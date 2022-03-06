@@ -309,4 +309,4 @@ class Renderer {
   }
 }
 
-export default Renderer;
+export { Renderer };

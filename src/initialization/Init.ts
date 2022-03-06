@@ -2,14 +2,14 @@ import { ConfigCheck, JsonCheck } from '../inputChecking/InputCheck';
 import { Line, Object3D } from 'three';
 import { ObjectID, Objects3D } from '../types/applicationTypes';
 
-import Axis from './init/Axis';
+import { Axis } from './init/Axis';
 import { Config } from '../types/configTypes';
 import { JSON } from '../types/jsonTypes';
-import Loader from '../stuff/Loader';
-import Overlay from './window/Overlay';
-import PlaneInit from './init/PlaneInit';
-import Stepper from './Stepper';
-import Window from './Window';
+import { Loader } from '../stuff/Loader';
+import { Overlay } from './window/Overlay';
+import { PlaneInit } from './init/PlaneInit';
+import { Stepper } from './Stepper';
+import { Window } from './Window';
 
 /**
  * Description placeholder
@@ -79,7 +79,6 @@ class Init {
    */
   public objectsLoaded = false;
 
-  
   /**
    * Creates an instance of Init.
    * @date 3/4/2022 - 12:22:30 PM
@@ -103,7 +102,6 @@ class Init {
     this.window.animate();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:22:35 PM
@@ -115,7 +113,6 @@ class Init {
     this.addObjects(light, ambient);
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:22:39 PM
@@ -129,7 +126,6 @@ class Init {
     });
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:22:42 PM
@@ -161,7 +157,6 @@ class Init {
     });
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:23:02 PM
@@ -185,7 +180,6 @@ class Init {
     return check.success;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:23:14 PM
@@ -197,7 +191,6 @@ class Init {
     return this.stepper;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:23:19 PM
@@ -210,7 +203,6 @@ class Init {
     return new Promise((resolve) => setTimeout(resolve, t));
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:23:24 PM
@@ -226,7 +218,6 @@ class Init {
     return this.objects;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:23:30 PM
@@ -248,7 +239,6 @@ class Init {
     );
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:23:36 PM
@@ -262,7 +252,6 @@ class Init {
     });
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:23:41 PM
@@ -275,7 +264,6 @@ class Init {
     this.overlay.dispatchEvent(new CustomEvent('update', { detail: currStep }));
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:23:50 PM
@@ -291,4 +279,4 @@ class Init {
   }
 }
 
-export default Init;
+export { Init };

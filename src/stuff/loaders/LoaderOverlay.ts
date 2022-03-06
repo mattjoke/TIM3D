@@ -23,4 +23,4 @@ const LoaderOverlay = () => {
   return div;
 };
 
-export default LoaderOverlay;
+export { LoaderOverlay };

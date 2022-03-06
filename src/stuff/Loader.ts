@@ -1,12 +1,12 @@
 import { Group, Mesh, Quaternion, Vector3 } from 'three';
 
-import { Config } from '@manualTypes/configTypes';
-import { File } from '@manualTypes/jsonTypes';
-import LoaderManager from './loaders/LoaderManager';
-import LoaderOverlay from './loaders/LoaderOverlay';
-import Object3D from './Object3D';
+import { Config } from '../types/configTypes';
+import { File } from '../types/jsonTypes';
+import { LoaderManager } from './loaders/LoaderManager';
+import { LoaderOverlay } from './loaders/LoaderOverlay';
+import { Object3D } from './Object3D';
 import { Objects3D } from '../types/applicationTypes';
-import Window from '../initialization/Window';
+import { Window } from '../initialization/Window';
 
 /**
  * Description placeholder
@@ -88,4 +88,4 @@ const Loader = async (
   return items;
 };
 
-export default Loader;
+export { Loader };

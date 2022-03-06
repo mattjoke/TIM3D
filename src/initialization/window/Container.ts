@@ -1,5 +1,3 @@
-import { number } from "zod";
-
 /**
  * Description placeholder
  * @date 3/4/2022 - 11:06:01 AM
@@ -68,7 +66,7 @@ class WindowsContainer {
    * @public
    * @returns {{width:number; height:number}}
    */
-  public getSizing() : {width:number; height:number} {
+  public getSizing(): { width: number; height: number } {
     return {
       width: this.instance.offsetWidth,
       height: this.instance.offsetHeight
@@ -98,4 +96,4 @@ class WindowsContainer {
   }
 }
 
-export default WindowsContainer;
+export { WindowsContainer as Container };

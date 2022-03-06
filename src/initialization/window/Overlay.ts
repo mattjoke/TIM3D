@@ -1,8 +1,8 @@
 import { OverlayLoader } from './overlay/OverlayLoader';
 import { Sidebar } from '../../types/configTypes';
-import Stepper from '../Stepper';
+import { Stepper } from '../Stepper';
 import { Tween } from '@tweenjs/tween.js';
-import Window from '../Window';
+import { Window } from '../Window';
 import generateId from './overlay/generate-id';
 
 /**
@@ -113,4 +113,4 @@ const Overlay = (
   return template;
 };
 
-export default Overlay;
+export { Overlay };

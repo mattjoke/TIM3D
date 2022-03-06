@@ -2,7 +2,7 @@ import { Camera, Vector3 } from 'three';
 import { Easing, Tween } from '@tweenjs/tween.js';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import Renderer from './Renderer';
+import {Renderer} from './Renderer';
 
 /**
  * Description placeholder
@@ -137,4 +137,4 @@ class OrbitalControls {
   }
 }
 
-export default OrbitalControls;
+export {OrbitalControls};

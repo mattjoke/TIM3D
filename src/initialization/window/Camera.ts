@@ -15,4 +15,4 @@ const Camera = (perspective: number, defPosition: Vector3) => {
   return camera;
 };
 
-export default Camera;
+export { Camera };

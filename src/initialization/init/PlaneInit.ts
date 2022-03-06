@@ -15,4 +15,4 @@ const PlaneInit = () => {
   return [light, l];
 };
 
-export default PlaneInit;
+export { PlaneInit };

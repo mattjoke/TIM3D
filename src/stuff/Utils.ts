@@ -1,5 +1,5 @@
 import { Color } from 'three';
-import { ObjectID } from '@manualTypes/applicationTypes';
+import { ObjectID } from '../types/applicationTypes';
 
 /**
  * Description placeholder

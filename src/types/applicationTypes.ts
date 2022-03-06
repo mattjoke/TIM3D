@@ -1,6 +1,6 @@
 import { Event, Color as ThreeColor } from 'three';
 
-import Object3D from 'stuff/Object3D';
+import { Object3D } from "stuff/Object3D";
 import { Tween } from '@tweenjs/tween.js';
 
 /**

@@ -1,8 +1,8 @@
-import { AnimationDef, Animations } from '@manualTypes/applicationTypes';
+import { AnimationDef, Animations } from '../../types/applicationTypes';
 import { Easing, Tween } from '@tweenjs/tween.js';
 
 import { MathUtils } from 'three';
-import Object3D from 'stuff/Object3D';
+import { Object3D } from 'stuff/Object3D';
 
 /**
  * Description placeholder
@@ -23,13 +23,12 @@ class AnimationStorage {
   private static animations: Animations;
 
   /**
-   * 
+   *
    */
   private constructor() {
     AnimationStorage.loadDefaultAnimations();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 11:02:19 AM
@@ -97,8 +96,6 @@ class AnimationStorage {
     });
   }
 
-  
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 11:03:19 AM
@@ -116,7 +113,6 @@ class AnimationStorage {
     return AnimationStorage;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 11:03:28 AM
@@ -129,7 +125,6 @@ class AnimationStorage {
     return AnimationStorage.Instance.animations;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 11:04:06 AM
@@ -143,7 +138,6 @@ class AnimationStorage {
     return AnimationStorage.getAnimations().get(name);
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 11:04:16 AM
@@ -156,7 +150,7 @@ class AnimationStorage {
   public static addAnimation(name: string, animation: AnimationDef) {
     AnimationStorage.getAnimations().set(name, animation);
   }
-  
+
   /**
    * Description placeholder
    * @date 3/4/2022 - 11:04:21 AM
@@ -168,8 +162,8 @@ class AnimationStorage {
   public static removeAnimation(name: string) {
     AnimationStorage.getAnimations().delete(name);
   }
-  
-  // 
+
+  //
   /**
    * Set an alias to animation in AnimationStorage
    * I.e. two functions are the same, but have 2 different names (e.g. x360deg, xscrew)
@@ -187,4 +181,4 @@ class AnimationStorage {
   }
 }
 
-export default AnimationStorage;
+export { AnimationStorage };

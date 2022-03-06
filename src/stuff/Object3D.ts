@@ -9,12 +9,11 @@ import {
   Vector3
 } from 'three';
 import {
-  generateRandomColor,
   generateRandomSeededColor,
   isColor
 } from './Utils';
 
-import { File } from '@manualTypes/jsonTypes';
+import { File } from '../types/jsonTypes';
 
 /**
  * Description placeholder
@@ -58,7 +57,6 @@ class Object3D {
    */
   private outline: Mesh;
 
-  
   /**
    * Creates an instance of Object3D.
    * @date 3/4/2022 - 12:28:47 PM
@@ -74,7 +72,6 @@ class Object3D {
     this.outline = this.buildOutline(this.geometry);
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:28:50 PM
@@ -85,7 +82,7 @@ class Object3D {
   public getMesh() {
     return this.mesh;
   }
-  
+
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:29:01 PM
@@ -101,7 +98,6 @@ class Object3D {
     this.outline.scale.multiplyScalar(1.07);
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:29:06 PM
@@ -113,7 +109,6 @@ class Object3D {
     this.getOutline().updateMatrix();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:29:11 PM
@@ -126,7 +121,6 @@ class Object3D {
     this.setOutlineFromMesh();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:29:20 PM
@@ -139,7 +133,6 @@ class Object3D {
     this.getOutline().setRotationFromQuaternion(rotation);
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:29:26 PM
@@ -158,7 +151,6 @@ class Object3D {
     this.setOutlineFromMesh();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:29:37 PM
@@ -170,7 +162,6 @@ class Object3D {
     this.setOutlineFromMesh();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:29:43 PM
@@ -182,7 +173,7 @@ class Object3D {
     this.outline.rotation.copy(this.mesh.rotation);
     this.updateMatrix();
   }
-  
+
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:29:50 PM
@@ -195,7 +186,6 @@ class Object3D {
     this.updateMatrix();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:30:12 PM
@@ -208,7 +198,6 @@ class Object3D {
     return this.mesh.material;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:37:17 PM
@@ -220,7 +209,6 @@ class Object3D {
     return this.outline;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:37:36 PM
@@ -244,7 +232,6 @@ class Object3D {
     }
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:37:40 PM
@@ -297,7 +284,6 @@ class Object3D {
     return mesh;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:37:48 PM
@@ -330,4 +316,4 @@ class Object3D {
   }
 }
 
-export default Object3D;
+export { Object3D };

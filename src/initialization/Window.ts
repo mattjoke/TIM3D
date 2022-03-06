@@ -1,9 +1,9 @@
-import Camera from './window/Camera';
-import { Config } from '@manualTypes/configTypes';
-import Container from './window/Container';
-import OrbitalControls from './window/OrbitalControls';
-import Renderer from './window/Renderer';
-import Scene from './window/Scene';
+import { Camera } from './window/Camera';
+import { Config } from '../types/configTypes';
+import { Container } from './window/Container';
+import { OrbitalControls } from './window/OrbitalControls';
+import { Renderer } from './window/Renderer';
+import { Scene } from './window/Scene';
 import { Vector3 } from 'three';
 import { update } from '@tweenjs/tween.js';
 
@@ -56,7 +56,6 @@ class Window {
    */
   private orbitalControls: OrbitalControls;
 
-  
   /**
    * Creates an instance of Window.
    * @date 3/4/2022 - 12:26:09 PM
@@ -98,7 +97,6 @@ class Window {
     this.animate();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:26:14 PM
@@ -109,7 +107,7 @@ class Window {
   public resetCamera() {
     this.orbitalControls.reset();
   }
-  
+
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:26:18 PM
@@ -121,7 +119,7 @@ class Window {
   public getCamera() {
     return this.camera;
   }
-  
+
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:26:22 PM
@@ -133,7 +131,7 @@ class Window {
   public getScene() {
     return this.scene;
   }
-  
+
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:26:25 PM
@@ -146,7 +144,6 @@ class Window {
     return this.container.getInstance();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:26:33 PM
@@ -162,7 +159,6 @@ class Window {
     this.orbitalControls.destroy();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:26:37 PM
@@ -177,7 +173,6 @@ class Window {
     this.renderer.setSize(sizing);
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:26:40 PM
@@ -198,4 +193,4 @@ class Window {
   }
 }
 
-export default Window;
+export { Window };

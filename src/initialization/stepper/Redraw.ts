@@ -1,10 +1,10 @@
 import { Easing, Tween } from '@tweenjs/tween.js';
 import { Quaternion, Vector3 } from 'three';
 
-import { AnimationDef } from '@manualTypes/applicationTypes';
-import AnimationStorage from './AnimationStorage';
+import { AnimationDef } from '../../types/applicationTypes';
+import { AnimationStorage } from './AnimationStorage';
 import { ManualStep } from './ManualStep';
-import Object3D from 'stuff/Object3D';
+import { Object3D } from 'stuff/Object3D';
 
 /**
  * Description placeholder

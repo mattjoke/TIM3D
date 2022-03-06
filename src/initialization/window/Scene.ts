@@ -19,7 +19,7 @@ class Scene {
    * @type {ThreeScene}
    */
   private instance: ThreeScene;
-  
+
   /**
    * Creates an instance of Scene.
    * @date 3/4/2022 - 12:19:30 PM
@@ -44,7 +44,6 @@ class Scene {
     this.initAxexHelper();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:19:42 PM
@@ -60,7 +59,6 @@ class Scene {
     this.instance.add(axes);
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:19:47 PM
@@ -72,7 +70,6 @@ class Scene {
     return this.instance;
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:20:08 PM
@@ -83,7 +80,6 @@ class Scene {
     this.instance.clear();
   }
 
-  
   /**
    * Description placeholder
    * @date 3/4/2022 - 12:20:17 PM
@@ -98,4 +94,4 @@ class Scene {
   }
 }
 
-export default Scene;
+export { Scene };

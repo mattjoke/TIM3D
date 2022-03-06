@@ -1,7 +1,7 @@
-import { Position, Step } from '@manualTypes/jsonTypes';
+import { Position, Step } from '../../types/jsonTypes';
 
-import { AnimationDef } from '@manualTypes/applicationTypes';
-import AnimationStorage from './AnimationStorage';
+import { AnimationDef } from '../../types/applicationTypes';
+import { AnimationStorage } from './AnimationStorage';
 
 /**
  * This is simple class
