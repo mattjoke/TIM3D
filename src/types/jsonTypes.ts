@@ -1,17 +1,8 @@
-import { Color, Mesh } from 'three';
+import { Color } from 'three';
 import { ObjectID } from './applicationTypes';
 
 /**
- * Description placeholder
- * @author Matej Hakoš
- *
- * @export
- * @typedef {Objects}
- */
-export type Objects = Map<string | number, Mesh>;
-
-/**
- * Description placeholder
+ * Definition of Pose.
  * @author Matej Hakoš
  *
  * @export
@@ -20,14 +11,14 @@ export type Objects = Map<string | number, Mesh>;
  */
 export interface Pose {
   /**
-   * Description placeholder
+   * Position that is added to "base" file position.
    * @author Matej Hakoš
    *
    * @type {?[x: number, y: number, z: number]}
    */
   position?: [x: number, y: number, z: number];
   /**
-   * Description placeholder
+   * A quaternion orientation of loaded object.
    * @author Matej Hakoš
    *
    * @type {?[x: number, y: number, z: number, w: number]}
@@ -36,7 +27,7 @@ export interface Pose {
 }
 
 /**
- * Description placeholder
+ * Definition of Position defined in file JSON.
  * @author Matej Hakoš
  *
  * @export
@@ -45,21 +36,21 @@ export interface Pose {
  */
 export interface Position {
   /**
-   * Description placeholder
+   * Id of object, which should be moved/oriented.
    * @author Matej Hakoš
    *
    * @type {ObjectID}
    */
   id: ObjectID;
   /**
-   * Description placeholder
+   * New position/orientation.
    * @author Matej Hakoš
    *
    * @type {Pose}
    */
   pose: Pose;
   /**
-   * Description placeholder
+   * Optional animation to play after move.
    * @author Matej Hakoš
    *
    * @type {?string}
@@ -68,7 +59,7 @@ export interface Position {
 }
 
 /**
- * Description placeholder
+ * Definition of Step.
  * @author Matej Hakoš
  *
  * @export
@@ -77,21 +68,21 @@ export interface Position {
  */
 export interface Step {
   /**
-   * Description placeholder
+   * Name of step.
    * @author Matej Hakoš
    *
    * @type {string}
    */
   name: string;
   /**
-   * Description placeholder
+   * An array of positions, that should be changed in one turn.
    * @author Matej Hakoš
    *
    * @type {Position[]}
    */
   positions: Position[];
   /**
-   * Description placeholder
+   * Optional animation to be played on all objects defined in 'positions'.
    * @author Matej Hakoš
    *
    * @type {?string}
@@ -100,7 +91,7 @@ export interface Step {
 }
 
 /**
- * Description placeholder
+ * Definition of a file.
  * @author Matej Hakoš
  *
  * @export
@@ -109,51 +100,47 @@ export interface Step {
  */
 export interface File {
   /**
-   * Description placeholder
+   * A path to file, that should be loaded.
    * @author Matej Hakoš
    *
    * @type {string}
    */
   file: string;
   /**
-   * Description placeholder
+   * Optional name of the loaded file.
    * @author Matej Hakoš
    *
    * @type {?ObjectID}
    */
   name?: ObjectID;
   /**
-   * Description placeholder
+   * A <strong>unique</strong> id of an item. 
+   * It is used for indexing and aniamtion handeling. 
    * @author Matej Hakoš
    *
    * @type {string}
    */
   id: string;
   /**
-   * Description placeholder
+   * Custom predefined color of loaded file.
+   * Supports css's string colors. 
+   * 'random' or undefined color generates random color. 
    * @author Matej Hakoš
    *
    * @type {?(Color | string)}
    */
   color?: Color | string;
   /**
-   * Description placeholder
+   * Default Pose of loaded file.
    * @author Matej Hakoš
    *
    * @type {?Pose}
    */
   pose?: Pose;
-  /**
-   * Description placeholder
-   * @author Matej Hakoš
-   *
-   * @type {?string}
-   */
-  animation?: string;
 }
 
 /**
- * Description placeholder
+ * Definition of input JSON.
  * @author Matej Hakoš
  *
  * @export
@@ -162,14 +149,14 @@ export interface File {
  */
 export interface JSON {
   /**
-   * Description placeholder
+   * An array of file definitons.
    * @author Matej Hakoš
    *
    * @type {?File[]}
    */
   files?: File[];
   /**
-   * Description placeholder
+   * An array of step definitons.
    * @author Matej Hakoš
    *
    * @type {?Step[]}

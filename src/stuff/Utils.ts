@@ -29,6 +29,7 @@ const parseExtension = (filename: ObjectID) => {
   return filename.toString().split('.').pop();
 };
 
+/* eslint-disable*/
 /**
  * Checks if document is already in fullscreen.
  * (Note: @ts-ignore is required because of unsupported types.)
@@ -51,6 +52,7 @@ const checkFullscreen = (document?: Document) => {
     document.msFullscreenElement !== undefined
   ); // IE
 };
+/* eslint-enable*/
 
 /**
  * Generated (pseudo)random color.

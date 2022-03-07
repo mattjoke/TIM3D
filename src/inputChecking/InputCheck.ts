@@ -1,4 +1,3 @@
-import { SafeParseReturnType } from 'zod';
 import { configSchema } from './InputCheckConfig';
 import { jsonSchema } from './InputCheckJson';
 

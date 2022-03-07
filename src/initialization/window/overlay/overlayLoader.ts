@@ -1,13 +1,11 @@
 import '../overlay/overlay.css';
 
-// @ts-ignore
-import * as overlay from './overlay.hbs';
-
 import { Icons } from '../../../stuff/Icons';
 import { Sidebar } from '../../../types/configTypes';
 import { Stepper } from 'initialization/Stepper';
 import { checkFullscreen } from '../../../stuff/Utils';
 import generateId from './generate-id.js';
+import overlay from './overlay.hbs';
 
 /**
  * Generate an example sidebar.
