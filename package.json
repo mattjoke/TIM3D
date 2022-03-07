@@ -9,7 +9,7 @@
     "lint:fix": "eslint . --fix",
     "prettier:write": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "docs:gen": "typedoc --entryPoints ./src/apiGen.ts"
+    "docs:gen": "typedoc --entryPoints ./src/index.ts"
   },
   "author": "Matej Hakoš",
   "license": "ISC",
@@ -28,7 +28,6 @@
     "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.1",
     "html-loader": "^3.1.0",
-    "jsdoc": "^3.6.10",
     "style-loader": "^3.1.0",
     "svg-inline-loader": "^0.8.2",
     "svg-url-loader": "^7.1.1",

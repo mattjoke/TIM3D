@@ -2,7 +2,6 @@ import {
   BackSide,
   BufferGeometry,
   Color,
-  Material,
   Mesh,
   MeshBasicMaterial,
   MeshStandardMaterial,
@@ -148,6 +147,7 @@ class Object3D {
    * @param {Quaternion} rotation
    */
   public addRotation(rotation: Quaternion) {
+    this.mesh.rotation.setFromQuaternion(rotation);
     this.setOutlineFromMesh();
   }
 

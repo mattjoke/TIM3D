@@ -1,7 +1,6 @@
 import {
   Camera,
   Color,
-  Intersection,
   Mesh,
   MeshStandardMaterial,
   PerspectiveCamera,

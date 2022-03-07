@@ -121,7 +121,7 @@ class OrbitalControls {
       .to(this.worldPosition, 500)
       .easing(Easing.Quadratic.Out)
       .start()
-      .onComplete((_) => {
+      .onComplete(() => {
         this.controls.enableDamping = true;
       });
   }

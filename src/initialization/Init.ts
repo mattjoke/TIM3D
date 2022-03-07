@@ -228,7 +228,7 @@ class Init {
    * @public
    * @param {...*} objects
    */
-  public addObjects(...objects: any) {
+  public addObjects(...objects: Object3D[]) {
     objects.forEach((obj: Object3D) => {
       this.window.getScene().addObject(obj);
     });

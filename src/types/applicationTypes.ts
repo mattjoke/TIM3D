@@ -4,7 +4,8 @@ import { Object3D } from 'stuff/Object3D';
 import { Tween } from '@tweenjs/tween.js';
 
 /**
- * Description placeholder
+ * Type definition for ObjectID.
+ * The ID is string or number.
  * @author Matej Hakoš
  *
  * @export
@@ -12,7 +13,7 @@ import { Tween } from '@tweenjs/tween.js';
  */
 export type ObjectID = string | number;
 /**
- * Description placeholder
+ * All loaded objects are stored in this map.
  * @author Matej Hakoš
  *
  * @export
@@ -20,7 +21,7 @@ export type ObjectID = string | number;
  */
 export type Objects3D = Map<ObjectID, Object3D>;
 /**
- * Description placeholder
+ * Supported are all css colors.
  * @author Matej Hakoš
  *
  * @export
@@ -28,7 +29,7 @@ export type Objects3D = Map<ObjectID, Object3D>;
  */
 export type Color = ThreeColor | string;
 /**
- * Description placeholder
+ * Map with all animations.
  * @author Matej Hakoš
  *
  * @export
@@ -36,15 +37,17 @@ export type Color = ThreeColor | string;
  */
 export type Animations = Map<string, AnimationDef>;
 /**
- * Description placeholder
+ * Definition for animation functions.
  * @author Matej Hakoš
  *
  * @export
  * @typedef {AnimationDef}
  */
-export type AnimationDef = (obj: Object3D) => Tween<any> | void;
+export type AnimationDef = (
+  obj: Object3D
+) => Tween<Record<string, unknown>> | void;
 /**
- * Description placeholder
+ * UUID of instance.
  * @author Matej Hakoš
  *
  * @export
@@ -53,7 +56,7 @@ export type AnimationDef = (obj: Object3D) => Tween<any> | void;
 export type UUID = string;
 
 /**
- * Description placeholder
+ * Definition of callbacks.
  * @author Matej Hakoš
  *
  * @export
@@ -62,17 +65,24 @@ export type UUID = string;
 export type CallbackFunction = (obj: Object3D, ev: Event) => void;
 
 /**
- * Description placeholder
+ * Defintion of getObject Function.
+ * @author Matej Hakoš
  *
  * @export
  * @typedef {getObjectFunction}
  */
 export type getObjectFunction = (key: ObjectID) => Object3D | undefined;
 
+/**
+ * Definition of HTML element size.
+ *
+ * @export
+ * @typedef {elementSizing}
+ */
 export type elementSizing = { width: number; height: number };
 
 /**
- * Description placeholder
+ * Defines input position of mouse/touch.
  * @author Matej Hakoš
  *
  * @export
@@ -97,7 +107,7 @@ export interface inputPosition {
 }
 
 /**
- * Description placeholder
+ * Definition of HTML element size.
  * @author Matej Hakoš
  *
  * @export
@@ -106,14 +116,14 @@ export interface inputPosition {
  */
 export interface containerSize {
   /**
-   * Description placeholder
+   * A width of element.
    * @author Matej Hakoš
    *
    * @type {number}
    */
   width: number;
   /**
-   * Description placeholder
+   * A height of element.
    * @author Matej Hakoš
    *
    * @type {number}

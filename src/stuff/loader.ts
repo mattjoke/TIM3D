@@ -39,12 +39,13 @@ const loader = async (
       .then(async (object) => {
         let obj: Object3D;
         switch (object.type) {
-          case 'Group':
+          case 'Group': {
             const o = object as Group;
             const child = o.children[0] as Mesh;
             obj = new Object3D(child.geometry, file);
             obj.setScale(50, 50, 50);
             break;
+          }
           default:
             obj = new Object3D(object, file);
             break;
