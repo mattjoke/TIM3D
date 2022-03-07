@@ -18,14 +18,25 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+      - name: Install and Build project 🔧
         run: |
           npm install
           npm run build
 
-      - name: Deploy 🚀
+      - name: Deploy project 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages-build # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
           target-folder: docs/scripts
+          
+      - name: Install and Build docs🔧
+        run: |
+          npm install
+          npm run docs:gen
+      - name: Deploy docs🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages-build
+          folder: docs
+          target-folder: docs/docs
