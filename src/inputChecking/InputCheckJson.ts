@@ -44,8 +44,7 @@ const fileSchema = object({
  * @type {ZodObject}
  */
 const positionSchema = object({
-  id: string(),
-  name: optional(objectID),
+  id: objectID,
   pose: object({
     position: optional(array(number()).length(3)),
     orientation: optional(array(number()).length(4))

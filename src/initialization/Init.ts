@@ -160,7 +160,19 @@ class Init {
     const check = checker(object);
     if (!check.success) {
       check.error.issues.forEach((issue) => {
-        throw new SyntaxError(`${this.parentUUID}-${issue.message}`);
+        throw new SyntaxError(
+          `${issue.message} ${issue.path[issue.path.length - 1]}:
+          ${issue.path
+            .map((val, index) => {
+              if (index % 2 !== 0) {
+                return `[${val}]`;
+              }
+              return `.${val}`;
+            })
+            .join('')
+            .substring(1)}
+       on instance ${this.parentUUID}.`
+        );
       });
     }
 
