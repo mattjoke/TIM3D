@@ -1,7 +1,7 @@
+import { ComputedPostions, getObjectFunction } from '../types/applicationTypes';
 import { ManualStep, buildSteps } from './stepper/ManualStep';
 
 import { JSON } from '../types/jsonTypes';
-import { getObjectFunction } from '../types/applicationTypes';
 import { redraw } from './stepper/redraw';
 
 /**
@@ -13,10 +13,18 @@ import { redraw } from './stepper/redraw';
  */
 class Stepper {
   /**
+   * Contains base computed postions.
+   *
+   * @private
+   * @type {ComputedPostions}
+   */
+  private computedPositions: ComputedPostions;
+
+  /**
    * A helper function that returns object from Init class.
    *
    * @private
-   * @type {Function}
+   * @type {getObjectFunction}
    */
   private getObject: getObjectFunction;
   /**
@@ -56,7 +64,7 @@ class Stepper {
    */
   private root: ManualStep | null;
   /**
-   * An array of strings, which corresponds to names of steps, 
+   * An array of strings, which corresponds to names of steps,
    * which will be indefinately looped.
    *
    * @private
@@ -69,14 +77,21 @@ class Stepper {
    *
    * @constructor
    * @param {JSON} json
-   * @param {Function} getObject
+   * @param {getObjectFunction} getObject
+   * @param {ComputedPostions} computedPositions
    * @param {?[string]} [animationLoop]
    */
-  constructor(json: JSON, getObject: getObjectFunction, animationLoop?: [string]) {
+  constructor(
+    json: JSON,
+    getObject: getObjectFunction,
+    computedPositions: ComputedPostions,
+    animationLoop?: [string]
+  ) {
+    this.computedPositions = computedPositions;
     this.getObject = getObject;
     this.signaler = new EventTarget();
 
-    const { root, length } = buildSteps(json.steps);
+    const { root, length } = buildSteps(json.steps, computedPositions);
     this.currentStep = root ?? new ManualStep();
     this.root = root;
     this.length = length;
@@ -191,6 +206,16 @@ class Stepper {
    */
   public getCurrentStep() {
     return this.currentStepPosition;
+  }
+
+  /**
+   * Returns Computed Positions.
+   *
+   * @public
+   * @return {ComputedPostions}
+   */
+  public getComputedPositions() {
+    return this.computedPositions;
   }
 }
 

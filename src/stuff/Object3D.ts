@@ -8,12 +8,10 @@ import {
   Quaternion,
   Vector3
 } from 'three';
-import {
-  generateRandomSeededColor,
-  isColor
-} from './Utils';
+import { generateRandomSeededColor, isColor } from './Utils';
 
 import { File } from '../types/jsonTypes';
+import { RuntimePose } from '../types/applicationTypes';
 
 /**
  * Class that has all the relevant geometries/data/animations
@@ -31,6 +29,22 @@ class Object3D {
    * @type {File}
    */
   private file: File;
+
+  /**
+   * Name parsed from file.
+   *
+   * @public
+   * @type {string}
+   */
+  public fileID: string;
+
+  /**
+   * Last drawn pose
+   *
+   * @private
+   * @type {RuntimePose}
+   */
+  private pose: RuntimePose;
   /**
    * Computed Buffer Geometry.
    *
@@ -63,8 +77,13 @@ class Object3D {
   constructor(geometry: BufferGeometry, file: File) {
     this.geometry = geometry;
     this.file = file;
+    this.fileID = file.id;
     this.mesh = this.buildMesh(this.geometry, file);
     this.outline = this.buildOutline(this.geometry);
+    this.pose = {
+      position: this.mesh.position,
+      orientation: this.mesh.quaternion
+    };
   }
 
   /**
@@ -102,7 +121,7 @@ class Object3D {
   }
 
   /**
-   * Sets position of object to specific location. 
+   * Sets position of object to specific location.
    *
    * @public
    * @param {Vector3} position
@@ -194,6 +213,26 @@ class Object3D {
   }
 
   /**
+   * Returns last drawn pose.
+   *
+   * @public
+   * @return {RuntimePose}
+   */
+  public getPose() {
+    return this.pose;
+  }
+
+  /**
+   * Sets last drawn pose. This does not update mesh!
+   *
+   * @public
+   * @param {RuntimePose} pose
+   */
+  public setPose(pose: RuntimePose) {
+    this.pose = pose;
+  }
+
+  /**
    * Sets outline color.
    *
    * @public
@@ -251,7 +290,7 @@ class Object3D {
     mesh.position.add(new Vector3(position[0], position[1], position[2]));
 
     // Custom default orientation
-    const orientation = pose?.orientation || [0, 0, 0, 0];
+    const orientation = pose?.orientation || [0, 0, 0, 1];
     mesh.quaternion.set(
       orientation[1],
       orientation[2],
@@ -261,6 +300,10 @@ class Object3D {
     mesh.quaternion.normalize();
 
     mesh.name = `${file.id}-${file.name ?? 'defName'}`;
+
+    this.pose = {
+      position: mesh.position
+    };
     return mesh;
   }
 

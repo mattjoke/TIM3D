@@ -1,10 +1,14 @@
-import { AnimationDef, getObjectFunction } from '../../types/applicationTypes';
-import { Easing, Tween } from '@tweenjs/tween.js';
 import { Quaternion, Vector3 } from 'three';
 
 import { AnimationStorage } from './AnimationStorage';
 import { ManualStep } from './ManualStep';
 import { Object3D } from 'stuff/Object3D';
+import { Tween } from '@tweenjs/tween.js';
+import {
+  getObjectFunction
+} from '../../types/applicationTypes';
+
+const DELAY = 100;
 
 /**
  * Animates position of an object using Tween.
@@ -16,10 +20,10 @@ import { Object3D } from 'stuff/Object3D';
  */
 const animatePosition = (obj: Object3D, to: Vector3, delay?: number) => {
   return new Tween(obj.getMesh().position)
-    .to({ x: to.x, y: to.y, z: to.z }, delay ?? 300)
+    .to({ x: to.x, y: to.y, z: to.z }, delay ?? DELAY)
     .onStart(() => {
       new Tween(obj.getOutline().position)
-        .to({ x: to.x, y: to.y, z: to.z }, delay ?? 300)
+        .to({ x: to.x, y: to.y, z: to.z }, delay ?? DELAY)
         .start();
     });
 };
@@ -34,10 +38,10 @@ const animatePosition = (obj: Object3D, to: Vector3, delay?: number) => {
  */
 const animateRotation = (from: Object3D, to: Quaternion, delay?: number) => {
   return new Tween(from.getMesh().quaternion)
-    .to({ x: to.x, y: to.y, z: to.z }, delay ?? 500)
+    .to({ x: to.x, y: to.y, z: to.z }, delay ?? DELAY)
     .onStart(() => {
       new Tween(from.getOutline().quaternion)
-        .to({ x: to.x, y: to.y, z: to.z }, delay ?? 500)
+        .to({ x: to.x, y: to.y, z: to.z }, delay ?? DELAY)
         .start();
     });
 };
@@ -47,30 +51,25 @@ const animateRotation = (from: Object3D, to: Quaternion, delay?: number) => {
  * @author Matej Hakoš
  *
  * @param {ManualStep} currentStep Current step that should be redrawn.
- * @param {Function} getObject Helper funciton, that returns object by position.
+ * @param {getObjectFunction} getObject Helper funciton, that returns object by position.
+ * @param {ComputedPostions} computedPositions Comupted positons.
+ * @param {boolean} reversed move objects in reverse.
  */
 const redraw = (currentStep: ManualStep, getObject: getObjectFunction) => {
-  for (const position of currentStep.positions) {
-    const obj = getObject(position.id);
+  console.log(currentStep.computedPostions);
+  for (const position of currentStep.computedPostions) {
+    const [key, value] = position;
+    const obj = getObject(key);
     if (obj == null) continue;
 
-    const rotation = new Quaternion().fromArray(
-      position.pose.orientation ?? [0, 0, 0, 0]
-    );
-
-    const animation = animatePosition(
-      obj,
-      new Vector3().fromArray(position.pose.position ?? [0, 0, 0])
-    ).chain(animateRotation(obj, rotation));
-
-    const anim = currentStep.animation as AnimationDef;
-    if (anim != null) {
-      const computeAnimation = anim(obj);
-      if (computeAnimation) {
-        animation.chain(computeAnimation);
+    if (value.animation) {
+      const output = value.animation(obj);
+      if (output) {
+        output.start();
       }
     }
 
+    // TODO: this
     currentStep.positions.forEach((position) => {
       if (position.animation == null) return;
       const anim = AnimationStorage.Instance.getAnimation(position.animation);
@@ -79,14 +78,20 @@ const redraw = (currentStep: ManualStep, getObject: getObjectFunction) => {
       if (object == null) return;
       const result = anim(object);
       if (result) {
-        animation.chain(result);
+        result.start();
       }
     });
 
-    animation.easing(Easing.Quadratic.InOut);
-    animation.start();
+    const animation = new Tween({});
+    if (value.orientation) {
+      animateRotation(obj, value.orientation).start();
+    }
 
-    obj.setOutlineFromMesh();
+    if (value.position) {
+      animatePosition(obj, value.position).start();
+    }
+
+    animation.update();
   }
 };
 

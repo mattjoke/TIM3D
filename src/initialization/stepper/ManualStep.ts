@@ -1,7 +1,15 @@
+import {
+  AnimationDef,
+  ComputedPostions,
+  ObjectID,
+  Objects3D,
+  RuntimePose
+} from '../../types/applicationTypes';
 import { Position, Step } from '../../types/jsonTypes';
+import { Quaternion, Vector3 } from 'three';
 
-import { AnimationDef } from '../../types/applicationTypes';
 import { AnimationStorage } from './AnimationStorage';
+import { deepCopyMap } from 'stuff/Utils';
 
 /**
  * Class that hold information about currently shown/displayed
@@ -37,6 +45,12 @@ class ManualStep {
    */
   positions: Position[] = [];
   /**
+   * A map with computed exact positions of all of the objects in scene
+   *
+   * @type {ComputedPostions}
+   */
+  computedPostions: ComputedPostions = new Map();
+  /**
    * Optional animation.
    *
    * @type {?AnimationDef}
@@ -44,28 +58,94 @@ class ManualStep {
   animation?: AnimationDef;
 }
 
-const buildSteps = (steps: Step[] | undefined) => {
+/**
+ * Parses positions from object map.
+ *
+ * @param {Objects3D} objects
+ * @return {ComputedPostions}
+ */
+const computePositions = (objects: Objects3D) => {
+  const poses = new Map<ObjectID, RuntimePose>();
+  objects.forEach((obj, key) => {
+    poses.set(key, obj.getPose());
+  });
+  return poses;
+};
+
+/**
+ * Build a linked list of Steps.
+ *
+ * @param {Steps[]} steps
+ * @param {ComputedPostions} computedPositions
+ * @return {obj} A root and length of linked list.
+ */
+const buildSteps = (
+  steps: Step[] | undefined,
+  computedPositions: ComputedPostions
+) => {
   if (steps == null) return { root: null, length: 0 };
+  let computeMap = deepCopyMap(computedPositions);
+
+  let root = new ManualStep();
   let prev = null;
   let length = 0;
+
   for (const step of steps) {
     const curr = new ManualStep();
     curr.name = step.name.toString() || '';
+
     curr.positions = step.positions;
     curr.animation = AnimationStorage.Instance.getAnimation(
       step.animation ?? ''
     );
+
+    const cumulativeMap = deepCopyMap(computeMap);
+    // Computes steps for each object
+    for (const position of step.positions) {
+      const o = cumulativeMap.get(position.id) as RuntimePose;
+      if (o == null) continue;
+
+      if (position.pose.position) {
+        o.position = new Vector3().fromArray(position.pose.position);
+      }
+      if (position.pose.orientation) {
+        o.orientation = new Quaternion()
+          .fromArray(position.pose.orientation)
+          .normalize();
+      }
+      o.animation = AnimationStorage.Instance.getAnimation(
+        step.animation ?? ''
+      );
+      cumulativeMap.set(position.id, o);
+    }
+
+    curr.computedPostions = deepCopyMap(cumulativeMap);
+
+    // Animations does not translate when deep-copying
+    cumulativeMap.forEach((val, key) => {
+      const cumulative = val.animation;
+      if (cumulative) {
+        const obj = curr.computedPostions.get(key);
+        if (obj == null) return;
+        obj.animation = cumulative;
+        curr.computedPostions.set(key, obj);
+      }
+    });
+
+    computeMap = cumulativeMap;
+
     curr.prev = prev;
     if (prev) {
       prev.next = curr;
     }
     length++;
     prev = curr;
+    // We can assume, that this step is root
+    if (prev.prev == null && prev.next == null) {
+      root = curr;
+    }
   }
-  while (prev != null && prev.prev != null) {
-    prev = prev.prev;
-  }
-  return { root: prev, length: length };
+  return { root: root, length: length };
 };
 
-export { ManualStep, buildSteps };
+export { ManualStep, buildSteps, computePositions };

@@ -1,4 +1,4 @@
-import { Event, Color as ThreeColor } from 'three';
+import { Event, Quaternion, Color as ThreeColor, Vector3 } from 'three';
 
 import { Object3D } from 'stuff/Object3D';
 import { Tween } from '@tweenjs/tween.js';
@@ -20,6 +20,46 @@ export type ObjectID = string | number;
  * @typedef {Objects3D}
  */
 export type Objects3D = Map<ObjectID, Object3D>;
+
+/**
+ * Contains all poses precomputed before rendering.
+ *
+ * @export
+ * @typedef {computedPostions}
+ */
+export type ComputedPostions = Map<ObjectID, RuntimePose>;
+
+/**
+ * Exactly like Pose, but contains Three.js objects instead od arrays
+ *
+ * @export
+ * @typedef {RuntimePose}
+ */
+export type RuntimePose = {
+  /**
+   * Current Pose of object.
+   * Does not activelly update object.
+   *
+   * @type {?Vector3}
+   */
+  position?: Vector3;
+
+  /**
+   * Current orientation of object.
+   * Does not activelly update obejct.
+   *
+   * @type {?Quaternion}
+   */
+  orientation?: Quaternion;
+
+  /**
+   * Optional animation, that is played
+   * when this object is animated.
+   *
+   * @type {?AnimationDef}
+   */
+  animation?: AnimationDef;
+};
 /**
  * Supported are all css colors.
  * @author Matej Hakoš

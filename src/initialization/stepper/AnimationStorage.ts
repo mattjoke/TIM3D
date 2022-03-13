@@ -42,30 +42,6 @@ class AnimationStorage {
 
     const lables = ['x', 'y', 'z'];
     lables.forEach((label) => {
-      AnimationStorage.animations.set(`${label}screw`, (obj: Object3D) => {
-        const start = { angle: 0 };
-        const end = { angle: 2 * Math.PI };
-        let lastRotation = 0;
-        new Tween(start)
-          .to(end)
-          .easing(Easing.Quadratic.InOut)
-          .onUpdate(() => {
-            switch (label) {
-              case 'x':
-                obj.getMesh().rotateX(start.angle - lastRotation);
-                break;
-              case 'y':
-                obj.getMesh().rotateY(start.angle - lastRotation);
-                break;
-              case 'z':
-                obj.getMesh().rotateZ(start.angle - lastRotation);
-                break;
-            }
-            obj.setOutlineFromMesh();
-            lastRotation = start.angle;
-          });
-      });
-
       for (let i = 0; i <= 360; i++) {
         AnimationStorage.animations.set(`${label}${i}deg`, (obj: Object3D) => {
           const start = {
@@ -94,6 +70,7 @@ class AnimationStorage {
           });
         });
       }
+      this.setAlias(`${label}360deg`, `${label}screw`);
     });
   }
 
