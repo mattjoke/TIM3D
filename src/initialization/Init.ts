@@ -1,12 +1,13 @@
 import { ConfigCheck, JsonCheck } from '../inputChecking/InputCheck';
-import { Line, Object3D } from 'three';
 import { ObjectID, Objects3D } from '../types/applicationTypes';
 
 import { Config } from '../types/configTypes';
 import { JSON } from '../types/jsonTypes';
+import { Object3D } from 'three';
 import { Stepper } from './Stepper';
 import { Window } from './Window';
 import { axis } from './init/axis';
+import { computePositions } from './stepper/ManualStep';
 import { loader } from '../stuff/loader';
 import { overlay } from './window/overlay';
 import { planeInit } from './init/planeInit';
@@ -86,7 +87,6 @@ class Init {
     this.objects = new Map();
     this.window = new Window(config);
     this.initPlane();
-    this.initAxes();
     this.overlay = document.createElement('div');
 
     // Run the animations
@@ -94,13 +94,14 @@ class Init {
   }
 
   /**
-   * Calls planeInit and initializes lights.
+   * Calls planeInit and initializes lights and axes.
    *
    * @public
    */
   public initPlane() {
     const [light, ambient] = planeInit();
     this.addObjects(light, ambient);
+    this.initAxes();
   }
 
   /**
@@ -109,10 +110,7 @@ class Init {
    * @private
    */
   private initAxes() {
-    const init = axis(1.0);
-    init.forEach((axis: Line) => {
-      this.addObjects(axis);
-    });
+    this.addObjects(axis(1.0));
   }
 
   /**
@@ -129,9 +127,11 @@ class Init {
       this.objects = items;
       this.objectsLoaded = this.objects.size > 0;
 
+      const compute = computePositions(this.objects);                  
       this.stepper = new Stepper(
         json,
         this.objects.get.bind(this.objects),
+        compute,
         this.config.animationLoop
       );
 

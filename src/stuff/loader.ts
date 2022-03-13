@@ -36,7 +36,7 @@ const loader = async (
 
     await loader
       ?.loadAsync(file.file)
-      .then(async (object) => {
+      .then((object) => {
         let obj: Object3D;
         switch (object.type) {
           case 'Group': {

@@ -74,6 +74,16 @@ class Scene {
     this.instance.clear();
   }
 
+  
+  /**
+   * Removes all children in the scene
+   *
+   * @public
+   */
+  public clear(){
+    this.instance.clear();
+  }
+
   /**
    * Adds object/s to the Scene.
    *

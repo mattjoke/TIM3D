@@ -1,5 +1,6 @@
+import { ComputedPostions, ObjectID } from '../types/applicationTypes';
+
 import { Color } from 'three';
-import { ObjectID } from '../types/applicationTypes';
 
 /**
  * Checks if input is parsable color.
@@ -224,10 +225,21 @@ const generateRandomSeededColor = () => {
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
+/**
+ * Creates a deep copy of Map.
+ *
+ * @param {ComputedPostions} obj
+ * @return {ComputedPostions}
+ */
+const deepCopyMap = (obj: ComputedPostions) => {
+  return new Map(JSON.parse(JSON.stringify([...obj]))) as ComputedPostions;
+};
+
 export {
   isColor,
   parseExtension,
   checkFullscreen,
+  deepCopyMap,
   generateRandomColor,
   generateRandomSeededColor
 };

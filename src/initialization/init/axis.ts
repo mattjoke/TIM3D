@@ -1,4 +1,4 @@
-import { BufferGeometry, Line, LineBasicMaterial, Vector3 } from 'three';
+import { BufferGeometry, Group, Line, LineBasicMaterial, Vector3 } from 'three';
 
 /**
  * Function, which computes and initializes axis line.
@@ -29,11 +29,12 @@ const constructAxis = (color: string, dirArr: number[], scaling = 1) => {
  * @return {[Line,Line,Line]} An array of x,y and z axis generated
  */
 const axis = (scaling: number) => {
-  const xAxis = constructAxis('blue', [1, 0, 0], scaling);
-  const yAxis = constructAxis('red', [0, 0, 1], scaling);
-  const zAxis = constructAxis('green', [0, 1, 0], scaling);
+  const axisGroup = new Group();
+  axisGroup.add(constructAxis('blue', [1, 0, 0], scaling))
+  axisGroup.add(constructAxis('red', [0, 1, 0], scaling))
+  axisGroup.add(constructAxis('green', [0, 0, 1], scaling))
 
-  return [xAxis, yAxis, zAxis];
+  return axisGroup;
 };
 
 export { axis };
