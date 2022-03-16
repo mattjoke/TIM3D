@@ -1,8 +1,8 @@
 import { AnimationDef, Animations } from '../../types/applicationTypes';
-import { Easing, Tween } from '@tweenjs/tween.js';
 
 import { MathUtils } from 'three';
 import { Object3D } from 'stuff/Object3D';
+import { Tween } from '@tweenjs/tween.js';
 
 /**
  * Animation storage pre-generates and holds user defined animtaions globally.

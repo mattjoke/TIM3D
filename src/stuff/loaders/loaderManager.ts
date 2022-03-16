@@ -22,4 +22,4 @@ const loaderManager = () => {
   return manager;
 };
 
-export {loaderManager };
+export { loaderManager };

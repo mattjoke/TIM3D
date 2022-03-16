@@ -114,8 +114,8 @@ export interface File {
    */
   name?: ObjectID;
   /**
-   * A <strong>unique</strong> id of an item. 
-   * It is used for indexing and aniamtion handeling. 
+   * A <strong>unique</strong> id of an item.
+   * It is used for indexing and aniamtion handeling.
    * @author Matej Hakoš
    *
    * @type {string}
@@ -123,8 +123,8 @@ export interface File {
   id: string;
   /**
    * Custom predefined color of loaded file.
-   * Supports css's string colors. 
-   * 'random' or undefined color generates random color. 
+   * Supports css's string colors.
+   * 'random' or undefined color generates random color.
    * @author Matej Hakoš
    *
    * @type {?(Color | string)}

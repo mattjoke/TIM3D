@@ -23,7 +23,7 @@ const Colors = object({
 });
 
 /**
- * Input template for Config 
+ * Input template for Config
  * @author Matej Hakoš
  *
  * @type {ZodObject}

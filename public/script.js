@@ -142,318 +142,183 @@ const json = {
       color: 'random'
     }
   ],
-  "steps": [
+  steps: [
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.4.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.4.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.5.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.5.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.6.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.6.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.7.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.7.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.7.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.7.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.8.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.8.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.8.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.8.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.1.1.1.1.9.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.1.1.1.1.9.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.1.1.1.1.9.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.1.1.1.1.9.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.1.1.2.1.9.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.1.1.2.1.9.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.1.1.2.1.9.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.1.1.2.1.9.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.1.10.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.1.10.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.1.10.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.1.10.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.2.10.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.2.10.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.2.10.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.2.10.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
@@ -462,615 +327,336 @@ const json = {
 };
 
 const json3 = {
-  "files": [
+  files: [
     {
-      "id": "3.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_body_T24_.stl",
-      "name": "LX15D_U_body(T24)",
-      "pose": {
-        "position": [
-          40,
-          0,
-          0
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '3.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_body_T24_.stl',
+      name: 'LX15D_U_body(T24)',
+      pose: {
+        position: [40, 0, 0],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.4.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_T24_.stl",
-      "name": "LX15D_U_plate(T24)",
-      "pose": {
-        "position": [
-          0,
-          0,
-          0
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '1.4.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_T24_.stl',
+      name: 'LX15D_U_plate(T24)',
+      pose: {
+        position: [0, 0, 0],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.5.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_T24_.stl",
-      "name": "LX15D_U_plate_cable(T24)",
-      "pose": {
-        "position": [
-          0,
-          0,
-          0
-        ],
-        "orientation": [
-          6.123233995736766e-17,
-          1,
-          0,
-          0
-        ]
+      id: '1.5.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_T24_.stl',
+      name: 'LX15D_U_plate_cable(T24)',
+      pose: {
+        position: [0, 0, 0],
+        orientation: [6.123233995736766e-17, 1, 0, 0]
       }
     },
     {
-      "id": "1.6.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_lock_T24_2.0_2.0_.stl",
-      "name": "LX15D_U_plate_cable_lock(T24,2.0,2.0)",
-      "pose": {
-        "position": [
-          0,
-          0,
-          0
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '1.6.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/LX15D_U_plate_cable_lock_T24_2.0_2.0_.stl',
+      name: 'LX15D_U_plate_cable_lock(T24,2.0,2.0)',
+      pose: {
+        position: [0, 0, 0],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.1.7.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x12_screw.stl",
-      "name": "Cylinder M2x12 screw",
-      "pose": {
-        "position": [
-          37,
-          -8,
-          -18.75
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '1.1.7.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x12_screw.stl',
+      name: 'Cylinder M2x12 screw',
+      pose: {
+        position: [37, -8, -18.75],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.2.7.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x12_screw.stl",
-      "name": "Cylinder M2x12 screw",
-      "pose": {
-        "position": [
-          37,
-          8,
-          -18.75
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '1.2.7.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x12_screw.stl',
+      name: 'Cylinder M2x12 screw',
+      pose: {
+        position: [37, 8, -18.75],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.1.8.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
-      "name": "Cylinder M2x8 screw",
-      "pose": {
-        "position": [
-          37,
-          -8,
-          14.75
-        ],
-        "orientation": [
-          6.123233995736766e-17,
-          1,
-          0,
-          0
-        ]
+      id: '1.1.8.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl',
+      name: 'Cylinder M2x8 screw',
+      pose: {
+        position: [37, -8, 14.75],
+        orientation: [6.123233995736766e-17, 1, 0, 0]
       }
     },
     {
-      "id": "1.2.8.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
-      "name": "Cylinder M2x8 screw",
-      "pose": {
-        "position": [
-          37,
-          8,
-          14.75
-        ],
-        "orientation": [
-          6.123233995736766e-17,
-          1,
-          0,
-          0
-        ]
+      id: '1.2.8.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl',
+      name: 'Cylinder M2x8 screw',
+      pose: {
+        position: [37, 8, 14.75],
+        orientation: [6.123233995736766e-17, 1, 0, 0]
       }
     },
     {
-      "id": "1.1.1.1.1.1.9.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
-      "name": "Cylinder M2x8 screw",
-      "pose": {
-        "position": [
-          32.025000000000006,
-          -9,
-          -14.75
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '1.1.1.1.1.1.9.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl',
+      name: 'Cylinder M2x8 screw',
+      pose: {
+        position: [32.025000000000006, -9, -14.75],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.2.1.1.1.1.9.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
-      "name": "Cylinder M2x8 screw",
-      "pose": {
-        "position": [
-          32.025000000000006,
-          -9,
-          14.75
-        ],
-        "orientation": [
-          6.123233995736766e-17,
-          1,
-          0,
-          0
-        ]
+      id: '1.2.1.1.1.1.9.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl',
+      name: 'Cylinder M2x8 screw',
+      pose: {
+        position: [32.025000000000006, -9, 14.75],
+        orientation: [6.123233995736766e-17, 1, 0, 0]
       }
     },
     {
-      "id": "1.1.1.1.2.1.9.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
-      "name": "Cylinder M2x8 screw",
-      "pose": {
-        "position": [
-          32.025000000000006,
-          9,
-          -14.75
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '1.1.1.1.2.1.9.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl',
+      name: 'Cylinder M2x8 screw',
+      pose: {
+        position: [32.025000000000006, 9, -14.75],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.2.1.1.2.1.9.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl",
-      "name": "Cylinder M2x8 screw",
-      "pose": {
-        "position": [
-          32.025000000000006,
-          9,
-          14.75
-        ],
-        "orientation": [
-          6.123233995736766e-17,
-          1,
-          0,
-          0
-        ]
+      id: '1.2.1.1.2.1.9.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/Cylinder_M2x8_screw.stl',
+      name: 'Cylinder M2x8 screw',
+      pose: {
+        position: [32.025000000000006, 9, 14.75],
+        orientation: [6.123233995736766e-17, 1, 0, 0]
       }
     },
     {
-      "id": "1.1.1.10.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
-      "name": "M2 nut",
-      "pose": {
-        "position": [
-          37,
-          -8,
-          -10.75
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '1.1.1.10.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl',
+      name: 'M2 nut',
+      pose: {
+        position: [37, -8, -10.75],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.2.1.10.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
-      "name": "M2 nut",
-      "pose": {
-        "position": [
-          37,
-          -8,
-          10.75
-        ],
-        "orientation": [
-          6.123233995736766e-17,
-          1,
-          0,
-          0
-        ]
+      id: '1.2.1.10.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl',
+      name: 'M2 nut',
+      pose: {
+        position: [37, -8, 10.75],
+        orientation: [6.123233995736766e-17, 1, 0, 0]
       }
     },
     {
-      "id": "1.1.2.10.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
-      "name": "M2 nut",
-      "pose": {
-        "position": [
-          37,
-          8,
-          -10.75
-        ],
-        "orientation": [
-          1,
-          0,
-          0,
-          0
-        ]
+      id: '1.1.2.10.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl',
+      name: 'M2 nut',
+      pose: {
+        position: [37, 8, -10.75],
+        orientation: [1, 0, 0, 0]
       }
     },
     {
-      "id": "1.2.2.10.1.1.1.3.1.1",
-      "file": "jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl",
-      "name": "M2 nut",
-      "pose": {
-        "position": [
-          37,
-          8,
-          10.75
-        ],
-        "orientation": [
-          6.123233995736766e-17,
-          1,
-          0,
-          0
-        ]
+      id: '1.2.2.10.1.1.1.3.1.1',
+      file: 'jsons/LX15D_U_class_[24.0_[8.0_4.0_0.0]_4.0_2.0_4.7_1.8_2.0_T24]_expand_0.0_/M2_nut.stl',
+      name: 'M2 nut',
+      pose: {
+        position: [37, 8, 10.75],
+        orientation: [6.123233995736766e-17, 1, 0, 0]
       }
     }
   ],
-  "steps": [
+  steps: [
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.4.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.4.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.5.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.5.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.6.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.6.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.7.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.7.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.7.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.7.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.8.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.8.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.8.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.8.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.1.1.1.1.9.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.1.1.1.1.9.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.1.1.1.1.9.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.1.1.1.1.9.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.1.1.2.1.9.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.1.1.2.1.9.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.1.1.2.1.9.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.1.1.2.1.9.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.1.10.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.1.10.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.2.1.10.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.2.1.10.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "",
-      "positions": [
+      name: '',
+      positions: [
         {
-          "id": "1.1.2.10.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              0,
-              0,
-              0
-            ],
-            "orientation": [
-              1,
-              0,
-              0,
-              0
-            ]
+          id: '1.1.2.10.1.1.1.3.1.1',
+          pose: {
+            position: [0, 0, 0],
+            orientation: [1, 0, 0, 0]
           }
         }
       ]
     },
     {
-      "name": "LAST",
-      "positions": [
+      name: 'LAST',
+      positions: [
         {
-          "id": "1.2.2.10.1.1.1.3.1.1",
-          "pose": {
-            "position": [
-              10,
-              5,
-              0
-            ],
-            "orientation": [
-              1,
-              1,
-              0,
-              0
-            ]
+          id: '1.2.2.10.1.1.1.3.1.1',
+          pose: {
+            position: [10, 5, 0],
+            orientation: [1, 1, 0, 0]
           },
-          "animation": "zscrew"
+          animation: 'zscrew'
         }
       ]
     }
   ]
-}
+};
 
 const overlay = document.createElement('div');
 overlay.innerHTML = '<p>LOADING</p>';
