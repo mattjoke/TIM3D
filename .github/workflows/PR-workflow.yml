@@ -1,0 +1,25 @@
+name: "PR Build"
+
+on:
+  pull_request:
+    branches: [ main ]
+    
+    
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Install project 🔧
+        run: |
+          npm install
+          
+      - name: Prettier check 🦘
+        run: |
+          npm run prettier:check
+          
+      - name: ESLint check 🦘
+        run: |
+          npm run lint:check
