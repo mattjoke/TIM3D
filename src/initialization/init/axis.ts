@@ -30,9 +30,9 @@ const constructAxis = (color: string, dirArr: number[], scaling = 1) => {
  */
 const axis = (scaling: number) => {
   const axisGroup = new Group();
-  axisGroup.add(constructAxis('blue', [1, 0, 0], scaling))
-  axisGroup.add(constructAxis('red', [0, 1, 0], scaling))
-  axisGroup.add(constructAxis('green', [0, 0, 1], scaling))
+  axisGroup.add(constructAxis('blue', [1, 0, 0], scaling));
+  axisGroup.add(constructAxis('red', [0, 1, 0], scaling));
+  axisGroup.add(constructAxis('green', [0, 0, 1], scaling));
 
   return axisGroup;
 };
