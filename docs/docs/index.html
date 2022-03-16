@@ -1,13 +1,23 @@
-<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>threetesting</title><meta name="description" content="Documentation for threetesting"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">threetesting</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>threetesting</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
-<a href="#three-js-manual" id="three-js-manual" style="color: inherit; text-decoration: none;">
-  <h1>Three JS Manual</h1>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>tim3d</title><meta name="description" content="Documentation for tim3d"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">tim3d</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>tim3d</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#tim3d---threejs-interactive-manual" id="tim3d---threejs-interactive-manual" style="color: inherit; text-decoration: none;">
+  <h1>TIM3D - Three.js Interactive Manual</h1>
 </a>
-<p>This repo contains source code for this project.
-GitHub Workflow automatically deploys latest push to GitHub pages.</p>
+<p>This repo contains source code for this project.</p>
+<p>GitHub Workflows:</p>
 <ul>
-<li><a href="https://mattjoke.github.io/ThreeJS-library/">https://mattjoke.github.io/ThreeJS-library/</a></li>
+<li>automatically deploys latest push to GitHub pages, </li>
+<li>builds a documentation based on latest push,</li>
+<li>runs es-lint and prettier checks during pull request</li>
 </ul>
-<p>Trello with ToDo (view-only:</p>
+<p>Link to GitHub Pages:</p>
+<ul>
+<li><a href="https://mattjoke.github.io/TIM3D/">https://mattjoke.github.io/TIM3D/</a></li>
+</ul>
+<p>Docs:</p>
+<ul>
+<li><a href="https://mattjoke.github.io/TIM3D/docs">https://mattjoke.github.io/TIM3D/docs</a></li>
+</ul>
+<p>Trello with ToDo (view-only):</p>
 <ul>
 <li><a href="https://trello.com/b/hXZva22f/threejs-library-to-do">https://trello.com/b/hXZva22f/threejs-library-to-do</a></li>
 </ul>
@@ -22,185 +32,12 @@ GitHub Workflow automatically deploys latest push to GitHub pages.</p>
 <a href="#classes" id="classes" style="color: inherit; text-decoration: none;">
   <h2>Classes</h2>
 </a>
-<p>Main class the user will interact is currently <em>Init</em> class, this will likely change with added Observer/Factory class.</p>
+<p>Main class the user will interact is currently <em>Init</em> class, this will likely change with added Observer/Factory class.
+For more detailed look into classes see <a href="https://mattjoke.github.io/TIM3D/docs">docs</a>.</p>
 
 <a href="#high-level-look-at-the-classes" id="high-level-look-at-the-classes" style="color: inherit; text-decoration: none;">
   <h3>High level look at the classes</h3>
 </a>
 <p>This image contains basic high-level look on the class scheme (updated 30.9.2021)
 <img src="./static/model.png" alt="Image of model"></p>
-
-<a href="#factory" id="factory" style="color: inherit; text-decoration: none;">
-  <h2>Factory</h2>
-</a>
-<p>This class is basic interface for developers.</p>
-
-<a href="#properties" id="properties" style="color: inherit; text-decoration: none;">
-  <h3>Properties</h3>
-</a>
-<ul>
-<li><p><em>private</em> instance - contains current instance of Init class</p>
-</li>
-<li><p><em>public</em> objectsLoaded - changed to true after successful call of <em>loadJSON</em> function</p>
-</li>
-</ul>
-
-<a href="#functions" id="functions" style="color: inherit; text-decoration: none;">
-  <h3>Functions</h3>
-</a>
-<ul>
-<li><p><em>public async</em> loadJSON(json: JSON) - loads and places objects to scene</p>
-</li>
-<li><p><em>public</em> selectItem(id: ObjectID) - returns instance of Object3D (contains loaded geometry, visible mesh and outline mesh)</p>
-</li>
-<li><p><em>public</em> moveToStep(stepNumber: number) - moves Stepper instance to specified step and syncs it with Overlay</p>
-</li>
-<li><p><em>public</em> on(selector: ObejctID, event: string, callback: Function) - adds callbacks to object specified with selector.</p>
-</li>
-<li><p><em>public</em> group(event: string, callback: Function) - adds callback for ALL objects on specified event.</p>
-</li>
-</ul>
-
-<a href="#init" id="init" style="color: inherit; text-decoration: none;">
-  <h2>Init</h2>
-</a>
-<p>Handles Window, Overlay, Stepper and Object initialization</p>
-
-<a href="#properties-1" id="properties-1" style="color: inherit; text-decoration: none;">
-  <h3>Properties</h3>
-</a>
-<ul>
-<li><em>private</em> window: Window;</li>
-<li><em>private</em> overlay: HTMLDivElement;</li>
-<li><em>private</em> stepper: Stepper | undefined;</li>
-<li><em>private</em> objects: Objects3D;</li>
-</ul>
-
-<a href="#functions-1" id="functions-1" style="color: inherit; text-decoration: none;">
-  <h3>Functions</h3>
-</a>
-<ul>
-<li><em>public</em> initPlane()</li>
-<li><em>private</em> initAxes()</li>
-<li><em>public</em> async withJSON(json: JSON) - handles loading with JSON</li>
-<li><em>private</em> checkConfig(config: Config)</li>
-<li><em>public</em> getObjects()</li>
-<li><em>public</em> getStepper()</li>
-<li><em>public</em> setStep(stepNumber: number)</li>
-</ul>
-
-<a href="#loader" id="loader" style="color: inherit; text-decoration: none;">
-  <h2>Loader</h2>
-</a>
-<p>Fuction, that loads models specified by input JSON.
-Also loads Loader Overlay, which is only HTML Element (showed when models are loading).</p>
-<p>Returns: Objects3D - Map containing loaded models</p>
-
-<a href="#overlay" id="overlay" style="color: inherit; text-decoration: none;">
-  <h2>Overlay</h2>
-</a>
-<p>Function, that initializes Overlay/Menu of the window</p>
-<p>Input parameters: instance of Stepper, instance of Window</p>
-<p>Returns: HTMLDivElement, containing Initialized stepper</p>
-
-<a href="#axis-currently-broken" id="axis-currently-broken" style="color: inherit; text-decoration: none;">
-  <h2>Axis (currently broken)</h2>
-</a>
-<p>Function, that initializes axes.</p>
-<p>Returns: Computed axes.</p>
-
-<a href="#stepper" id="stepper" style="color: inherit; text-decoration: none;">
-  <h2>Stepper</h2>
-</a>
-<p>Class that initializes steps and handles redrawing on positions specified in JSON.</p>
-
-<a href="#properties-2" id="properties-2" style="color: inherit; text-decoration: none;">
-  <h3>Properties</h3>
-</a>
-<ul>
-<li><em>private</em> objects: Objects3D;</li>
-<li><em>private</em> currentStep: StepOfManual;</li>
-<li><em>private</em> currentStepPosition: number;</li>
-<li><em>public</em> length: number;</li>
-</ul>
-
-<a href="#functions-2" id="functions-2" style="color: inherit; text-decoration: none;">
-  <h3>Functions</h3>
-</a>
-<ul>
-<li><em>private</em> redraw()</li>
-<li><em>public</em> setStep(position: number) - sets stepper for specific step</li>
-<li><em>public</em> moveStepUp()</li>
-<li><em>public</em> moveStepDown()</li>
-<li><em>public</em> getCurrentStep()</li>
-</ul>
-
-<a href="#stepofmanual" id="stepofmanual" style="color: inherit; text-decoration: none;">
-  <h2>StepOfManual</h2>
-</a>
-<p>Sub-class of Stepper. Is used as building block for linked list of Steps.</p>
-
-<a href="#properties-3" id="properties-3" style="color: inherit; text-decoration: none;">
-  <h3>Properties</h3>
-</a>
-<ul>
-<li>prev: StepOfManual | null</li>
-<li>next: StepOfManual | null</li>
-<li>name: string;</li>
-<li>positions: Position[]</li>
-</ul>
-
-<a href="#window" id="window" style="color: inherit; text-decoration: none;">
-  <h2>Window</h2>
-</a>
-<p>Initializes and handles actual drawing to div.</p>
-
-<a href="#properties-4" id="properties-4" style="color: inherit; text-decoration: none;">
-  <h3>Properties</h3>
-</a>
-<ul>
-<li>
-<a href="#window-specific" id="window-specific" style="color: inherit; text-decoration: none;">
-  <h4>Window specific</h4>
-</a>
-<ul>
-<li><em>public</em> scene: Scene;</li>
-<li><em>private</em> renderer: WebGLRenderer;</li>
-<li><em>private</em> camera: PerspectiveCamera;</li>
-<li><em>public</em> container: HTMLElement;</li>
-</ul>
-</li>
-<li>
-<a href="#controlselection-specific" id="controlselection-specific" style="color: inherit; text-decoration: none;">
-  <h4>Control/selection specific</h4>
-</a>
-<ul>
-<li><em>private</em> orbitalControls: OrbitControls;</li>
-<li><em>private</em> mouse: Vector2;</li>
-<li><em>private</em> raycaster: Raycaster;</li>
-</ul>
-</li>
-<li>
-<a href="#animation-specific" id="animation-specific" style="color: inherit; text-decoration: none;">
-  <h4>Animation specific</h4>
-</a>
-<ul>
-<li><em>private</em> animators: any[]</li>
-</ul>
-</li>
-</ul>
-
-<a href="#functions-3" id="functions-3" style="color: inherit; text-decoration: none;">
-  <h3>Functions</h3>
-</a>
-<ul>
-<li><em>public</em> resetCamera()</li>
-<li><em>public</em> getCamera()</li>
-<li><em>public</em> getDomRect()</li>
-<li><em>private</em> onWindowResize()</li>
-<li><em>public</em> addObject(...objects: Object3D[]) - adds object/s to scene</li>
-<li><em>private</em> selectObject(position: inputPosition, canvas: DOMRect) - shoots ray and calculates selection of item</li>
-<li><em>private</em> animate()</li>
-</ul>
-<p>Other classes are used from ThreeJS library.</p>
 </div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/AnimationStorage.html" class="tsd-kind-icon">Animation<wbr/>Storage</a></li><li class="tsd-kind-class"><a href="classes/Container.html" class="tsd-kind-icon">Container</a></li><li class="tsd-kind-class"><a href="classes/Factory.html" class="tsd-kind-icon">Factory</a></li><li class="tsd-kind-class"><a href="classes/Icons.html" class="tsd-kind-icon">Icons</a></li><li class="tsd-kind-class"><a href="classes/Init.html" class="tsd-kind-icon">Init</a></li><li class="tsd-kind-class"><a href="classes/ManualStep.html" class="tsd-kind-icon">Manual<wbr/>Step</a></li><li class="tsd-kind-class"><a href="classes/Object3D.html" class="tsd-kind-icon">Object3D</a></li><li class="tsd-kind-class"><a href="classes/OrbitalControls.html" class="tsd-kind-icon">Orbital<wbr/>Controls</a></li><li class="tsd-kind-class"><a href="classes/Renderer.html" class="tsd-kind-icon">Renderer</a></li><li class="tsd-kind-class"><a href="classes/Scene.html" class="tsd-kind-icon">Scene</a></li><li class="tsd-kind-class"><a href="classes/Stepper.html" class="tsd-kind-icon">Stepper</a></li><li class="tsd-kind-class"><a href="classes/Window.html" class="tsd-kind-icon">Window</a></li><li class="tsd-kind-interface"><a href="interfaces/Colors.html" class="tsd-kind-icon">Colors</a></li><li class="tsd-kind-interface"><a href="interfaces/Config.html" class="tsd-kind-icon">Config</a></li><li class="tsd-kind-interface"><a href="interfaces/Extension.html" class="tsd-kind-icon">Extension</a></li><li class="tsd-kind-interface"><a href="interfaces/File.html" class="tsd-kind-icon">File</a></li><li class="tsd-kind-interface"><a href="interfaces/JSON.html" class="tsd-kind-icon">JSON</a></li><li class="tsd-kind-interface"><a href="interfaces/Pose.html" class="tsd-kind-icon">Pose</a></li><li class="tsd-kind-interface"><a href="interfaces/Position.html" class="tsd-kind-icon">Position</a></li><li class="tsd-kind-interface"><a href="interfaces/Sidebar.html" class="tsd-kind-icon">Sidebar</a></li><li class="tsd-kind-interface"><a href="interfaces/Step.html" class="tsd-kind-icon">Step</a></li><li class="tsd-kind-interface"><a href="interfaces/containerSize.html" class="tsd-kind-icon">container<wbr/>Size</a></li><li class="tsd-kind-interface"><a href="interfaces/inputPosition.html" class="tsd-kind-icon">input<wbr/>Position</a></li><li class="tsd-kind-type-alias"><a href="modules.html#AnimationDef" class="tsd-kind-icon">Animation<wbr/>Def</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Animations" class="tsd-kind-icon">Animations</a></li><li class="tsd-kind-type-alias"><a href="modules.html#CallbackFunction" class="tsd-kind-icon">Callback<wbr/>Function</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Color" class="tsd-kind-icon">Color</a></li><li class="tsd-kind-type-alias"><a href="modules.html#ComputedPostions" class="tsd-kind-icon">Computed<wbr/>Postions</a></li><li class="tsd-kind-type-alias"><a href="modules.html#ObjectID" class="tsd-kind-icon">ObjectID</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Objects3D" class="tsd-kind-icon">Objects3D</a></li><li class="tsd-kind-type-alias"><a href="modules.html#RuntimePose" class="tsd-kind-icon">Runtime<wbr/>Pose</a></li><li class="tsd-kind-type-alias"><a href="modules.html#UUID" class="tsd-kind-icon">UUID</a></li><li class="tsd-kind-type-alias"><a href="modules.html#elementSizing" class="tsd-kind-icon">element<wbr/>Sizing</a></li><li class="tsd-kind-type-alias"><a href="modules.html#getObjectFunction" class="tsd-kind-icon">get<wbr/>Object<wbr/>Function</a></li><li class="tsd-kind-function"><a href="modules.html#axis" class="tsd-kind-icon">axis</a></li><li class="tsd-kind-function"><a href="modules.html#camera" class="tsd-kind-icon">camera</a></li><li class="tsd-kind-function"><a href="modules.html#loader" class="tsd-kind-icon">loader</a></li><li class="tsd-kind-function"><a href="modules.html#loaderManager" class="tsd-kind-icon">loader<wbr/>Manager</a></li><li class="tsd-kind-function"><a href="modules.html#loaderOverlay" class="tsd-kind-icon">loader<wbr/>Overlay</a></li><li class="tsd-kind-function"><a href="modules.html#overlay" class="tsd-kind-icon">overlay</a></li><li class="tsd-kind-function"><a href="modules.html#overlayLoader" class="tsd-kind-icon">overlay<wbr/>Loader</a></li><li class="tsd-kind-function"><a href="modules.html#planeInit" class="tsd-kind-icon">plane<wbr/>Init</a></li><li class="tsd-kind-function"><a href="modules.html#redraw" class="tsd-kind-icon">redraw</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
