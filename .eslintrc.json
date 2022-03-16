@@ -5,7 +5,7 @@
   },
   "extends": [
     "google",
-    "prettier",
+    "plugin:prettier/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
@@ -15,8 +15,9 @@
     "sourceType": "module"
   },
   "ignorePatterns": "public/*",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "prettier/prettier": "error",
     "require-jsdoc": "error",
     "new-cap": "warn",
     "sort-imports": "warn"

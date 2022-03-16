@@ -127,7 +127,7 @@ class Init {
       this.objects = items;
       this.objectsLoaded = this.objects.size > 0;
 
-      const compute = computePositions(this.objects);                  
+      const compute = computePositions(this.objects);
       this.stepper = new Stepper(
         json,
         this.objects.get.bind(this.objects),

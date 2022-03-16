@@ -74,13 +74,12 @@ class Scene {
     this.instance.clear();
   }
 
-  
   /**
    * Removes all children in the scene
    *
    * @public
    */
-  public clear(){
+  public clear() {
     this.instance.clear();
   }
 
