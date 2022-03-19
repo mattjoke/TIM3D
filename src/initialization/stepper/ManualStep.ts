@@ -86,9 +86,13 @@ const buildSteps = (
   if (steps == null) return { root: null, length: 0 };
   let computeMap = deepCopyMap(computedPositions);
 
-  let root = new ManualStep();
-  let prev = null;
-  let length = 0;
+  // Setup for root (0th step)
+  const root = new ManualStep();
+  root.computedPostions = deepCopyMap(computeMap);
+  root.name = 'Init state';
+
+  let prev = root;
+  let length = 1; // because of the 0th step.
 
   for (const step of steps) {
     const curr = new ManualStep();
@@ -140,10 +144,6 @@ const buildSteps = (
     }
     length++;
     prev = curr;
-    // We can assume, that this step is root
-    if (prev.prev == null && prev.next == null) {
-      root = curr;
-    }
   }
   return { root: root, length: length };
 };

@@ -125,6 +125,24 @@ class OrbitalControls {
         this.controls.enableDamping = true;
       });
   }
+
+  /**
+   * Animates position of camera.
+   * Camera will look to staring position.
+   *
+   * @public
+   * @param {Vector3} position
+   * @param {Quaternion} orientation
+   */
+  public animateNewPosition(position: Vector3) {
+    new Tween(this.camera.position)
+      .to(position, 500)
+      .easing(Easing.Quadratic.Out)
+      .start()
+      .onComplete(() => {
+        this.camera.lookAt(this.worldPosition);
+      });
+  }
 }
 
 export { OrbitalControls };

@@ -52,6 +52,14 @@ class Window {
   private orbitalControls: OrbitalControls;
 
   /**
+   * Pauses randering and computation for this instance.
+   *
+   * @private
+   * @type {boolean}
+   */
+  private pauseRendering = false;
+
+  /**
    * Creates an instance of Window.
    *
    * @constructor
@@ -123,10 +131,31 @@ class Window {
    * Returns current instance of container.
    *
    * @public
-   * @return {*}
+   * @return {HTMLElement}
    */
   public getContainer() {
     return this.container.getInstance();
+  }
+
+  /**
+   * Indicates if Instance's rendering is paused/unpaused.
+   *
+   * @public
+   * @param {boolean} value
+   */
+  public setRendering(value: boolean) {
+    this.pauseRendering = value;
+  }
+
+  /**
+   * Sets camera/controls to specific view.
+   *
+   * @public
+   * @param {Vector3} position
+   * @param {Quaternion} orientation
+   */
+  public setCamera(position: Vector3) {
+    this.orbitalControls.animateNewPosition(position);
   }
 
   /**
@@ -164,6 +193,10 @@ class Window {
     requestAnimationFrame(this.animate.bind(this));
 
     this.onWindowResize();
+
+    if (this.pauseRendering) {
+      return;
+    }
 
     this.orbitalControls.update();
 

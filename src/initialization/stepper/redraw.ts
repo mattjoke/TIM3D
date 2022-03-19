@@ -54,7 +54,7 @@ const animateRotation = (from: Object3D, to: Quaternion, delay?: number) => {
  * @param {boolean} reversed move objects in reverse.
  */
 const redraw = (currentStep: ManualStep, getObject: getObjectFunction) => {
-  console.log(currentStep.computedPostions);
+  // console.log(currentStep.computedPostions);
   for (const position of currentStep.computedPostions) {
     const [key, value] = position;
     const obj = getObject(key);

@@ -73,6 +73,14 @@ class Stepper {
   private animationLoop: [string] | [];
 
   /**
+   * Indicates, if stepper should compute and render.
+   *
+   * @private
+   * @type {boolean}
+   */
+  private pauseRendering = false;
+
+  /**
    * Creates an instance of Stepper.
    *
    * @constructor
@@ -105,6 +113,10 @@ class Stepper {
       let i = 0;
       const loop = () => {
         setTimeout(() => {
+          if (this.pauseRendering) {
+            loop();
+            return;
+          }
           const el = this.animationLoop[i];
           setTimeout(() => {
             this.findLoopNext(el);
@@ -216,6 +228,16 @@ class Stepper {
    */
   public getComputedPositions() {
     return this.computedPositions;
+  }
+
+  /**
+   * Sets rendering boolean.
+   *
+   * @public
+   * @param {boolean} val
+   */
+  public setRendering(val: boolean) {
+    this.pauseRendering = val;
   }
 }
 

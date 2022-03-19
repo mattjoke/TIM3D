@@ -4,6 +4,7 @@
   "description": "Three.js interactive manual.",
   "scripts": {
     "build": "webpack",
+    "build:prod": "webpack --config webpack.config.prod.js",
     "dev": "webpack serve",
     "lint:check": "eslint -c .eslintrc.json .",
     "lint:fix": "eslint -c .eslintrc.json . --fix",

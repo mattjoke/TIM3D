@@ -1,6 +1,8 @@
 import {
   AnimationDef,
   CallbackFunction,
+  CameraCallback,
+  CameraView,
   ObjectID,
   Objects3D,
   UUID
@@ -24,7 +26,7 @@ import { v4 as uuidv4 } from 'uuid';
  */
 class Factory {
   /**
-   * Description placeholder
+   * Returns an instance of an Init
    * @author Matej Hakoš
    *
    * @private
@@ -32,7 +34,7 @@ class Factory {
    */
   private instance: Init | null;
   /**
-   * Description placeholder
+   * Returns if objects are already loaded to the scene
    * @author Matej Hakoš
    *
    * @public
@@ -40,7 +42,7 @@ class Factory {
    */
   public objectsLoaded = false;
   /**
-   * Description placeholder
+   * UUID of instance.
    * @author Matej Hakoš
    *
    * @private
@@ -49,7 +51,7 @@ class Factory {
   private uuid: UUID;
 
   /**
-   * Description placeholder
+   * Number of instances currently live.
    * @author Matej Hakoš
    *
    * @static
@@ -72,10 +74,10 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Generated UUID for this instance.
    *
    * @private
-   * @return {*}
+   * @return {UUID}
    */
   private generateUUID() {
     let uuid = uuidv4();
@@ -91,7 +93,7 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Loads input JSON file.
    *
    * @public
    * @param {JSON} json
@@ -104,7 +106,7 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Destroys this instance.
    *
    * @public
    */
@@ -115,18 +117,18 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Returns item based on its id.
    *
    * @public
    * @param {ObjectID} id
-   * @return {*}
+   * @return {Object3D|undefined}
    */
   public getItem(id: ObjectID) {
     return this.instance?.getItem(id);
   }
 
   /**
-   * Description placeholder
+   * Selects item in scene. (Same as double click on the item).
    *
    * @public
    * @param {ObjectID} id
@@ -141,7 +143,7 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Manually moves stepper to the specified step.
    *
    * @public
    * @param {number} stepNumber
@@ -151,10 +153,10 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Returns all the obejcts loaded into scene.
    *
    * @public
-   * @return {*}
+   * @return {Objects3D}
    */
   public getObjects() {
     return this.instance?.getItems().then((result: Objects3D) => {
@@ -163,7 +165,7 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Sets scaling for ALL objects in the scene.
    *
    * @public
    * @param {number} scaling
@@ -176,10 +178,8 @@ class Factory {
     });
   }
 
-  // Listeners functions
-
   /**
-   * Description placeholder
+   * Adds a callback to selector object.
    *
    * @public
    * @param {ObjectID} selector
@@ -199,7 +199,7 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Adds a callback to all loaded objects.
    *
    * @public
    * @param {string} event
@@ -215,31 +215,29 @@ class Factory {
     });
   }
 
-  // Animation functions
-
   /**
-   * Description placeholder
+   * Returns animation from AnimationStorage.
    *
    * @public
    * @param {string} animationName
-   * @return {*}
+   * @return {AnimationDef|undefined}
    */
   public getAnimation(animationName: string) {
     return AnimationStorage.getAnimation(animationName);
   }
 
   /**
-   * Description placeholder
+   * Returns all animations in AnimationStorage.
    *
    * @public
-   * @return {*}
+   * @return {Animations}
    */
   public getAnimations() {
     return AnimationStorage.getAnimations();
   }
 
   /**
-   * Description placeholder
+   * Adds an animation to AnimationStorage.
    *
    * @public
    * @param {string} animationName
@@ -250,7 +248,7 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Removes an animation from AnimationStorage.
    *
    * @public
    * @param {string} animationName
@@ -260,7 +258,7 @@ class Factory {
   }
 
   /**
-   * Description placeholder
+   * Sets an alias for the animation.
    *
    * @public
    * @param {string} animationName
@@ -268,6 +266,57 @@ class Factory {
    */
   public aliasAnimation(animationName: string, aliasName: string) {
     AnimationStorage.setAlias(animationName, aliasName);
+  }
+
+  /**
+   * Pauses rendering of the Instance.
+   *
+   * @public
+   */
+  public pauseRendering() {
+    this.instance?.pauseRendering();
+  }
+  /**
+   * Resumes rendering of the Instance.
+   *
+   * @public
+   */
+  public resumeRendering() {
+    this.instance?.resumeRendering();
+  }
+
+  /**
+   * Returns current instance of camera.
+   *
+   * @public
+   */
+  public getCamera() {
+    this.instance?.getCamera();
+  }
+
+  /**
+   * Updates camera with function.
+   *
+   * @param {CameraCallback} callback
+   */
+  public updateCamera(callback: CameraCallback) {
+    const camera = this.getCamera();
+    if (camera != null) {
+      callback(camera);
+    }
+  }
+
+  /**
+   * Sets camera to predefined view.
+   *
+   * @public
+   * @param {?CameraView} [view]
+   * @param {?string} [viewString]
+   */
+  public setView(view?: CameraView) {
+    if (view != null) {
+      this.instance?.setView(view);
+    }
   }
 }
 

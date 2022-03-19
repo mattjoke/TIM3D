@@ -1,4 +1,4 @@
-import { Event, Quaternion, Color as ThreeColor, Vector3 } from 'three';
+import { Camera, Event, Quaternion, Color as ThreeColor, Vector3 } from 'three';
 
 import { Object3D } from 'stuff/Object3D';
 import { Tween } from '@tweenjs/tween.js';
@@ -96,7 +96,7 @@ export type AnimationDef = (
 export type UUID = string;
 
 /**
- * Definition of callbacks.
+ * Definition of object callbacks.
  * @author Matej Hakoš
  *
  * @export
@@ -112,6 +112,15 @@ export type CallbackFunction = (obj: Object3D, ev: Event) => void;
  * @typedef {getObjectFunction}
  */
 export type getObjectFunction = (key: ObjectID) => Object3D | undefined;
+
+/**
+ * Definiton for CameraCallback.
+ * @augments Matej Hakoš
+ *
+ * @export
+ * @typedef {CameraCallback}
+ */
+export type CameraCallback = (cmaera: Camera) => void;
 
 /**
  * Definition of HTML element size.
@@ -169,4 +178,23 @@ export interface containerSize {
    * @type {number}
    */
   height: number;
+}
+
+/**
+ * Enum with al possible Camera Views.
+ *
+ * @export
+ * @enum {number}
+ */
+export enum CameraView {
+  TOP = 'TOP',
+  BOTTOM = 'BOTTOM',
+  RIGHT = 'RIGHT',
+  LEFT = 'LEFT',
+  POS_X = 'POS_X',
+  POS_Y = 'POS_Y',
+  POS_Z = 'POS_Z',
+  NEG_X = 'NEG_X',
+  NEG_Y = 'NEG_Y',
+  NEG_Z = 'NEG_Z'
 }
