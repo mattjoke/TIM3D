@@ -768,11 +768,18 @@ const c = {
   animationLoop: ['Init', 'First Step', 'Second Step']
 };
 
-/*const f = new Factory(c).loadJSON(json2);
+const f = new Factory(c).loadJSON(json2);
 
 f.on('1', 'hover', (ev) => {
   console.log('Inside!');
-  console.log(ev);
+  //f.pauseRendering();
+  f.setView("POS_Y")
 });
 
-*/
+const a = document.createElement("a")
+a.innerText = "CLICK";
+a.addEventListener("click", (ev) => {
+  // f.resumeRendering();
+})
+
+document.body.appendChild(a);

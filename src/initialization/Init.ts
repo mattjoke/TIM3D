@@ -1,9 +1,9 @@
+import { CameraView, ObjectID, Objects3D } from '../types/applicationTypes';
 import { ConfigCheck, JsonCheck } from '../inputChecking/InputCheck';
-import { ObjectID, Objects3D } from '../types/applicationTypes';
+import { Object3D, Vector3 } from 'three';
 
 import { Config } from '../types/configTypes';
 import { JSON } from '../types/jsonTypes';
-import { Object3D } from 'three';
 import { Stepper } from './Stepper';
 import { Window } from './Window';
 import { axis } from './init/axis';
@@ -96,9 +96,9 @@ class Init {
   /**
    * Calls planeInit and initializes lights and axes.
    *
-   * @public
+   * @private
    */
-  public initPlane() {
+  private initPlane() {
     const [light, ambient] = planeInit();
     this.addObjects(light, ambient);
     this.initAxes();
@@ -268,6 +268,69 @@ class Init {
     this.stepper?.destroy();
     this.objects.clear();
     this.objectsLoaded = false;
+  }
+
+  /**
+   * Pauses rendering of the Window.
+   *
+   * @public
+   */
+  public pauseRendering() {
+    this.window.setRendering(true);
+    this.stepper?.setRendering(true);
+  }
+
+  /**
+   * Resumes rendering.
+   *
+   * @public
+   */
+  public resumeRendering() {
+    this.window.setRendering(false);
+    this.stepper?.setRendering(false);
+  }
+
+  /**
+   * Returns current instance of camera.
+   *
+   * @public
+   * @return {Camera}
+   */
+  public getCamera() {
+    return this.window.getCamera();
+  }
+
+  /**
+   * Sets view based on CameraView.
+   *
+   * @public
+   * @param {CameraView} view
+   */
+  public setView(view: CameraView) {
+    switch (view) {
+      case CameraView.TOP:
+      case CameraView.NEG_Z:
+        this.window.setCamera(new Vector3(0, 50, 0));
+        break;
+      case CameraView.BOTTOM:
+      case CameraView.POS_Z:
+        this.window.setCamera(new Vector3(0, -50, 0));
+        break;
+      case CameraView.RIGHT:
+      case CameraView.POS_X:
+        this.window.setCamera(new Vector3(-50, 0, 0));
+        break;
+      case CameraView.LEFT:
+      case CameraView.NEG_X:
+        this.window.setCamera(new Vector3(50, 0, 0));
+        break;
+      case CameraView.POS_Y:
+        this.window.setCamera(new Vector3(0, 0, 50));
+        break;
+      case CameraView.NEG_Y:
+        this.window.setCamera(new Vector3(0, 0, -50));
+        break;
+    }
   }
 }
 

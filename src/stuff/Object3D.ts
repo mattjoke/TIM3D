@@ -1,6 +1,7 @@
 import {
   BackSide,
   BufferGeometry,
+  Camera,
   Color,
   Mesh,
   MeshBasicMaterial,
@@ -8,10 +9,10 @@ import {
   Quaternion,
   Vector3
 } from 'three';
+import { CameraView, RuntimePose } from '../types/applicationTypes';
 import { generateRandomSeededColor, isColor } from './Utils';
 
 import { File } from '../types/jsonTypes';
-import { RuntimePose } from '../types/applicationTypes';
 
 /**
  * Class that has all the relevant geometries/data/animations
