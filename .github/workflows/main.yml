@@ -6,7 +6,7 @@ name: Builder
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,7 +29,7 @@ jobs:
           branch: gh-pages-build # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
           target-folder: docs/scripts
-          
+
       - name: Install and Build docs🔧
         run: |
           npm install

@@ -3,19 +3,22 @@
 This repo contains source code for this project.
 
 GitHub Workflows:
-* automatically deploys latest push to GitHub pages, 
-* builds a documentation based on latest push,
-* runs es-lint and prettier checks during pull request
+
+- automatically deploys latest push to GitHub pages,
+- builds a documentation based on latest push,
+- runs es-lint and prettier checks during pull request
 
 Link to GitHub Pages:
+
 - https://mattjoke.github.io/TIM3D/
 
 Docs:
--  https://mattjoke.github.io/TIM3D/docs
+
+- https://mattjoke.github.io/TIM3D/docs
 
 Trello with ToDo (view-only):
-- https://trello.com/b/hXZva22f/threejs-library-to-do
 
+- https://trello.com/b/hXZva22f/threejs-library-to-do
 
 ## Basic usage
 
