@@ -1,7 +1,4 @@
 node_modules
-public/models/*
-public/jsons/*
-public/*
-public/jsons
+
 
 dist
