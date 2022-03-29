@@ -1,7 +1,7 @@
-name: "PR Build"
+name: 'PR Build'
 
-on: [pull_request]   
-    
+on: [pull_request]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -12,11 +12,11 @@ jobs:
       - name: Install project 🔧
         run: |
           npm install
-          
+
       - name: Prettier check 🦘
         run: |
           npm run prettier:check
-          
+
       - name: ESLint check 🦘
         run: |
           npm run lint:check

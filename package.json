@@ -1,17 +1,22 @@
 {
   "name": "tim3d",
-  "version": "0.9",
+  "version": "0.9.5",
   "description": "Three.js interactive manual.",
   "scripts": {
     "build": "webpack",
     "build:prod": "webpack --config webpack.config.prod.js",
     "dev": "webpack serve",
-    "lint:check": "eslint -c .eslintrc.json .",
-    "lint:fix": "eslint -c .eslintrc.json . --fix",
+    "lint:check": "eslint -c .eslintrc.json ./src",
+    "lint:fix": "eslint -c .eslintrc.json ./src --fix",
     "prettier:write": "prettier --config .prettierrc --write .",
     "prettier:check": "prettier --config .prettierrc --check .",
     "docs:gen": "typedoc --entryPoints ./src/index.ts"
   },
+  "main": "./dist/bundle.js",
+  "types": "./src/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "author": "Matej Hakoš",
   "license": "ISC",
   "devDependencies": {
