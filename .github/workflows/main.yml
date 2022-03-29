@@ -17,6 +17,13 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
+        
+      - name: Deploy webpage 🕸️
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages-build
+          folder: public
+          target-folder: docs
 
       - name: Install and Build project 🔧
         run: |
@@ -34,6 +41,7 @@ jobs:
         run: |
           npm install
           npm run docs:gen
+          
       - name: Deploy docs🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
