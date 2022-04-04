@@ -1,6 +1,8 @@
 {
   "name": "tim3d",
   "version": "0.9.5",
+  "author": "Matej Hakoš",
+  "license": "ISC",
   "description": "Three.js interactive manual.",
   "scripts": {
     "build": "webpack",
@@ -17,8 +19,10 @@
   "files": [
     "/dist"
   ],
-  "author": "Matej Hakoš",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattjoke/TIM3D.git"
+  },
   "devDependencies": {
     "@tweenjs/tween.js": "^18.6.4",
     "@types/clone-deep": "^4.0.1",
@@ -33,7 +37,6 @@
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.1",
     "html-loader": "^3.1.0",
     "style-loader": "^3.1.0",
@@ -41,14 +44,15 @@
     "svg-url-loader": "^7.1.1",
     "ts-loader": "^8.0.17",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
-    "typedoc": "^0.22.12",
     "typescript": "^4.1.5",
     "webpack": "^5.21.2",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.3",
-    "zod": "^3.11.6"
+    "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
-    "three": "latest"
+    "typedoc": "^0.22.12",
+    "handlebars": "^4.7.7",
+    "three": "latest",
+    "zod": "^3.11.6"
   }
 }
