@@ -17,8 +17,6 @@
     "prepare": "npm run build:prod",
     "prepublishOnly": "npm run lint:check",
     "preversion": "npm run lint:check",
-    "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags",
     "semantic-release": "semantic-release --branches main"
   },
   "main": "./dist/tim3d.js",
