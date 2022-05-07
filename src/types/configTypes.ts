@@ -9,13 +9,13 @@ import { Color } from 'three';
  */
 export interface Extension {
   /**
-   * Description placeholder
+   * Unused property, in future possible custom renderer
    *
    * @type {?() => void}
    */
   renderer?: () => void;
   /**
-   * Description placeholder
+   * Unused property, in future possible custom scene
    *
    * @type {?object}
    */

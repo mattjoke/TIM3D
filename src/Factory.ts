@@ -13,7 +13,7 @@ import { Config } from './types/configTypes';
 import { Event } from 'three';
 import { Init } from './initialization/Init';
 import { JSON } from './types/jsonTypes';
-import { Object3D } from 'stuff/Object3D';
+import { Object3D } from 'types/Object3D';
 import { v4 as uuidv4 } from 'uuid';
 
 /**

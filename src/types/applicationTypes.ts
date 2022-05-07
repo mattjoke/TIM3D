@@ -1,6 +1,6 @@
 import { Camera, Event, Quaternion, Color as ThreeColor, Vector3 } from 'three';
 
-import { Object3D } from 'stuff/Object3D';
+import { Object3D } from 'types/Object3D';
 import { Tween } from '@tweenjs/tween.js';
 
 /**
@@ -140,14 +140,14 @@ export type elementSizing = { width: number; height: number };
  */
 export interface inputPosition {
   /**
-   * Description placeholder
+   * X position of mouse/touch in referrence to the window
    * @author Matej Hakoš
    *
    * @type {number}
    */
   clientX: number;
   /**
-   * Description placeholder
+   * Y position of mouse/touch in referrence to the window
    * @author Matej Hakoš
    *
    * @type {number}

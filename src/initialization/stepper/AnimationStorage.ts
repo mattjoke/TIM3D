@@ -1,7 +1,7 @@
 import { AnimationDef, Animations } from '../../types/applicationTypes';
 
 import { MathUtils } from 'three';
-import { Object3D } from 'stuff/Object3D';
+import { Object3D } from 'types/Object3D';
 import { Tween } from '@tweenjs/tween.js';
 
 /**

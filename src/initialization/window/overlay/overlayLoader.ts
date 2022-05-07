@@ -1,9 +1,9 @@
 import '../overlay/overlay.css';
 
-import { Icons } from '../../../stuff/Icons';
+import { Icons } from '../../../utils/Icons';
 import { Sidebar } from '../../../types/configTypes';
 import { Stepper } from 'initialization/Stepper';
-import { checkFullscreen } from '../../../stuff/Utils';
+import { checkFullscreen } from '../../../utils/Utils';
 import generateId from './generate-id.js';
 import overlay from './overlay.hbs';
 

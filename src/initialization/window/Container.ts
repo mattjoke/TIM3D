@@ -42,7 +42,7 @@ class Container {
    * Returns current instance.
    *
    * @public
-   * @return {*}
+   * @return {HTMLElement}
    */
   public getInstance() {
     return this.instance;

@@ -1,6 +1,6 @@
 {
   "name": "tim3d",
-  "version": "0.9.5",
+  "version": "0.0.0-development",
   "author": "Matej Hakoš",
   "license": "ISC",
   "description": "Three.js interactive manual.",
@@ -8,13 +8,20 @@
     "build": "webpack",
     "build:prod": "webpack --config webpack.config.prod.js",
     "dev": "webpack serve",
+    "commit": "git add . && git-cz",
     "lint:check": "eslint -c .eslintrc.json ./src",
     "lint:fix": "eslint -c .eslintrc.json ./src --fix",
     "prettier:write": "prettier --config .prettierrc --write .",
     "prettier:check": "prettier --config .prettierrc --check .",
-    "docs:gen": "typedoc --entryPoints ./src/index.ts"
+    "docs:gen": "typedoc --entryPoints ./src/index.ts",
+    "prepare": "npm run build:prod",
+    "prepublishOnly": "npm run lint:check",
+    "preversion": "npm run lint:check",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "semantic-release": "semantic-release --branches main"
   },
-  "main": "./dist/bundle.js",
+  "main": "./dist/tim3d.js",
   "types": "./src/index.d.ts",
   "files": [
     "/dist"
@@ -33,12 +40,14 @@
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "css-loader": "^6.5.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.0.1",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "handlebars-loader": "^1.7.1",
     "html-loader": "^3.1.0",
+    "semantic-release": "^19.0.2",
     "style-loader": "^3.1.0",
     "svg-inline-loader": "^0.8.2",
     "svg-url-loader": "^7.1.1",
@@ -50,9 +59,14 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
-    "typedoc": "^0.22.12",
     "handlebars": "^4.7.7",
     "three": "latest",
+    "typedoc": "^0.22.12",
     "zod": "^3.11.6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
