@@ -9,30 +9,34 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" }
+        ]
+      },
+      {
+        test: /\.ts?$/,
         use: 'ts-loader',
         exclude: /node_modules/
       },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
+     
       {
         test: /\.hbs$/i,
         loader: 'handlebars-loader',
         options: {
           knownHelpersOnly: false
         }
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader'
       }
     ]
   },
 
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.html', '.hbs', '.svg'],
+    extensions: ['.ts', '.js', '.html', '.hbs', '.svg'],
     fallback: {
       fs: false
     },

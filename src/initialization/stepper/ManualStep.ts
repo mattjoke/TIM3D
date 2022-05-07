@@ -9,7 +9,7 @@ import { Position, Step } from '../../types/jsonTypes';
 import { Quaternion, Vector3 } from 'three';
 
 import { AnimationStorage } from './AnimationStorage';
-import { deepCopyMap } from 'utils/Utils';
+import { deepCopyMap } from '../../utils/Utils';
 
 /**
  * Class that hold information about currently shown/displayed

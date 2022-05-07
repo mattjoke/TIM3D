@@ -66,7 +66,9 @@ class Factory {
    * @param {?Config} [config]
    */
   constructor(config?: Config) {
-    if (config == null) throw new Error('Config not specified!');
+    if (config == null) {
+      config = {};
+    }
     Factory.instanceCounter = Math.max(Factory.instanceCounter, 0) + 1;
     this.uuid = this.generateUUID();
     this.instance = new Init(config, this.uuid);
