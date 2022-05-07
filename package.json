@@ -15,8 +15,6 @@
     "prettier:check": "prettier --config .prettierrc --check .",
     "docs:gen": "typedoc --entryPoints ./src/index.ts",
     "prepare": "npm run build:prod",
-    "prepublishOnly": "npm run lint:check",
-    "preversion": "npm run lint:check",
     "semantic-release": "semantic-release --branches main"
   },
   "main": "./dist/tim3d.js",
