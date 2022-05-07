@@ -40,3 +40,22 @@ jobs:
           branch: gh-pages-build
           folder: docs
           target-folder: docs/docs
+
+  release-to-npm:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: [quality]
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Install and Build project 🔧
+        run: npm install
+
+      - name: Releasing on npm 💻
+        run: npm run semantic-release
+        env: 
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+
