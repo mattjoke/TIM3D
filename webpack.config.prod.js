@@ -39,7 +39,7 @@ module.exports = {
     plugins: [new TsconfigPathsPlugin()]
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'tim3d.js',
     path: path.resolve(__dirname, 'dist'),
     library: {
       type: 'umd'

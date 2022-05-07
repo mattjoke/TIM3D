@@ -2,7 +2,7 @@ import { Group, Mesh, Quaternion, Vector3 } from 'three';
 
 import { Config } from '../types/configTypes';
 import { File } from '../types/jsonTypes';
-import { Object3D } from './Object3D';
+import { Object3D } from '../types/Object3D';
 import { Objects3D } from '../types/applicationTypes';
 import { Window } from '../initialization/Window';
 import { loaderManager } from './loaders/loaderManager';

@@ -2,7 +2,7 @@ import { Quaternion, Vector3 } from 'three';
 
 import { AnimationStorage } from './AnimationStorage';
 import { ManualStep } from './ManualStep';
-import { Object3D } from 'stuff/Object3D';
+import { Object3D } from 'types/Object3D';
 import { Tween } from '@tweenjs/tween.js';
 import { getObjectFunction } from '../../types/applicationTypes';
 

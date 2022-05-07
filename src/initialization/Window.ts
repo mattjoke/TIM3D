@@ -33,7 +33,7 @@ class Window {
    * Instance of Camera.
    *
    * @private
-   * @type {*}
+   * @type {Camera}
    */
   private camera;
   /**

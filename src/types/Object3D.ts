@@ -8,7 +8,7 @@ import {
   Quaternion,
   Vector3
 } from 'three';
-import { generateRandomSeededColor, isColor } from './Utils';
+import { generateRandomSeededColor, isColor } from '../utils/Utils';
 
 import { File } from '../types/jsonTypes';
 import { RuntimePose } from '../types/applicationTypes';
@@ -223,13 +223,23 @@ class Object3D {
   }
 
   /**
-   * Sets last drawn pose. This does not update mesh!
+   * Sets last drawn pose. <b>This does not update mesh!<b>
    *
    * @public
    * @param {RuntimePose} pose
    */
   public setPose(pose: RuntimePose) {
     this.pose = pose;
+  }
+
+  /**
+   * Returns a loaded file, that is used by this instance.
+   *
+   * @public
+   * @return {File}
+   */
+  public getFile() {
+    return this.file;
   }
 
   /**
@@ -321,16 +331,7 @@ class Object3D {
     });
     const shadow = new Mesh(geometry, outline);
     shadow.name = `${this.mesh.name}-outline`;
-    shadow.position.set(
-      this.mesh.position.x,
-      this.mesh.position.y,
-      this.mesh.position.z
-    );
-    shadow.rotation.set(
-      this.mesh.rotation.x,
-      this.mesh.rotation.y,
-      this.mesh.rotation.z
-    );
+    this.setOutlineFromMesh();
     shadow.scale.multiplyScalar(1.07);
     shadow.layers.set(1);
     return shadow;

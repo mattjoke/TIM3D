@@ -1,5 +1,5 @@
 import { CameraView, ObjectID, Objects3D } from '../types/applicationTypes';
-import { ConfigCheck, JsonCheck } from '../inputChecking/InputCheck';
+import { ConfigCheck, JsonCheck } from '../checkers/InputCheck';
 import { Object3D, Vector3 } from 'three';
 
 import { Config } from '../types/configTypes';
@@ -8,7 +8,7 @@ import { Stepper } from './Stepper';
 import { Window } from './Window';
 import { axis } from './init/axis';
 import { computePositions } from './stepper/ManualStep';
-import { loader } from '../stuff/loader';
+import { loader } from '../loaders/loader';
 import { overlay } from './window/overlay';
 import { planeInit } from './init/planeInit';
 

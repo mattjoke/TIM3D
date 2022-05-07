@@ -1,6 +1,6 @@
 import { AxesHelper, Color, Object3D, Scene as ThreeScene } from 'three';
 
-import { isColor } from '../../stuff/Utils';
+import { isColor } from '../../utils/Utils';
 
 /**
  * Wrapper over Three.js's Scene.
