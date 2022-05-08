@@ -331,7 +331,7 @@ class Object3D {
     });
     const shadow = new Mesh(geometry, outline);
     shadow.name = `${this.mesh.name}-outline`;
-    this.setOutlineFromMesh();
+    shadow.position.copy(this.mesh.position);
     shadow.scale.multiplyScalar(1.07);
     shadow.layers.set(1);
     return shadow;
