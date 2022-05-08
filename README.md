@@ -15,10 +15,11 @@
 TIM 3D is a Three.js based interactive manual builder. It loads 3D files and builds a manual out of them.
 
 ## Links
- * ### 🕸️ [Webpage](https://mattjoke.github.io/TIM3D/)
- * ### 📃 [Docs](https://mattjoke.github.io/TIM3D/docs)
- * ### ✅ [Releases](https://github.com/mattjoke/TIM3D/releases/latest)
- * ### 💻 [NPM](https://www.npmjs.com/package/tim3d)
+
+- ### 🕸️ [Webpage](https://mattjoke.github.io/TIM3D/)
+- ### 📃 [Docs](https://mattjoke.github.io/TIM3D/docs)
+- ### ✅ [Releases](https://github.com/mattjoke/TIM3D/releases/latest)
+- ### 💻 [NPM](https://www.npmjs.com/package/tim3d)
 
 ## Installation
 
@@ -33,89 +34,107 @@ This example shows a basic manual. A more interactive and comprehensive manual c
 First, initialise the instance with the config object. The definitions of what can be set are available on the [docs website](https://mattjoke.github.io/TIM3D/docs/interfaces/Config.html).
 
 ```javascript
-import * as TIM3D from "tim3d";
+import * as TIM3D from 'tim3d';
 
-const div = document.getElementById("container");
+const div = document.getElementById('container');
 const config = {
-    container: div,
-    colors:{
-      backgroundColor: "#123456"  
-    } 
+  container: div,
+  colors: {
+    backgroundColor: '#123456'
+  }
 };
 const manual = new TIM3D.Factory(config);
 ```
 
 Next, create an object with files and step definitions. With these, then create an instance using **loadJSON** method.
+
 ```javascript
 const json = {
-    files: [
+  files: [
+    {
+      id: 'cube_id',
+      file: './path/to/cube.obj'
+    }
+    // Other files
+  ],
+  steps: [
+    {
+      name: 'First Step',
+      positions: [
         {
           id: 'cube_id',
-          file: './path/to/cube.obj'
-        },
-        // Other files
-      ],
-    steps: [
-        {
-            name: "First Step",
-            positions: [
-                {
-                    id: 'cube_id',
-                    pose: {
-                        position: [10, 0, 0],
-                    }
-                }
-            ]
-        },
-        // Other steps
-    ]
-}
+          pose: {
+            position: [10, 0, 0]
+          }
+        }
+      ]
+    }
+    // Other steps
+  ]
+};
 // Load the uploaded object with file and step definitions
 manual.loadJSON(json);
 ```
-More precise definition of the *json* object with more in-depth fields can be found on the [docs website](https://mattjoke.github.io/TIM3D/docs/interfaces/JSON.html).
 
+More precise definition of the _json_ object with more in-depth fields can be found on the [docs website](https://mattjoke.github.io/TIM3D/docs/interfaces/JSON.html).
 
-## Scripts 
+## Scripts
+
 Build a non-production version of the library
+
 ```SH
 npm run build
 ```
+
 Build a production version of the library
+
 ```SH
 npm run build:prod
 ```
-Starts a Webpack live sever, automatically builds the library and exposes it to ```localhost```
+
+Starts a Webpack live sever, automatically builds the library and exposes it to `localhost`
+
 ```sh
 npm run dev
 ```
+
 Performs an ESLint check
+
 ```sh
 npm run lint:check
 ```
+
 Tries to fix solvable ESLint errors
+
 ```sh
 npm run lint:fix
 ```
+
 Scans all files and checks if they are corresponding to the Prettier config
+
 ```sh
 npm run prettier:check
 ```
+
 Scans all files and updates them with the correct Prettier config
+
 ```sh
 npm run prettier:write
 ```
+
 Generates documentation from the whole library
+
 ```sh
-npm run docs:gen 
+npm run docs:gen
 ```
+
 ## Author
 
 👤 **Matej Hakoš**
 
-* Github: [@mattjoke](https://github.com/mattjoke)
-* Twitter: [@matt_joke1](https://twitter.com/matt_joke1)
-* LinkedIn: [Matej Hakoš](https://www.linkedin.com/in/matej-hakos/)
+- Github: [@mattjoke](https://github.com/mattjoke)
+- Twitter: [@matt_joke1](https://twitter.com/matt_joke1)
+- LinkedIn: [Matej Hakoš](https://www.linkedin.com/in/matej-hakos/)
 
 ## Show your support
 

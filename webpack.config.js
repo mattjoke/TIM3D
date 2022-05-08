@@ -14,17 +14,14 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
-        ]
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
       },
       {
         test: /\.ts?$/,
         use: 'ts-loader',
         exclude: /node_modules/
       },
-     
+
       {
         test: /\.hbs$/i,
         loader: 'handlebars-loader',
