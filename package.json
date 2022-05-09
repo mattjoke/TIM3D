@@ -18,7 +18,7 @@
     "semantic-release": "semantic-release --branches main"
   },
   "main": "./dist/tim3d.js",
-  "types": "./src/index.d.ts",
+  "types": "./dist/src/index.d.ts",
   "files": [
     "/dist"
   ],
