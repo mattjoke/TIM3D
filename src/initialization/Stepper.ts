@@ -68,9 +68,9 @@ class Stepper {
    * which will be indefinately looped.
    *
    * @private
-   * @type {([string] | [])}
+   * @type {Array<string>}
    */
-  private animationLoop: [string] | [];
+  private animationLoop: Array<string>;
 
   /**
    * Indicates, if stepper should compute and render.
@@ -87,13 +87,13 @@ class Stepper {
    * @param {JSON} json
    * @param {getObjectFunction} getObject
    * @param {ComputedPostions} computedPositions
-   * @param {?[string]} [animationLoop]
+   * @param {?Array<string>} [animationLoop]
    */
   constructor(
     json: JSON,
     getObject: getObjectFunction,
     computedPositions: ComputedPostions,
-    animationLoop?: [string]
+    animationLoop?: Array<string>
   ) {
     this.computedPositions = computedPositions;
     this.getObject = getObject;

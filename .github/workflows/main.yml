@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build-library:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -25,18 +25,39 @@ jobs:
           folder: public
           target-folder: docs
 
-      - name: Install and Build project 🔧
+      - name: Install and Build project (non-production) 🔧
         run: |
           npm install
           npm run build
 
-      - name: Deploy project 🚀
+      - name: Deploy project (non-production) 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages-build # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
           target-folder: docs/scripts
+      
+      - name: Remove non-production files
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: dist
+      
+      - name: Install and Build project (production) 🔧
+        run: |
+          npm install
+          npm run build:prod
 
+      - name: Deploy project (production) 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages-build # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
+          target-folder: docs/scripts/prod
+
+  build-docs:
+    runs-on: ubuntu-latest
+    needs: [build-library]
+    steps:
       - name: Install and Build docs🔧
         run: |
           npm install
@@ -52,7 +73,7 @@ jobs:
   release-to-npm:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [build-and-deploy]
+    needs: [build-docs]
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1

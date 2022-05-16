@@ -86,11 +86,13 @@ class Factory {
     uuid = uuid.replace(/-/g, '');
     uuid = `tw-${uuid}`;
 
+    /*
     console.log(
       'Factory instance:',
       Factory.instanceCounter,
       ' with uuid: ' + uuid
     );
+    */
     return uuid;
   }
 
@@ -291,9 +293,10 @@ class Factory {
    * Returns current instance of camera.
    *
    * @public
+   * @return {camera}
    */
   public getCamera() {
-    this.instance?.getCamera();
+    return this.instance?.getCamera();
   }
 
   /**
