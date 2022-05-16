@@ -143,9 +143,9 @@ export interface Config {
   /**
    * An array of steps which should loop.
    *
-   * @type {?[string]}
+   * @type {?Array<string>}
    */
-  animationLoop?: [string];
+  animationLoop?: Array<string>;
 
   /**
    * Antoher extension fields. (WIP)

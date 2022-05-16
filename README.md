@@ -1,13 +1,13 @@
 <h1 align="center">Welcome to TIM 3D 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.0--development-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000" />
   <a href="https://mattjoke.github.io/TIM3D/docs/" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
   <a href="https://github.com/mattjoke/TIM3D/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/mattjoke/TIM3D/blob/master/LICENSE" target="_blank">
+  <a href="https://github.com/mattjoke/TIM3D/blob/main/LICENSE" target="_blank">
     <img alt="License: Apache--2.0" src="https://img.shields.io/github/license/mattjoke/TIM3D" />
   </a>
 </p>
@@ -34,7 +34,7 @@ This example shows a basic manual. A more interactive and comprehensive manual c
 First, initialise the instance with the config object. The definitions of what can be set are available on the [docs website](https://mattjoke.github.io/TIM3D/docs/interfaces/Config.html).
 
 ```javascript
-import * as TIM3D from 'tim3d';
+import { Factory } from 'tim3d';
 
 const div = document.getElementById('container');
 const config = {
@@ -43,7 +43,7 @@ const config = {
     backgroundColor: '#123456'
   }
 };
-const manual = new TIM3D.Factory(config);
+const manual = new Factory(config);
 ```
 
 Next, create an object with files and step definitions. With these, then create an instance using **loadJSON** method.
