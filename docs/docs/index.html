@@ -1,0 +1,109 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>tim3d</title><meta name="description" content="Documentation for tim3d"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">tim3d</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>tim3d </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><h1 align="center">Welcome to TIM 3D 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000" />
+  <a href="https://mattjoke.github.io/TIM3D/docs/" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/mattjoke/TIM3D/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/mattjoke/TIM3D/blob/main/LICENSE" target="_blank">
+    <img alt="License: Apache--2.0" src="https://img.shields.io/github/license/mattjoke/TIM3D" />
+  </a>
+</p>
+
+<p>TIM 3D is a Three.js based interactive manual builder. It loads 3D files and builds a manual out of them.</p>
+
+<a href="#links" id="links" style="color: inherit; text-decoration: none;">
+  <h2>Links</h2>
+</a>
+<ul>
+<li>
+<a href="#🕸️-webpage" id="🕸️-webpage" style="color: inherit; text-decoration: none;">
+  <h3>🕸️ <a href="https://mattjoke.github.io/TIM3D/">Webpage</a></h3>
+</a>
+</li>
+<li>
+<a href="#📃-docs" id="📃-docs" style="color: inherit; text-decoration: none;">
+  <h3>📃 <a href="https://mattjoke.github.io/TIM3D/docs">Docs</a></h3>
+</a>
+</li>
+<li>
+<a href="#✅-releases" id="✅-releases" style="color: inherit; text-decoration: none;">
+  <h3>✅ <a href="https://github.com/mattjoke/TIM3D/releases/latest">Releases</a></h3>
+</a>
+</li>
+<li>
+<a href="#💻-npm" id="💻-npm" style="color: inherit; text-decoration: none;">
+  <h3>💻 <a href="https://www.npmjs.com/package/tim3d">NPM</a></h3>
+</a>
+</li>
+</ul>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<pre><code class="language-sh"><span class="hl-0">npm install tim3d</span>
+</code></pre>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<p>This example shows a basic manual. A more interactive and comprehensive manual can be found on the <a href="https://mattjoke.github.io/TIM3D/#/introduction">webpage</a>.</p>
+<p>First, initialise the instance with the config object. The definitions of what can be set are available on the <a href="https://mattjoke.github.io/TIM3D/docs/interfaces/Config.html">docs website</a>.</p>
+<pre><code class="language-javascript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-2">Factory</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;tim3d&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">div</span><span class="hl-0"> = </span><span class="hl-2">document</span><span class="hl-0">.</span><span class="hl-6">getElementById</span><span class="hl-0">(</span><span class="hl-3">&#39;container&#39;</span><span class="hl-0">);</span><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">config</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-2">container:</span><span class="hl-0"> </span><span class="hl-2">div</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">colors:</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">backgroundColor:</span><span class="hl-0"> </span><span class="hl-3">&#39;#123456&#39;</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">};</span><br/><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">manual</span><span class="hl-0"> = </span><span class="hl-4">new</span><span class="hl-0"> </span><span class="hl-6">Factory</span><span class="hl-0">(</span><span class="hl-2">config</span><span class="hl-0">);</span>
+</code></pre>
+<p>Next, create an object with files and step definitions. With these, then create an instance using <strong>loadJSON</strong> method.</p>
+<pre><code class="language-javascript"><span class="hl-4">const</span><span class="hl-0"> </span><span class="hl-5">json</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-2">files:</span><span class="hl-0"> [</span><br/><span class="hl-0">    {</span><br/><span class="hl-0">      </span><span class="hl-2">id:</span><span class="hl-0"> </span><span class="hl-3">&#39;cube_id&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">      </span><span class="hl-2">file:</span><span class="hl-0"> </span><span class="hl-3">&#39;./path/to/cube.obj&#39;</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">    </span><span class="hl-7">// Other files</span><br/><span class="hl-0">  ],</span><br/><span class="hl-0">  </span><span class="hl-2">steps:</span><span class="hl-0"> [</span><br/><span class="hl-0">    {</span><br/><span class="hl-0">      </span><span class="hl-2">name:</span><span class="hl-0"> </span><span class="hl-3">&#39;First Step&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">      </span><span class="hl-2">positions:</span><span class="hl-0"> [</span><br/><span class="hl-0">        {</span><br/><span class="hl-0">          </span><span class="hl-2">id:</span><span class="hl-0"> </span><span class="hl-3">&#39;cube_id&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">          </span><span class="hl-2">pose:</span><span class="hl-0"> {</span><br/><span class="hl-0">            </span><span class="hl-2">position:</span><span class="hl-0"> [</span><span class="hl-8">10</span><span class="hl-0">, </span><span class="hl-8">0</span><span class="hl-0">, </span><span class="hl-8">0</span><span class="hl-0">]</span><br/><span class="hl-0">          }</span><br/><span class="hl-0">        }</span><br/><span class="hl-0">      ]</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">    </span><span class="hl-7">// Other steps</span><br/><span class="hl-0">  ]</span><br/><span class="hl-0">};</span><br/><span class="hl-7">// Load the uploaded object with file and step definitions</span><br/><span class="hl-2">manual</span><span class="hl-0">.</span><span class="hl-6">loadJSON</span><span class="hl-0">(</span><span class="hl-2">json</span><span class="hl-0">);</span>
+</code></pre>
+<p>More precise definition of the <em>json</em> object with more in-depth fields can be found on the <a href="https://mattjoke.github.io/TIM3D/docs/interfaces/JSON.html">docs website</a>.</p>
+
+<a href="#scripts" id="scripts" style="color: inherit; text-decoration: none;">
+  <h2>Scripts</h2>
+</a>
+<p>Build a non-production version of the library</p>
+<pre><code class="language-SH"><span class="hl-0">npm run build</span>
+</code></pre>
+<p>Build a production version of the library</p>
+<pre><code class="language-SH"><span class="hl-0">npm run build:prod</span>
+</code></pre>
+<p>Starts a Webpack live sever, automatically builds the library and exposes it to <code>localhost</code></p>
+<pre><code class="language-sh"><span class="hl-0">npm run dev</span>
+</code></pre>
+<p>Performs an ESLint check</p>
+<pre><code class="language-sh"><span class="hl-0">npm run lint:check</span>
+</code></pre>
+<p>Tries to fix solvable ESLint errors</p>
+<pre><code class="language-sh"><span class="hl-0">npm run lint:fix</span>
+</code></pre>
+<p>Scans all files and checks if they are corresponding to the Prettier config</p>
+<pre><code class="language-sh"><span class="hl-0">npm run prettier:check</span>
+</code></pre>
+<p>Scans all files and updates them with the correct Prettier config</p>
+<pre><code class="language-sh"><span class="hl-0">npm run prettier:write</span>
+</code></pre>
+<p>Generates documentation from the whole library</p>
+<pre><code class="language-sh"><span class="hl-0">npm run docs:gen</span>
+</code></pre>
+
+<a href="#author" id="author" style="color: inherit; text-decoration: none;">
+  <h2>Author</h2>
+</a>
+<p>👤 <strong>Matej Hakoš</strong></p>
+<ul>
+<li>Github: <a href="https://github.com/mattjoke">@mattjoke</a></li>
+<li>Twitter: <a href="https://twitter.com/matt_joke1">@matt_joke1</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/matej-hakos/">Matej Hakoš</a></li>
+</ul>
+
+<a href="#show-your-support" id="show-your-support" style="color: inherit; text-decoration: none;">
+  <h2>Show your support</h2>
+</a>
+<p>Give a ⭐️ if this project helped you!</p>
+
+<a href="#📝-license" id="📝-license" style="color: inherit; text-decoration: none;">
+  <h2>📝 License</h2>
+</a>
+<p>Copyright © 2022 <a href="https://github.com/mattjoke">Matej Hakoš</a>.<br />
+This project is <a href="./LICENSE.md">Apache--2.0</a> licensed.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/CameraView.html" class="tsd-kind-icon">Camera<wbr/>View</a></li><li class="tsd-kind-class"><a href="classes/AnimationStorage.html" class="tsd-kind-icon">Animation<wbr/>Storage</a></li><li class="tsd-kind-class"><a href="classes/Container.html" class="tsd-kind-icon">Container</a></li><li class="tsd-kind-class"><a href="classes/Factory.html" class="tsd-kind-icon">Factory</a></li><li class="tsd-kind-class"><a href="classes/Icons.html" class="tsd-kind-icon">Icons</a></li><li class="tsd-kind-class"><a href="classes/Init.html" class="tsd-kind-icon">Init</a></li><li class="tsd-kind-class"><a href="classes/ManualStep.html" class="tsd-kind-icon">Manual<wbr/>Step</a></li><li class="tsd-kind-class"><a href="classes/Object3D.html" class="tsd-kind-icon">Object3D</a></li><li class="tsd-kind-class"><a href="classes/OrbitalControls.html" class="tsd-kind-icon">Orbital<wbr/>Controls</a></li><li class="tsd-kind-class"><a href="classes/Renderer.html" class="tsd-kind-icon">Renderer</a></li><li class="tsd-kind-class"><a href="classes/Scene.html" class="tsd-kind-icon">Scene</a></li><li class="tsd-kind-class"><a href="classes/Stepper.html" class="tsd-kind-icon">Stepper</a></li><li class="tsd-kind-class"><a href="classes/Window.html" class="tsd-kind-icon">Window</a></li><li class="tsd-kind-interface"><a href="interfaces/Colors.html" class="tsd-kind-icon">Colors</a></li><li class="tsd-kind-interface"><a href="interfaces/Config.html" class="tsd-kind-icon">Config</a></li><li class="tsd-kind-interface"><a href="interfaces/Extension.html" class="tsd-kind-icon">Extension</a></li><li class="tsd-kind-interface"><a href="interfaces/File.html" class="tsd-kind-icon">File</a></li><li class="tsd-kind-interface"><a href="interfaces/JSON.html" class="tsd-kind-icon">JSON</a></li><li class="tsd-kind-interface"><a href="interfaces/Pose.html" class="tsd-kind-icon">Pose</a></li><li class="tsd-kind-interface"><a href="interfaces/Position.html" class="tsd-kind-icon">Position</a></li><li class="tsd-kind-interface"><a href="interfaces/Sidebar.html" class="tsd-kind-icon">Sidebar</a></li><li class="tsd-kind-interface"><a href="interfaces/Step.html" class="tsd-kind-icon">Step</a></li><li class="tsd-kind-interface"><a href="interfaces/containerSize.html" class="tsd-kind-icon">container<wbr/>Size</a></li><li class="tsd-kind-interface"><a href="interfaces/inputPosition.html" class="tsd-kind-icon">input<wbr/>Position</a></li><li class="tsd-kind-type-alias"><a href="modules.html#AnimationDef" class="tsd-kind-icon">Animation<wbr/>Def</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Animations" class="tsd-kind-icon">Animations</a></li><li class="tsd-kind-type-alias"><a href="modules.html#CallbackFunction" class="tsd-kind-icon">Callback<wbr/>Function</a></li><li class="tsd-kind-type-alias"><a href="modules.html#CameraCallback" class="tsd-kind-icon">Camera<wbr/>Callback</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Color" class="tsd-kind-icon">Color</a></li><li class="tsd-kind-type-alias"><a href="modules.html#ComputedPostions" class="tsd-kind-icon">Computed<wbr/>Postions</a></li><li class="tsd-kind-type-alias"><a href="modules.html#ObjectID" class="tsd-kind-icon">ObjectID</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Objects3D" class="tsd-kind-icon">Objects3D</a></li><li class="tsd-kind-type-alias"><a href="modules.html#RuntimePose" class="tsd-kind-icon">Runtime<wbr/>Pose</a></li><li class="tsd-kind-type-alias"><a href="modules.html#UUID" class="tsd-kind-icon">UUID</a></li><li class="tsd-kind-type-alias"><a href="modules.html#elementSizing" class="tsd-kind-icon">element<wbr/>Sizing</a></li><li class="tsd-kind-type-alias"><a href="modules.html#getObjectFunction" class="tsd-kind-icon">get<wbr/>Object<wbr/>Function</a></li><li class="tsd-kind-function"><a href="modules.html#axis" class="tsd-kind-icon">axis</a></li><li class="tsd-kind-function"><a href="modules.html#camera" class="tsd-kind-icon">camera</a></li><li class="tsd-kind-function"><a href="modules.html#loader" class="tsd-kind-icon">loader</a></li><li class="tsd-kind-function"><a href="modules.html#loaderManager" class="tsd-kind-icon">loader<wbr/>Manager</a></li><li class="tsd-kind-function"><a href="modules.html#loaderOverlay" class="tsd-kind-icon">loader<wbr/>Overlay</a></li><li class="tsd-kind-function"><a href="modules.html#overlay" class="tsd-kind-icon">overlay</a></li><li class="tsd-kind-function"><a href="modules.html#overlayLoader" class="tsd-kind-icon">overlay<wbr/>Loader</a></li><li class="tsd-kind-function"><a href="modules.html#planeInit" class="tsd-kind-icon">plane<wbr/>Init</a></li><li class="tsd-kind-function"><a href="modules.html#redraw" class="tsd-kind-icon">redraw</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
