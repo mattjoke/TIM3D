@@ -22,25 +22,25 @@ declare const fileSchema: import("zod").ZodObject<{
     }>>;
     animation: import("zod").ZodOptional<import("zod").ZodString>;
 }, "strict", import("zod").ZodTypeAny, {
-    id: string;
-    name?: string | number | undefined;
-    file: string;
     color?: string | Color | undefined;
+    name?: string | number | undefined;
     pose?: {
         position?: number[] | undefined;
         orientation?: number[] | undefined;
     } | undefined;
     animation?: string | undefined;
+    id: string;
+    file: string;
 }, {
-    id: string;
-    name?: string | number | undefined;
-    file: string;
     color?: string | Color | undefined;
+    name?: string | number | undefined;
     pose?: {
         position?: number[] | undefined;
         orientation?: number[] | undefined;
     } | undefined;
     animation?: string | undefined;
+    id: string;
+    file: string;
 }>;
 /**
  * Strictly checks if input Positions are corresponding with template.
@@ -62,19 +62,19 @@ declare const positionSchema: import("zod").ZodObject<{
     }>;
     animation: import("zod").ZodOptional<import("zod").ZodString>;
 }, "strict", import("zod").ZodTypeAny, {
+    animation?: string | undefined;
     id: string | number;
     pose: {
         position?: number[] | undefined;
         orientation?: number[] | undefined;
     };
-    animation?: string | undefined;
 }, {
+    animation?: string | undefined;
     id: string | number;
     pose: {
         position?: number[] | undefined;
         orientation?: number[] | undefined;
     };
-    animation?: string | undefined;
 }>;
 /**
  * Strictly checks if input Steps are corresponding with template.
@@ -98,43 +98,43 @@ declare const stepSchema: import("zod").ZodObject<{
         }>;
         animation: import("zod").ZodOptional<import("zod").ZodString>;
     }, "strict", import("zod").ZodTypeAny, {
+        animation?: string | undefined;
         id: string | number;
         pose: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         };
-        animation?: string | undefined;
     }, {
+        animation?: string | undefined;
         id: string | number;
         pose: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         };
-        animation?: string | undefined;
     }>, "many">;
     animation: import("zod").ZodOptional<import("zod").ZodString>;
 }, "strict", import("zod").ZodTypeAny, {
     name?: string | undefined;
+    animation?: string | undefined;
     positions: {
+        animation?: string | undefined;
         id: string | number;
         pose: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         };
-        animation?: string | undefined;
     }[];
-    animation?: string | undefined;
 }, {
     name?: string | undefined;
+    animation?: string | undefined;
     positions: {
+        animation?: string | undefined;
         id: string | number;
         pose: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         };
-        animation?: string | undefined;
     }[];
-    animation?: string | undefined;
 }>;
 /**
  * Strictly checks if input JSON is corresponding with template.
@@ -160,25 +160,25 @@ declare const jsonSchema: import("zod").ZodObject<{
         }>>;
         animation: import("zod").ZodOptional<import("zod").ZodString>;
     }, "strict", import("zod").ZodTypeAny, {
-        id: string;
-        name?: string | number | undefined;
-        file: string;
         color?: string | Color | undefined;
+        name?: string | number | undefined;
         pose?: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         } | undefined;
         animation?: string | undefined;
+        id: string;
+        file: string;
     }, {
-        id: string;
-        name?: string | number | undefined;
-        file: string;
         color?: string | Color | undefined;
+        name?: string | number | undefined;
         pose?: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         } | undefined;
         animation?: string | undefined;
+        id: string;
+        file: string;
     }>, "many">>;
     steps: import("zod").ZodOptional<import("zod").ZodArray<import("zod").ZodObject<{
         name: import("zod").ZodOptional<import("zod").ZodString>;
@@ -196,91 +196,91 @@ declare const jsonSchema: import("zod").ZodObject<{
             }>;
             animation: import("zod").ZodOptional<import("zod").ZodString>;
         }, "strict", import("zod").ZodTypeAny, {
+            animation?: string | undefined;
             id: string | number;
             pose: {
                 position?: number[] | undefined;
                 orientation?: number[] | undefined;
             };
-            animation?: string | undefined;
         }, {
+            animation?: string | undefined;
             id: string | number;
             pose: {
                 position?: number[] | undefined;
                 orientation?: number[] | undefined;
             };
-            animation?: string | undefined;
         }>, "many">;
         animation: import("zod").ZodOptional<import("zod").ZodString>;
     }, "strict", import("zod").ZodTypeAny, {
         name?: string | undefined;
+        animation?: string | undefined;
         positions: {
+            animation?: string | undefined;
             id: string | number;
             pose: {
                 position?: number[] | undefined;
                 orientation?: number[] | undefined;
             };
-            animation?: string | undefined;
         }[];
-        animation?: string | undefined;
     }, {
         name?: string | undefined;
+        animation?: string | undefined;
         positions: {
+            animation?: string | undefined;
             id: string | number;
             pose: {
                 position?: number[] | undefined;
                 orientation?: number[] | undefined;
             };
-            animation?: string | undefined;
         }[];
-        animation?: string | undefined;
     }>, "many">>;
 }, "strict", import("zod").ZodTypeAny, {
     files?: {
-        id: string;
-        name?: string | number | undefined;
-        file: string;
         color?: string | Color | undefined;
+        name?: string | number | undefined;
         pose?: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         } | undefined;
         animation?: string | undefined;
+        id: string;
+        file: string;
     }[] | undefined;
     steps?: {
         name?: string | undefined;
+        animation?: string | undefined;
         positions: {
+            animation?: string | undefined;
             id: string | number;
             pose: {
                 position?: number[] | undefined;
                 orientation?: number[] | undefined;
             };
-            animation?: string | undefined;
         }[];
-        animation?: string | undefined;
     }[] | undefined;
 }, {
     files?: {
-        id: string;
-        name?: string | number | undefined;
-        file: string;
         color?: string | Color | undefined;
+        name?: string | number | undefined;
         pose?: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         } | undefined;
         animation?: string | undefined;
+        id: string;
+        file: string;
     }[] | undefined;
     steps?: {
         name?: string | undefined;
+        animation?: string | undefined;
         positions: {
+            animation?: string | undefined;
             id: string | number;
             pose: {
                 position?: number[] | undefined;
                 orientation?: number[] | undefined;
             };
-            animation?: string | undefined;
         }[];
-        animation?: string | undefined;
     }[] | undefined;
 }>;
 export { jsonSchema, fileSchema, stepSchema, positionSchema };
