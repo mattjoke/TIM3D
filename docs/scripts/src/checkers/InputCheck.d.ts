@@ -53,51 +53,51 @@ declare const ConfigCheck: (object: object) => import("zod").SafeParseReturnType
  */
 declare const JsonCheck: (object: object) => import("zod").SafeParseReturnType<{
     files?: {
-        id: string;
-        name?: string | number | undefined;
-        file: string;
         color?: string | import("three").Color | undefined;
+        name?: string | number | undefined;
         pose?: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         } | undefined;
         animation?: string | undefined;
+        id: string;
+        file: string;
     }[] | undefined;
     steps?: {
         name?: string | undefined;
+        animation?: string | undefined;
         positions: {
+            animation?: string | undefined;
             id: string | number;
             pose: {
                 position?: number[] | undefined;
                 orientation?: number[] | undefined;
             };
-            animation?: string | undefined;
         }[];
-        animation?: string | undefined;
     }[] | undefined;
 }, {
     files?: {
-        id: string;
-        name?: string | number | undefined;
-        file: string;
         color?: string | import("three").Color | undefined;
+        name?: string | number | undefined;
         pose?: {
             position?: number[] | undefined;
             orientation?: number[] | undefined;
         } | undefined;
         animation?: string | undefined;
+        id: string;
+        file: string;
     }[] | undefined;
     steps?: {
         name?: string | undefined;
+        animation?: string | undefined;
         positions: {
+            animation?: string | undefined;
             id: string | number;
             pose: {
                 position?: number[] | undefined;
                 orientation?: number[] | undefined;
             };
-            animation?: string | undefined;
         }[];
-        animation?: string | undefined;
     }[] | undefined;
 }>;
 export { ConfigCheck, JsonCheck };
