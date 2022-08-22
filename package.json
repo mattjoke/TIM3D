@@ -41,12 +41,12 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "handlebars-loader": "^1.7.1",
-    "html-loader": "^3.1.0",
+    "html-loader": "^4.1.0",
     "semantic-release": "^19.0.2",
     "style-loader": "^3.3.1",
     "svg-inline-loader": "^0.8.2",
     "svg-url-loader": "^7.1.1",
-    "ts-loader": "^8.0.17",
+    "ts-loader": "^9.3.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "^4.6.4",
     "webpack": "^5.21.2",
@@ -56,7 +56,7 @@
   "dependencies": {
     "handlebars": "^4.7.7",
     "three": "latest",
-    "typedoc": "^0.22.12",
+    "typedoc": "^0.23.10",
     "zod": "^3.11.6"
   },
   "config": {
